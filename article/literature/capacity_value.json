@@ -1,0 +1,329 @@
+{
+  "strand": "Value of a kW of peak: GB Capacity Market clearing prices, distribution reinforcement unit costs, peaking-plant costs and planning kW per heat pump (comparators for the ~GBP 8/kW/yr cost of co-ordinated hybrid dispatch)",
+  "compiled": "2026-11-07",
+  "method_note": "Every source below was downloaded (PDF or gov.uk HTML) and read via text extraction on 2026-11-07. 'PDF p.' is the page index of the downloaded file. Quotes are verbatim from the extracted text; table rows are quoted as extracted, with ' ... ' marking omitted rows. Capacity Market clearing prices are GBP per kW of DE-RATED capacity per year, in the auction's price base and then CPI-indexed over the agreement; they are not directly per kW of nameplate. Figures marked 'derived' are this reviewer's arithmetic, not the source's claim.",
+  "sources": [
+    {
+      "key": "Ofgem2026_CM_AnnualReport",
+      "harvard": "Ofgem (2026) Annual Report on the Operation of the Capacity Market in 2025-26. 10 September 2026. London: Office of Gas and Electricity Markets. Available at: https://www.ofgem.gov.uk/sites/default/files/2026-09/Annual-report-on-the-operation-of-the-capacity-market-in-2025-26.pdf (Accessed: 7 November 2026).",
+      "url": "https://www.ofgem.gov.uk/sites/default/files/2026-09/Annual-report-on-the-operation-of-the-capacity-market-in-2025-26.pdf",
+      "doi": null,
+      "type": "regulator report",
+      "claims": [
+        {
+          "claim": "CM_T4_2029: the T-4 auction for delivery year 2029/30 (held March 2026) cleared at GBP 27.10/kW/year, procuring 40.1 GW de-rated.",
+          "quote": "The 2029/30 T-4 Auction cleared at a price of £27.10/kW/year and a total of 40.1GW of De-rated capacity was awarded Capacity Agreements.",
+          "locator": "Overview, 'Auction results', PDF p. 5 (printed p. 5); repeated para 4.1-4.2, PDF p. 36",
+          "numbers": {
+            "clearing_GBP_per_kW_yr": 27.1,
+            "derated_GW": 40.1,
+            "auction_concluded": "10 March 2026",
+            "price_base": "auction-year price base, CPI-indexed from 2024/25 (see DESNZ2026_CMParams)"
+          }
+        },
+        {
+          "claim": "CM_T1_2026: the latest T-1 (delivery 2026/27, held March 2026) cleared at GBP 5.00/kW/year, procuring 7.2 GW de-rated.",
+          "quote": "The 2026/27 T-1 Auction cleared at a price of £5.00/kW/year and a total of 7.2GW of De-rated capacity was awarded Capacity Agreements.",
+          "locator": "Overview, 'Auction results', PDF p. 6; para 4.17-4.18, PDF p. 44",
+          "numbers": {
+            "clearing_GBP_per_kW_yr": 5.0,
+            "derated_GW": 7.2,
+            "auction_concluded": "4 March 2026",
+            "price_base": "nominal for a one-year agreement; DESNZ lists indexation as N/A for T-1"
+          }
+        },
+        {
+          "claim": "Ofgem's T-4 history table gives the 2027/28 and 2028/29 clearing prices (GBP 65 and GBP 60/kW/year), the two highest T-4 prices on record bar 2026/27 (GBP 63).",
+          "quote": "2026/27 21-Feb-23 £63.00/kW/year 2027/28 27-Feb-24 £65.00/kW/year 2028/29 11-Mar-25 £60.00/kW/year 2029/30 10-Mar-26 £27.10/kW/year",
+          "locator": "Table 1: Capacity Market T-4/T-3 Auctions, PDF p. 12",
+          "numbers": {
+            "T4_2026_27": 63.0,
+            "T4_2027_28": 65.0,
+            "T4_2028_29": 60.0,
+            "T4_2029_30": 27.1,
+            "T4_range_2018_19_to_2029_30": "6.44-65.00"
+          }
+        },
+        {
+          "claim": "T-1 history: recent T-1 prices have fallen from the GBP 75 cap (2022/23) to GBP 20 (2025/26) and GBP 5 (2026/27).",
+          "quote": "2022/23 15-Feb-22 £75.00/kW/year 2023/24 14-Feb-23 £60.00/kW/year 2024/25 20-Feb-24 £35.79/kW/year 2025/26 05-Mar-25 £20.00/kW/year 2026/27 04-Mar-26 £5.00/kW/year",
+          "locator": "Table 2: Capacity Market T-1 Auctions, PDF p. 13",
+          "numbers": {
+            "T1_2025_26": 20.0,
+            "T1_2026_27": 5.0
+          }
+        },
+        {
+          "claim": "The auction demand curve is anchored on a net Cost of New Entry of GBP 49/kW/year, with a GBP 75 cap: the administratively estimated annual cost of firm new capacity.",
+          "quote": "The Auction Target Capacity is set at the Net Cost of New Entry (net-CONE) (£49/kW/year), which is the estimated total cost to operate the most competitive technology minus their expected returns from other energy and ancillary services.",
+          "locator": "para 1.19, PDF p. 11",
+          "numbers": {
+            "net_CONE_GBP_per_kW_yr": 49,
+            "price_cap_GBP_per_kW_yr": 75,
+            "price_taker_threshold": 25
+          }
+        }
+      ]
+    },
+    {
+      "key": "CM_T4_2027",
+      "harvard": "Deloitte LLP (2024) 2023 four year ahead Capacity Auction (T-4), Delivery Year 2027/28: Auction Monitor Report. 29 February 2024. London: Department for Energy Security and Net Zero. Available at: https://assets.publishing.service.gov.uk/media/65e7a1bf08eef600155a561c/t4-2023-for-delivery-2027-2028-auction-monitor-report.pdf (Accessed: 7 November 2026).",
+      "url": "https://assets.publishing.service.gov.uk/media/65e7a1bf08eef600155a561c/t4-2023-for-delivery-2027-2028-auction-monitor-report.pdf",
+      "doi": null,
+      "type": "auction monitor report (independent assurance for DESNZ)",
+      "claims": [
+        {
+          "claim": "T-4 for 2027/28 (held 27 Feb 2024) cleared at GBP 65.00/kW/year (the all-time T-4 high) for 42.83 GW de-rated.",
+          "quote": "The Clearing Price of the 2023 T-4 Auction was equal to £65.00, with the aggregate Bidding Capacity of Capacity Agreements of 42,830.829MW.",
+          "locator": "Section 3, PDF p. 8",
+          "numbers": {
+            "clearing_GBP_per_kW_yr": 65.0,
+            "derated_MW": 42830.829,
+            "price_base": "auction-year base, CPI-indexed; indexation year not verified (see not_verified)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "CM_T4_2028",
+      "harvard": "Deloitte LLP (2025) 2024 four year ahead Capacity Auction (T-4), Delivery Year 2028/29: Auction Monitor Report. 13 March 2025. London: Department for Energy Security and Net Zero. Available at: https://assets.publishing.service.gov.uk/media/67d44b1db1e34f07631b5bf8/t4-2024-for-delivery-2028-2029-auction-monitor-report.pdf (Accessed: 7 November 2026).",
+      "url": "https://assets.publishing.service.gov.uk/media/67d44b1db1e34f07631b5bf8/t4-2024-for-delivery-2028-2029-auction-monitor-report.pdf",
+      "doi": null,
+      "type": "auction monitor report (independent assurance for DESNZ)",
+      "claims": [
+        {
+          "claim": "T-4 for 2028/29 (held 11 Mar 2025) cleared at GBP 60.00/kW/year for 43.06 GW de-rated.",
+          "quote": "The Clearing Price of the 2024 T-4 Auction was equal to £60.00, with the aggregate Bidding Capacity of Capacity Agreements of 43055.073 MW.",
+          "locator": "Section 3, PDF p. 8",
+          "numbers": {
+            "clearing_GBP_per_kW_yr": 60.0,
+            "derated_MW": 43055.073,
+            "price_base": "2023/24 indexation base (DESNZ2025_CMParams)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "DESNZ2025_CMParams",
+      "harvard": "Department for Energy Security and Net Zero (2025) Final auction parameters, T-1 and T-4 Capacity Market auctions (Capacity Market auction parameters: letter from DESNZ to NESO, February 2025). 11 February 2025. London: DESNZ. Available at: https://www.gov.uk/government/publications/capacity-market-auction-parameters-letter-from-desnz-to-neso-february-2025/final-auction-parameters-t-1-and-t-4-capacity-market-auctions (Accessed: 7 November 2026).",
+      "url": "https://www.gov.uk/government/publications/capacity-market-auction-parameters-letter-from-desnz-to-neso-february-2025/final-auction-parameters-t-1-and-t-4-capacity-market-auctions",
+      "doi": null,
+      "type": "government correspondence (web page)",
+      "claims": [
+        {
+          "claim": "Price base: the 2028/29 T-4 was run with GBP 49 net CONE, GBP 75 cap and a 2023/24 indexation base; T-1 indexation N/A. Target 43.7 GW.",
+          "quote": "Net CONE £49/kW/yr £49/kW/yr Price Cap £75/kW/yr £75/kW/yr ... Indexation N/A 2023/24",
+          "locator": "Table of final parameters (T-1 2025/26 and T-4 2028/29 columns)",
+          "numbers": {
+            "T4_2028_29_target_GW": 43.7,
+            "T1_2025_26_target_GW": 7.5,
+            "indexation_base_T4": "2023/24"
+          }
+        }
+      ]
+    },
+    {
+      "key": "DESNZ2026_CMParams",
+      "harvard": "Department for Energy Security and Net Zero (2026) Final auction parameters, T-1 and T-4 Capacity Market auctions (Capacity Market auction parameters: letter from DESNZ to NESO, February 2026). 10 February 2026. London: DESNZ. Available at: https://www.gov.uk/government/publications/capacity-market-auction-parameters-letter-from-desnz-to-neso-february-2026/final-auction-parameters-t-1-and-t-4-capacity-market-auctions (Accessed: 7 November 2026).",
+      "url": "https://www.gov.uk/government/publications/capacity-market-auction-parameters-letter-from-desnz-to-neso-february-2026/final-auction-parameters-t-1-and-t-4-capacity-market-auctions",
+      "doi": null,
+      "type": "government correspondence (web page)",
+      "claims": [
+        {
+          "claim": "Price base: the 2029/30 T-4 used a 2024/25 indexation base (T-1 2026/27: N/A); target 39.4 GW (T-1 6.3 GW); net CONE GBP 49, cap GBP 75.",
+          "quote": "Auction target capacity 6.3 GW 39.4 GW ... Net CONE £49/ kW/yr £49/ kW/yr Price Cap £75/ kW/yr £75/ kW/yr ... Indexation N/A [footnote 1] 2024/25",
+          "locator": "Table 1: Final auction parameters",
+          "numbers": {
+            "T4_2029_30_target_GW": 39.4,
+            "T1_2026_27_target_GW": 6.3,
+            "indexation_base_T4": "2024/25"
+          }
+        }
+      ]
+    },
+    {
+      "key": "RIIOED2_SRVD_UnitCosts",
+      "harvard": "Ofgem (2026) Notice of statutory consultation on a proposal to modify the special conditions of the electricity distribution licences (Special Condition 3.9 Load Related Expenditure volume drivers, Annexes 1-6). 11 June 2026. London: Office of Gas and Electricity Markets. Available at: https://www.ofgem.gov.uk/sites/default/files/2026-06/Notice-of-statutory-consultation-on-a-proposal-to-modify-the-special-conditions-of-the-electricity-distribution-licences.pdf (Accessed: 7 November 2026).",
+      "url": "https://www.ofgem.gov.uk/sites/default/files/2026-06/Notice-of-statutory-consultation-on-a-proposal-to-modify-the-special-conditions-of-the-electricity-distribution-licences.pdf",
+      "doi": null,
+      "type": "licence condition text (regulator)",
+      "claims": [
+        {
+          "claim": "RIIO-ED2 licence unit cost for secondary (HV/LV) reinforcement: GBP 63,250 per MVA released by a ground-mounted transformer and GBP 89,470/MVA pole-mounted (ENWL, NPg, NGED, SPD, SHEPD licences). I.e. ~GBP 63/kVA and ~GBP 89/kVA capital.",
+          "quote": "Gross MVA released by installing a ground mounted Transformer, determined in accordance with the Load Related Expenditure Volume Drivers Governance Document £63,250/MVA",
+          "locator": "Annex 1, SpC 3.9 Appendix 1 'SRVDt unit cost by activity type (£)', type i=1 (i=2 PMT GBP 89,470/MVA), PDF p. 6",
+          "numbers": {
+            "GMT_GBP_per_MVA": 63250,
+            "PMT_GBP_per_MVA": 89470,
+            "LV_cable_GBP_per_km": 141310,
+            "HV_cable_GBP_per_km": 127270,
+            "GMT_range_all_licensees_GBP_per_MVA": "63,250 (Annex 1) to 82,150 (London Power Networks, Annex 2); SPN 68,020; EPN 66,010; SP Manweb 66,630; SEPD 67,580 (printed '£67,5800')",
+            "PMT_range_GBP_per_MVA": "89,470-116,200",
+            "price_base": "not stated in the notice; RIIO-ED2 unit costs are in 2020/21 prices (the companion consultation labels its unit-cost tables '2020/21 prices') - inference",
+            "derived_annuity_GBP_per_kVA_yr": "2.8-3.7 (GMT), 4.0-5.2 (PMT) at reviewer-assumed 3.5% real, 45 years - DERIVED, not Ofgem's"
+          }
+        },
+        {
+          "claim": "Flexibility that defers secondary reinforcement is funded at the deferral value of the same unit cost, i.e. SRUC x (1 - 1/(1+WACC)^n): Ofgem prices avoided peak at the time value of deferring this capex.",
+          "quote": "The value of SRUCti for gross MVA or km deferred through the procurement of flexibility services is derived in accordance with the following formula:",
+          "locator": "Annex 1, SpC 3.9.6, PDF p. 5",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "Ofgem2026_LREVD_Consultation",
+      "harvard": "Ofgem (2026) RIIO-ED2 Load Related Expenditure volume drivers: consultation. 27 February 2026. London: Office of Gas and Electricity Markets. Available at: https://www.ofgem.gov.uk/sites/default/files/2026-02/RIIO-ED2%20Load%20Related%20Expenditure%20volume%20drivers.pdf (Accessed: 7 November 2026).",
+      "url": "https://www.ofgem.gov.uk/sites/default/files/2026-02/RIIO-ED2%20Load%20Related%20Expenditure%20volume%20drivers.pdf",
+      "doi": null,
+      "type": "regulator consultation",
+      "claims": [
+        {
+          "claim": "Ofgem itself applies the licence GBP/MVA rate to price transformer upsizing: 232 transformers x 0.25 MVA x GBP 63,247/MVA = GBP 3.7m for SP ENW.",
+          "quote": "Transformer Upsizing - (232 transformers, average capacity added 250kV) 232 x 0.25MVA x 63,247 (£/MVA from licence) Adjustment = £.3.7m",
+          "locator": "Table 4, para 3.17, PDF p. 25",
+          "numbers": {
+            "GBP_per_MVA": 63247,
+            "derived_GBP_per_kVA": 63.2
+          }
+        },
+        {
+          "claim": "The SRVD funds reinforcement (or flexibility) only for highly utilised assets, i.e. transformers above or forecast above 100% utilisation.",
+          "quote": "The purpose of the SRVD is to fund reinforcement works (or flexibility services) for assets that are highly utilised. For transformers, the threshold for the SRVD is where utilisation is above, or forecast to be above, 100%.",
+          "locator": "para 3.2, PDF p. 21",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "NESO2020_CDCM_Training",
+      "harvard": "National Grid ESO / DNO charging methodology forum (2020) CDCM and EDCM Model training. March 2020. Warwick: National Energy System Operator (document 293076). Available at: https://neso.energy/document/293076/download (Accessed: 7 November 2026).",
+      "url": "https://neso.energy/document/293076/download",
+      "doi": null,
+      "type": "training slides",
+      "claims": [
+        {
+          "claim": "Method only (no numbers): CDCM use-of-system charges rest on a GBP/kW/year asset cost per network level, the annuitised cost of a hypothetical 500 MW reinforcement increment. This is the LRIC-style figure to source from a DNO model.",
+          "quote": "Asset costs (£/kW/year), based on the annuitised cost of assets required for reinforcing the network to meet a 500 MW increment of demand.",
+          "locator": "slide 'CALCULATION SHEET 8 - Unit Costs', PDF p. 23",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "DESNZ_GenCosts2023",
+      "harvard": "Department for Energy Security and Net Zero (2023) Electricity Generation Costs 2023. First published August 2023; updated November 2023. London: DESNZ. Available at: https://assets.publishing.service.gov.uk/media/6556027d046ed400148b99fe/electricity-generation-costs-2023.pdf (Accessed: 7 November 2026).",
+      "url": "https://assets.publishing.service.gov.uk/media/6556027d046ed400148b99fe/electricity-generation-costs-2023.pdf",
+      "doi": null,
+      "type": "government report",
+      "claims": [
+        {
+          "claim": "DESNZ gives a GBP/kW/year capacity-cost metric (construction + fixed O&M, annualised, 500 h/yr, 2025 commissioning) for peaking plant. Read from Figure 10: OCGT 100 MW ~91-143; 300 MW ~49-97; 400 MW ~45-63; 600 MW ~42-50; gas recip ~20-95 GBP/kW/yr.",
+          "quote": "£/kW per annum presented for construction and fixed operating costs, with technology-specific discount rates. 2025 commissioning dates.",
+          "locator": "Section 5, Figure 10 caption and chart, PDF p. 36 (printed p. 36)",
+          "numbers": {
+            "OCGT_100MW": "~91-143",
+            "OCGT_300MW": "~49-97",
+            "OCGT_400MW": "~45-63",
+            "OCGT_600MW": "~42-50",
+            "recip_gas": "~20-95",
+            "note": "values read off a bar chart (about +/- GBP 2); not tabulated in the text",
+            "price_base": "real 2021 prices"
+          }
+        },
+        {
+          "claim": "Price base of the report.",
+          "quote": "The prices presented in this report are all in 2021 prices unless stated.",
+          "locator": "PDF p. 20",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "CEPA2025_GasCosts",
+      "harvard": "CEPA and GHD (2025) Electricity Generation Cost Study: final report for the Department for Energy Security and Net Zero. 31 March 2025 (published January 2026 with Electricity Generation Costs 2025). London: DESNZ. Available at: https://assets.publishing.service.gov.uk/media/696616c68d599f4c09e1ffae/unabated-gas-electricity-generation-costs-2025.pdf (Accessed: 7 November 2026).",
+      "url": "https://assets.publishing.service.gov.uk/media/696616c68d599f4c09e1ffae/unabated-gas-electricity-generation-costs-2025.pdf",
+      "doi": null,
+      "type": "consultancy report for government",
+      "claims": [
+        {
+          "claim": "OCGT <300 MW capital cost GBP 307/361/415 per kW (low/med/high, 2024 prices), plus development GBP 8.6-23.1/kW; OCGT >300 MW GBP 269/316/363 per kW.",
+          "quote": "Capital cost (£/kW) 283 291 294 307 361 415",
+          "locator": "Table 3.13 'Generation Option 3 - Development and capital costs' (Leigh Fisher 2014 prices | current estimate 2024 prices), PDF p. 24; Table 3.19 (Option 4), PDF p. 27",
+          "numbers": {
+            "OCGT_lt300MW_capex_GBP_per_kW": [
+              307,
+              361,
+              415
+            ],
+            "OCGT_gt300MW_capex_GBP_per_kW": [
+              269,
+              316,
+              363
+            ],
+            "price_base": "2024 prices"
+          }
+        },
+        {
+          "claim": "Developer survey responses put OCGT capital cost including connection far higher: GBP 450-1,450/kW.",
+          "quote": "Capital Costs (incl. connections) £281/kW - £412/kW £450/kW - £1,450/kW",
+          "locator": "Table 5.3 'Comparison of Pre-Operational Costs - OCGT', PDF p. 39",
+          "numbers": {
+            "phase1_incl_connection": "281-412",
+            "stakeholder_incl_connection": "450-1450"
+          }
+        }
+      ]
+    },
+    {
+      "key": "NESO2026_CPA",
+      "harvard": "National Energy System Operator (2026) tRESP Consistent Planning Assumptions: Methodology and Detailed Design. January 2026. Warwick: NESO. Available at: https://www.neso.energy/document/376106/download (Accessed: 7 November 2026).",
+      "url": "https://www.neso.energy/document/376106/download",
+      "doi": null,
+      "type": "system operator planning methodology",
+      "claims": [
+        {
+          "claim": "The planning assumptions that DNOs must use put the diversified peak contribution of a residential heat pump at 1.7-2.4 kW for a peak winter day at -8 to +2 C outdoor.",
+          "quote": "Testing an outdoor air temperature range between -8˚C and 2˚C for a peak winter day suggest a per-heat pump peak demand contribution between 1.7 kW and 2.4 kW.",
+          "locator": "'Heat pump sensitivity - external temperature', PDF p. 32 of 40",
+          "numbers": {
+            "kW_per_HP_peak_diversified": "1.7-2.4",
+            "outdoor_C": "-8 to 2"
+          }
+        },
+        {
+          "claim": "NESO frames the CPA as a whole modelling approach (profiles plus diversity-correction curves) rather than a single kW per heat pump.",
+          "quote": "the CPA is the whole modelling approach, not a kW per EV or heat pump.",
+          "locator": "'The structure of CPAs for tRESP', PDF p. 5",
+          "numbers": {}
+        }
+      ]
+    }
+  ],
+  "not_verified": [
+    {
+      "item": "NESO/EMR Delivery Body 'Final Results Report' PDFs for T-4 2027/28, 2028/29, 2029/30 and T-1 2026/27",
+      "tried": "Searches did not surface the NESO-hosted PDFs. Used instead the Deloitte Auction Monitor Reports published by DESNZ (2027/28, 2028/29) and Ofgem's Sept 2026 annual report (2029/30, 2026/27), which agree with each other."
+    },
+    {
+      "item": "Indexation (price) base for the 2027/28 T-4",
+      "tried": "The DESNZ February 2024 parameters letter was not found at the expected gov.uk URLs (404). By the pattern of the 2025 and 2026 letters (2023/24 and 2024/25), it is probably 2022/23, but this is unverified."
+    },
+    {
+      "item": "A CDCM/LRIC GBP/kW/year figure per network level (the '500 MW model' output)",
+      "tried": "The method was confirmed (NESO 2020 training slides) but no DNO CDCM model workbook (xlsx) with the annuitised GBP/kW/yr values was located in two searches. The SRVD licence unit costs (GBP 63-82/kVA, secondary only) are the only primary GBP/kVA figures found."
+    },
+    {
+      "item": "Ofgem RIIO-ED2 Final Determinations Core Methodology / per-DNO primary (EHV, 33/11 kV) reinforcement unit costs",
+      "tried": "Not fetched. The secondary-tier licence unit costs above cover HV/LV only; the upstream tiers (primary, BSP, GSP) are not costed here, so GBP/kVA above is a LOWER bound on total network reinforcement per kVA of peak."
+    },
+    {
+      "item": "DESNZ Electricity Generation Costs 2025 peaking GBP/kW/yr metric (successor to 2023 Figure 10)",
+      "tried": "The 2025 report (Jan 2026) was downloaded and searched; no equivalent '500 hours GBP/kW' peaking figure was found in the text. The CEPA/GHD 2025 annex gives OCGT capex in 2024 prices instead."
+    },
+    {
+      "item": "Exact numbers behind DESNZ 2023 Figure 10",
+      "tried": "They are only in a bar chart (an image); the values were read off visually. Annex tables not checked."
+    }
+  ]
+}

@@ -1,0 +1,724 @@
+{
+  "strand": "Carbon accounting and UK policy: carbon budgets and pathways (CCC 6CB/7CB, NESO FES 2025), government heat policy and hybrid eligibility (HBS 2021, BUS), appraisal carbon values and electricity emissions factors (DESNZ Green Book supplementary guidance, Oct 2026 data tables), UK ETS prices, GHG conversion factors 2025, marginal vs average emissions in GB, levy rebalancing and Ofgem price cap levels. All sources accessed 2026-11-07.",
+  "sources": [
+    {
+      "key": "CCC2020_6CB_Buildings",
+      "harvard": "Climate Change Committee (2020) The Sixth Carbon Budget: Buildings (sector summary of the Advice, Methodology and Policy reports). London: Climate Change Committee. Available at: https://www.theccc.org.uk/wp-content/uploads/2020/12/Sector-summary-Buildings.pdf (Accessed: 7 November 2026).",
+      "url": "https://www.theccc.org.uk/wp-content/uploads/2020/12/Sector-summary-Buildings.pdf",
+      "doi": null,
+      "type": "advisory body report (primary)",
+      "claims": [
+        {
+          "claim": "The CCC's Sixth Carbon Budget modelling assumed hybrid heat pumps run in heat pump mode up to 80% of the time, based on Imperial College London work.",
+          "quote": "Based on work undertaken by Imperial College London our base assumption is that hybrid heat pumps can operate in heat pump mode up to 80% of the time.",
+          "locator": "Methodology excerpt, 'Hybrid heat pumps' bullet, PDF p. 29 (repeated in Box P3.1, PDF p. 63)",
+          "numbers": {"hybrid_heat_pump_mode_share_base": 0.80}
+        },
+        {
+          "claim": "A sensitivity with heat pump mode only 50% of the time made hybrids significantly less cost-effective.",
+          "quote": "A sensitivity conducted on our scenarios suggests that hybrid heat pumps which only operate in heat pump mode 50% of the time (relative to 80% of the time in the baseline case) are significantly less cost effective.",
+          "locator": "Policy excerpt, Box on role of hybrid heat pumps, PDF p. 63",
+          "numbers": {"hybrid_heat_pump_mode_share_sensitivity": 0.50}
+        },
+        {
+          "claim": "Field evidence on hybrid performance was variable and behaviour-dependent.",
+          "quote": "Trials undertaken by the Energy Systems Catapult have shown that performance can be highly variable and dependent on household heating behaviours.",
+          "locator": "Methodology excerpt, 'Hybrid heat pumps' bullet, PDF p. 29",
+          "numbers": {}
+        },
+        {
+          "claim": "The CCC named smart-control standards and gas/electricity price rebalancing as conditions for hybrids to deliver.",
+          "quote": "In order to overcome challenges of this kind, standards on smart heating controls and operation, and rebalancing of gas and electricity prices, would be important parts of any policy package.",
+          "locator": "Policy excerpt, Box on role of hybrid heat pumps, PDF p. 63",
+          "numbers": {}
+        },
+        {
+          "claim": "The CCC presented hybrids as offering public acceptability and near-term deployment benefits.",
+          "quote": "Unlike a shift straight to an electric heat pump, a switch to hybrid heat pumps would enable people to experience unchanged characteristics of the heating service they receive and avoid disruption",
+          "locator": "Policy excerpt, Box on role of hybrid heat pumps, PDF p. 62",
+          "numbers": {}
+        },
+        {
+          "claim": "6CB technology assumptions: ASHP combined SPF 300% at 40 C flow (2020) and gas boiler efficiency 87%.",
+          "quote": "Air source heat pumps* 300% ... Gas boiler 87% ... Heat pump efficiencies represent the combined SPF assumed for 2020 at 40°C flow temperature",
+          "locator": "Methodology excerpt, technology cost and performance table and notes, PDF p. 29 (table rows abridged with ellipses)",
+          "numbers": {"ashp_spf_2020": 3.00, "gas_boiler_efficiency": 0.87, "flow_temperature_C": 40}
+        }
+      ]
+    },
+    {
+      "key": "CCC2025_7CB",
+      "harvard": "Climate Change Committee (2025) The Seventh Carbon Budget. London: Climate Change Committee, February 2025. Available at: https://www.theccc.org.uk/wp-content/uploads/2025/02/The-Seventh-Carbon-Budget.pdf (Accessed: 7 November 2026).",
+      "url": "https://www.theccc.org.uk/wp-content/uploads/2025/02/The-Seventh-Carbon-Budget.pdf",
+      "doi": null,
+      "type": "advisory body report (primary)",
+      "claims": [
+        {
+          "claim": "The 7CB Balanced Pathway does not model fossil fuel (or hydrogen) hybrid heat pumps; its 'hybrids' are mostly heat pumps paired with point-of-use hot water.",
+          "quote": "A hybrid heat pump uses a standard heat pump alongside an additional heat source. In our modelling, the most common hybrid is a combination of a heat pump with point-of-use hot water. We do not consider fossil fuel or hydrogen hybrids.",
+          "locator": "Section 7.2 (Buildings), footnote, printed p. 163 (PDF p. 164)",
+          "numbers": {"fossil_hybrids_in_balanced_pathway": 0}
+        },
+        {
+          "claim": "Hybrids (non-fossil) are 6% of heat pumps installed by 2040; ASHP 94%.",
+          "quote": "These mostly consist of air source heat pumps (94% of the heat pumps installed by 2040), with a smaller role for ground source heat pumps (0.4%) and hybrids (6%).",
+          "locator": "Section 7.2, Individual heat pumps bullet, printed p. 163 (PDF p. 164)",
+          "numbers": {"ashp_share_of_hp_installed_by_2040": 0.94, "gshp_share": 0.004, "hybrid_share": 0.06}
+        },
+        {
+          "claim": "Heat pump installation trajectory in existing homes.",
+          "quote": "60,000 heat pumps were installed in 2023, and this rises to nearly 450,000 in 2030, reaching around 1.5 million by 2035.",
+          "locator": "Section 7.2, printed p. 163 (PDF p. 164)",
+          "numbers": {"installs_2023": 60000, "installs_2030": 450000, "installs_2035": 1500000}
+        },
+        {
+          "claim": "Consistent with a 2035 end to sales of new gas boilers.",
+          "quote": "This aligns with a 2035 phase-out date for ending the sale of new gas boilers.",
+          "locator": "Section 7.2, printed p. 163 (PDF p. 164)",
+          "numbers": {"gas_boiler_sales_end_year": 2035}
+        },
+        {
+          "claim": "Hydrogen boilers and hydrogen hybrids are excluded from the Balanced Pathway.",
+          "quote": "hydrogen boilers and hydrogen heat pump hybrids are not included in the Balanced Pathway.",
+          "locator": "Box 7.2.2, printed p. 169 (PDF p. 170)",
+          "numbers": {}
+        },
+        {
+          "claim": "Balanced Pathway electricity supply intensity: 131 gCO2e/kWh (2023) to 7 (2040) and 1 (2050).",
+          "quote": "emissions intensity of electricity supply is projected to fall by 95% from 131 gCO2e/kWh in 2023 to 7 gCO2e/kWh by 2040, and by 99% to 1 gCO2e/kWh by 2050",
+          "locator": "Section 7.5 (Electricity supply), PDF p. 211",
+          "numbers": {"grid_intensity_2023_gCO2e_per_kWh": 131, "grid_intensity_2040_gCO2e_per_kWh": 7, "grid_intensity_2050_gCO2e_per_kWh": 1}
+        },
+        {
+          "claim": "The pathway assumes the electricity:gas price ratio falls from about 4 to 2.2-2.6 by 2040 via levy removal and cost changes.",
+          "quote": "resulting in the ratio of electricity to gas prices falling from around 4 today to between 2.2 and 2.6 by 2040",
+          "locator": "Chapter 5/6 summary of Balanced Pathway buildings measures, PDF p. 107",
+          "numbers": {"elec_gas_price_ratio_today": 4.0, "elec_gas_price_ratio_2040_low": 2.2, "elec_gas_price_ratio_2040_high": 2.6}
+        },
+        {
+          "claim": "CCC recommends removing levies and policy costs from domestic electricity bills.",
+          "quote": "Make electricity cheaper by removing levies and other policy costs from domestic electricity bills, to help incentivise consumers to switch to lower-carbon electric options.",
+          "locator": "Section 7.2 key actions, PDF p. 172",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "NESO2025_FES_Pathways",
+      "harvard": "National Energy System Operator (2025) Future Energy Scenarios: Pathways to Net Zero. Version 5 (21 November 2025; first published July 2025). Warwick: NESO. Available at: https://www.neso.energy/document/364541/download (Accessed: 7 November 2026).",
+      "url": "https://www.neso.energy/document/364541/download",
+      "doi": null,
+      "type": "system operator scenario report (primary)",
+      "claims": [
+        {
+          "claim": "FES 2025 headline annual average carbon intensity of electricity: 118 gCO2/kWh in 2024; in 2050 -25 (HT), -37 (EE), -7 (HE), 26 (FB).",
+          "quote": "Annual average carbon intensity of electricity (g CO2/kWh) 118 -25 -37 -7 26",
+          "locator": "Executive Summary, Table 2: Key statistics, PDF p. 21 (columns: 2024 10YF; 2050 HT, EE, HE, FB)",
+          "numbers": {"2024": 118, "2050_HT": -25, "2050_EE": -37, "2050_HE": -7, "2050_FB": 26, "unit": "gCO2/kWh, generation basis"}
+        },
+        {
+          "claim": "In FES 2025 net zero pathways, natural gas hybrid heat pumps stop being installed because they are not net-zero compliant.",
+          "quote": "Alongside this, hybrid natural gas heat pump systems are no longer installed, as they are not net zero compliant.",
+          "locator": "Pathway Insights, Residential: gas and hydrogen for heat, 'Beyond the model', PDF p. 103",
+          "numbers": {}
+        },
+        {
+          "claim": "No new gas boiler installations from 2035 in HT, EE and HE; no new gas connections from 2027.",
+          "quote": "No new gas connections 2027 2027 2027 2027 2031 ... No gas boiler installs 2035 2035 2035 N/A (Gas boilers never phased out)",
+          "locator": "Table 12, PDF p. 103 (columns HT, EE, HE, 10YF, FB; table abridged)",
+          "numbers": {"no_gas_boiler_installs_HT_EE_HE": 2035, "no_new_gas_connections_HT_EE_HE_10YF": 2027, "no_new_gas_connections_FB": 2031}
+        },
+        {
+          "claim": "FES counts hybrid heat pumps as a distinct source of demand-side flexibility at peak.",
+          "quote": "54. Demand side flexibility capacities at peak ... Hybrid heat pumps",
+          "locator": "Figure 54 legend, PDF p. 121",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "NESO2025_FES_Workbook",
+      "harvard": "National Energy System Operator (2025) FES: Data Workbook 2025. Warwick: NESO. Available at: https://www.neso.energy/document/364551/download (Accessed: 7 November 2026).",
+      "url": "https://www.neso.energy/document/364551/download",
+      "doi": null,
+      "type": "dataset (primary)",
+      "claims": [
+        {
+          "claim": "CO2 intensity of generation by pathway, 2030 and 2035 (gCO2/kWh), including negative BECCS: HT 4.1 / -30.2; EE 5.6 / -42.6; HE 9.3 / -12.2; FB 79.9 / 23.2; Ten Year Forecast 35.7 / 23.1. 2024 = 117.9.",
+          "quote": "CO2 Intensity of Generation (gCO2/kWh)",
+          "locator": "Sheet ES1 (Electricity supply data table), rows 296-300 (variable label quoted; values read from year columns S=2030, X=2035)",
+          "numbers": {"2024_all": 117.9, "HT_2030": 4.1, "HT_2035": -30.2, "EE_2030": 5.6, "EE_2035": -42.6, "HE_2030": 9.3, "HE_2035": -12.2, "FB_2030": 79.9, "FB_2035": 23.2, "TYF_2030": 35.7, "TYF_2035": 23.1, "unit": "gCO2/kWh of generation"}
+        },
+        {
+          "claim": "CO2 intensity of generation excluding BECCS, 2030 and 2035: HT 14.3 / 5.6; EE 15.6 / 9.9; HE 24.0 / 5.2; FB 79.9 / 31.0; Ten Year Forecast 49.4 / 30.2.",
+          "quote": "CO2 Intensity of Generation excluding BECCS (gCO2/kWh)",
+          "locator": "Sheet ES1, rows 306-310 (variable label quoted; values read from columns S=2030, X=2035)",
+          "numbers": {"HT_2030": 14.3, "HT_2035": 5.6, "EE_2030": 15.6, "EE_2035": 9.9, "HE_2030": 24.0, "HE_2035": 5.2, "FB_2030": 79.9, "FB_2035": 31.0, "TYF_2030": 49.4, "TYF_2035": 30.2, "unit": "gCO2/kWh of generation, excl. BECCS negative emissions"}
+        },
+        {
+          "claim": "NESO cautions that its carbon intensity series ignore constraint redispatch, so real values will be higher.",
+          "quote": "Carbon intensity represent the case where no generation output is adjusted to overcome network or operability constraints. The real world values will be higher.",
+          "locator": "Sheet ES1, note in cell G5",
+          "numbers": {}
+        },
+        {
+          "claim": "FES 2025 hybrid categories are ASHP + BioLPG, ASHP + electric resistive and ASHP + hydrogen; there is no ASHP + natural-gas hybrid category. Homes in 2035 (HT/EE/HE/FB): ASHP+resistive 1.48m/1.86m/1.65m/0.14m; ASHP+BioLPG 0.13m/0.11m/0.11m/0.01m; ASHP+H2 0/0/0.20m/0. Gas boiler homes 2035: 19.49m (HT), 19.60m (EE), 19.42m (HE), 23.93m (FB); 24.45m in 2024.",
+          "quote": "Hybrid (ASHP + BioLPG boiler) ... Hybrid (ASHP + Electric resistive) ... Hybrid (ASHP + Hydrogen boiler)",
+          "locator": "Sheet F.45 'Residential heating technology mix today, in 2035 and in 2050', rows 10-43",
+          "numbers": {"gas_boiler_homes_2024": 24446674, "gas_boiler_homes_2035_HT": 19490438, "gas_boiler_homes_2035_EE": 19604800, "gas_boiler_homes_2035_HE": 19423653, "gas_boiler_homes_2035_FB": 23931715, "hybrid_ashp_resistive_2035_HT": 1476773, "hybrid_ashp_resistive_2035_EE": 1855041, "hybrid_ashp_bioLPG_2035_HT": 129153, "hybrid_ashp_H2_2035_HE": 195599}
+        },
+        {
+          "claim": "Heat pump stock (all hydronic HP incl. hybrids): about 8.1m (HT), 8.0m (EE), 7.7m (HE), 3.3m (FB) in the 2035 column; 23.5m (HT) and 22.1m (EE) in 2050.",
+          "quote": "F.44: Heat pump stock",
+          "locator": "Sheet F.44, rows 9-13 (date-serial columns; Y = 2035, AN = 2050)",
+          "numbers": {"HT_2035": 8111823, "EE_2035": 7973754, "HE_2035": 7738851, "FB_2035": 3275719, "HT_2050": 23488338, "EE_2050": 22098728}
+        }
+      ]
+    },
+    {
+      "key": "HMG2021_HBS",
+      "harvard": "HM Government (2021) Heat and Buildings Strategy. CP 388. London: Department for Business, Energy and Industrial Strategy. Available at: https://assets.publishing.service.gov.uk/media/61d450eb8fa8f54c14eb14e4/6.7408_BEIS_Clean_Heat_Heat___Buildings_Strategy_Stage_2_v5_WEB.pdf (Accessed: 7 November 2026).",
+      "url": "https://assets.publishing.service.gov.uk/media/61d450eb8fa8f54c14eb14e4/6.7408_BEIS_Clean_Heat_Heat___Buildings_Strategy_Stage_2_v5_WEB.pdf",
+      "doi": null,
+      "type": "government strategy (primary)",
+      "claims": [
+        {
+          "claim": "Government saw a possible transitional role for hybrids in the 2020s and 2030s but did not rule them in or out for 2050.",
+          "quote": "we acknowledge that hybrids could play a transitional role in the 2020s and 2030s, but currently remains too early to rule hybrid systems in or out of the 2050 energy mix",
+          "locator": "Chapter 3, 'Technology: Hybrid heat pumps', Our approach, printed p. 85",
+          "numbers": {}
+        },
+        {
+          "claim": "Natural gas hybrids are stated to be incompatible with net zero.",
+          "quote": "natural gas-heat pump hybrids are still reliant on a natural gas supply and therefore are not compatible with Net Zero",
+          "locator": "Chapter 3, 'Technology: Hybrid heat pumps', Risks and barriers, printed p. 85",
+          "numbers": {}
+        },
+        {
+          "claim": "HBS defines hybrids and notes controls can optimise on cost or efficiency.",
+          "quote": "Controls can be used to manage how the different technologies operate together and can be used to optimise on the basis of cost or efficiency.",
+          "locator": "Chapter 3, 'Technology: Hybrid heat pumps', Description, printed p. 84",
+          "numbers": {}
+        },
+        {
+          "claim": "The carbon reduction from hybrids was evidentially unresolved in 2021.",
+          "quote": "Our evidence base does not yet give us enough information about how consumers use hybrids for us to make firm conclusions about the potential carbon reductions that they can offer.",
+          "locator": "Chapter 3, 'Technology: Hybrid heat pumps', Risks and barriers, printed p. 85",
+          "numbers": {}
+        },
+        {
+          "claim": "Government committed to look at shifting levies from electricity to gas this decade.",
+          "quote": "we will look at options to shift or rebalance energy levies (such as the Renewables Obligation and Feed-in-Tariffs) and obligations (such as the Energy Company Obligation) away from electricity to gas over this decade.",
+          "locator": "Executive summary, key commitment 5 'Rebalancing energy prices', PDF p. 21",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "Ofgem_BUS_installers",
+      "harvard": "Ofgem (n.d.) Boiler Upgrade Scheme (BUS): installers. London: Ofgem. Available at: https://www.ofgem.gov.uk/environmental-and-social-schemes/boiler-upgrade-scheme-bus/installers (Accessed: 7 November 2026).",
+      "url": "https://www.ofgem.gov.uk/environmental-and-social-schemes/boiler-upgrade-scheme-bus/installers",
+      "doi": null,
+      "type": "regulator scheme guidance (primary)",
+      "claims": [
+        {
+          "claim": "Hybrids that combine a heat pump with fossil fuel heating are ineligible for the Boiler Upgrade Scheme.",
+          "quote": "the new heating system must not be a hybrid system that combines a heat pump with fossil fuel heating.",
+          "locator": "Eligibility requirements for the heating system (bulleted list)",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "DESNZ2026_Valuation_Guidance",
+      "harvard": "Department for Energy Security and Net Zero (2026a) Valuation of energy use and greenhouse gas (GHG) emissions: supplementary guidance to the HM Treasury Green Book on appraisal and evaluation in central government. London: DESNZ (page last updated 2 November 2026). Available at: https://assets.publishing.service.gov.uk/media/6ae370c5d22fc5fecb3eb800/valuation-of-energy-use-and-greenhouse-gas-emissions-for-appraisal.pdf (Accessed: 7 November 2026).",
+      "url": "https://www.gov.uk/government/publications/valuation-of-energy-use-and-greenhouse-gas-emissions-for-appraisal",
+      "doi": null,
+      "type": "government appraisal guidance (primary)",
+      "claims": [
+        {
+          "claim": "Changes in grid electricity use are to be converted to emissions with the long-run marginal factors in Data Table 1.",
+          "quote": "For estimating changes in emissions from changes in grid electricity use, analysts should use the (long run) marginal grid electricity emissions factors in Data Table 1.",
+          "locator": "Para 3.29, PDF p. 16",
+          "numbers": {}
+        },
+        {
+          "claim": "For gas, marginal and average factors are treated as identical and constant.",
+          "quote": "The marginal emissions factor is assumed to be constant across different levels of supply / demand (i.e. the average and marginal emissions factors are identical), and also over time.",
+          "locator": "Para 3.28, PDF p. 16",
+          "numbers": {}
+        },
+        {
+          "claim": "Average factors are for footprinting; worked example uses 0.18 kgCO2e/kWh gas and 0.12 kgCO2e/kWh commercial electricity for 2026.",
+          "quote": "Average emissions factor in 2026 kgCO2e/kWh 0.18 0.12",
+          "locator": "Box 3.6, PDF p. 17 (row from worked-example table; columns gas, electricity commercial)",
+          "numbers": {"gas_avg_2026": 0.18, "elec_commercial_avg_2026": 0.12}
+        },
+        {
+          "claim": "All emission changes, including within the UK ETS, are valued at the Data Table 3 carbon values.",
+          "quote": "All changes in emissions should be valued by using the carbon values presented in Data Table 3 of the accompanying spreadsheet. This includes emissions captured within trading schemes, such as the UK Emissions Trading Scheme.",
+          "locator": "Para 3.39, PDF p. 19",
+          "numbers": {}
+        },
+        {
+          "claim": "The guidance recognises heat pumps shift electricity demand in time relative to boilers, but asks only for non-monetised treatment of peak effects.",
+          "quote": "Analysts should highlight the impact of their policies and the way in which they alter the amount of peak and off-peak electricity demand through the non-monetised costs/benefits of the policy.",
+          "locator": "Paras 3.18-3.19, Time of Use Energy Valuation, PDF p. 14",
+          "numbers": {}
+        },
+        {
+          "claim": "UK ETS allowance cost belongs in the Financial Case, using DESNZ traded carbon values; appraisal uses Data Table 3.",
+          "quote": "Where emissions impacts occur in the traded sector, there are two values to be aware of: the appraisal value of the carbon and the market price of the ETS allowance.",
+          "locator": "Para 3.44, PDF p. 20",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "DESNZ2026_Valuation_Background",
+      "harvard": "Department for Energy Security and Net Zero (2026b) Valuation of energy use and greenhouse gas emissions: background documentation. London: DESNZ. Available at: https://assets.publishing.service.gov.uk/media/6ae36210a5c2f99e3a7b836a/guidance-on-valuation-of-energy-use-ghg-emissions-background-documentation.pdf (Accessed: 7 November 2026).",
+      "url": "https://assets.publishing.service.gov.uk/media/6ae36210a5c2f99e3a7b836a/guidance-on-valuation-of-energy-use-ghg-emissions-background-documentation.pdf",
+      "doi": null,
+      "type": "government appraisal guidance (primary)",
+      "claims": [
+        {
+          "claim": "The LRMEF is a time-weighted annual average for a small, sustained, evenly distributed change in demand.",
+          "quote": "The change in electricity consumption is assumed to be predictable in advance, so that it is met by generation bought in the wholesale market, and distributed evenly through the day and year",
+          "locator": "Para 2.14, PDF p. 8",
+          "numbers": {}
+        },
+        {
+          "claim": "Average factors for footprinting; marginal for sustained changes in appraisal.",
+          "quote": "Whereas the average emissions factors should be used to account for emissions for the purposes of emissions footprinting, the marginal emissions factor should be used for analysing sustained changes in energy consumption",
+          "locator": "Para 2.9, PDF p. 7",
+          "numbers": {}
+        },
+        {
+          "claim": "LRMEF method: DDM to 2026, BID3 Net Zero reference case 2025 from 2027, smoothed power-law curve; 2010 marginal was CCGT at 0.357 kgCO2e/kWh before losses.",
+          "quote": "From 2027 onwards the DESNZ BID3 Net Zero reference case 2025 has been used. The method adds a small amount of demand to each hour of a year",
+          "locator": "Paras 2.15-2.20 and Table 2.1, PDF pp. 8-9",
+          "numbers": {"ccgt_marginal_2010_kgCO2e_per_kWh_supply": 0.357}
+        },
+        {
+          "claim": "Table 1 values are conservative for electrification; bespoke analysis needed above ~10-20 TWh/yr.",
+          "quote": "In most cases the marginal emissions factor in the Data Table will be a conservative estimate of the increased emissions from a policy requiring new electrification",
+          "locator": "Para 2.21 and footnote 9, PDF p. 9",
+          "numbers": {"bespoke_analysis_threshold_TWh_per_year": "10-20"}
+        }
+      ]
+    },
+    {
+      "key": "DESNZ2026_DataTables",
+      "harvard": "Department for Energy Security and Net Zero (2026c) Data tables 1 to 18: supporting the toolkit and the guidance (revised October 2026). London: DESNZ. Available at: https://assets.publishing.service.gov.uk/media/6ae35a4b83b993d8d93eb791/data_tables_1-18-oct-2026.xlsx (Accessed: 7 November 2026).",
+      "url": "https://assets.publishing.service.gov.uk/media/6ae35a4b83b993d8d93eb791/data_tables_1-18-oct-2026.xlsx",
+      "doi": null,
+      "type": "dataset (primary)",
+      "claims": [
+        {
+          "claim": "Carbon values for appraisal (2025 £/tCO2e; low/central/high): 2025 156.10/312.19/468.29; 2026 158.47/316.95/475.42; 2030 168.35/336.70/505.05; 2035 181.57/363.13/544.70; 2040 195.82/391.64/587.45; 2050 227.25/454.51/681.76.",
+          "quote": "Table 3: Carbon values and sensitivities 2010-2100 for appraisal, 2025 £/tCO2e",
+          "locator": "Table 3, rows 2025-2050 (values read from sheet; ONS Sept 2026 GDP deflator)",
+          "numbers": {"2025": {"low": 156.10, "central": 312.19, "high": 468.29}, "2026": {"low": 158.47, "central": 316.95, "high": 475.42}, "2030": {"low": 168.35, "central": 336.70, "high": 505.05}, "2035": {"low": 181.57, "central": 363.13, "high": 544.70}, "2040": {"low": 195.82, "central": 391.64, "high": 587.45}, "2050": {"low": 227.25, "central": 454.51, "high": 681.76}, "unit": "GBP(2025)/tCO2e"}
+        },
+        {
+          "claim": "Electricity emissions factors, domestic, consumption-based (kgCO2e/kWh): long-run marginal 2025 0.211, 2026 0.191, 2030 0.0946, 2035 0.0386, 2040 0.0257; grid average 2025 0.146, 2026 0.125, 2030 0.0725, 2035 0.0254, 2040 0.0136.",
+          "quote": "Long-run marginal emissions factors should be used for measuring small changes in consumption or supply. Grid average emissions factors are used for footprinting.",
+          "locator": "Table 1 (Electricity emissions factors to 2100), header note A5; values from columns B (LRM domestic consumption) and F (grid average domestic consumption)",
+          "numbers": {"LRMEF_domestic_consumption": {"2024": 0.2300, "2025": 0.2110, "2026": 0.1907, "2030": 0.0946, "2035": 0.0386, "2040": 0.0257}, "grid_avg_domestic_consumption": {"2024": 0.1499, "2025": 0.1457, "2026": 0.1245, "2030": 0.0725, "2035": 0.0254, "2040": 0.0136}, "LRMEF_supply_based": {"2025": 0.1927, "2030": 0.0864, "2035": 0.0353}, "unit": "kgCO2e/kWh"}
+        },
+        {
+          "claim": "Table 2a states the natural gas sector factor equals the fuel factor: 0.1826 kgCO2/kWh, 0.1830 kgCO2e/kWh, gross CV.",
+          "quote": "the weighted average simply equals natural gas's own factor - 0.1826 kg CO2/kWh and 0.1830 kg CO2e/kWh.",
+          "locator": "Table 2a, 'Note on gas'",
+          "numbers": {"natural_gas_kgCO2_per_kWh_gross": 0.1826, "natural_gas_kgCO2e_per_kWh_gross": 0.1830}
+        }
+      ]
+    },
+    {
+      "key": "DESNZ2026_TradedCarbonValues",
+      "harvard": "Department for Energy Security and Net Zero (2026d) Traded carbon values used for modelling purposes, 2025. London: DESNZ, published 3 February 2026. Available at: https://www.gov.uk/government/publications/traded-carbon-values-used-for-modelling-purposes-2025/traded-carbon-values-used-for-modelling-purposes-2025 (Accessed: 7 November 2026).",
+      "url": "https://www.gov.uk/government/publications/traded-carbon-values-used-for-modelling-purposes-2025/traded-carbon-values-used-for-modelling-purposes-2025",
+      "doi": null,
+      "type": "government modelling values (primary)",
+      "claims": [
+        {
+          "claim": "UK ETS traded carbon values (real 2025 £/tCO2e; market / low / NZS-aligned / high): 2025 44/22/29/37; 2026 42/22/38/47; 2030 50/25/50/66; 2035 70/45/70/92.",
+          "quote": "The traded carbon values for modelling projections initially range between £22 and £44 in 2025. The trajectories increase steadily across the next decade to roughly double by 2035.",
+          "locator": "Section '2025 modelling traded carbon values', Table 1",
+          "numbers": {"2025": {"market": 44, "low": 22, "central_NZS": 29, "high": 37}, "2026": {"market": 42, "low": 22, "central_NZS": 38, "high": 47}, "2030": {"market": 50, "low": 25, "central_NZS": 50, "high": 66}, "2035": {"market": 70, "low": 45, "central_NZS": 70, "high": 92}, "unit": "GBP(2025)/tCO2e"}
+        },
+        {
+          "claim": "These values are not forecasts and assume a standalone UK ETS (no EU linking).",
+          "quote": "They should not be considered as forecasts of prices of UK ETS allowances, rather independent scenario-based projections",
+          "locator": "Background section",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "OBR2026_UKETS",
+      "harvard": "Office for Budget Responsibility (2026) Emissions trading scheme (UK ETS): tax by tax, spend by spend (last updated 10 February 2026). London: OBR. Available at: https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/emissions-trading-scheme-uk-ets/ (Accessed: 7 November 2026).",
+      "url": "https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/emissions-trading-scheme-uk-ets/",
+      "doi": null,
+      "type": "fiscal body explainer (primary)",
+      "claims": [
+        {
+          "claim": "UK carbon price history: £73 per permit in 2022 falling to £35 in 2024.",
+          "quote": "Receipts as a share of GDP are forecast to fall sharply, mainly due to a large fall in carbon price (to £35 in 2024)",
+          "locator": "Recent trends and latest forecast",
+          "numbers": {"uka_price_2022": 73, "uka_price_2024": 35, "unit": "GBP/tCO2e nominal"}
+        }
+      ]
+    },
+    {
+      "key": "DESNZ2026_UKETS_Markets",
+      "harvard": "Department for Energy Security and Net Zero (2026e) Taking part in the UK Emissions Trading Scheme markets (updated 21 October 2026). London: DESNZ. Available at: https://www.gov.uk/government/publications/uk-emissions-trading-scheme-markets/uk-emissions-trading-scheme-markets (Accessed: 7 November 2026).",
+      "url": "https://www.gov.uk/government/publications/uk-emissions-trading-scheme-markets/uk-emissions-trading-scheme-markets",
+      "doi": null,
+      "type": "government guidance (primary)",
+      "claims": [
+        {
+          "claim": "UK ETS Auction Reserve Price is £28, rising to £29.01 in 2027.",
+          "quote": "The UK ETS currently has an Auction Reserve Price ( ARP ) of £28. This will increase to £29.01 in 2027",
+          "locator": "Section 'Auction Reserve Price'",
+          "numbers": {"ARP_2026": 28.0, "ARP_2027": 29.01, "unit": "GBP/tCO2e"}
+        }
+      ]
+    },
+    {
+      "key": "DESNZ2025_GHG_CF",
+      "harvard": "Department for Energy Security and Net Zero (2025) Greenhouse gas reporting: conversion factors 2025 (condensed set). London: DESNZ, published 10 June 2025. Available at: https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2025 (Accessed: 7 November 2026).",
+      "url": "https://assets.publishing.service.gov.uk/media/6846a4e6d25e6f6afd4c0180/ghg-conversion-factors-2025-condensed-set.xlsx",
+      "doi": null,
+      "type": "official statistics dataset (primary)",
+      "claims": [
+        {
+          "claim": "Natural gas (grid, with limited biogas content), 2025: 0.18296 kgCO2e/kWh gross CV (CO2 0.18259; CH4 0.00028; N2O 0.00009); net CV 0.20270. 100% mineral blend: 0.18494 gross CV.",
+          "quote": "Natural gas ... kWh (Gross CV) | 0.18296",
+          "locator": "Sheet 'Fuels', Gaseous fuels, rows 39-46 (Scope 1, AR5 GWP100)",
+          "numbers": {"natural_gas_gross_CV_kgCO2e_per_kWh": 0.18296, "natural_gas_net_CV_kgCO2e_per_kWh": 0.20270, "natural_gas_100pct_mineral_gross_CV": 0.18494}
+        },
+        {
+          "claim": "Use the 'natural gas' factor (includes grid biogas) for mains gas.",
+          "quote": "any organisation that reports emissions from natural gas use should use the \"natural gas\" factor.",
+          "locator": "Sheet 'Fuels', guidance note",
+          "numbers": {}
+        },
+        {
+          "claim": "UK electricity generated 2025: 0.17700 kgCO2e/kWh; T&D 0.01853 kgCO2e/kWh (consumption = sum, 0.19553). Factor fell ~15% vs 2024.",
+          "quote": "In the 2025 update, the UK Electricity CO2e factor has reduced by approximately 15% since 2024.",
+          "locator": "Sheets 'UK electricity' (row 26) and 'Transmission and distribution' (row 22)",
+          "numbers": {"elec_generated_2025": 0.177, "elec_TandD_2025": 0.01853, "elec_consumed_2025": 0.19553, "unit": "kgCO2e/kWh"}
+        }
+      ]
+    },
+    {
+      "key": "Hawkes2010",
+      "harvard": "Hawkes, A.D. (2010) 'Estimating marginal CO2 emissions rates for national electricity systems', Energy Policy, 38(10), pp. 5977-5987. doi:10.1016/j.enpol.2010.05.053.",
+      "url": "https://ideas.repec.org/a/eee/enepol/v38y2010i10p5977-5987.html",
+      "doi": "10.1016/j.enpol.2010.05.053",
+      "type": "peer-reviewed article (abstract read only)",
+      "claims": [
+        {
+          "claim": "Empirical GB short-run MEF 2002-2009 was 0.69 kgCO2/kWh (+/-10%), above system-average rates.",
+          "quote": "The case of Great Britain is considered, demonstrating an MEF of 0.69 kgCO2/kW h for 2002-2009, with error bars at +/-10%.",
+          "locator": "Abstract (RePEc/IDEAS record)",
+          "numbers": {"GB_SRMEF_2002_2009_kgCO2_per_kWh": 0.69, "uncertainty": 0.10}
+        },
+        {
+          "claim": "Marginal rates exceed commonly used average or assumed long-run marginal rates.",
+          "quote": "Given that these rates are higher than commonly applied system-average or assumed \"long term marginal\" emissions rates, it is concluded that maintenance of an improved understanding of MEFs is valuable",
+          "locator": "Abstract",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "Hawkes2014",
+      "harvard": "Hawkes, A.D. (2014) 'Long-run marginal CO2 emissions factors in national electricity systems', Applied Energy, 125, pp. 197-205. doi:10.1016/j.apenergy.2014.03.060.",
+      "url": "https://econpapers.repec.org/RePEc:eee:appene:v:125:y:2014:i:c:p:197-205",
+      "doi": "10.1016/j.apenergy.2014.03.060",
+      "type": "peer-reviewed article (abstract read only)",
+      "claims": [
+        {
+          "claim": "GB LR-MEF 0.26-0.53 kgCO2/kWh for the coming decade, approaching zero by 2035; LR-MEF can diverge strongly from short-run.",
+          "quote": "For the British electricity system it is found that the average LR-MEF is approximately 0.26–0.53kgCO2/kWh for the coming decade, but this reduces to approximately zero by 2035 and onwards as the system decarbonises.",
+          "locator": "Abstract (EconPapers record)",
+          "numbers": {"GB_LRMEF_decade_low": 0.26, "GB_LRMEF_decade_high": 0.53, "approx_zero_from": 2035, "unit": "kgCO2/kWh"}
+        },
+        {
+          "claim": "Short-run and long-run marginal factors can diverge significantly.",
+          "quote": "Furthermore, it is found that the LR-MEF can diverge very significantly from the short-run.",
+          "locator": "Abstract",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "Staffell2017",
+      "harvard": "Staffell, I. (2017) 'Measuring the progress and impacts of decarbonising British electricity', Energy Policy, 102, pp. 463-475. doi:10.1016/j.enpol.2016.12.037.",
+      "url": "https://ideas.repec.org/a/eee/enepol/v102y2017icp463-475.html",
+      "doi": "10.1016/j.enpol.2016.12.037",
+      "type": "peer-reviewed article (abstract read only; full text blocked)",
+      "claims": [
+        {
+          "claim": "GB electricity sector emissions fell 46% in three years to June 2016.",
+          "quote": "electricity sector emissions have fallen 46% in the three years to June 2016, their lowest since 1960.",
+          "locator": "Abstract (RePEc/IDEAS record)",
+          "numbers": {"emissions_fall_3yr_to_June2016": 0.46}
+        },
+        {
+          "claim": "Staffell (2017) supplies the fuel-type intensity factors used by the NESO Carbon Intensity API (verified via Bruce et al. 2024 reference list, not the paper itself).",
+          "quote": "[3] Staffell, Iain (2017) \"Measuring the progress and impacts of decarbonising British electricity\". In Energy Policy 102, pp. 463-475",
+          "locator": "Bruce et al. (2024), References, p. 3",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "Thomson2017",
+      "harvard": "Thomson, R.C., Harrison, G.P. and Chick, J.P. (2017) 'Marginal greenhouse gas emissions displacement of wind power in Great Britain', Energy Policy, 101, pp. 201-210. doi:10.1016/j.enpol.2016.11.012.",
+      "url": "https://ideas.repec.org/a/eee/enepol/v101y2017icp201-210.html",
+      "doi": "10.1016/j.enpol.2016.11.012",
+      "type": "peer-reviewed article (abstract read only)",
+      "claims": [
+        {
+          "claim": "In GB 2009-2014, marginal displacement was generally underestimated by average factors; e.g. wind's displacement factor 21% above the average factor in 2010.",
+          "quote": "For Great Britain over 2009–2014, it was found that marginal emissions displacement has generally been underestimated with, for example, the emissions displacement factor for wind being 21% higher than that the average emissions factor in 2010.",
+          "locator": "Abstract (RePEc/IDEAS record)",
+          "numbers": {"marginal_over_average_2010": 1.21}
+        }
+      ]
+    },
+    {
+      "key": "Pimm2019",
+      "harvard": "Pimm, A.J., Barbour, E.R., Cockerill, T.T. and Palczewski, J. (2019) 'Evaluating the regional potential for emissions reduction using energy storage', in 2019 Offshore Energy and Storage Summit (OSES). Brest: IEEE. doi:10.1109/OSES.2019.8867357. Accepted version: https://eprints.whiterose.ac.uk/154779/ (Accessed: 7 November 2026).",
+      "url": "https://eprints.whiterose.ac.uk/154779/1/PimmAJ%20-%20OSES%20paper%20v5.pdf",
+      "doi": "10.1109/OSES.2019.8867357",
+      "type": "peer-reviewed conference paper (accepted version, full text read)",
+      "claims": [
+        {
+          "claim": "Using average factors for interventions misrepresents emissions; MEFs should be used for the effect of an intervention.",
+          "quote": "To understand the effect on carbon emissions of an intervention such as operation of storage or implementation of energy efficiency or demand response measures, MEFs should be used",
+          "locator": "Section I, Introduction, p. 1",
+          "numbers": {}
+        },
+        {
+          "claim": "Regional GB MEFs (May 2018-Jan 2019) ranged from 28.8 to 468.5 gCO2/kWh.",
+          "quote": "regional MEFs span a significant range, from 28.8 gCO2/kWh in East Midlands up to 468.5 gCO2/kWh in South Scotland.",
+          "locator": "Section III, discussion of Fig. 3, p. 3",
+          "numbers": {"regional_MEF_min_gCO2_per_kWh": 28.8, "regional_MEF_max_gCO2_per_kWh": 468.5}
+        }
+      ]
+    },
+    {
+      "key": "Bruce2024_CI_Regional",
+      "harvard": "Bruce, A.R.W., Ruff, L., Kelloway, J., MacMillan, F. and Rogers, A. (2024) Carbon Intensity Regional Forecast Methodology. Issue May 2024. Wokingham: National Energy System Operator. Available at: https://www.cityobservatory.birmingham.gov.uk/api/datasets/1.0/carbon-intensity-forecast-and-power-generation-mix-national/attachments/neso_ci_regional_methodology_v2_pdf (third-party mirror of NESO PDF) (Accessed: 7 November 2026).",
+      "url": "https://www.cityobservatory.birmingham.gov.uk/api/datasets/1.0/carbon-intensity-forecast-and-power-generation-mix-national/attachments/neso_ci_regional_methodology_v2_pdf",
+      "doi": null,
+      "type": "system operator methodology note (primary; read via mirror)",
+      "claims": [
+        {
+          "claim": "The Carbon Intensity API reports average (consumption) intensity from generation-only CO2 using fixed fuel factors, including imports and T&D losses.",
+          "quote": "The Regional Carbon Intensity forecasts include CO2 emissions related to electricity generation only. The forecasts include CO2 emissions from all large metered power stations, interconnector imports, transmission and distribution losses",
+          "locator": "'What's included in the forecast', p. 1",
+          "numbers": {}
+        },
+        {
+          "claim": "Fuel intensity factors used (gCO2/kWh): CCGT 394, OCGT 651, coal 937, oil 935, biomass 120, other 300, nuclear/wind/solar/hydro/pumped storage 0; imports France ~53, Netherlands ~474, Belgium ~179, Ireland ~458.",
+          "quote": "Gas (Combined Cycle) 394 Gas (Open Cycle) 651",
+          "locator": "Table 1, p. 3",
+          "numbers": {"CCGT": 394, "OCGT": 651, "coal": 937, "oil": 935, "biomass": 120, "other": 300, "French_imports": 53, "Dutch_imports": 474, "Belgian_imports": 179, "Irish_imports": 458, "unit": "gCO2/kWh"}
+        },
+        {
+          "claim": "Embedded generators without metered data are excluded.",
+          "quote": "This work does not consider the CO2 emissions of embedded generators that NESO does not have visibility of or access to metered data.",
+          "locator": "Limitations, p. 3",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "Ofgem2025_Cap_OctDec",
+      "harvard": "Ofgem (2025a) Changes to energy price cap between 1 October and 31 December 2025. London: Ofgem. Available at: https://www.ofgem.gov.uk/news/changes-energy-price-cap-between-1-october-and-31-december-2025 (Accessed: 7 November 2026).",
+      "url": "https://www.ofgem.gov.uk/news/changes-energy-price-cap-between-1-october-and-31-december-2025",
+      "doi": null,
+      "type": "regulator announcement (primary)",
+      "claims": [
+        {
+          "claim": "Oct-Dec 2025 (Direct Debit, GB average, incl. VAT): electricity 26.35 p/kWh + 53.68 p/day; gas 6.29 p/kWh + 34.03 p/day. Ratio 4.19.",
+          "quote": "you will pay on average 26.35 pence per kilowatt hour (kWh). The daily standing charge is 53.68 pence per day.",
+          "locator": "Electricity and gas unit rate paragraphs",
+          "numbers": {"elec_p_per_kWh": 26.35, "elec_sc_p_per_day": 53.68, "gas_p_per_kWh": 6.29, "gas_sc_p_per_day": 34.03, "elec_gas_unit_ratio": 4.19, "typical_dual_fuel_GBP_yr": 1755}
+        }
+      ]
+    },
+    {
+      "key": "Ofgem2025_Cap_JanMar26",
+      "harvard": "Ofgem (2025b) Changes to energy price cap between 1 January and 31 March 2026; and Energy price cap (default tariff) update from 1 January 2026 (letter, 21 November 2025). London: Ofgem. Available at: https://www.ofgem.gov.uk/news/changes-energy-price-cap-between-1-january-and-31-march-2026 and https://www.ofgem.gov.uk/sites/default/files/2025-11/Summary-of-changes-to-energy-price-cap-1-January-to-31-March-2026.pdf (Accessed: 7 November 2026).",
+      "url": "https://www.ofgem.gov.uk/news/changes-energy-price-cap-between-1-january-and-31-march-2026",
+      "doi": null,
+      "type": "regulator announcement (primary)",
+      "claims": [
+        {
+          "claim": "Jan-Mar 2026 (Direct Debit, incl. VAT): electricity 27.69 p/kWh + 54.75 p/day; gas 5.93 p/kWh + 35.09 p/day. Ratio 4.67.",
+          "quote": "you will pay on average 5.93 pence per kilowatt hour (kWh). The daily standing charge is 35.09 pence per day.",
+          "locator": "News page, gas paragraph (electricity paragraph: 27.69 p/kWh, 54.75 p/day)",
+          "numbers": {"elec_p_per_kWh": 27.69, "elec_sc_p_per_day": 54.75, "gas_p_per_kWh": 5.93, "gas_sc_p_per_day": 35.09, "elec_gas_unit_ratio": 4.67, "typical_dual_fuel_GBP_yr": 1758}
+        },
+        {
+          "claim": "Policy cost allowance rose from £215 to £236/yr, partly from the nuclear RAB allowance on the electricity unit rate.",
+          "quote": "The policy cost allowance has increased by £21 (10%) from £215 to £236 per year for a typical consumer.",
+          "locator": "Letter, 'What's driving the changes', p. 3",
+          "numbers": {"policy_allowance_GBP_from": 215, "policy_allowance_GBP_to": 236}
+        }
+      ]
+    },
+    {
+      "key": "Ofgem2026_Cap_AprJun",
+      "harvard": "Ofgem (2026a) Changes to energy price cap between 1 April and 30 June 2026. London: Ofgem. Available at: https://www.ofgem.gov.uk/news/changes-energy-price-cap-between-1-april-and-30-june-2026 (Accessed: 7 November 2026).",
+      "url": "https://www.ofgem.gov.uk/news/changes-energy-price-cap-between-1-april-and-30-june-2026",
+      "doi": null,
+      "type": "regulator announcement (primary)",
+      "claims": [
+        {
+          "claim": "After the Budget levy changes, Apr-Jun 2026: electricity 24.67 p/kWh + 57.21 p/day; gas 5.74 p/kWh + 29.09 p/day. Ratio 4.30.",
+          "quote": "you will pay on average 24.67 pence per kilowatt hour (kWh). The daily standing charge is 57.21 pence per day.",
+          "locator": "Electricity paragraph",
+          "numbers": {"elec_p_per_kWh": 24.67, "elec_sc_p_per_day": 57.21, "gas_p_per_kWh": 5.74, "gas_sc_p_per_day": 29.09, "elec_gas_unit_ratio": 4.30}
+        },
+        {
+          "claim": "Two schemes ended or moved to taxation, saving ~£150; WHD moved from standing charge to unit rate.",
+          "quote": "The UK government recently announced that the funding for 2 environmental and social schemes will either end or be funded through general taxes from April 2026.",
+          "locator": "Drivers paragraph",
+          "numbers": {"average_saving_GBP": 150}
+        }
+      ]
+    },
+    {
+      "key": "Ofgem2026_Cap_OctDec",
+      "harvard": "Ofgem (2026b) Changes to energy price cap between 1 October and 31 December 2026. London: Ofgem. Available at: https://www.ofgem.gov.uk/news/changes-energy-price-cap-between-1-october-and-31-december-2026 (Accessed: 7 November 2026).",
+      "url": "https://www.ofgem.gov.uk/news/changes-energy-price-cap-between-1-october-and-31-december-2026",
+      "doi": null,
+      "type": "regulator announcement (primary)",
+      "claims": [
+        {
+          "claim": "Oct-Dec 2026: electricity 26.32 p/kWh (no VAT) + 54.83 p/day; gas 7.97 p/kWh (5% VAT) + 29.68 p/day. Ratio 3.30.",
+          "quote": "you will pay on average 7.97 pence per kilowatt hour (kWh). The daily standing charge is 29.68 pence per day.",
+          "locator": "Gas paragraph (electricity: 26.32 p/kWh, 54.83 p/day)",
+          "numbers": {"elec_p_per_kWh": 26.32, "elec_sc_p_per_day": 54.83, "gas_p_per_kWh": 7.97, "gas_sc_p_per_day": 29.68, "elec_gas_unit_ratio": 3.30, "typical_dual_fuel_GBP_yr": 1723}
+        },
+        {
+          "claim": "VAT removed from household electricity from 1 Oct 2026 to 31 Mar 2027; gas keeps 5%.",
+          "quote": "The government has removed VAT from electricity bills from 1 October 2026 to 31 March 2027.",
+          "locator": "Section 'Changes to VAT from 1 October 2026'",
+          "numbers": {"elec_VAT": 0.0, "gas_VAT": 0.05}
+        }
+      ]
+    },
+    {
+      "key": "Ofgem2026_ECO_RO",
+      "harvard": "Ofgem (2026c) Treatment of ECO and RO in the price cap from April 2026. London: Ofgem, January 2026. Available at: https://www.ofgem.gov.uk/sites/default/files/2026-01/Treatment%20of%20ECO%20and%20RO%20in%20the%20price%20cap%20from%20April%202026%20%281%29-20260126113009.pdf (Accessed: 7 November 2026).",
+      "url": "https://www.ofgem.gov.uk/sites/default/files/2026-01/Treatment%20of%20ECO%20and%20RO%20in%20the%20price%20cap%20from%20April%202026%20%281%29-20260126113009.pdf",
+      "doi": null,
+      "type": "regulator note (primary)",
+      "claims": [
+        {
+          "claim": "Budget 2025: Exchequer meets 75% of domestic RO costs 2026/27-2028/29 and ECO/GBIS end on bills; Ofgem applies a straight 75% cut to the RO allowance.",
+          "quote": "then apply a straight 75% reduction to the resulting RO allowance to reflect government funding for domestic households.",
+          "locator": "p. 1",
+          "numbers": {"RO_domestic_share_exchequer": 0.75, "period": "2026/27-2028/29"}
+        }
+      ]
+    },
+    {
+      "key": "DESNZ2025_BillStatement",
+      "harvard": "Department for Energy Security and Net Zero (2025b) Energy bill reductions: statement to energy suppliers. London: DESNZ, published 17 December 2025. Available at: https://www.gov.uk/government/publications/energy-bill-reductions-statement-to-energy-suppliers/energy-bill-reductions-statement-to-energy-suppliers (Accessed: 7 November 2026).",
+      "url": "https://www.gov.uk/government/publications/energy-bill-reductions-statement-to-energy-suppliers/energy-bill-reductions-statement-to-energy-suppliers",
+      "doi": null,
+      "type": "government statement (primary)",
+      "claims": [
+        {
+          "claim": "From April 2026, 75% of domestic RO costs met by the Exchequer for three years and ECO no longer levied on bills.",
+          "quote": "From April 2026/27–28/29, 75% of domestic costs associated with the Renewables Obligation ( RO ) will be met by the Exchequer. From April 2026, the Energy Company Obligation ( ECO ) will no longer be levied on energy bills.",
+          "locator": "Main statement",
+          "numbers": {"average_household_saving_GBP": 150}
+        }
+      ]
+    },
+    {
+      "key": "DESNZ2026_VAT",
+      "harvard": "Department for Energy Security and Net Zero (2026f) Breathing space on your energy bill. London: DESNZ, published 26 August 2026. Available at: https://www.gov.uk/government/news/breathing-space-on-your-energy-bill (Accessed: 7 November 2026).",
+      "url": "https://www.gov.uk/government/news/breathing-space-on-your-energy-bill",
+      "doi": null,
+      "type": "government announcement (primary)",
+      "claims": [
+        {
+          "claim": "VAT removed from household electricity from 1 October 2026, average saving £45/yr, funded for 2026-27.",
+          "quote": "From 1 October 2026, VAT will be removed from household electricity bills, saving households an average of £45 per year.",
+          "locator": "Opening paragraphs",
+          "numbers": {"saving_GBP_yr": 45}
+        }
+      ]
+    },
+    {
+      "key": "Nesta2024_Levies",
+      "harvard": "Shepheard, M., Kavan, M., Lucas, E. and Lewis, D. (2024) Cheaper electricity, fairer bills. London: Nesta, 4 December 2024. Available at: https://www.nesta.org.uk/report/cheaper-electricity-fairer-bills/ (Accessed: 7 November 2026).",
+      "url": "https://www.nesta.org.uk/report/cheaper-electricity-fairer-bills/",
+      "doi": null,
+      "type": "think-tank report (secondary analysis)",
+      "claims": [
+        {
+          "claim": "Policy costs were 16% of a typical electricity bill but 5.5% of a gas bill (Oct-Dec 2024 cap).",
+          "quote": "Policy costs account for 16% of a typical electricity bill, but only 5.5% of a typical gas bill.",
+          "locator": "Section on levy allocation, Figure 2",
+          "numbers": {"policy_share_elec_bill": 0.16, "policy_share_gas_bill": 0.055}
+        },
+        {
+          "claim": "Price ratio 3.9; ASHP running-cost break-even ratio 4.1; removing all levies from electricity gives 3.1; full rebalancing 2.4.",
+          "quote": "Electricity is currently 3.9 times more expensive than gas. 4.1 is the threshold price ratio where the typical home starts to have lower fuel expenditure with an air-source heat pump than with a gas boiler.",
+          "locator": "Section 'Rebalancing could dramatically reduce the ratio'",
+          "numbers": {"ratio_Q4_2024": 3.9, "ashp_breakeven_ratio": 4.1, "ratio_levies_removed": 3.1, "ratio_full_rebalance": 2.4}
+        },
+        {
+          "claim": "Moving only the RO and FiT levies onto gas achieves most of the rebalancing effect.",
+          "quote": "Moving only the two main environmental levies – the Renewables Obligation (RO) and the Feed-in-Tariff (FiT) levy – from electricity onto gas would be enough to achieve most of the effects of rebalancing.",
+          "locator": "Section 'Moving only the largest environmental levies'",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "MCSF2026_Levies",
+      "harvard": "Russon, J. and Wakelin, H. (2026) Rebalancing Electricity Levies in the UK: Impacts on Electricity Bills, Fuel Poverty, and the Clean Heat Transition. Liverpool: The MCS Foundation, March 2026. Available at: https://mcsfoundation.org.uk/wp-content/uploads/2026/02/MCSF-Rebalancing-Electricity-Levies-in-the-UK-Report-Final.pdf (Accessed: 7 November 2026).",
+      "url": "https://mcsfoundation.org.uk/wp-content/uploads/2026/02/MCSF-Rebalancing-Electricity-Levies-in-the-UK-Report-Final.pdf",
+      "doi": null,
+      "type": "charity research report (secondary analysis)",
+      "claims": [
+        {
+          "claim": "The post-Budget 2025 measures only partly correct the levy imbalance.",
+          "quote": "These results indicate that the post-Budget interventions go some way towards correcting the imbalance created by the concentration of policy costs on electricity bills, though they do not fully resolve it.",
+          "locator": "Section on impacts on electrically heated households, PDF p. 36",
+          "numbers": {}
+        },
+        {
+          "claim": "Just over 60,000 MCS-certified heat pumps were installed in 2025.",
+          "quote": "In 2025, just over 60,000 MCS-certiﬁed heat pumps were installed.",
+          "locator": "Introduction, PDF p. 8",
+          "numbers": {"mcs_heat_pumps_2025": 60000}
+        }
+      ]
+    }
+  ],
+  "not_verified": [
+    {"item": "Staffell (2017) full text, including any marginal-emissions content and the fuel-specific intensity table", "tried": "core.ac.uk/download/77021834.pdf (Cloudflare challenge), core.ac.uk/download/pdf (HTML stub), Imperial Spiral record (504), ScienceDirect (blocked). Only the IDEAS abstract was read; fuel factors are taken from Bruce et al. (2024), which cites Staffell."},
+    {"item": "Hawkes (2010, 2014) full texts", "tried": "Only RePEc abstracts were read; numbers cited are from the abstracts."},
+    {"item": "Realised UK ETS (UKA) auction or secondary price averages for calendar 2025 and 2026", "tried": "WebSearch returned only trade-press snippets (e.g. single auctions, a Jan 2026 ICE quote), which were not fetched from primary sources. Primary values used instead: DESNZ traded carbon values 2025 (market trajectory 44 in 2025, 42 in 2026, real 2025 GBP), OBR (35 in 2024) and the Auction Reserve Price (28)."},
+    {"item": "NESO Carbon Intensity API national methodology paper (2017/2021)", "tried": "Only the regional methodology (May 2024) was read, via a Birmingham City Observatory mirror; the NESO-hosted PDF link was not fetched directly."},
+    {"item": "CCC statement explicitly describing fossil-gas hybrids as 'transitional' after 2020", "tried": "Searched the 7CB full report for 'hybrid'; it excludes fossil hybrids (footnote p. 163) but has no 'transitional' wording. The 'transitional' framing verified here is from HM Government (2021) HBS, not the CCC."},
+    {"item": "GHG conversion factors 2026 edition (natural gas) and well-to-tank (Scope 3) gas factor", "tried": "Not fetched. The Oct 2026 appraisal Table 2a note gives 0.1830 kgCO2e/kWh but does not name its edition; upstream methane is excluded from all factors here."},
+    {"item": "Resolution Foundation analysis of levy rebalancing", "tried": "Not searched in depth; Nesta (2024) and MCSF (2026) used instead."},
+    {"item": "Any DESNZ/Ofgem decision to move levies onto gas (true rebalancing), as opposed to moving them onto taxation", "tried": "Found only the Budget 2025 Exchequer funding of RO/ECO removal and the temporary electricity VAT cut; no gas-side levy increase was found in sources read up to 7 Nov 2026."},
+    {"item": "Boiler Upgrade Scheme Regulations 2022 (as amended), statutory text on hybrids", "tried": "Relied on Ofgem installer guidance page, which paraphrases the regulations."}
+  ]
+}

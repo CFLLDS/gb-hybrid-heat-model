@@ -1,0 +1,8 @@
+jax
+numpy
+pandas
+pyarrow
+openpyxl
+requests
+markdown
+pytest

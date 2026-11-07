@@ -1,0 +1,587 @@
+{
+ "homes": {
+  "A": 2962157,
+  "B": 2391949,
+  "C": 1752018,
+  "D": 1255277,
+  "E": 2108085,
+  "F": 1417675,
+  "G": 2096131,
+  "H": 2487896,
+  "J": 1957854,
+  "K": 919900,
+  "L": 1140667,
+  "M": 2031417,
+  "N": 1747906,
+  "P": 433777
+ },
+ "region_names": {
+  "A": "East England",
+  "B": "East Midlands",
+  "C": "London",
+  "D": "North Wales, Merseyside and Cheshire",
+  "E": "West Midlands",
+  "F": "North East England",
+  "G": "North West England",
+  "H": "Southern England",
+  "J": "South East England",
+  "K": "South Wales",
+  "L": "South West England",
+  "M": "Yorkshire",
+  "N": "South and Central Scotland",
+  "P": "North Scotland"
+ },
+ "share": {
+  "A": 0.11991,
+  "B": 0.09683,
+  "C": 0.07092,
+  "D": 0.05082,
+  "E": 0.08534,
+  "F": 0.05739,
+  "G": 0.08485,
+  "H": 0.10071,
+  "J": 0.07926,
+  "K": 0.03724,
+  "L": 0.04618,
+  "M": 0.08223,
+  "N": 0.07076,
+  "P": 0.01756
+ },
+ "total": 24702709,
+ "year": 2024,
+ "basis": "Domestic gas meters in GB, calendar year 2024 (DESNZ subnational gas statistics: meters on the domestic consumption profile, Annual Quantity < 73,200 kWh, with a valid reading). This counts gas METERS, not gas-HEATED homes: it includes some cooking-only or vacant connections and misses gas-heated flats on a shared/communal meter or on a non-domestic (>73,200 kWh) meter. Used as the scaling count of homes on the gas grid; see assumptions for the size of the difference.",
+ "method": "Each DESNZ MSOA (England & Wales, 2021 MSOAs) and Intermediate Zone (Scotland, 2022) domestic meter count was placed at its published centroid (ONS population-weighted centroids for MSOAs; Scottish Government IZ centroids) and assigned by point-in-polygon to the NESO DNO licence area polygon that contains it; licence areas map one-to-one to the 14 GSP group letters A..P used by Octopus. Centroids outside every polygon (coastal generalisation) go to the nearest polygon. DESNZ's 'Unallocated' meters were spread pro rata. Cross-checked against the DESNZ local-authority file total for the same year. Reproduce with: .venv/bin/python -I scripts/spark/gb_national_scale.py",
+ "assumptions": [
+  "Small-area assignment is by centroid: an MSOA/IZ whose area straddles a licence-area boundary goes wholly to the area holding its centroid. MSOAs hold ~3,000 meters each, so the error is a boundary effect of order one MSOA per straddle, not a regional bias.",
+  "DESNZ 'Unallocated' domestic meters (33,100) were shared pro rata across regions (factor 1.00134).",
+  "DNO licence areas (NESO, 2024-05-03) are taken as identical to the GSP groups / Octopus region letters; this is how the letters are defined (A Eastern = UKPN East, ... P = SSEN North of Scotland).",
+  "Meters are not homes. A meter count over-states gas-HEATED homes by cooking-only and vacant connections and under-states them by communal-boiler flats; the net effect is not measured here. If a gas-heated-homes basis is needed, the census 2021 (England & Wales) 'mains gas only' central heating share is the usual scaler: see census_2021_ew_cross_check for the ratios (England & Wales only).",
+  "Year is the latest in the DESNZ file; meter counts are a snapshot, not the stock of buildings.",
+  "Northern Ireland is outside GB and outside the DESNZ GB gas series."
+ ],
+ "cross_check": {
+  "la_file_total_domestic_meters": 24681591,
+  "msoa_file_total_incl_unallocated": 24702708,
+  "difference_pct": 0.086
+ },
+ "census_2021_ew_cross_check": {
+  "households_all": 24783199,
+  "households_mains_gas_only_central_heating": 18298725,
+  "households_two_or_more_central_heating_types": 2247977,
+  "desnz_domestic_meters_ew_same_basis": 22497116,
+  "gas_only_households_per_meter": 0.8134,
+  "upper_bound_per_meter_if_every_multi_fuel_home_uses_gas": 0.9133,
+  "note": "Census day 2021 vs meters in DESNZ year; England & Wales only. Multiply 'homes' by one of these ratios to move from a meter basis to a gas-heated-household basis."
+ },
+ "straddling_local_authorities": [
+  {
+   "la_code": "E06000007",
+   "la": "Warrington",
+   "meters": 90601,
+   "split": {
+    "D": 80578,
+    "G": 10023
+   }
+  },
+  {
+   "la_code": "E06000011",
+   "la": "East Riding of Yorkshire",
+   "meters": 142349,
+   "split": {
+    "M": 139670,
+    "F": 2679
+   }
+  },
+  {
+   "la_code": "E06000025",
+   "la": "South Gloucestershire",
+   "meters": 110964,
+   "split": {
+    "L": 63903,
+    "E": 47061
+   }
+  },
+  {
+   "la_code": "E06000031",
+   "la": "Peterborough",
+   "meters": 81286,
+   "split": {
+    "A": 79429,
+    "B": 1857
+   }
+  },
+  {
+   "la_code": "E06000049",
+   "la": "Cheshire East",
+   "meters": 165382,
+   "split": {
+    "D": 93705,
+    "G": 58255,
+    "E": 13422
+   }
+  },
+  {
+   "la_code": "E06000051",
+   "la": "Shropshire",
+   "meters": 99643,
+   "split": {
+    "E": 73617,
+    "D": 26026
+   }
+  },
+  {
+   "la_code": "E06000055",
+   "la": "Bedford",
+   "meters": 66926,
+   "split": {
+    "A": 65495,
+    "B": 1431
+   }
+  },
+  {
+   "la_code": "E06000057",
+   "la": "Northumberland",
+   "meters": 131020,
+   "split": {
+    "F": 124752,
+    "N": 6268
+   }
+  },
+  {
+   "la_code": "E06000059",
+   "la": "Dorset",
+   "meters": 141852,
+   "split": {
+    "H": 129562,
+    "L": 12290
+   }
+  },
+  {
+   "la_code": "E06000060",
+   "la": "Buckinghamshire",
+   "meters": 195726,
+   "split": {
+    "H": 96744,
+    "A": 83860,
+    "B": 15122
+   }
+  },
+  {
+   "la_code": "E06000065",
+   "la": "North Yorkshire",
+   "meters": 224558,
+   "split": {
+    "F": 168472,
+    "M": 50559,
+    "G": 5527
+   }
+  },
+  {
+   "la_code": "E06000066",
+   "la": "Somerset",
+   "meters": 188676,
+   "split": {
+    "L": 146589,
+    "H": 42087
+   }
+  },
+  {
+   "la_code": "E07000038",
+   "la": "North East Derbyshire",
+   "meters": 46518,
+   "split": {
+    "B": 37116,
+    "M": 9402
+   }
+  },
+  {
+   "la_code": "E07000072",
+   "la": "Epping Forest",
+   "meters": 49152,
+   "split": {
+    "A": 26017,
+    "C": 23135
+   }
+  },
+  {
+   "la_code": "E07000079",
+   "la": "Cotswold",
+   "meters": 28439,
+   "split": {
+    "H": 20543,
+    "E": 7896
+   }
+  },
+  {
+   "la_code": "E07000080",
+   "la": "Forest of Dean",
+   "meters": 24410,
+   "split": {
+    "E": 22316,
+    "K": 2094
+   }
+  },
+  {
+   "la_code": "E07000107",
+   "la": "Dartford",
+   "meters": 45498,
+   "split": {
+    "C": 24402,
+    "J": 21096
+   }
+  },
+  {
+   "la_code": "E07000122",
+   "la": "Pendle",
+   "meters": 38927,
+   "split": {
+    "G": 31334,
+    "M": 7593
+   }
+  },
+  {
+   "la_code": "E07000127",
+   "la": "West Lancashire",
+   "meters": 46092,
+   "split": {
+    "G": 42832,
+    "D": 3260
+   }
+  },
+  {
+   "la_code": "E07000137",
+   "la": "East Lindsey",
+   "meters": 42992,
+   "split": {
+    "B": 30614,
+    "M": 12378
+   }
+  },
+  {
+   "la_code": "E07000142",
+   "la": "West Lindsey",
+   "meters": 35115,
+   "split": {
+    "M": 21731,
+    "B": 13384
+   }
+  },
+  {
+   "la_code": "E07000171",
+   "la": "Bassetlaw",
+   "meters": 46725,
+   "split": {
+    "B": 37073,
+    "M": 9652
+   }
+  },
+  {
+   "la_code": "E07000177",
+   "la": "Cherwell",
+   "meters": 54468,
+   "split": {
+    "H": 28392,
+    "E": 26076
+   }
+  },
+  {
+   "la_code": "E07000179",
+   "la": "South Oxfordshire",
+   "meters": 54423,
+   "split": {
+    "H": 45775,
+    "A": 8648
+   }
+  },
+  {
+   "la_code": "E07000194",
+   "la": "Lichfield",
+   "meters": 43805,
+   "split": {
+    "E": 41295,
+    "B": 2510
+   }
+  },
+  {
+   "la_code": "E07000209",
+   "la": "Guildford",
+   "meters": 53229,
+   "split": {
+    "J": 43610,
+    "H": 9619
+   }
+  },
+  {
+   "la_code": "E07000212",
+   "la": "Runnymede",
+   "meters": 31647,
+   "split": {
+    "J": 17649,
+    "H": 13998
+   }
+  },
+  {
+   "la_code": "E07000213",
+   "la": "Spelthorne",
+   "meters": 38100,
+   "split": {
+    "H": 30021,
+    "J": 8079
+   }
+  },
+  {
+   "la_code": "E07000216",
+   "la": "Waverley",
+   "meters": 48919,
+   "split": {
+    "H": 38863,
+    "J": 10056
+   }
+  },
+  {
+   "la_code": "E07000218",
+   "la": "North Warwickshire",
+   "meters": 25848,
+   "split": {
+    "B": 21545,
+    "E": 4303
+   }
+  },
+  {
+   "la_code": "E07000221",
+   "la": "Stratford-on-Avon",
+   "meters": 46008,
+   "split": {
+    "E": 31352,
+    "B": 14656
+   }
+  },
+  {
+   "la_code": "E07000224",
+   "la": "Arun",
+   "meters": 69276,
+   "split": {
+    "H": 39709,
+    "J": 29567
+   }
+  },
+  {
+   "la_code": "E07000227",
+   "la": "Horsham",
+   "meters": 51052,
+   "split": {
+    "J": 45651,
+    "H": 5401
+   }
+  },
+  {
+   "la_code": "E08000013",
+   "la": "St. Helens",
+   "meters": 82260,
+   "split": {
+    "D": 60983,
+    "G": 21277
+   }
+  },
+  {
+   "la_code": "E08000029",
+   "la": "Solihull",
+   "meters": 86522,
+   "split": {
+    "E": 84125,
+    "B": 2397
+   }
+  },
+  {
+   "la_code": "E08000039",
+   "la": "Sheffield",
+   "meters": 222611,
+   "split": {
+    "M": 218543,
+    "B": 4068
+   }
+  },
+  {
+   "la_code": "E09000002",
+   "la": "Barking and Dagenham",
+   "meters": 65424,
+   "split": {
+    "A": 37608,
+    "C": 27816
+   }
+  },
+  {
+   "la_code": "E09000004",
+   "la": "Bexley",
+   "meters": 89808,
+   "split": {
+    "C": 87127,
+    "J": 2681
+   }
+  },
+  {
+   "la_code": "E09000005",
+   "la": "Brent",
+   "meters": 101292,
+   "split": {
+    "C": 55896,
+    "A": 45396
+   }
+  },
+  {
+   "la_code": "E09000006",
+   "la": "Bromley",
+   "meters": 131074,
+   "split": {
+    "C": 78053,
+    "J": 53021
+   }
+  },
+  {
+   "la_code": "E09000017",
+   "la": "Hillingdon",
+   "meters": 99378,
+   "split": {
+    "H": 66919,
+    "A": 32459
+   }
+  },
+  {
+   "la_code": "E09000021",
+   "la": "Kingston upon Thames",
+   "meters": 60383,
+   "split": {
+    "J": 43260,
+    "C": 17123
+   }
+  },
+  {
+   "la_code": "E09000027",
+   "la": "Richmond upon Thames",
+   "meters": 77573,
+   "split": {
+    "J": 64996,
+    "C": 12577
+   }
+  },
+  {
+   "la_code": "E09000031",
+   "la": "Waltham Forest",
+   "meters": 93067,
+   "split": {
+    "C": 74004,
+    "A": 19063
+   }
+  },
+  {
+   "la_code": "S12000021",
+   "la": "North Ayrshire",
+   "meters": 60800,
+   "split": {
+    "N": 60800,
+    "P": 0
+   }
+  },
+  {
+   "la_code": "S12000030",
+   "la": "Stirling",
+   "meters": 34073,
+   "split": {
+    "N": 25024,
+    "P": 9049
+   }
+  },
+  {
+   "la_code": "S12000035",
+   "la": "Argyll and Bute",
+   "meters": 20865,
+   "split": {
+    "P": 11554,
+    "N": 9311
+   }
+  },
+  {
+   "la_code": "W06000008",
+   "la": "Ceredigion / Ceredigion",
+   "meters": 8982,
+   "split": {
+    "D": 6052,
+    "K": 2930
+   }
+  },
+  {
+   "la_code": "W06000023",
+   "la": "Powys / Powys",
+   "meters": 29067,
+   "split": {
+    "K": 15886,
+    "D": 11314,
+    "E": 1867
+   }
+  }
+ ],
+ "centroids_outside_polygons": [
+  {
+   "area": "E02003985",
+   "assigned": "G",
+   "how": "nearest boundary, 0.5 km",
+   "meters": 3294
+  },
+  {
+   "area": "E02003986",
+   "assigned": "G",
+   "how": "nearest boundary, 0.2 km",
+   "meters": 3105
+  }
+ ],
+ "sources": [
+  {
+   "title": "Domestic gas consumption by Middle Layer Super Output Area (MSOA), 2010 to 2024 (Stacked gas consumption statistics data)",
+   "url": "https://assets.publishing.service.gov.uk/media/69457a332f0261139350898e/gas_domestic_MSOA_stacked_2010-2024.csv",
+   "publisher": "Department for Energy Security and Net Zero (DESNZ)",
+   "date": "2025-12-18 (published; dataset page revised 2026-05-05)",
+   "accessed": "2026-11-07",
+   "local_file": "sources/gas_domestic_MSOA_stacked_2010-2024.csv"
+  },
+  {
+   "title": "Gas consumption by Local Authority (LA), 2005 to 2024 (Stacked gas consumption statistics data)",
+   "url": "https://assets.publishing.service.gov.uk/media/69f9c094a40aa2232fede4af/gas_LA_stacked_2005-2024.csv",
+   "publisher": "Department for Energy Security and Net Zero (DESNZ)",
+   "date": "2026-05-05 (revision of the 2025-12-18 release)",
+   "accessed": "2026-11-07",
+   "local_file": "sources/gas_LA_stacked_2005-2024.csv"
+  },
+  {
+   "title": "GIS Boundaries for GB DNO Licence Areas, 20240503 (GeoJSON, EPSG:27700)",
+   "url": "https://api.neso.energy/dataset/0e377f16-95e9-4c15-a1fc-49e06a39cfa0/resource/1c6a7dc0-1b6c-443a-bc67-5f7125649434/download/gb-dno-license-areas-20240503-as-geojson.geojson",
+   "publisher": "National Energy System Operator (NESO) Data Portal",
+   "date": "2024-05-03",
+   "accessed": "2026-11-07",
+   "local_file": "sources/gb-dno-license-areas-20240503.geojson"
+  },
+  {
+   "title": "Middle layer Super Output Areas (December 2021) Population Weighted Centroids in England and Wales (V2)",
+   "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/ArcGIS/rest/services/MSOA_December_2021_EW_PWC_V2/FeatureServer/0/query",
+   "publisher": "Office for National Statistics, Open Geography Portal",
+   "date": "2021 census geography",
+   "accessed": "2026-11-07",
+   "local_file": "sources/msoa_dec2021_ew_pwc_v2.json"
+  },
+  {
+   "title": "Intermediate Zone Centroids 2022 (SU:IntermediateZoneCent2022, WFS)",
+   "url": "https://maps.gov.scot/server/services/ScotGov/StatisticalUnits/MapServer/WFSServer?service=WFS&version=2.0.0&request=GetFeature&typeNames=SU:IntermediateZoneCent2022&outputFormat=GEOJSON&count=5000",
+   "publisher": "Scottish Government, StatisticalUnits map service",
+   "date": "2022 data zone geography",
+   "accessed": "2026-11-07",
+   "local_file": "sources/iz2022_centroids_scotland.geojson"
+  },
+  {
+   "title": "Census 2021 TS046 Central heating, England and Wales (households)",
+   "url": "https://www.nomisweb.co.uk/api/v01/dataset/NM_2064_1.data.csv?geography=K04000001&measures=20100&select=geography_name,c2021_heating_13_name,obs_value",
+   "publisher": "Office for National Statistics, via Nomis",
+   "date": "2021-03-21 census day (released 2023)",
+   "accessed": "2026-11-07",
+   "local_file": "sources/census2021_ts046_central_heating_ew.csv"
+  }
+ ]
+}

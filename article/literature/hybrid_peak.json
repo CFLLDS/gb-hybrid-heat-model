@@ -1,0 +1,461 @@
+{
+  "strand": "Hybrid heat pump field trials and evidence (A); peak electricity demand from heat electrification in GB and the flexibility value of hybrids (B)",
+  "compiled": "2026-11-07",
+  "method_note": "Every source below was downloaded as the full PDF and read via text extraction on 2026-11-07. Locators: 'PDF p.' is the page index of the downloaded file; printed page numbers are given where they differ and were legible. Quotes are verbatim from the extracted text (line-break hyphenation restored). Figures marked 'derived' are this reviewer's arithmetic on the source's numbers, not the source's own claim.",
+  "sources": [
+    {
+      "key": "FREEDOM2018",
+      "harvard": "Wales & West Utilities, Western Power Distribution and PassivSystems (2018) Freedom Project Final Report. October 2018. Bristol/Newport: Western Power Distribution and Wales & West Utilities (project partners Imperial College London, Delta-ee, City University). Available at: https://www.wwutilities.co.uk/media/2829/freedom-project-final-report-october-2018.pdf (Accessed: 7 November 2026).",
+      "url": "https://www.wwutilities.co.uk/media/2829/freedom-project-final-report-october-2018.pdf",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "75 hybrid systems (small ASHP + gas boiler, PassivSystems controls) were trialled in Bridgend over winter 2017-18, with no radiator upgrades or added insulation.",
+          "quote": "Almost all of the installations involved fitting new gas combi boilers and air source heat pumps, with no radiator upgrades or additional insulation fitted.",
+          "locator": "Section 3.2 Deployment summary, PDF p. 10 (printed p. 19)",
+          "numbers": {"homes": 75, "hp_size_kW": "5 (MasterTherm 8)", "season": "2017-18"}
+        },
+        {
+          "claim": "Under then-current GB prices, cost-optimised control strongly favoured the gas boiler; heat-pump share rose to about 50% only when gas prices were artificially raised by 50%. LPG homes moved about 80% of load to the heat pump.",
+          "quote": "When the gas grid connected systems were given artificially inflated gas prices ASHP usage increased, with around 50% heat pump usage being achieved with a 50% increase in gas costs.",
+          "locator": "Foreword/summary, PDF p. 6 (printed p. 11)",
+          "numbers": {"hp_share_at_+50pct_gas_price": "~50%", "hp_share_LPG_homes": "~80%"}
+        },
+        {
+          "claim": "The price-optimised strategy is continuous gentle heat-pump running with bursts of boiler use, which the report contrasts with conventional switching on outdoor temperature.",
+          "quote": "very different from a conventional hybrid system switching fuel based on external temperature (a relatively poor strategy).",
+          "locator": "Section 3.7, PDF p. 12 (printed pp. 22-23)",
+          "numbers": {}
+        },
+        {
+          "claim": "Hybrid electricity demand can be switched off fleet-wide within 1-2 minutes and indefinitely, with the boiler covering heat.",
+          "quote": "The key flexibility offered by PassivSystems' hybrid heating system is the ability to turn off electricity consumption immediately and indefinitely, without impact on householders, as heating can be provided by the gas boiler instead.",
+          "locator": "Section 3.7, PDF p. 13 (printed p. 24)",
+          "numbers": {"fleet_switch_time_min": "1-2", "turn_down_s": "<14"}
+        },
+        {
+          "claim": "Aggregate demand management held whole-home load under a cap of 0.75 kW per home (just above baseload peak), emulating 50% and 100% hybrid penetration, with a tracking error of about 0.1-0.2 kW/home.",
+          "quote": "Set a load cap at 0.75kW per home, slightly above the peak baseload value, to simulate a scenario where the heat pump avoids affecting peak electricity consumption over the course of a day",
+          "locator": "Section 3.8 Aggregate demand management, PDF p. 14; error margin PDF p. 15",
+          "numbers": {"cap_kW_per_home": 0.75, "error_kW_per_home": "0.1-0.2"}
+        },
+        {
+          "claim": "Executive summary: field trial showed hybrids can constrain whole-home peak below the Elexon Profile Class 1 peak while still delivering half the heat from the heat pump.",
+          "quote": "constrain peak whole-home demand below the existing Elexon Profile Class 1 peak whilst still delivering 50% of the heat demand through the heat pump",
+          "locator": "1. Executive Summary, PDF p. 7 (printed p. 12)",
+          "numbers": {"hp_heat_share_under_cap": "50%"}
+        },
+        {
+          "claim": "Imperial's whole-system modelling for FREEDOM put system cost savings of responsive hybrids over pure ASHP at GBP 9.3 bn/yr (100 gCO2/kWh case) and GBP 7.4 bn/yr (25 g case), mostly avoided generation and distribution capacity.",
+          "quote": "energy system cost savings for the responsive hybrid heating system case over the pure ASHP case of £9.3 bn/year in the 100g CO2/kWh case and £7.4 bn/year in the 25g CO2/kWh case",
+          "locator": "1. Executive Summary, PDF p. 7 (printed p. 12)",
+          "numbers": {"saving_GBP_bn_per_yr_100g": 9.3, "saving_GBP_bn_per_yr_25g": 7.4}
+        },
+        {
+          "claim": "Conventional ASHPs could add about 2-2.5 kW per house in a typical winter and 5 kW in extreme events; network upgrades would cost customers about GBP 50/yr at 100% ASHP versus under GBP 5/yr with smart hybrids using gas at peak.",
+          "quote": "With 100% penetration of air source heat pumps, customers would pay around £50 per year for network upgrades",
+          "locator": "12.1 Network technical impacts, PDF p. 69 (printed p. 136)",
+          "numbers": {"ASHP_added_load_kW_typical": "2-2.5", "ASHP_added_load_kW_extreme": 5, "network_cost_GBP_per_customer_yr_ASHP": 50, "network_cost_GBP_per_customer_yr_smart_hybrid": "<5"}
+        },
+        {
+          "claim": "South Wales distribution reinforcement to 2050: hybrid-only scenario about GBP 350m cumulative, about GBP 1,300m less than the ASHP counterfactual; smart-control scenario saves about GBP 1,500m.",
+          "quote": "savings in the hybrid-only scenario, where the cumulative reinforcement cost is at around £350m, are about £1,300m compared with the counterfactual scenario by 2050.",
+          "locator": "5.3 Freedom field trial case analysis (Figs 28-32), printed p. 61",
+          "numbers": {"hybrid_only_cum_GBP_m": 350, "saving_vs_ASHP_GBP_m": 1300, "smart_control_saving_GBP_m": 1500, "region": "South Wales", "horizon": 2050}
+        }
+      ]
+    },
+    {
+      "key": "CarbonTrust2016",
+      "harvard": "Carbon Trust and Rawlings Support Services (2016) Evidence Gathering - Low Carbon Heating Technologies: Domestic Hybrid Heat Pumps. London: Department for Business, Energy and Industrial Strategy. Available at: https://assets.publishing.service.gov.uk/media/5a7f4a6aed915d74e62298fd/Domestic_Hybrid_Heat_Pumps_-_FINAL.pdf (Accessed: 7 November 2026).",
+      "url": "https://assets.publishing.service.gov.uk/media/5a7f4a6aed915d74e62298fd/Domestic_Hybrid_Heat_Pumps_-_FINAL.pdf",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "Stakeholders reported hybrid running-cost savings of only 0-5% versus a good condensing boiler at 2015 prices.",
+          "quote": "most stakeholders agreed that hybrid heat pumps make little saving compared to a good quality, well-installed gas-fired condensing boiler, for example 0-5% cost savings, although they can achieve good carbon savings.",
+          "locator": "1. Executive summary, PDF p. 8",
+          "numbers": {"running_cost_saving_pct": "0-5"}
+        },
+        {
+          "claim": "Best-practice hybrid controllers should allow a floating bivalent point set on cost, emissions or energy, i.e. price-aware switching was already identified as the ideal in 2016.",
+          "quote": "It should be possible to set a floating (variable) bivalent point based on lowest cost, lowest emissions or lowest energy.",
+          "locator": "Section on controls, PDF p. 22",
+          "numbers": {}
+        },
+        {
+          "claim": "Hybrid lab COPs at A7/W55 ranged 2.17-3.23; no system-level performance standard exists; in-situ evidence limited.",
+          "quote": "At A7/W55 (ambient air source at 7°C and water output at 55°C), the Coefficient of Performance (COP) for the products looked at varied significantly, with a range of 2.17 to 3.23.",
+          "locator": "1. Executive summary, PDF p. 8",
+          "numbers": {"COP_A7W55_range": "2.17-3.23", "hybrid_share_of_HP_market": "~18% (incl. simple bivalent)"}
+        }
+      ]
+    },
+    {
+      "key": "ElementEnergy2017",
+      "harvard": "Element Energy (2017) Hybrid Heat Pumps: Final report for the Department for Business, Energy & Industrial Strategy. December 2017. Cambridge: Element Energy. Available at: https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/700572/Hybrid_heat_pumps_Final_report-.pdf (Accessed: 7 November 2026).",
+      "url": "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/700572/Hybrid_heat_pumps_Final_report-.pdf",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "Field-trial evidence compiled for BEIS shows the heat-pump share of annual heat in hybrids varying from 30% to 96%.",
+          "quote": "These results show that the share of heat met by a heat pump component of a hybrid system can be as low as 30%, or as high as 96%, with various values in between.",
+          "locator": "Executive summary 1.1.1, Figure 1-1, PDF p. 8",
+          "numbers": {"hp_share_min": "30%", "hp_share_max": "96%"}
+        },
+        {
+          "claim": "Heating schedule dominates carbon outcome: modelled savings vs boiler 55% under continuous heating but 18% with twice-a-day heating (9% in switch mode).",
+          "quote": "the annual emissions savings that could be achieved by a HHP installed in 2017 would be 55% under a continuous heating schedule, but only 18% for a twice a day heating schedule.",
+          "locator": "Executive summary 1.1.1, Figure 1-2, PDF p. 9",
+          "numbers": {"saving_continuous": "55%", "saving_twice_daily_parallel": "18%", "saving_twice_daily_switch": "9%"}
+        },
+        {
+          "claim": "Hybrids can significantly reduce peak electricity demand relative to a standalone HP with resistive backup; smart controllers could switch off at network peaks, at some cost in emissions.",
+          "quote": "HHPs have the potential to significantly reduce the peak electricity demand compared to a standalone HP, assuming that electric resistive heating is used as a backup in the standalone HP case.",
+          "locator": "Executive summary 1.1.2, PDF p. 14",
+          "numbers": {}
+        },
+        {
+          "claim": "Peak-avoidance control may reduce the emissions benefit, but is a main motivation for hybrids.",
+          "quote": "These strategies may reduce the overall emissions benefits of HHPs, even when the higher emissions of electricity generated during the evening peak period is taken into account",
+          "locator": "Executive summary 1.1.2, PDF p. 14",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "ESC2023",
+      "harvard": "Energy Systems Catapult (2023) Electrification of Heat Demonstration Project: Interim Heat Pump Performance Data Analysis Report. Birmingham: Energy Systems Catapult, for DESNZ. Available at: https://es.catapult.org.uk/wp-content/uploads/2023/03/EoH-Interim-Heat-Pump-Performance-Data-Analysis-Report-1.pdf (Accessed: 7 November 2026).",
+      "url": "https://es.catapult.org.uk/wp-content/uploads/2023/03/EoH-Interim-Heat-Pump-Performance-Data-Analysis-Report-1.pdf",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "Interim median ASHP SPFH4 was 2.80 (n=291); interim heat pumps within hybrids SPFH4 2.37 (n=58), boiler excluded.",
+          "quote": "EoH Median Hybrid SPF [IQR] 2.54 [2.25, 2.93] 2.37 [2.01, 2.81]",
+          "locator": "Table 1.3, PDF p. 8; ASHP Table 1.2 same page",
+          "numbers": {"ASHP_SPFH4_median": 2.80, "ASHP_n": 291, "hybrid_HP_SPFH2_median": 2.54, "hybrid_HP_SPFH4_median": 2.37, "hybrid_n": 58}
+        },
+        {
+          "claim": "Hybrids were cost-optimised; median heat-pump share of space heating 39% (interim); lower HP share went with lower SPF.",
+          "quote": "the hybrid system control was cost-optimised and, as a result the system performance results are varied across the range of properties. The median heat pump energy output as a proportion of total space heating",
+          "locator": "1.4.3 Hybrid System Operation, PDF p. 10",
+          "numbers": {"hp_share_space_heating_median": "38.6% (Table 9.1)", "IQR": "31.4-49.6%", "n": 53}
+        },
+        {
+          "claim": "Despite being described as cost-optimal, the boiler takeover point in practice correlated with a fixed outdoor temperature.",
+          "quote": "The point at which the boiler takes over the space heating is different for each home and generally correlates with a certain external temperature.",
+          "locator": "9.1 Heat Pump to Boiler Operating Ratio, PDF p. 68",
+          "numbers": {}
+        },
+        {
+          "claim": "SPF rises with heat-pump share; intermittent heat-pump operation is less efficient.",
+          "quote": "This result indicates that operating a heat pump intermittently is less efficient.",
+          "locator": "9.2 SPF by Operating Ratio, PDF p. 70",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "ESC2024",
+      "harvard": "Energy Systems Catapult (2024) Electrification of Heat Demonstration Project: Heat Pump Performance Data Analysis Report. December 2024. Birmingham: Energy Systems Catapult, for DESNZ. Available at: https://esc-production-2021.s3.eu-west-2.amazonaws.com/wp-content/uploads/2024/12/18093557/EoH-Heat-Pump-Performance-Data-Analysis-Report.pdf (Accessed: 7 November 2026).",
+      "url": "https://esc-production-2021.s3.eu-west-2.amazonaws.com/wp-content/uploads/2024/12/18093557/EoH-Heat-Pump-Performance-Data-Analysis-Report.pdf",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "Final median ASHP SPFH4 2.78 (IQR 2.55-3.05, n=428), up from RHPP 2.44. Note: the brief's '~2.8' is the interim figure (2.80); the final is 2.78 (mean 2.81).",
+          "quote": "EoH Median ASHP SPF [IQR] 2.93 [2.67, 3.19] 2.78 [2.55, 3.05]",
+          "locator": "Table 1.2, PDF p. 8; Table 8.1, PDF p. 61",
+          "numbers": {"ASHP_SPFH2_median": 2.93, "ASHP_SPFH4_median": 2.78, "ASHP_SPFH4_mean": 2.81, "n": 428, "RHPP_SPFH4_median": 2.44}
+        },
+        {
+          "claim": "Heat pumps within hybrids: median SPFH4 2.50 (IQR 2.10-2.84, n=94), boiler excluded and boiler efficiency not monitored.",
+          "quote": "EoH Median SPF for Heat Pumps within Hybrid systems [IQR] 2.68 [2.30, 3.03] 2.50 [2.10, 2.84]",
+          "locator": "Table 1.3, PDF p. 9",
+          "numbers": {"hybrid_HP_SPFH2_median": 2.68, "hybrid_HP_SPFH4_median": 2.50, "n": 94}
+        },
+        {
+          "claim": "Median heat-pump share of space heating in hybrids was 40% (IQR 30-56%); 75% of hybrid heat pumps produced under 56%.",
+          "quote": "The median measured heat pump energy output as a proportion of total space heating energy output in hybrid systems was 40%.",
+          "locator": "1.4.3, PDF p. 11; Table 9.2 (mean 45.0%, median 40.4%, Q1 29.7%, Q3 55.5%)",
+          "numbers": {"hp_share_median": "40.4%", "hp_share_mean": "45.0%", "IQR": "29.7-55.5%", "n": 94}
+        },
+        {
+          "claim": "The 'cost-optimal' design was implemented as a per-home switchover at a set outdoor temperature, and some hybrids had control faults that overused the boiler.",
+          "quote": "The designed setpoint at which the boiler took over the space heating was different for each home and generally corresponded to a certain external temperature.",
+          "locator": "Section 9 introduction, PDF p. 73",
+          "numbers": {}
+        },
+        {
+          "claim": "Under this fixed-setpoint 'cost-optimal' design, leakier homes are expected to see more boiler operation and a slightly lower heat-pump SPF (the source words the setpoint as 'lower'; its sign convention is not defined).",
+          "quote": "the less efficient homes with greater heat losses will likely have a lower setpoint at which the boiler takes over the space heating load. They are therefore likely to experience a higher boiler percentage operation",
+          "locator": "9.2, PDF p. 76",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "Watson2019",
+      "harvard": "Watson, S.D., Lomas, K.J. and Buswell, R.A. (2019) 'Decarbonising domestic heating: What is the peak GB demand?', Energy Policy, 126, pp. 533-544. doi:10.1016/j.enpol.2018.11.001.",
+      "url": "https://repository.lboro.ac.uk/articles/journal_contribution/Decarbonising_domestic_heating_what_is_the_peak_GB_demand_/9450776",
+      "doi": "10.1016/j.enpol.2018.11.001",
+      "type": "journal",
+      "claims": [
+        {
+          "claim": "From half-hourly gas data for 6,000+ EDRP homes (2009-10), peak GB domestic heat demand is about 170 GW, around 40% below earlier estimates.",
+          "quote": "The calculated peak domestic heat demand of 170 GW is around 40% lower than previously calculated suggesting that the difficulties surrounding the electrification of heat are far less profound than previously assumed.",
+          "locator": "Abstract, p. 533",
+          "numbers": {"peak_heat_GW": 170, "reduction_vs_prior": "~40%", "sample_homes": ">6000", "data_period": "May 2009 - Jul 2010"}
+        },
+        {
+          "claim": "Peak 159-170 GW depending on year; space heating alone 135-148 GW; maximum ramp 60 GW/h, half Sansom's.",
+          "quote": "The predicted peak GB half-hourly domestic heat demand ranged from 159 GW to 170 GW depending on the annual ambient temperature, and the peak demand for space heating alone ranged from 135 to 148 GW.",
+          "locator": "7. Conclusion and policy implications, p. 543",
+          "numbers": {"peak_range_GW": "159-170", "space_heating_peak_GW": "135-148", "ramp_GW_per_h": 60}
+        },
+        {
+          "claim": "Sansom's widely used figure was 277 GW (another quoted 304 GW); difference is mainly profile shape on cold days.",
+          "quote": "The modelled peak national heat demand is considerably lower than that found by Sansom, at 170 GW rather than 277 GW.",
+          "locator": "Section 6, p. 539",
+          "numbers": {"Sansom_peak_GW": 277, "ETI_quoted_GW": 304}
+        },
+        {
+          "claim": "Despite the lower peak, electrification still produces larger peaks and seasonality than today.",
+          "quote": "Nevertheless, the electrification of heating remains a significant challenge, and is likely to result in considerably greater peaks in electricity demand and seasonal variation than at present.",
+          "locator": "7. Conclusion, p. 543",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "Watson2021",
+      "harvard": "Watson, S.D., Lomas, K.J. and Buswell, R.A. (2021) 'How will heat pumps alter national half-hourly heat demands? Empirical modelling based on GB field trials', Energy and Buildings, 238, 110777. doi:10.1016/j.enbuild.2021.110777.",
+      "url": "https://repository.lboro.ac.uk/articles/journal_contribution/How_will_heat_pumps_alter_national_half-hourly_heat_demands_Empirical_modelling_based_on_GB_field_trials/14184935",
+      "doi": "10.1016/j.enbuild.2021.110777",
+      "type": "journal",
+      "claims": [
+        {
+          "claim": "With heat-pump heating patterns (from ~600 RHPP homes), cold-year peak heat demand is 157 GW (8% below gas) and maximum ramp 21 GW/h (67% below gas), though annual heat is 8% higher (422 TWh).",
+          "quote": "However, the peak heat demand of 157GW was 8% lower than for gas heating, and the maximum heat ramp rate of 21GW/h, 67% lower.",
+          "locator": "Abstract, p. 1; Results, p. 11",
+          "numbers": {"peak_heat_GW_HP": 157, "ramp_GW_per_h": 21, "annual_TWh": 422, "weather_year": "2010 (cold)"}
+        },
+        {
+          "claim": "Prior estimates put additional peak electricity from majority heat-pump conversion at ~45 GW against a ~60 GW current peak.",
+          "quote": "the additional peak electricity demand resulting from the majority of domestic heating being converted to HPs has been estimated at around 45 GW [16,28], whereas current peak load is around 60 GW.",
+          "locator": "1. Introduction, p. 1",
+          "numbers": {"added_peak_GW_cited": 45, "current_peak_GW": 60}
+        },
+        {
+          "claim": "Heat-pump demand is flatter: overnight winter heat demand falls only to 45 GW versus 13 GW for gas.",
+          "quote": "the overnight space heating demand, even in winter, falls to 13 GW in homes with gas heating, whereas the minimum winter demand with HPs is 45 GW.",
+          "locator": "Section 4, p. 11",
+          "numbers": {"gas_overnight_GW": 13, "HP_min_winter_GW": 45}
+        }
+      ]
+    },
+    {
+      "key": "Watson2019thesis",
+      "harvard": "Watson, S.D. (2019) Predicting the additional GB electricity demand resulting from a widespread uptake of domestic heat pumps. PhD thesis. Loughborough University. Available at: https://repository.lboro.ac.uk/articles/thesis/Predicting_the_additional_GB_electricity_demand_resulting_from_a_widespread_uptake_of_domestic_heat_pumps/11956818 (Accessed: 7 November 2026).",
+      "url": "https://repository.lboro.ac.uk/articles/thesis/Predicting_the_additional_GB_electricity_demand_resulting_from_a_widespread_uptake_of_domestic_heat_pumps/11956818",
+      "doi": null,
+      "type": "thesis",
+      "claims": [
+        {
+          "claim": "100% heat pumps: peak heat 158 GW, peak heat-pump electricity 75 GW, max electricity ramp 11 GW/h.",
+          "quote": "if 100% of that demand is met using heat pumps, was 158 GW, and the maximum ramp rate was 23 GW/h. This resulted in a peak heat pump electricity demand of 75 GW",
+          "locator": "Abstract, pp. 2-3",
+          "numbers": {"peak_heat_GW": 158, "peak_HP_elec_GW": 75, "heat_ramp_GW_per_h": 23, "elec_ramp_GW_per_h": 11}
+        },
+        {
+          "claim": "Adding heat-pump load more than doubles GB peak from 60 to 130 GW; making DHW and 20% of space heating flexible reduces it to 109 GW.",
+          "quote": "Allowing domestic hot water demand and 20% of space heating demand to be flexible reduced the peak GB electricity demand to 109 GW.",
+          "locator": "Abstract, p. 3",
+          "numbers": {"current_peak_GW": 60, "peak_with_HP_GW": 130, "peak_with_flex_GW": 109, "flex_assumption": "all DHW + 20% space heating"}
+        }
+      ]
+    },
+    {
+      "key": "Love2017",
+      "harvard": "Love, J., Smith, A.Z.P., Watson, S., Oikonomou, E., Summerfield, A., Gleeson, C., Biddulph, P., Chiu, L.F., Wingfield, J., Martin, C., Stone, A. and Lowe, R. (2017) 'The addition of heat pump electricity load profiles to GB electricity demand: Evidence from a heat pump field trial', Applied Energy, 204, pp. 332-342. doi:10.1016/j.apenergy.2017.07.026.",
+      "url": "https://discovery.ucl.ac.uk/id/eprint/1566603/",
+      "doi": "10.1016/j.apenergy.2017.07.026",
+      "type": "journal",
+      "claims": [
+        {
+          "claim": "ADMD from 696 RHPP heat pumps is 1.7 kWe per site, occurring in the morning, while the national peak is in the evening.",
+          "quote": "After Diversity Maximum Demand (ADMD) for the population of heat pumps is calculated as 1.7 kW per site; this occurs in the morning, whereas the peak national grid demand occurs in the evening.",
+          "locator": "Abstract, p. 332",
+          "numbers": {"ADMD_kW": 1.7, "n_heat_pumps": 696}
+        },
+        {
+          "claim": "First-order upscaling: 20% of households on heat pumps raises GB peak by 7.5 GW (14%), in the evening.",
+          "quote": "It is found that peak grid demand increases by 7.5 GW (14%) with 20% of households using heat pumps.",
+          "locator": "Abstract, p. 332",
+          "numbers": {"uptake": "20% of households", "peak_increase_GW": 7.5, "peak_increase_pct": 14}
+        }
+      ]
+    },
+    {
+      "key": "SansomStrbac2012",
+      "harvard": "Sansom, R. and Strbac, G. (2012) 'The impact of future heat demand pathways on the economics of low carbon heating systems', BIEE 9th Academic Conference, Oxford, 19-20 September. Available at: https://www.biee.org/wp-content/uploads/Sansom_Impact_of_heat_pathways_on_economics_low_carbon_heating_Sept-2012.pdf (Accessed: 7 November 2026).",
+      "url": "https://www.biee.org/wp-content/uploads/Sansom_Impact_of_heat_pathways_on_economics_low_carbon_heating_Sept-2012.pdf",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "Sansom's synthesised UK half-hourly heat demand for 2010 peaked just above 330 GWth (building heat, UK) with ~17% load factor; the precursor to the figures Watson et al. (2019) revisit.",
+          "quote": "It can be seen that the peak demand was just above 330GW th and with a minimum demand of less than 30GWth.",
+          "locator": "Results, PDF p. 5",
+          "numbers": {"peak_heat_GWth_2010": ">330", "min_GWth": "<30", "load_factor": "~17%"}
+        },
+        {
+          "claim": "Under DECC 2050 Pathway 3, electricity peak heat demand is 57 GW (normal weather) and about 74 GW in a cold scenario, near doubling peak.",
+          "quote": "the electricity peak heat demand for Pathway 3 in 2050 is 57GW for the Normal temperature scenario which would result in a near doubling of electricity peak demand.",
+          "locator": "Conclusions, PDF p. 6",
+          "numbers": {"elec_peak_heat_GW_normal": 57, "elec_peak_heat_GW_cold": 74, "pathway": "DECC 2050 Pathway 3"}
+        }
+      ]
+    },
+    {
+      "key": "Strbac2018",
+      "harvard": "Strbac, G., Pudjianto, D., Sansom, R., Djapic, P., Ameli, H., Shah, N., Brandon, N., Hawkes, A. and Qadrdan, M. (2018) Analysis of Alternative UK Heat Decarbonisation Pathways. Report for the Committee on Climate Change. London: Imperial College London. Available at: https://www.theccc.org.uk/wp-content/uploads/2018/06/Imperial-College-2018-Analysis-of-Alternative-UK-Heat-Decarbonisation-Pathways.pdf (Accessed: 7 November 2026).",
+      "url": "https://www.theccc.org.uk/wp-content/uploads/2018/06/Imperial-College-2018-Analysis-of-Alternative-UK-Heat-Decarbonisation-Pathways.pdf",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "2050 annual system costs (GBP bn/yr) at 30/10/0 Mt: Hybrid 81.6/84.8/88.0; Electric 87.8/89.5/92.2; H2 89.6/90.2/121.7. Core pathways within 10% at 30 Mt.",
+          "quote": "the system costs of the decarbonisation pathways at the carbon emissions target of 30Mt/year are broadly similar; the cost difference between core pathways, i.e. Hybrid, Electric and H2 is within 10%",
+          "locator": "Extended Executive Summary, Table E.1, pp. 12-13",
+          "numbers": {"Hybrid_30Mt": 81.6, "Elec_30Mt": 87.8, "H2_30Mt": 89.6, "Hybrid_0Mt": 88.0, "Elec_0Mt": 92.2, "H2_0Mt": 121.7, "units": "GBP bn/yr, 2050"}
+        },
+        {
+          "claim": "Hybrid advantage comes from using gas at peak, which reduces generation and network capacity; adequacy was tested on a 1-in-20 cold week with low renewables.",
+          "quote": "This flexibility reduces the capacity requirement of the power system infrastructure required to meet peak demand compared to the capacity required in the Electric pathway.",
+          "locator": "Extended Executive Summary, p. 13 (footnote 12 on 1-in-20 events)",
+          "numbers": {}
+        },
+        {
+          "claim": "Electric pathway needs about 100 GW more firm generation than other pathways; preheating can cut >40 GW in Electric 0 Mt.",
+          "quote": "Hence the corresponding amount of firm-generation capacity in the Electric pathway is about 100 GW larger compared to other pathways.",
+          "locator": "Extended Executive Summary, finding 5, p. 18",
+          "numbers": {"extra_firm_capacity_GW_Electric": "~100", "preheat_reduction_GW": ">40"}
+        },
+        {
+          "claim": "Distribution network cost is significantly lower in Hybrid because the boiler serves the peak.",
+          "quote": "the use of the gas boiler component of a hybrid heat pump during peak demand can efficiently reduce the need for distribution network reinforcement",
+          "locator": "Extended Executive Summary, p. 14",
+          "numbers": {}
+        },
+        {
+          "claim": "In the optimised hybrid, gas boilers supply only ~14%, 7% and 3% of heat (30/10/0 Mt); the authors warn emissions rise substantially if users run the boiler more than the model assumes.",
+          "quote": "Emissions in the hybrid pathway could increase substantially if consumers didn't use their hybrid heat pump in a way that is optimal for the overall system (i.e. by using the gas boiler component more than is considered in the model).",
+          "locator": "Section 2 (Figure 2-23), p. 81",
+          "numbers": {"boiler_share_30Mt": "~14%", "boiler_share_10Mt": "~7%", "boiler_share_0Mt": "~3%", "HP_max_flow_C": 55}
+        }
+      ]
+    },
+    {
+      "key": "Vivid2019",
+      "harvard": "Vivid Economics and Imperial College London (2019) Accelerated electrification and the GB electricity system. Final report for the Committee on Climate Change, April 2019. London: Committee on Climate Change. Available at: https://www.theccc.org.uk/wp-content/uploads/2019/05/CCC-Accelerated-Electrification-Vivid-Economics-Imperial.pdf (Accessed: 7 November 2026).",
+      "url": "https://www.theccc.org.uk/wp-content/uploads/2019/05/CCC-Accelerated-Electrification-Vivid-Economics-Imperial.pdf",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "Rapid uptake of EVs and hybrid heat pumps could add up to GBP 50 bn of distribution spend by 2035 (GBP 1.8 bn/yr), ~4% of total system cost.",
+          "quote": "rapid uptake of electric vehicles and hybrid heat pumps could increase total expenditure on distribution networks by up to £50 billion by 2035, or £1.8 billion per year.",
+          "locator": "Executive Summary, p. 3",
+          "numbers": {"distribution_capex_GBP_bn_to_2035": 50, "GBP_bn_per_yr": 1.8, "share_system_cost": "4%"}
+        },
+        {
+          "claim": "The study treats hybrids as inherently flexible, switching to gas at high demand and adding little to peakiness.",
+          "quote": "hybrid heat pumps can switch to gas mode during periods of high electricity demand. As a result, these technologies contribute little to the peakiness of electricity demand.",
+          "locator": "Executive Summary, p. 3",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "DeltaEE2022",
+      "harvard": "Jamieson, T. and Pieterse, R. (2022) Peak Heat WP5: Cost Benefit Analysis. Final report for Western Power Distribution, June 2022. London: Delta Energy & Environment. Available at: https://nationalgrid.co.uk/downloads-view-reciteme/601818 (Accessed: 7 November 2026).",
+      "url": "https://nationalgrid.co.uk/downloads-view-reciteme/601818",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "LV reinforcement unit costs used for the CBA (midpoints): 315->500 kVA GBP 57,300; 500->800 kVA GBP 68,267; 800->1000 kVA GBP 75,579; additional 800 kVA substation GBP 160,278 (each with feeders). DERIVED by this review: ~GBP 200-380 per kVA of added capacity.",
+          "quote": "Upgrade existing 500kVA substation to 800kVA Plus additional 1x250m LV feeder £68,267",
+          "locator": "2.3.1 Reinforcement cost assumptions, Table 8, PDF p. 19 (printed p. 18)",
+          "numbers": {"315_to_500kVA_GBP": 57300, "500_to_800kVA_GBP": 68267, "800_to_1000kVA_GBP": 75579, "new_800kVA_GBP": 160278, "derived_GBP_per_kVA": "~200-380 (not source figure)"}
+        },
+        {
+          "claim": "Heat-pump flexibility (hot water, temperature, buffer, battery) defers LV reinforcement; GB-scale NPV benefit by 2050 ranges ~GBP 160m-680m depending on measure, at illustrative 100% uptake.",
+          "quote": "These results indicate that widespread use of demand side flexibility measures could potentially save WPD hundreds of millions of pounds in reinforcement costs by 2050.",
+          "locator": "Executive summary, Table 1, PDF pp. 6-7",
+          "numbers": {"GB_NPV_2050_hot_water_GBP_m": -248, "GB_NPV_2050_battery_GBP_m": -678}
+        }
+      ]
+    },
+    {
+      "key": "NGED2024",
+      "harvard": "National Grid Electricity Distribution and Guidehouse (2024) EQUINOX: Learning from trialling novel commercial methods. Project deliverable 4, August 2024. Castle Donington: National Grid Electricity Distribution. Available at: https://nationalgrid.co.uk/downloads-view-reciteme/672211 (Accessed: 7 November 2026).",
+      "url": "https://nationalgrid.co.uk/downloads-view-reciteme/672211",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "In winter 2023-24, >1,000 all-electric heat-pump homes offered 0.6 kW average turn-down per opted-in home over two-hour 4-8pm events (48% of their peak), with only 47% opting in per event: a benchmark for what a non-hybrid heat pump can shed.",
+          "quote": "Opted in participants provided an average measurable demand response of 0.6 kW (1.2 kWh) per two-hour event, which represented a 48% reduction in their home's peak load.",
+          "locator": "1. Executive summary, PDF p. 2",
+          "numbers": {"turn_down_kW": 0.6, "event_h": 2, "reduction_pct": 48, "opt_in_rate": "47%", "households": ">1000", "events": 36}
+        }
+      ]
+    },
+    {
+      "key": "ESO2024",
+      "harvard": "National Grid ESO (2024) Future Energy Scenarios: ESO Pathways to Net Zero - Energy consumer and demand side flexibility [webinar slides], 18 July 2024. Warwick: National Energy System Operator. Available at: https://neso.energy/document/321866/download (Accessed: 7 November 2026).",
+      "url": "https://neso.energy/document/321866/download",
+      "doi": null,
+      "type": "web",
+      "claims": [
+        {
+          "claim": "System operator view: unmanaged electrified heat and transport coincide with morning and evening peaks; peak drives network and dispatchable capacity; aggregated consumer flexibility has 70 GW potential (2050, Holistic Transition).",
+          "quote": "In an unmanaged decarbonised household, new electrified heat and transport demand coincide with the morning and evening peaks",
+          "locator": "Slide 'Potential of consumer flexibility at peak demand', PDF p. 17",
+          "numbers": {"consumer_flex_potential_GW_2050": 70}
+        }
+      ]
+    },
+    {
+      "key": "NESO2025",
+      "harvard": "National Energy System Operator (2025) Modelling Methods: How we model FES - NESO pathways to Net Zero. July 2025. Warwick: NESO. Available at: https://www.neso.energy/document/364701/download (Accessed: 7 November 2026).",
+      "url": "https://www.neso.energy/document/364701/download",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "FES 2025 changed its heat-pump profile so demand is redistributed within the day at constant daily energy, lowering peak; i.e. the system operator now assumes heat-pump load shifting rather than fuel switching.",
+          "quote": "heat pump demand was redistributed through the day while still meeting its thermal requirement for the homes without increasing energy demand for that heating day. This approach would flatten the profile with lower peak but higher off-peak demand.",
+          "locator": "1. Modelling overview, changes for 2025, PDF p. 9",
+          "numbers": {}
+        }
+      ]
+    }
+  ],
+  "not_verified": [
+    {"item": "Sansom, R. (2014/2015) Decarbonising low grade heat for low carbon future. PhD thesis, Imperial College London (SPIRAL handle 10044/1/25503).", "tried": "SPIRAL bitstream https://spiral.imperial.ac.uk/bitstreams/8968d84e-e1d4-40e8-a9d3-f00c8d03dead/download returned HTTP 504 Gateway Time-out on four attempts; CORE mirror behind a Cloudflare challenge. His 277 GW figure is cited only via Watson et al. (2019); his 2012 BIEE paper (SansomStrbac2012) was read instead."},
+    {"item": "FREEDOM final report, Western Power Distribution copy (https://www.westernpower.co.uk/downloads/12221/freedom-project-final-report.pdf)", "tried": "Returned an HTML page, not the PDF. The identical Wales & West Utilities-hosted PDF (83 pp.) was read instead."},
+    {"item": "A Delta-ee hybrid heat pump study for BEIS", "tried": "Searches found none. The BEIS 2017 hybrid study is by Element Energy (read); Delta-ee was a FREEDOM partner and the author of Peak Heat WP5 (read)."},
+    {"item": "Ofgem RIIO-ED2 / ENA published GBP per kW reinforcement unit cost for valuing avoided peak", "tried": "Two targeted searches found no primary £/kW figure. The only usable unit costs are Delta-EE (2022) Table 8 (LV substation upgrades, from which ~GBP 200-380/kVA is derived here) and FREEDOM's GBP 50 vs <GBP 5 per customer per year. A primary £/kW/yr LRMC (e.g. from the DCUSA CDCM) remains to be sourced."},
+    {"item": "NESO FES 2025 main report: GW of heat-pump peak demand, the 'up to 54%' peak reduction from demand-side flexibility, and hybrid heat pump shares by pathway", "tried": "These figures appeared only in search-engine summaries and third-party (REA) briefings. The NESO slide packs and Modelling Methods document that were fetched do not state them, so they are excluded."},
+    {"item": "Watson et al. (2021) follow-on, and EQUINOX trial three results (2024-25)", "tried": "The trial three report was not fetched; only trial two was read."},
+    {"item": "Hy4Heat / hydrogen-ready hybrid context", "tried": "Not searched, given time. Imperial (2018) covers hybrid boilers burning biogas or hydrogen, which serves as a proxy."},
+    {"item": "Electrification of Heat final hybrid whole-system efficiency (Section 9.2)", "tried": "The section exists but depends on an assumed boiler efficiency (boilers were not metered). The interim table gives an estimated COPHybrid of ~131-148% across assumed boiler efficiencies of 76-92%. This is not used as a measured figure."}
+  ]
+}

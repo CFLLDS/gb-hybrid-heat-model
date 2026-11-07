@@ -1,0 +1,6 @@
+out/
+__pycache__/
+*.pyc
+data/history.npz
+data/history_parts/
+data/*_year.json

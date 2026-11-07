@@ -1,0 +1,401 @@
+{
+  "strand": "Data and software sources behind the method chapter: weather reanalysis (ERA5 via Open-Meteo), measured heat pump performance (heatpumpmonitor.org, EoH), tariffs (Octopus Agile/Cosy), carbon intensity (NESO), design temperatures (MCS/CIBSE), computation (JAX)",
+  "compiled": "2026-11-07",
+  "method_note": "Each source was fetched on 2026-11-07 and read as HTML-to-text, JSON API response, README markdown, or full PDF via pdftotext (MIS 3005-D). Quotes are verbatim from that text, with whitespace normalised; '...' marks an omission. Live API checks (Octopus unit rates, NESO /regional) were real calls on the access date. Hersbach et al. (2020) was read from its abstract only (see not_verified).",
+  "sources": [
+    {
+      "key": "Hersbach2020",
+      "harvard": "Hersbach, H., Bell, B., Berrisford, P., Hirahara, S., Horányi, A., Muñoz-Sabater, J. et al. (2020) 'The ERA5 global reanalysis', Quarterly Journal of the Royal Meteorological Society, 146(730), pp. 1999-2049. doi:10.1002/qj.3803.",
+      "url": "https://doi.org/10.1002/qj.3803",
+      "doi": "10.1002/qj.3803",
+      "type": "journal article (open access, CC BY 4.0)",
+      "claims": [
+        {
+          "claim": "ERA5 has hourly output throughout, with a 3-hourly ensemble uncertainty estimate.",
+          "quote": "ERA5 has hourly output throughout, and an uncertainty estimate from an ensemble (3-hourly at half the horizontal resolution).",
+          "locator": "Abstract",
+          "numbers": {
+            "output_interval": "hourly",
+            "ensemble_interval": "3-hourly"
+          }
+        },
+        {
+          "claim": "Horizontal resolution is 31 km (ERA-Interim: 80 km).",
+          "quote": "In addition to a significantly enhanced horizontal resolution of 31 km, compared to 80 km for ERA-Interim",
+          "locator": "Abstract",
+          "numbers": {
+            "resolution_km": 31,
+            "era_interim_km": 80
+          }
+        },
+        {
+          "claim": "At publication the paper anticipated a record from 1950 and evaluated the 1979-onward data then public; it does NOT itself document the 1940 back-extension (see ECMWF_ERA5_1940).",
+          "quote": "once completed, will embody a detailed record of the global atmosphere, land surface and ocean waves from 1950 onwards.",
+          "locator": "Abstract",
+          "numbers": {
+            "planned_start_year_at_publication": 1950,
+            "evaluated_from": 1979
+          }
+        }
+      ],
+      "caveat": "Only the abstract was read (Crossref metadata record, which carries the publisher's abstract and the CC BY 4.0 licence). The Wiley full text refused automated fetches, so body-text locators are not given. Bibliographic details (vol. 146, issue 730, pp. 1999-2049, published 15 June 2020, 43 authors) are from Crossref."
+    },
+    {
+      "key": "ECMWF_ERA5_1940",
+      "harvard": "ECMWF (2026) ERA5: data documentation. Copernicus Knowledge Base, ECMWF Confluence wiki. Last modified 8 September 2026. Available at: https://confluence.ecmwf.int/display/CKB/ERA5%3A+data+documentation (Accessed: 7 November 2026).",
+      "url": "https://confluence.ecmwf.int/display/CKB/ERA5%3A+data+documentation",
+      "doi": null,
+      "type": "dataset documentation",
+      "claims": [
+        {
+          "claim": "ERA5 now covers January 1940 to the present, extended in near real time.",
+          "quote": "Here, we document the ERA5 dataset, which covers the period from January 1940 to the present and continues to be extended forward in near real time.",
+          "locator": "Introduction",
+          "numbers": {
+            "start": "1940-01"
+          }
+        },
+        {
+          "claim": "The original release began in 1979; a final back-extension for 1940-1978 is available alongside it (a preliminary 1950-1978 extension preceded it).",
+          "quote": "The original ERA5 release contained data from 1979 onwards. The final ERA5 back extension for 1940-1978 has been produced and is available alongside the original/main release.",
+          "locator": "Introduction (release history)",
+          "numbers": {
+            "back_extension": "1940-1978"
+          }
+        },
+        {
+          "claim": "HRES is hourly at 31 km (0.28125 degrees); analyses are available hourly.",
+          "quote": "The ERA5 HRES atmospheric data has a resolution of 31km, 0.28125 degrees, and the EDA has a resolution of 63km, 0.5625 degrees.",
+          "locator": "Section 'Spatial grid'",
+          "numbers": {
+            "hres_km": 31,
+            "hres_deg": 0.28125,
+            "eda_km": 63
+          }
+        }
+      ]
+    },
+    {
+      "key": "C3S_ERA5_SingleLevels",
+      "harvard": "Hersbach, H., Bell, B., Berrisford, P., Biavati, G., Horányi, A., Muñoz Sabater, J., Nicolas, J., Peubey, C., Radu, R., Rozum, I., Schepers, D., Simmons, A., Soci, C., Dee, D. and Thépaut, J-N. (2023) ERA5 hourly data on single levels from 1940 to present [Data set]. Copernicus Climate Change Service (C3S) Climate Data Store. doi:10.24381/cds.adbb2d47. Available at: https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels (Accessed: 7 November 2026).",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels?tab=overview",
+      "doi": "10.24381/cds.adbb2d47",
+      "type": "dataset",
+      "claims": [
+        {
+          "claim": "The Climate Data Store dataset page states availability from 1940.",
+          "quote": "ERA5 is the fifth generation ECMWF reanalysis for the global climate and weather for the past 8 decades. Data is available from 1940 onwards.",
+          "locator": "Overview tab",
+          "numbers": {
+            "start_year": 1940
+          }
+        },
+        {
+          "claim": "CDS data are regridded to 0.25 degrees, hourly, 1940 to present; CC-BY licence.",
+          "quote": "Horizontal resolution Reanalysis: 0.25° x 0.25° (atmosphere) ... Temporal coverage 1940 to present Temporal resolution Hourly",
+          "locator": "Overview tab, 'Data description' table (ellipsis omits the ensemble and ocean-wave rows)",
+          "numbers": {
+            "grid_deg": 0.25,
+            "licence": "CC-BY"
+          }
+        }
+      ],
+      "caveat": "Added as the dataset-level citation; the author list and DOI are as printed in Open-Meteo's recommended citation and on the CDS page (DOI 10.24381/cds.adbb2d47)."
+    },
+    {
+      "key": "OpenMeteo_Historical",
+      "harvard": "Open-Meteo (2026) Historical Weather API. Available at: https://open-meteo.com/en/docs/historical-weather-api (Accessed: 7 November 2026).",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "doi": null,
+      "type": "web API documentation",
+      "claims": [
+        {
+          "claim": "The API serves ERA5 (0.25 degrees, from 1940), ERA5-Land (0.1 degrees, from 1950) and ECMWF IFS (9 km, from 2017).",
+          "quote": "Gap-free and consistent historical weather data using weather reanalysis from ERA5 (0.25°, from 1940) and ERA5-Land (0.1°, from 1950) and ECMWF IFS (9 km, from 2017).",
+          "locator": "Page header notice",
+          "numbers": {}
+        },
+        {
+          "claim": "Data-source table: ERA5 global, 0.25 degrees, hourly, 1940 to present, updated daily with a 5-day delay.",
+          "quote": "ERA5 🌍 Global 0.25° (~25 km) Hourly 1940 to present Daily with 5 days delay",
+          "locator": "'Data Sources' table, ERA5 row",
+          "numbers": {
+            "era5_delay_days": 5
+          }
+        },
+        {
+          "claim": "temperature_2m is an hourly instantaneous variable; the page advises choosing ERA5 explicitly for multi-decade consistency.",
+          "quote": "temperature_2m Instant °C (°F) Air temperature at 2 meters above ground",
+          "locator": "'Hourly Parameter Definition' table",
+          "numbers": {}
+        }
+      ],
+      "caveat": "Consistency advice, verbatim from the same page: 'Select \"ERA5\" or \"ERA5-Land\" for consistent data over multiple decades.' Default (unselected) requests blend in IFS from 2017, so the method should state which model was requested."
+    },
+    {
+      "key": "Zippenfenig2023",
+      "harvard": "Zippenfenig, P. (2023) Open-Meteo.com Weather API [Computer software]. Zenodo. doi:10.5281/ZENODO.7970649.",
+      "url": "https://doi.org/10.5281/ZENODO.7970649",
+      "doi": "10.5281/ZENODO.7970649",
+      "type": "software",
+      "claims": [
+        {
+          "claim": "This is the citation Open-Meteo asks researchers to use, alongside citing its underlying sources (ERA5 etc.).",
+          "quote": "We encourage researchers in the field of meteorology and related disciplines to cite Open-Meteo and its sources in their work.",
+          "locator": "Historical Weather API page, 'Citation & Acknowledgement'",
+          "numbers": {}
+        }
+      ],
+      "caveat": "10.5281/zenodo.7970649 is Zenodo's concept DOI (all versions); it resolves to the latest version, v1.4.0 (record 10.5281/zenodo.14582479, 31 Dec 2024), per the Zenodo API. Page also requires: 'Generated using Copernicus Climate Change Service information 2022.'"
+    },
+    {
+      "key": "HPM_org",
+      "harvard": "OpenEnergyMonitor (2026) HeatpumpMonitor.org: About. Available at: https://heatpumpmonitor.org/about (Accessed: 7 November 2026).",
+      "url": "https://heatpumpmonitor.org/about",
+      "doi": null,
+      "type": "open database / website",
+      "claims": [
+        {
+          "claim": "An OpenEnergyMonitor open-source community database of real-world heat pump performance; 864 systems uploading as of November 2026.",
+          "quote": "HeatpumpMonitor.org is an OpenEnergyMonitor open source community initiative to share and compare real-world heat pump performance data. As of November 2026 there are 864 heat pump systems uploading data",
+          "locator": "About page, opening paragraph",
+          "numbers": {
+            "systems_uploading_Nov2026": 864
+          }
+        },
+        {
+          "claim": "'MID' systems use billing-grade Class 1 electricity and Class 2 heat meters, as used in RHI and other trials.",
+          "quote": "Systems marked with 'MID' use billing grade MID approved Class 1 electricity metering and Class 2 heat metering equipment. These are the same meters used by RHI and other heat pump monitoring trials.",
+          "locator": "About page, 'Accuracy & Boundaries'",
+          "numbers": {}
+        },
+        {
+          "claim": "H4 boundary (SEPEMO definitions) includes building circulation pumps/fans in addition to compressor, source fan and backup/immersion heaters.",
+          "quote": "H4: Covers all energy inputs from H3, but also includes building circulation pump(s) or fans",
+          "locator": "About page, 'Accuracy & Boundaries' (boundaries 'defined by SEPEMO')",
+          "numbers": {}
+        }
+      ],
+      "caveat": "Data licensed CC BY 4.0 (About page, 'Licence'). The home page defines SPF as total heat delivered over total electricity over a full year, space heating and hot water combined. The live system count changes; cite the access date. A self-selected sample of enthusiasts, not a stock survey."
+    },
+    {
+      "key": "OctopusAPI",
+      "harvard": "Octopus Energy (2026) Octopus Energy public REST API: products and standard-unit-rates endpoints. Available at: https://api.octopus.energy/v1/products/ (Accessed: 7 November 2026).",
+      "url": "https://api.octopus.energy/v1/products/AGILE-24-10-01/",
+      "doi": null,
+      "type": "web API",
+      "claims": [
+        {
+          "claim": "Product endpoint for AGILE-24-10-01, read without authentication; it returns half-hourly unit rates at /electricity-tariffs/E-1R-AGILE-24-10-01-{region}/standard-unit-rates/ (region H checked: four half-hour records for 00:00-02:00Z on 6 Nov 2026).",
+          "quote": "With Agile Octopus, you get access to half-hourly energy prices, tied to wholesale prices and updated daily.  The unit rate is capped at 100p/kWh (including VAT).",
+          "locator": "GET /v1/products/AGILE-24-10-01/, field 'description' (full_name 'Agile Octopus October 2024 v1', available_from 2024-10-01)",
+          "numbers": {
+            "cap_p_per_kWh_incVAT": 100
+          }
+        },
+        {
+          "claim": "Product endpoint for COSY-22-12-08 lists standard-unit-rates and standing-charges links per region.",
+          "quote": "Cosy Octopus is a heat pump tariff with eight hours of super cheap electricity every day to warm your home.",
+          "locator": "GET /v1/products/COSY-22-12-08/, field 'description' (available_from 2022-12-13)",
+          "numbers": {}
+        }
+      ],
+      "caveat": "The developer documentation (developer.octopus.energy, now redirecting to docs.oegb-kraken.energy) went into a redirect loop and could not be read, so the API is cited from its own JSON responses rather than its guide."
+    },
+    {
+      "key": "OctopusAgile",
+      "harvard": "Octopus Energy (2026) Agile Octopus. Available at: https://octopus.energy/smart/agile/ (Accessed: 7 November 2026).",
+      "url": "https://octopus.energy/smart/agile/",
+      "doi": null,
+      "type": "supplier web page",
+      "claims": [
+        {
+          "claim": "Half-hourly prices tied to wholesale, updated daily.",
+          "quote": "With Agile Octopus, you get access to half-hourly energy prices, tied to wholesale prices and updated daily.",
+          "locator": "Section 'Enjoy cheaper electricity prices when wholesale prices fall'",
+          "numbers": {}
+        },
+        {
+          "claim": "Next-day rates are published between 16:00 and 20:00, and charges use smart-meter half-hourly data.",
+          "quote": "Between 4-8pm every day (usually nearer 4pm), your unit rates are updated for the next 24 hours, based on the wholesale market rates.",
+          "locator": "Section 'How does Agile work?'",
+          "numbers": {}
+        },
+        {
+          "claim": "Price Cap Protect: never more than 100p/kWh.",
+          "quote": "Agile Octopus includes Price Cap Protect , which ensures you'll never pay more than 100p / kWh",
+          "locator": "Section 'Price Cap Protect keeps you safe from surge prices'",
+          "numbers": {
+            "cap_p_per_kWh": 100
+          }
+        }
+      ]
+    },
+    {
+      "key": "OctopusCosy",
+      "harvard": "Octopus Energy (2026) Cosy Octopus. Available at: https://octopus.energy/smart/cosy-octopus/ (Accessed: 7 November 2026).",
+      "url": "https://octopus.energy/smart/cosy-octopus/",
+      "doi": null,
+      "type": "supplier web page",
+      "claims": [
+        {
+          "claim": "Three cheap periods (04:00-07:00, 13:00-16:00, 22:00-00:00; eight hours) at 51% below the regional Day rate.",
+          "quote": "Three cosy periods of super cheap rates between 04:00 - 07:00, 13:00 - 16:00 and 22:00 - 00:00 every day, 51% cheaper than the Day rate in your region.",
+          "locator": "Section 'How much will it cost?'",
+          "numbers": {
+            "cheap_hours": 8,
+            "cheap_vs_day": "-51%"
+          }
+        },
+        {
+          "claim": "Peak 16:00-19:00 at 50% above the Day rate.",
+          "quote": "A peak rate between 16:00 - 19:00, 50% above the Day rate in your region.",
+          "locator": "Section 'How much will it cost?'",
+          "numbers": {
+            "peak": "16:00-19:00",
+            "peak_vs_day": "+50%"
+          }
+        },
+        {
+          "claim": "Windows are fixed in local clock time through daylight saving changes.",
+          "quote": "your triple dip super cheap periods stay between 04:00 - 07:00, 13:00 - 16:00 and 22:00 - 00:00 while your peak period stays between 16:00 - 19:00.",
+          "locator": "FAQ 'What happens to the peak and triple dip super cheap periods during daylight savings?'",
+          "numbers": {}
+        }
+      ],
+      "caveat": "Eligibility needs a heat pump, electric radiator or electric boiler (same page). Percentages are as of the access date; the page markets the current Cosy product, while the API code COSY-22-12-08 dates from 2022."
+    },
+    {
+      "key": "CarbonIntensityAPI",
+      "harvard": "National Energy System Operator (NESO) (2026) Carbon Intensity API. Developed with Environmental Defense Fund Europe, University of Oxford Department of Computer Science and WWF. Available at: https://carbonintensity.org.uk/ (API reference: https://carbon-intensity.github.io/api-definitions/) (Accessed: 7 November 2026).",
+      "url": "https://carbonintensity.org.uk/",
+      "doi": null,
+      "type": "web API",
+      "claims": [
+        {
+          "claim": "Regional forecasts for 14 GB regions with DNO boundaries.",
+          "quote": "NESO forecasts the carbon intensity and generation mix of electricity consumed across 14 geographical regions in Great Britain.",
+          "locator": "carbonintensity.org.uk, regional section above the map",
+          "numbers": {
+            "regions": 14
+          }
+        },
+        {
+          "claim": "Region boundaries follow the Distribution Network Operator areas; CO2 flows are attributed per 30-minute period.",
+          "quote": "The boundaries are defined according to Distribution Network Operator (DNO) boundaries.",
+          "locator": "carbonintensity.org.uk, regional map section",
+          "numbers": {}
+        },
+        {
+          "claim": "The API serves regional intensity per half-hour (UTC); /regional returns half-hour windows by region.",
+          "quote": "Get Regional Carbon Intensity data for current half hour. All times provided in UTC (+00:00).",
+          "locator": "API definitions, 'Carbon Intensity - Regional beta', GET /regional",
+          "numbers": {}
+        }
+      ],
+      "caveat": "Regional values are FORECASTS (the regional endpoints are labelled 'beta'); actual (outturn) intensity is national only. Live check, 7 Nov 2026: GET /regional returned a 30-minute window (11:00-11:30Z) with 18 entries, the 14 DNO regions plus England, Scotland, Wales and GB. Licensed CC BY 4.0; downloadable data only from 2017-09-26 (home page)."
+    },
+    {
+      "key": "MCS_DesignTemps",
+      "harvard": "MCS (2025) MIS 3005-D: The Heat Pump Standard (Design). Issue 3.0, 5 December 2025. Daresbury: The MCS Service Company Ltd on behalf of the MCS Charitable Foundation. Available at: https://mcscertified.com/standards-tools-library/ (Accessed: 7 November 2026).",
+      "url": "https://mcscertified.com/standards-tools-library/",
+      "doi": null,
+      "type": "industry standard",
+      "claims": [
+        {
+          "claim": "Heat-load calculations use Table 2 external temperatures, column A (99%) or B (99.6%), at the contractor's choice; using B removes the intermittent-heating uplift.",
+          "quote": "external temperatures specified in Table 2 column A or B, according to the MCS Contractor's assessment of the building location. If column B is selected, no uplift factor for intermittent heating is required.",
+          "locator": "Clause 5.5.1(a) (also 5.5.2(a) hybrids, 5.5.3(a) air-to-air), pp. 14-17",
+          "numbers": {}
+        },
+        {
+          "claim": "Table 2 is taken from CIBSE Guide A Table 2.5: hourly dry-bulb temperature equalled or exceeded for 99% (A) or 99.6% (B) of hours, e.g. London -1.7/-3.0 C, Birmingham -3.2/-5.1, Glasgow -3.5/-5.9.",
+          "quote": "Table 2: Outside design temperatures for different locations in the UK taken from CIBSE Guide A Table 2.5.",
+          "locator": "Table 2, p. 18 (column heads 'A (99%)' and 'B (99.6%)')",
+          "numbers": {
+            "London_99": -1.7,
+            "London_99.6": -3.0,
+            "Birmingham_99.6": -5.1,
+            "Manchester_99.6": -4.5,
+            "Plymouth_99.6": -1.5,
+            "Edinburgh_99.6": -5.4,
+            "Glasgow_99.6": -5.9,
+            "Cardiff_99.6": -3.1,
+            "Belfast_99.6": -3.2
+          }
+        },
+        {
+          "claim": "Hybrid sizing: the heat pump must supply at least 55% of the design heat load, rated at 55 C flow at the design external temperature.",
+          "quote": "The Heat Pump power output (kW) shall be selected such that it will provide a minimum of 55% of the calculated heat load of the building from 5.5.2 (a).",
+          "locator": "Clause 5.5.2(d), p. 15",
+          "numbers": {
+            "hybrid_min_hp_share_of_design_load": 0.55
+          }
+        }
+      ],
+      "caveat": "Read from the full PDF (34 pp., dated 05/12/2025). The direct PDF URL for Issue 3.0 was not captured, so the standards library page is cited. An Issue 2.0 PDF ('MIS 3005-D: 2025', https://mcscertified.com/wp-content/uploads/2025/12/MIS-3005-D-2025-V2.0-Final.pdf, also dated 05/12/2025) has the same Table 2 and column-A/B wording. Guide A itself is not read. MCS permits 99% OR 99.6%, not 99.6% alone."
+    },
+    {
+      "key": "JAX2018",
+      "harvard": "Bradbury, J., Frostig, R., Hawkins, P., Johnson, M.J., Katariya, Y., Leary, C., Maclaurin, D., Necula, G., Paszke, A., VanderPlas, J., Wanderman-Milne, S. and Zhang, Q. (2018) JAX: composable transformations of Python+NumPy programs. Version 0.3.13 [Computer software]. Available at: http://github.com/jax-ml/jax (Accessed: 7 November 2026).",
+      "url": "http://github.com/jax-ml/jax",
+      "doi": null,
+      "type": "software",
+      "claims": [
+        {
+          "claim": "Project-requested citation (README 'Citing JAX'): the version field is meant to be the one actually used, and the year is the open-source release.",
+          "quote": "the version number is intended to be that from jax/version.py, and the year corresponds to the project's open-source release.",
+          "locator": "README.md, 'Citing JAX' (link markup removed)",
+          "numbers": {
+            "readme_bibtex_version": "0.3.13"
+          }
+        },
+        {
+          "claim": "What JAX is: composable autodiff and JIT compilation for array code.",
+          "quote": "JAX is a Python library for accelerator-oriented array computation and program transformation, designed for high-performance numerical computing and large-scale machine learning.",
+          "locator": "README.md, opening paragraph",
+          "numbers": {}
+        }
+      ],
+      "caveat": "Replace 0.3.13 with the version actually run (jax.__version__) if the article states a version."
+    },
+    {
+      "key": "EoH_Data",
+      "harvard": "Energy Systems Catapult (2024) Electrification of Heat Demonstration Project: Heat Pump Performance Cleansed Data, 2020-2023. 2nd edn. [Data collection]. UK Data Service. SN: 9050. doi:10.5255/UKDA-SN-9050-2.",
+      "url": "https://datacatalogue.ukdataservice.ac.uk/studies/study/9050",
+      "doi": "10.5255/UKDA-SN-9050-2",
+      "type": "dataset",
+      "claims": [
+        {
+          "claim": "The EoH heat pump monitoring data are deposited at the UK Data Service in raw and cleansed form, supporting SPF, coldest-day and half-hourly peak analysis.",
+          "quote": "From the datasets, insights such as heat pump seasonal performance factor (a measure of the heat pump's efficiency), heat pump performance during the coldest day of the year, and half-hourly performance to inform peak demand can be gleaned.",
+          "locator": "DataCite metadata record for 10.5255/ukda-sn-9050-2, description",
+          "numbers": {}
+        }
+      ],
+      "caveat": "Read via the DataCite registry (api.datacite.org), not the UK Data Service page, which served only a script shell. Related records: raw data SN 9049 (10.5255/ukda-sn-9049-2), 30-minute interval SN 9209 (10.5255/ukda-sn-9209-1), daily SN 9210 (10.5255/ukda-sn-9210-1). Access conditions (registration/licence) not verified."
+    }
+  ],
+  "not_verified": [
+    {
+      "item": "Hersbach et al. (2020) full text (body sections, e.g. the resolution and output-frequency sections)",
+      "tried": "Wiley (rmets.onlinelibrary.wiley.com /pdfdirect, /pdf, /full-xml) returned bot-check HTML. Only the abstract (via Crossref) was read; quotes are limited to it."
+    },
+    {
+      "item": "Octopus developer documentation (https://developer.octopus.energy/rest/guides/endpoints)",
+      "tried": "Redirects to docs.oegb-kraken.energy and loops between it and developer.oegb-kraken.energy; no page served. The API was cited from its own JSON responses instead (OctopusAPI)."
+    },
+    {
+      "item": "CIBSE Guide A (2015/2021) Table 2.5, primary",
+      "tried": "Paywalled; not attempted. 99%/99.6% basis verified only as reproduced in MCS MIS 3005-D Table 2."
+    },
+    {
+      "item": "Direct PDF URL of MIS 3005-D Issue 3.0",
+      "tried": "Document read in full, but the URL was not captured from the fetch, and guessed URLs returned 404. The standards library page lists the Issue 2.0 PDF URL."
+    },
+    {
+      "item": "UK Data Service catalogue page for EoH SN 9050",
+      "tried": "datacatalogue/beta.ukdataservice.ac.uk returned a 744-byte JavaScript shell; metadata were taken from DataCite instead."
+    }
+  ]
+}

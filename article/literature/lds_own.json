@@ -1,0 +1,6 @@
+{"strand": "LDS's own published works and datasets (self-citations; each is public and was read at source)",
+ "sources": [
+  {"key": "LDSMap2026", "harvard": "LDS Consultancy (2026) Where gas still earns its keep: a GB map of hybrid heating [interactive map]. Available at: https://energy.ldsconsultancy.net/gb-map/ (accessed 7 November 2026).", "url": "https://energy.ldsconsultancy.net/gb-map/", "type": "web", "claims": [{"claim": "Public interactive map built on version 1 of the national model.", "quote": "Where gas still earns its keep", "locator": "page title"}]},
+  {"key": "HPM454", "harvard": "OpenEnergyMonitor (2026) heatpumpmonitor.org system 454: Daikin Altherma 6 kW monobloc, Poole [monitored heat pump]. Available at: https://heatpumpmonitor.org/system/view?id=454 (accessed 6 November 2026).", "url": "https://heatpumpmonitor.org/system/view?id=454", "type": "dataset", "claims": [{"claim": "The case-study house's measured heat-pump performance is public.", "quote": "system 454", "locator": "system page"}]}
+ ],
+ "not_verified": []}

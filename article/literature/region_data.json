@@ -1,0 +1,97 @@
+{
+ "strand": "National scaling data (downloaded and processed by scripts/spark/gb_national_scale.py; files kept in data/model/gb/sources/)",
+ "sources": [
+  {
+   "key": "DESNZ2025_MSOA_Gas",
+   "harvard": "Department for Energy Security and Net Zero (2025) Domestic gas consumption by Middle Layer Super Output Area (MSOA), 2010 to 2024 [stacked CSV]. Published 18 December 2025. Available at: https://assets.publishing.service.gov.uk/media/69457a332f0261139350898e/gas_domestic_MSOA_stacked_2010-2024.csv (accessed 7 November 2026).",
+   "url": "https://assets.publishing.service.gov.uk/media/69457a332f0261139350898e/gas_domestic_MSOA_stacked_2010-2024.csv",
+   "type": "dataset",
+   "claims": [
+    {
+     "claim": "Domestic gas meters per small area, GB, 2024; total 24,702,709.",
+     "quote": "dataset, number of meters per MSOA/IZ, 2024",
+     "locator": "data file"
+    }
+   ]
+  },
+  {
+   "key": "DESNZ2026_LA_Gas",
+   "harvard": "Department for Energy Security and Net Zero (2026) Gas consumption by Local Authority (LA), 2005 to 2024 [stacked CSV]. Revised 5 May 2026. Available at: https://assets.publishing.service.gov.uk/media/69f9c094a40aa2232fede4af/gas_LA_stacked_2005-2024.csv (accessed 7 November 2026).",
+   "url": "https://assets.publishing.service.gov.uk/media/69f9c094a40aa2232fede4af/gas_LA_stacked_2005-2024.csv",
+   "type": "dataset",
+   "claims": [
+    {
+     "claim": "Cross-check total 24,681,591 domestic meters (0.09% from the MSOA total).",
+     "quote": "dataset",
+     "locator": "data file"
+    }
+   ]
+  },
+  {
+   "key": "NESO2024_DNO_Areas",
+   "harvard": "National Energy System Operator (2024) GIS Boundaries for GB DNO Licence Areas, 20240503 [GeoJSON]. NESO Data Portal. Available at: https://api.neso.energy/dataset/0e377f16-95e9-4c15-a1fc-49e06a39cfa0 (accessed 7 November 2026).",
+   "url": "https://api.neso.energy/dataset/0e377f16-95e9-4c15-a1fc-49e06a39cfa0",
+   "type": "dataset",
+   "claims": [
+    {
+     "claim": "Official DNO licence-area polygons, labelled A-P.",
+     "quote": "GIS Boundaries for GB DNO Licence Areas",
+     "locator": "dataset title"
+    }
+   ]
+  },
+  {
+   "key": "ONS2021_MSOA_Centroids",
+   "harvard": "Office for National Statistics (2023) Middle layer Super Output Areas (December 2021) Population Weighted Centroids in England and Wales (V2). ONS Open Geography Portal (accessed 7 November 2026).",
+   "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/ArcGIS/rest/services/MSOA_December_2021_EW_PWC_V2/FeatureServer/0",
+   "type": "dataset",
+   "claims": [
+    {
+     "claim": "Population-weighted centroids used to place each MSOA.",
+     "quote": "Population Weighted Centroids",
+     "locator": "dataset title"
+    }
+   ]
+  },
+  {
+   "key": "ScotGov2022_IZ_Centroids",
+   "harvard": "Scottish Government (2022) Intermediate Zone Centroids 2022 [WFS service SU:IntermediateZoneCent2022]. Available at: https://maps.gov.scot/server/services/ScotGov/StatisticalUnits/MapServer/WFSServer (accessed 7 November 2026).",
+   "url": "https://maps.gov.scot/server/services/ScotGov/StatisticalUnits/MapServer/WFSServer",
+   "type": "dataset",
+   "claims": [
+    {
+     "claim": "Centroids used to place each Scottish Intermediate Zone.",
+     "quote": "IntermediateZoneCent2022",
+     "locator": "layer name"
+    }
+   ]
+  },
+  {
+   "key": "ONS2021_TS046",
+   "harvard": "Office for National Statistics (2023) Census 2021: TS046 Central heating, England and Wales [Nomis dataset NM_2064_1] (accessed 7 November 2026).",
+   "url": "https://www.nomisweb.co.uk/datasets/c2021ts046",
+   "type": "dataset",
+   "claims": [
+    {
+     "claim": "18,298,725 households in England and Wales have mains gas as their only central heating (0.81 per domestic gas meter).",
+     "quote": "Mains gas only",
+     "locator": "category"
+    }
+   ]
+  },
+  {
+   "key": "NESO_HistoricDemand",
+   "harvard": "National Energy System Operator (2026) Historic Demand Data 2025 and 2026 [CSV, half-hourly national demand (ND)]. NESO Data Portal. Available at: https://api.neso.energy/dataset/historic-demand-data (accessed 7 November 2026).",
+   "url": "https://api.neso.energy/dataset/historic-demand-data",
+   "type": "dataset",
+   "claims": [
+    {
+     "claim": "Half-hourly GB national demand (ND), 1 Nov 2025 - 17 Oct 2026; peak 47,382 MW; 18-31 Oct 2026 filled from the same dates of 2025.",
+     "quote": "SETTLEMENT_DATE, SETTLEMENT_PERIOD, ND",
+     "locator": "column headers"
+    }
+   ]
+  }
+ ],
+ "not_verified": []
+}

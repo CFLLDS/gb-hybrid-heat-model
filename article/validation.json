@@ -1,0 +1,1567 @@
+{
+ "generated": "2026-11-07T11:50:52+00:00",
+ "script": "scripts/article/validation.py",
+ "model": "COP = clip(share(out) x (flow+273.15)/max(flow-out,5), 1.3, 7); share = interp over band nodes",
+ "fit_counts": {
+  "generated": "2026-11-07T11:50:52+00:00",
+  "systems": 55,
+  "days_all": 10628,
+  "days_in_bands": 10628,
+  "bands": [
+   "-10..0",
+   "0..3",
+   "3..6",
+   "6..9",
+   "9..12",
+   "12..16"
+  ],
+  "winters": [
+   [
+    "2024-11-01",
+    "2025-04-01"
+   ],
+   [
+    "2025-11-01",
+    "2026-04-01"
+   ]
+  ],
+  "day_filter": "space split only; heat>=2 kWh, elec>0, 20<flow<60, -15<out<18, 1<COP<8, flow-out>8; system needs >=40 days",
+  "system_ids": [
+   3,
+   32,
+   71,
+   104,
+   111,
+   113,
+   115,
+   140,
+   147,
+   163,
+   219,
+   240,
+   346,
+   354,
+   357,
+   373,
+   386,
+   405,
+   416,
+   427,
+   456,
+   508,
+   517,
+   547,
+   549,
+   575,
+   597,
+   631,
+   632,
+   654,
+   674,
+   685,
+   696,
+   703,
+   725,
+   726,
+   738,
+   739,
+   756,
+   802,
+   803,
+   829,
+   830,
+   872,
+   873,
+   876,
+   877,
+   889,
+   912,
+   924,
+   934,
+   940,
+   966,
+   1018,
+   1025
+  ],
+  "note": "days_all passes the quality filter (-15<out<18); days_in_bands is the subset inside the six fitted bands (-10..16 C), which is what logs/hpm_shares_20261106.json counts",
+  "physics_docstring_quotes": 11628,
+  "docstring_matches_days_all": false
+ },
+ "out_of_sample_share": {
+  "generated": "2026-11-07T11:50:53+00:00",
+  "method": "5-fold CV by system: fold = position in sorted id list mod 5; per-band share refit on 4 folds, curve nodes at STOCK_SHARE_T, held-out systems predicted from their own daily flow and outside temp, level x1.0",
+  "day_filter": "space split only; heat>=2 kWh, elec>0, 20<flow<60, -15<out<18, 1<COP<8, flow-out>8; system needs >=40 days",
+  "winters": [
+   [
+    "2024-11-01",
+    "2025-04-01"
+   ],
+   [
+    "2025-11-01",
+    "2026-04-01"
+   ]
+  ],
+  "system_ids": [
+   3,
+   32,
+   71,
+   104,
+   111,
+   113,
+   115,
+   140,
+   147,
+   163,
+   219,
+   240,
+   346,
+   354,
+   357,
+   373,
+   386,
+   405,
+   416,
+   427,
+   456,
+   508,
+   517,
+   547,
+   549,
+   575,
+   597,
+   631,
+   632,
+   654,
+   674,
+   685,
+   696,
+   703,
+   725,
+   726,
+   738,
+   739,
+   756,
+   802,
+   803,
+   829,
+   830,
+   872,
+   873,
+   876,
+   877,
+   889,
+   912,
+   924,
+   934,
+   940,
+   966,
+   1018,
+   1025
+  ],
+  "folds": {
+   "0": [
+    3,
+    113,
+    219,
+    373,
+    456,
+    575,
+    674,
+    726,
+    803,
+    876,
+    934
+   ],
+   "1": [
+    32,
+    115,
+    240,
+    386,
+    508,
+    597,
+    685,
+    738,
+    829,
+    877,
+    940
+   ],
+   "2": [
+    71,
+    140,
+    346,
+    405,
+    517,
+    631,
+    696,
+    739,
+    830,
+    889,
+    966
+   ],
+   "3": [
+    104,
+    147,
+    354,
+    416,
+    547,
+    632,
+    703,
+    756,
+    872,
+    912,
+    1018
+   ],
+   "4": [
+    111,
+    163,
+    357,
+    427,
+    549,
+    654,
+    725,
+    802,
+    873,
+    924,
+    1025
+   ]
+  },
+  "reproduces_logged_fit": true,
+  "physics_stock_share": {
+   "t": [
+    -3.0,
+    1.5,
+    4.5,
+    7.5,
+    10.5,
+    14.0
+   ],
+   "share": [
+    0.3415,
+    0.3506,
+    0.3628,
+    0.362,
+    0.3434,
+    0.3124
+   ]
+  },
+  "fold_shares": [
+   {
+    "-10..0": 0.3438,
+    "0..3": 0.3504,
+    "3..6": 0.3631,
+    "6..9": 0.3622,
+    "9..12": 0.3445,
+    "12..16": 0.3128
+   },
+   {
+    "-10..0": 0.3375,
+    "0..3": 0.3469,
+    "3..6": 0.3599,
+    "6..9": 0.3582,
+    "9..12": 0.3369,
+    "12..16": 0.3062
+   },
+   {
+    "-10..0": 0.3442,
+    "0..3": 0.3541,
+    "3..6": 0.3617,
+    "6..9": 0.3569,
+    "9..12": 0.3394,
+    "12..16": 0.3119
+   },
+   {
+    "-10..0": 0.3399,
+    "0..3": 0.35,
+    "3..6": 0.3599,
+    "6..9": 0.3582,
+    "9..12": 0.3412,
+    "12..16": 0.309
+   },
+   {
+    "-10..0": 0.3427,
+    "0..3": 0.3523,
+    "3..6": 0.3698,
+    "6..9": 0.3755,
+    "9..12": 0.3558,
+    "12..16": 0.3229
+   }
+  ],
+  "out_of_sample": {
+   "-10..0": {
+    "days": 276,
+    "systems": 21,
+    "measured_cop": 2.802,
+    "predicted_cop": 2.82,
+    "bias_pct": 0.63,
+    "median_abs_pct_err": 8.07
+   },
+   "0..3": {
+    "days": 1161,
+    "systems": 50,
+    "measured_cop": 3.216,
+    "predicted_cop": 3.223,
+    "bias_pct": 0.21,
+    "median_abs_pct_err": 5.56
+   },
+   "3..6": {
+    "days": 3043,
+    "systems": 54,
+    "measured_cop": 3.732,
+    "predicted_cop": 3.706,
+    "bias_pct": -0.7,
+    "median_abs_pct_err": 7.02
+   },
+   "6..9": {
+    "days": 3513,
+    "systems": 55,
+    "measured_cop": 4.309,
+    "predicted_cop": 4.272,
+    "bias_pct": -0.86,
+    "median_abs_pct_err": 8.17
+   },
+   "9..12": {
+    "days": 2139,
+    "systems": 55,
+    "measured_cop": 4.816,
+    "predicted_cop": 4.8,
+    "bias_pct": -0.33,
+    "median_abs_pct_err": 8.4
+   },
+   "12..16": {
+    "days": 496,
+    "systems": 43,
+    "measured_cop": 5.372,
+    "predicted_cop": 5.417,
+    "bias_pct": 0.84,
+    "median_abs_pct_err": 8.8
+   },
+   "overall": {
+    "days": 10628,
+    "systems": 55,
+    "measured_cop": 3.899,
+    "predicted_cop": 3.882,
+    "bias_pct": -0.44,
+    "median_abs_pct_err": 6.71
+   }
+  },
+  "in_sample": {
+   "-10..0": {
+    "days": 276,
+    "systems": 21,
+    "measured_cop": 2.802,
+    "predicted_cop": 2.815,
+    "bias_pct": 0.47,
+    "median_abs_pct_err": 7.72
+   },
+   "0..3": {
+    "days": 1161,
+    "systems": 50,
+    "measured_cop": 3.216,
+    "predicted_cop": 3.22,
+    "bias_pct": 0.12,
+    "median_abs_pct_err": 5.45
+   },
+   "3..6": {
+    "days": 3043,
+    "systems": 54,
+    "measured_cop": 3.732,
+    "predicted_cop": 3.705,
+    "bias_pct": -0.72,
+    "median_abs_pct_err": 6.81
+   },
+   "6..9": {
+    "days": 3513,
+    "systems": 55,
+    "measured_cop": 4.309,
+    "predicted_cop": 4.269,
+    "bias_pct": -0.94,
+    "median_abs_pct_err": 7.31
+   },
+   "9..12": {
+    "days": 2139,
+    "systems": 55,
+    "measured_cop": 4.816,
+    "predicted_cop": 4.795,
+    "bias_pct": -0.44,
+    "median_abs_pct_err": 8.08
+   },
+   "12..16": {
+    "days": 496,
+    "systems": 43,
+    "measured_cop": 5.372,
+    "predicted_cop": 5.421,
+    "bias_pct": 0.92,
+    "median_abs_pct_err": 8.87
+   },
+   "overall": {
+    "days": 10628,
+    "systems": 55,
+    "measured_cop": 3.899,
+    "predicted_cop": 3.88,
+    "bias_pct": -0.5,
+    "median_abs_pct_err": 6.83
+   }
+  },
+  "note": "system-level error per band counts systems with >=5 days in the band"
+ },
+ "temporal_holdout": {
+  "generated": "2026-11-07T11:50:53+00:00",
+  "fit_winter": [
+   "2024-11-01",
+   "2025-04-01"
+  ],
+  "test_winter": [
+   "2025-11-01",
+   "2026-04-01"
+  ],
+  "day_filter": "space split only; heat>=2 kWh, elec>0, 20<flow<60, -15<out<18, 1<COP<8, flow-out>8; system needs >=40 days",
+  "system_ids": [
+   3,
+   32,
+   71,
+   104,
+   111,
+   113,
+   115,
+   140,
+   147,
+   163,
+   240,
+   346,
+   354,
+   357,
+   373,
+   386,
+   405,
+   416,
+   427,
+   456,
+   508,
+   517,
+   547,
+   549,
+   575,
+   597,
+   631,
+   632,
+   654,
+   674,
+   685,
+   696,
+   703,
+   725,
+   726,
+   738,
+   739,
+   756,
+   802,
+   803,
+   829,
+   830,
+   872,
+   873,
+   876,
+   877,
+   889,
+   912,
+   924,
+   934,
+   940,
+   966,
+   1018,
+   1025
+  ],
+  "fit_shares": {
+   "-10..0": 0.3381,
+   "0..3": 0.3505,
+   "3..6": 0.3562,
+   "6..9": 0.3521,
+   "9..12": 0.3297,
+   "12..16": 0.2945
+  },
+  "holdout": {
+   "-10..0": {
+    "days": 169,
+    "systems": 12,
+    "measured_cop": 2.808,
+    "predicted_cop": 2.79,
+    "bias_pct": -0.63,
+    "median_abs_pct_err": 5.04
+   },
+   "0..3": {
+    "days": 658,
+    "systems": 47,
+    "measured_cop": 3.193,
+    "predicted_cop": 3.184,
+    "bias_pct": -0.28,
+    "median_abs_pct_err": 4.99
+   },
+   "3..6": {
+    "days": 1944,
+    "systems": 52,
+    "measured_cop": 3.769,
+    "predicted_cop": 3.643,
+    "bias_pct": -3.33,
+    "median_abs_pct_err": 7.7
+   },
+   "6..9": {
+    "days": 2507,
+    "systems": 54,
+    "measured_cop": 4.351,
+    "predicted_cop": 4.153,
+    "bias_pct": -4.55,
+    "median_abs_pct_err": 9.94
+   },
+   "9..12": {
+    "days": 1515,
+    "systems": 53,
+    "measured_cop": 4.879,
+    "predicted_cop": 4.613,
+    "bias_pct": -5.44,
+    "median_abs_pct_err": 9.96
+   },
+   "12..16": {
+    "days": 379,
+    "systems": 40,
+    "measured_cop": 5.578,
+    "predicted_cop": 5.256,
+    "bias_pct": -5.76,
+    "median_abs_pct_err": 9.09
+   },
+   "overall": {
+    "days": 7172,
+    "systems": 54,
+    "measured_cop": 3.974,
+    "predicted_cop": 3.839,
+    "bias_pct": -3.4,
+    "median_abs_pct_err": 7.61
+   }
+  },
+  "in_sample_full_curve_on_test": {
+   "-10..0": {
+    "days": 169,
+    "systems": 12,
+    "measured_cop": 2.808,
+    "predicted_cop": 2.807,
+    "bias_pct": -0.04,
+    "median_abs_pct_err": 5.18
+   },
+   "0..3": {
+    "days": 658,
+    "systems": 47,
+    "measured_cop": 3.193,
+    "predicted_cop": 3.197,
+    "bias_pct": 0.13,
+    "median_abs_pct_err": 5.38
+   },
+   "3..6": {
+    "days": 1944,
+    "systems": 52,
+    "measured_cop": 3.769,
+    "predicted_cop": 3.708,
+    "bias_pct": -1.62,
+    "median_abs_pct_err": 7.46
+   },
+   "6..9": {
+    "days": 2507,
+    "systems": 54,
+    "measured_cop": 4.351,
+    "predicted_cop": 4.269,
+    "bias_pct": -1.88,
+    "median_abs_pct_err": 8.16
+   },
+   "9..12": {
+    "days": 1515,
+    "systems": 53,
+    "measured_cop": 4.879,
+    "predicted_cop": 4.796,
+    "bias_pct": -1.7,
+    "median_abs_pct_err": 8.93
+   },
+   "12..16": {
+    "days": 379,
+    "systems": 40,
+    "measured_cop": 5.578,
+    "predicted_cop": 5.534,
+    "bias_pct": -0.79,
+    "median_abs_pct_err": 8.97
+   },
+   "overall": {
+    "days": 7172,
+    "systems": 54,
+    "measured_cop": 3.974,
+    "predicted_cop": 3.921,
+    "bias_pct": -1.33,
+    "median_abs_pct_err": 6.93
+   }
+  }
+ },
+ "litmus": {
+  "generated": "2026-11-07T11:50:53+00:00",
+  "towns": [
+   "Aviemore",
+   "Perth",
+   "Berwick",
+   "Bangor",
+   "York",
+   "Manchester",
+   "Leicester",
+   "Cardiff",
+   "Bristol",
+   "Maidstone",
+   "Hastings",
+   "London"
+  ],
+  "radius_km": 25,
+  "per_town": 3,
+  "n_towns": 12,
+  "n_systems": 29,
+  "n_systems_not_in_fit_set": 26,
+  "winters": [
+   [
+    "2024-11-01",
+    "2025-04-01"
+   ],
+   [
+    "2025-11-01",
+    "2026-04-01"
+   ]
+  ],
+  "exclusions": "unpublished, no lat/lon, system 454, data_flag=1, hp_hybrid=1, not Air Source",
+  "day_filter": "space if split else combined; heat>=2 kWh, elec>0, 15<flow<65, -15<out<20, 1<COP<8; system needs >=20 days",
+  "public_list_size": 864,
+  "eligible_systems": 793,
+  "house_curve": {
+   "t": [
+    1.5,
+    4.5,
+    7.5,
+    11.0,
+    14.0
+   ],
+   "share": [
+    0.353,
+    0.335,
+    0.313,
+    0.25,
+    0.205
+   ]
+  },
+  "note": "town/system selection uses the live public list, so it can drift between runs; the original litmus used a 4-node HOUSE curve (no 14 C node), this uses physics.py's current one",
+  "systems": [
+   {
+    "town": "Aviemore",
+    "town_winter_out_c": 8.464,
+    "map_town_cop": 3.428,
+    "id": 159,
+    "km": 20.6,
+    "model": "Panasonic Aquarea J",
+    "days": 304,
+    "in_fit_set": false,
+    "basis": "space",
+    "mean_out_c": 0.66,
+    "mean_flow_c": 29.64,
+    "measured_cop": 3.89,
+    "house_cop": 3.629,
+    "house_err_pct": -6.7,
+    "stock_cop": 3.65,
+    "stock_err_pct": -6.2
+   },
+   {
+    "town": "Perth",
+    "town_winter_out_c": 9.317,
+    "map_town_cop": 3.509,
+    "id": 104,
+    "km": 0.0,
+    "model": "Vaillant Arotherm+",
+    "days": 221,
+    "in_fit_set": true,
+    "basis": "space",
+    "mean_out_c": 4.58,
+    "mean_flow_c": 36.08,
+    "measured_cop": 3.634,
+    "house_cop": 3.249,
+    "house_err_pct": -10.6,
+    "stock_cop": 3.505,
+    "stock_err_pct": -3.6
+   },
+   {
+    "town": "Perth",
+    "town_winter_out_c": 9.317,
+    "map_town_cop": 3.509,
+    "id": 331,
+    "km": 0.3,
+    "model": "Vaillant Arotherm+",
+    "days": 302,
+    "in_fit_set": false,
+    "basis": "combined (incl. hot water)",
+    "mean_out_c": 4.14,
+    "mean_flow_c": 30.56,
+    "measured_cop": 3.749,
+    "house_cop": 3.83,
+    "house_err_pct": 2.2,
+    "stock_cop": 4.084,
+    "stock_err_pct": 8.9
+   },
+   {
+    "town": "Perth",
+    "town_winter_out_c": 9.317,
+    "map_town_cop": 3.509,
+    "id": 898,
+    "km": 13.1,
+    "model": "Vaillant Arotherm+",
+    "days": 129,
+    "in_fit_set": false,
+    "basis": "space",
+    "mean_out_c": 4.16,
+    "mean_flow_c": 33.76,
+    "measured_cop": 4.197,
+    "house_cop": 3.453,
+    "house_err_pct": -17.7,
+    "stock_cop": 3.696,
+    "stock_err_pct": -11.9
+   },
+   {
+    "town": "Berwick",
+    "town_winter_out_c": 10.452,
+    "map_town_cop": 3.738,
+    "id": 467,
+    "km": 0.4,
+    "model": "Viessmann Vitocal 150A",
+    "days": 286,
+    "in_fit_set": false,
+    "basis": "combined (incl. hot water)",
+    "mean_out_c": 5.42,
+    "mean_flow_c": 37.66,
+    "measured_cop": 3.514,
+    "house_cop": 3.121,
+    "house_err_pct": -11.2,
+    "stock_cop": 3.445,
+    "stock_err_pct": -2.0
+   },
+   {
+    "town": "Bangor",
+    "town_winter_out_c": 10.953,
+    "map_town_cop": 3.805,
+    "id": 747,
+    "km": 0.3,
+    "model": "Samsung Gen 6",
+    "days": 147,
+    "in_fit_set": false,
+    "basis": "space",
+    "mean_out_c": 6.55,
+    "mean_flow_c": 33.8,
+    "measured_cop": 3.694,
+    "house_cop": 3.542,
+    "house_err_pct": -4.1,
+    "stock_cop": 4.028,
+    "stock_err_pct": 9.0
+   },
+   {
+    "town": "Bangor",
+    "town_winter_out_c": 10.953,
+    "map_town_cop": 3.805,
+    "id": 480,
+    "km": 5.3,
+    "model": "Grant Aerona3",
+    "days": 270,
+    "in_fit_set": false,
+    "basis": "space",
+    "mean_out_c": 6.54,
+    "mean_flow_c": 37.96,
+    "measured_cop": 3.492,
+    "house_cop": 3.093,
+    "house_err_pct": -11.4,
+    "stock_cop": 3.542,
+    "stock_err_pct": 1.4
+   },
+   {
+    "town": "Bangor",
+    "town_winter_out_c": 10.953,
+    "map_town_cop": 3.805,
+    "id": 278,
+    "km": 6.3,
+    "model": "Vaillant Arotherm+",
+    "days": 304,
+    "in_fit_set": false,
+    "basis": "combined (incl. hot water)",
+    "mean_out_c": 6.09,
+    "mean_flow_c": 29.94,
+    "measured_cop": 4.583,
+    "house_cop": 4.05,
+    "house_err_pct": -11.6,
+    "stock_cop": 4.536,
+    "stock_err_pct": -1.0
+   },
+   {
+    "town": "York",
+    "town_winter_out_c": 11.261,
+    "map_town_cop": 3.679,
+    "id": 533,
+    "km": 0.2,
+    "model": "Stiebel Eltron WPL Premium",
+    "days": 258,
+    "in_fit_set": false,
+    "basis": "combined (incl. hot water)",
+    "mean_out_c": 5.31,
+    "mean_flow_c": 27.98,
+    "measured_cop": 4.776,
+    "house_cop": 4.318,
+    "house_err_pct": -9.6,
+    "stock_cop": 4.719,
+    "stock_err_pct": -1.2
+   },
+   {
+    "town": "York",
+    "town_winter_out_c": 11.261,
+    "map_town_cop": 3.679,
+    "id": 313,
+    "km": 0.3,
+    "model": "Viessmann Vitocal 150A",
+    "days": 284,
+    "in_fit_set": false,
+    "basis": "combined (incl. hot water)",
+    "mean_out_c": 5.35,
+    "mean_flow_c": 32.75,
+    "measured_cop": 4.001,
+    "house_cop": 3.623,
+    "house_err_pct": -9.5,
+    "stock_cop": 3.975,
+    "stock_err_pct": -0.6
+   },
+   {
+    "town": "York",
+    "town_winter_out_c": 11.261,
+    "map_town_cop": 3.679,
+    "id": 959,
+    "km": 0.4,
+    "model": "Vaillant Arotherm+",
+    "days": 78,
+    "in_fit_set": false,
+    "basis": "space",
+    "mean_out_c": 5.99,
+    "mean_flow_c": 33.32,
+    "measured_cop": 4.225,
+    "house_cop": 3.607,
+    "house_err_pct": -14.6,
+    "stock_cop": 4.031,
+    "stock_err_pct": -4.6
+   },
+   {
+    "town": "Manchester",
+    "town_winter_out_c": 11.705,
+    "map_town_cop": 3.738,
+    "id": 523,
+    "km": 3.4,
+    "model": "Vaillant Arotherm+",
+    "days": 214,
+    "in_fit_set": false,
+    "basis": "space",
+    "mean_out_c": 5.81,
+    "mean_flow_c": 34.76,
+    "measured_cop": 3.858,
+    "house_cop": 3.394,
+    "house_err_pct": -12.0,
+    "stock_cop": 3.794,
+    "stock_err_pct": -1.7
+   },
+   {
+    "town": "Manchester",
+    "town_winter_out_c": 11.705,
+    "map_town_cop": 3.738,
+    "id": 296,
+    "km": 3.8,
+    "model": "Vaillant Arotherm+",
+    "days": 304,
+    "in_fit_set": false,
+    "basis": "space",
+    "mean_out_c": 5.44,
+    "mean_flow_c": 33.65,
+    "measured_cop": 4.094,
+    "house_cop": 3.522,
+    "house_err_pct": -14.0,
+    "stock_cop": 3.884,
+    "stock_err_pct": -5.1
+   },
+   {
+    "town": "Manchester",
+    "town_winter_out_c": 11.705,
+    "map_town_cop": 3.738,
+    "id": 3,
+    "km": 3.8,
+    "model": "Nibe F2040",
+    "days": 304,
+    "in_fit_set": true,
+    "basis": "space",
+    "mean_out_c": 5.91,
+    "mean_flow_c": 33.03,
+    "measured_cop": 3.166,
+    "house_cop": 3.592,
+    "house_err_pct": 13.5,
+    "stock_cop": 4.023,
+    "stock_err_pct": 27.1
+   },
+   {
+    "town": "Leicester",
+    "town_winter_out_c": 11.847,
+    "map_town_cop": 3.678,
+    "id": 286,
+    "km": 0.1,
+    "model": "Vaillant Arotherm+",
+    "days": 253,
+    "in_fit_set": false,
+    "basis": "combined (incl. hot water)",
+    "mean_out_c": 5.14,
+    "mean_flow_c": 35.92,
+    "measured_cop": 3.543,
+    "house_cop": 3.269,
+    "house_err_pct": -7.7,
+    "stock_cop": 3.577,
+    "stock_err_pct": 1.0
+   },
+   {
+    "town": "Leicester",
+    "town_winter_out_c": 11.847,
+    "map_town_cop": 3.678,
+    "id": 1484,
+    "km": 6.2,
+    "model": "Grant Aerona HP290",
+    "days": 0,
+    "in_fit_set": false,
+    "skipped": "fewer than 20 winter days"
+   },
+   {
+    "town": "Leicester",
+    "town_winter_out_c": 11.847,
+    "map_town_cop": 3.678,
+    "id": 863,
+    "km": 7.5,
+    "model": "Vaillant Arotherm+",
+    "days": 137,
+    "in_fit_set": false,
+    "basis": "space",
+    "mean_out_c": 5.85,
+    "mean_flow_c": 33.03,
+    "measured_cop": 4.224,
+    "house_cop": 3.601,
+    "house_err_pct": -14.8,
+    "stock_cop": 4.021,
+    "stock_err_pct": -4.8
+   },
+   {
+    "town": "Cardiff",
+    "town_winter_out_c": 12.16,
+    "map_town_cop": 3.775,
+    "id": 752,
+    "km": 0.4,
+    "model": "Vaillant Arotherm+",
+    "days": 152,
+    "in_fit_set": false,
+    "basis": "space",
+    "mean_out_c": 5.75,
+    "mean_flow_c": 31.18,
+    "measured_cop": 4.968,
+    "house_cop": 3.821,
+    "house_err_pct": -23.1,
+    "stock_cop": 4.264,
+    "stock_err_pct": -14.2
+   },
+   {
+    "town": "Cardiff",
+    "town_winter_out_c": 12.16,
+    "map_town_cop": 3.775,
+    "id": 64,
+    "km": 17.3,
+    "model": "Vaillant Arotherm+",
+    "days": 279,
+    "in_fit_set": false,
+    "basis": "combined (incl. hot water)",
+    "mean_out_c": 5.17,
+    "mean_flow_c": 31.95,
+    "measured_cop": 3.721,
+    "house_cop": 3.713,
+    "house_err_pct": -0.2,
+    "stock_cop": 4.055,
+    "stock_err_pct": 9.0
+   },
+   {
+    "town": "Cardiff",
+    "town_winter_out_c": 12.16,
+    "map_town_cop": 3.775,
+    "id": 17,
+    "km": 20.5,
+    "model": "Daikin Altherma 3",
+    "days": 301,
+    "in_fit_set": false,
+    "basis": "space",
+    "mean_out_c": 7.74,
+    "mean_flow_c": 37.98,
+    "measured_cop": 3.336,
+    "house_cop": 3.088,
+    "house_err_pct": -7.5,
+    "stock_cop": 3.65,
+    "stock_err_pct": 9.4
+   },
+   {
+    "town": "Bristol",
+    "town_winter_out_c": 12.342,
+    "map_town_cop": 3.81,
+    "id": 768,
+    "km": 0.3,
+    "model": "Grant Aerona HP290",
+    "days": 144,
+    "in_fit_set": false,
+    "basis": "space",
+    "mean_out_c": 6.07,
+    "mean_flow_c": 31.93,
+    "measured_cop": 4.149,
+    "house_cop": 3.74,
+    "house_err_pct": -9.9,
+    "stock_cop": 4.203,
+    "stock_err_pct": 1.3
+   },
+   {
+    "town": "Bristol",
+    "town_winter_out_c": 12.342,
+    "map_town_cop": 3.81,
+    "id": 1066,
+    "km": 0.3,
+    "model": "Vaillant Arotherm+",
+    "days": 75,
+    "in_fit_set": false,
+    "basis": "space",
+    "mean_out_c": 8.05,
+    "mean_flow_c": 36.88,
+    "measured_cop": 4.066,
+    "house_cop": 3.201,
+    "house_err_pct": -21.3,
+    "stock_cop": 3.829,
+    "stock_err_pct": -5.8
+   },
+   {
+    "town": "Bristol",
+    "town_winter_out_c": 12.342,
+    "map_town_cop": 3.81,
+    "id": 739,
+    "km": 0.4,
+    "model": "Vaillant Arotherm+",
+    "days": 152,
+    "in_fit_set": true,
+    "basis": "space",
+    "mean_out_c": 6.52,
+    "mean_flow_c": 30.13,
+    "measured_cop": 4.368,
+    "house_cop": 4.028,
+    "house_err_pct": -7.8,
+    "stock_cop": 4.576,
+    "stock_err_pct": 4.8
+   },
+   {
+    "town": "Maidstone",
+    "town_winter_out_c": 12.563,
+    "map_town_cop": 3.747,
+    "id": 1397,
+    "km": 0.6,
+    "model": "Vaillant Arotherm+ V2",
+    "days": 0,
+    "in_fit_set": false,
+    "skipped": "fewer than 20 winter days"
+   },
+   {
+    "town": "Maidstone",
+    "town_winter_out_c": 12.563,
+    "map_town_cop": 3.747,
+    "id": 915,
+    "km": 0.7,
+    "model": "Vaillant Arotherm+",
+    "days": 119,
+    "in_fit_set": false,
+    "basis": "space",
+    "mean_out_c": 5.48,
+    "mean_flow_c": 26.37,
+    "measured_cop": 5.273,
+    "house_cop": 4.612,
+    "house_err_pct": -12.5,
+    "stock_cop": 5.093,
+    "stock_err_pct": -3.4
+   },
+   {
+    "town": "Maidstone",
+    "town_winter_out_c": 12.563,
+    "map_town_cop": 3.747,
+    "id": 885,
+    "km": 1.1,
+    "model": "Vaillant Arotherm+",
+    "days": 133,
+    "in_fit_set": false,
+    "basis": "space",
+    "mean_out_c": 5.74,
+    "mean_flow_c": 30.16,
+    "measured_cop": 4.944,
+    "house_cop": 3.981,
+    "house_err_pct": -19.5,
+    "stock_cop": 4.431,
+    "stock_err_pct": -10.4
+   },
+   {
+    "town": "Hastings",
+    "town_winter_out_c": 12.821,
+    "map_town_cop": 3.857,
+    "id": 202,
+    "km": 15.9,
+    "model": "Vaillant Arotherm+",
+    "days": 304,
+    "in_fit_set": false,
+    "basis": "combined (incl. hot water)",
+    "mean_out_c": 6.27,
+    "mean_flow_c": 29.34,
+    "measured_cop": 4.022,
+    "house_cop": 4.161,
+    "house_err_pct": 3.5,
+    "stock_cop": 4.647,
+    "stock_err_pct": 15.5
+   },
+   {
+    "town": "Hastings",
+    "town_winter_out_c": 12.821,
+    "map_town_cop": 3.857,
+    "id": 943,
+    "km": 16.6,
+    "model": "Daikin Altherma 3",
+    "days": 99,
+    "in_fit_set": false,
+    "basis": "space",
+    "mean_out_c": 5.79,
+    "mean_flow_c": 34.12,
+    "measured_cop": 3.608,
+    "house_cop": 3.447,
+    "house_err_pct": -4.5,
+    "stock_cop": 3.861,
+    "stock_err_pct": 7.0
+   },
+   {
+    "town": "Hastings",
+    "town_winter_out_c": 12.821,
+    "map_town_cop": 3.857,
+    "id": 407,
+    "km": 16.6,
+    "model": "Panasonic Aquarea",
+    "days": 271,
+    "in_fit_set": false,
+    "basis": "space",
+    "mean_out_c": 5.97,
+    "mean_flow_c": 43.01,
+    "measured_cop": 3.319,
+    "house_cop": 2.699,
+    "house_err_pct": -18.7,
+    "stock_cop": 3.036,
+    "stock_err_pct": -8.5
+   },
+   {
+    "town": "London",
+    "town_winter_out_c": 13.515,
+    "map_town_cop": 3.805,
+    "id": 279,
+    "km": 0.2,
+    "model": "Daikin Altherma 3",
+    "days": 299,
+    "in_fit_set": false,
+    "basis": "combined (incl. hot water)",
+    "mean_out_c": 6.69,
+    "mean_flow_c": 32.87,
+    "measured_cop": 4.361,
+    "house_cop": 3.6,
+    "house_err_pct": -17.4,
+    "stock_cop": 4.144,
+    "stock_err_pct": -5.0
+   },
+   {
+    "town": "London",
+    "town_winter_out_c": 13.515,
+    "map_town_cop": 3.805,
+    "id": 1211,
+    "km": 0.3,
+    "model": "Vaillant Arotherm+",
+    "days": 0,
+    "in_fit_set": false,
+    "skipped": "fewer than 20 winter days"
+   },
+   {
+    "town": "London",
+    "town_winter_out_c": 13.515,
+    "map_town_cop": 3.805,
+    "id": 574,
+    "km": 0.4,
+    "model": "Vaillant Arotherm+",
+    "days": 294,
+    "in_fit_set": false,
+    "basis": "space",
+    "mean_out_c": 6.27,
+    "mean_flow_c": 30.43,
+    "measured_cop": 4.069,
+    "house_cop": 3.968,
+    "house_err_pct": -2.5,
+    "stock_cop": 4.479,
+    "stock_err_pct": 10.1
+   }
+  ],
+  "overlap_with_fit_set": [
+   3,
+   104,
+   739
+  ],
+  "pooled_all": {
+   "house": {
+    "-10..0": {
+     "days": 263,
+     "systems": 17,
+     "measured_cop": 2.965,
+     "predicted_cop": 3.06,
+     "bias_pct": 3.19,
+     "median_abs_pct_err": 7.33
+    },
+    "0..3": {
+     "days": 738,
+     "systems": 28,
+     "measured_cop": 3.312,
+     "predicted_cop": 3.265,
+     "bias_pct": -1.41,
+     "median_abs_pct_err": 5.43
+    },
+    "3..6": {
+     "days": 1834,
+     "systems": 29,
+     "measured_cop": 3.827,
+     "predicted_cop": 3.5,
+     "bias_pct": -8.56,
+     "median_abs_pct_err": 10.43
+    },
+    "6..9": {
+     "days": 2066,
+     "systems": 29,
+     "measured_cop": 4.331,
+     "predicted_cop": 3.726,
+     "bias_pct": -13.98,
+     "median_abs_pct_err": 14.97
+    },
+    "9..12": {
+     "days": 1245,
+     "systems": 28,
+     "measured_cop": 4.722,
+     "predicted_cop": 3.777,
+     "bias_pct": -20.01,
+     "median_abs_pct_err": 20.61
+    },
+    "12..16": {
+     "days": 271,
+     "systems": 19,
+     "measured_cop": 4.974,
+     "predicted_cop": 3.834,
+     "bias_pct": -22.93,
+     "median_abs_pct_err": 26.4
+    },
+    "overall": {
+     "days": 6417,
+     "systems": 29,
+     "measured_cop": 3.915,
+     "predicted_cop": 3.534,
+     "bias_pct": -9.73,
+     "median_abs_pct_err": 11.2
+    }
+   },
+   "stock_x1": {
+    "-10..0": {
+     "days": 263,
+     "systems": 17,
+     "measured_cop": 2.965,
+     "predicted_cop": 2.987,
+     "bias_pct": 0.74,
+     "median_abs_pct_err": 7.24
+    },
+    "0..3": {
+     "days": 738,
+     "systems": 28,
+     "measured_cop": 3.312,
+     "predicted_cop": 3.288,
+     "bias_pct": -0.72,
+     "median_abs_pct_err": 6.2
+    },
+    "3..6": {
+     "days": 1834,
+     "systems": 29,
+     "measured_cop": 3.827,
+     "predicted_cop": 3.78,
+     "bias_pct": -1.23,
+     "median_abs_pct_err": 6.74
+    },
+    "6..9": {
+     "days": 2066,
+     "systems": 29,
+     "measured_cop": 4.331,
+     "predicted_cop": 4.325,
+     "bias_pct": -0.15,
+     "median_abs_pct_err": 6.31
+    },
+    "9..12": {
+     "days": 1245,
+     "systems": 28,
+     "measured_cop": 4.722,
+     "predicted_cop": 4.902,
+     "bias_pct": 3.81,
+     "median_abs_pct_err": 10.41
+    },
+    "12..16": {
+     "days": 271,
+     "systems": 19,
+     "measured_cop": 4.974,
+     "predicted_cop": 5.461,
+     "bias_pct": 9.78,
+     "median_abs_pct_err": 13.1
+    },
+    "overall": {
+     "days": 6417,
+     "systems": 29,
+     "measured_cop": 3.915,
+     "predicted_cop": 3.914,
+     "bias_pct": -0.02,
+     "median_abs_pct_err": 5.13
+    }
+   }
+  },
+  "pooled_not_in_fit_set": {
+   "house": {
+    "-10..0": {
+     "days": 243,
+     "systems": 15,
+     "measured_cop": 3.015,
+     "predicted_cop": 3.087,
+     "bias_pct": 2.39,
+     "median_abs_pct_err": 7.33
+    },
+    "0..3": {
+     "days": 655,
+     "systems": 25,
+     "measured_cop": 3.361,
+     "predicted_cop": 3.293,
+     "bias_pct": -2.05,
+     "median_abs_pct_err": 5.74
+    },
+    "3..6": {
+     "days": 1627,
+     "systems": 26,
+     "measured_cop": 3.853,
+     "predicted_cop": 3.513,
+     "bias_pct": -8.82,
+     "median_abs_pct_err": 10.36
+    },
+    "6..9": {
+     "days": 1852,
+     "systems": 26,
+     "measured_cop": 4.359,
+     "predicted_cop": 3.725,
+     "bias_pct": -14.55,
+     "median_abs_pct_err": 15.56
+    },
+    "9..12": {
+     "days": 1114,
+     "systems": 25,
+     "measured_cop": 4.765,
+     "predicted_cop": 3.772,
+     "bias_pct": -20.84,
+     "median_abs_pct_err": 22.7
+    },
+    "12..16": {
+     "days": 249,
+     "systems": 17,
+     "measured_cop": 4.955,
+     "predicted_cop": 3.828,
+     "bias_pct": -22.75,
+     "median_abs_pct_err": 26.4
+    },
+    "overall": {
+     "days": 5740,
+     "systems": 26,
+     "measured_cop": 3.956,
+     "predicted_cop": 3.547,
+     "bias_pct": -10.35,
+     "median_abs_pct_err": 11.32
+    }
+   },
+   "stock_x1": {
+    "-10..0": {
+     "days": 243,
+     "systems": 15,
+     "measured_cop": 3.015,
+     "predicted_cop": 3.013,
+     "bias_pct": -0.05,
+     "median_abs_pct_err": 7.24
+    },
+    "0..3": {
+     "days": 655,
+     "systems": 25,
+     "measured_cop": 3.361,
+     "predicted_cop": 3.314,
+     "bias_pct": -1.41,
+     "median_abs_pct_err": 6.62
+    },
+    "3..6": {
+     "days": 1627,
+     "systems": 26,
+     "measured_cop": 3.853,
+     "predicted_cop": 3.795,
+     "bias_pct": -1.5,
+     "median_abs_pct_err": 6.51
+    },
+    "6..9": {
+     "days": 1852,
+     "systems": 26,
+     "measured_cop": 4.359,
+     "predicted_cop": 4.324,
+     "bias_pct": -0.81,
+     "median_abs_pct_err": 6.71
+    },
+    "9..12": {
+     "days": 1114,
+     "systems": 25,
+     "measured_cop": 4.765,
+     "predicted_cop": 4.895,
+     "bias_pct": 2.72,
+     "median_abs_pct_err": 9.25
+    },
+    "12..16": {
+     "days": 249,
+     "systems": 17,
+     "measured_cop": 4.955,
+     "predicted_cop": 5.448,
+     "bias_pct": 9.96,
+     "median_abs_pct_err": 13.1
+    },
+    "overall": {
+     "days": 5740,
+     "systems": 26,
+     "measured_cop": 3.956,
+     "predicted_cop": 3.934,
+     "bias_pct": -0.57,
+     "median_abs_pct_err": 5.48
+    }
+   }
+  }
+ },
+ "house_454": {
+  "generated": "2026-11-07T11:50:53+00:00",
+  "system": 454,
+  "period": [
+   "2025-11-01",
+   "2026-11-01"
+  ],
+  "rows_returned": 365,
+  "last_day": "2026-10-31",
+  "house_curve": {
+   "t": [
+    1.5,
+    4.5,
+    7.5,
+    11.0,
+    14.0
+   ],
+   "share": [
+    0.353,
+    0.335,
+    0.313,
+    0.25,
+    0.205
+   ]
+  },
+  "variants": {
+   "space_split_days_heat_gt_0": {
+    "days": 208,
+    "heat_kwh": 4583.6,
+    "elec_kwh": 1269.0,
+    "measured_space_cop": 3.612,
+    "model_space_cop": 3.635,
+    "err_pct": 0.65
+   },
+   "space_split_days_heat_ge_2kWh": {
+    "days": 179,
+    "heat_kwh": 4579.7,
+    "elec_kwh": 1268.0,
+    "measured_space_cop": 3.612,
+    "model_space_cop": 3.635,
+    "err_pct": 0.65
+   },
+   "shares_filter": {
+    "days": 179,
+    "heat_kwh": 4579.7,
+    "elec_kwh": 1268.0,
+    "measured_space_cop": 3.612,
+    "model_space_cop": 3.635,
+    "err_pct": 0.65
+   }
+  },
+  "headline_variant": "shares_filter",
+  "measured_space_cop": 3.612,
+  "model_space_cop": 3.635,
+  "days": 179,
+  "public_last365": {
+   "combined_spf": 3.3867394165731595,
+   "space_spf": 3.5209505223280906,
+   "combined_heat_kwh": 5925.08,
+   "combined_elec_kwh": 1745.41,
+   "combined_days": 354.1
+  },
+  "excluded_corrupt": {
+   "from_energy_feeds_heat_kwh": 90289.8,
+   "from_energy_feeds_cop": 12.970622459094109,
+   "note": "from_energy_feeds annual figures are corrupt (earlier read: 90,266 kWh heat, COP 12.98; live values above); not used"
+  }
+ },
+ "fleet_context": {
+  "generated": "2026-11-07T11:50:53+00:00",
+  "median_spf": 3.896,
+  "n_systems": 456,
+  "headline": "primary (coverage >= 330 days)",
+  "source": [
+   "https://heatpumpmonitor.org/system/stats/last365",
+   "https://heatpumpmonitor.org/system/list/public.json"
+  ],
+  "filters": "public list; hp_type Air Source; hp_hybrid != 1; GB box lat (49.8, 61.0) lon (-8.5, 2.0); combined_cop present and combined_heat_kwh > 0; coverage = combined_data_length / 86400 days",
+  "primary": {
+   "coverage_min_days": 330,
+   "systems": 456,
+   "median_spf": 3.896,
+   "p25": 3.537,
+   "p75": 4.247
+  },
+  "variants": {
+   "no_coverage_min": {
+    "systems": 770,
+    "median_spf": 3.896,
+    "p25": 3.499,
+    "p75": 4.291
+   },
+   "coverage_ge_300d": {
+    "systems": 507,
+    "median_spf": 3.889,
+    "p25": 3.511,
+    "p75": 4.247
+   },
+   "coverage_ge_330d_not_data_flagged": {
+    "systems": 426,
+    "median_spf": 3.908,
+    "p25": 3.539,
+    "p75": 4.25
+   },
+   "no_coverage_min_not_data_flagged": {
+    "systems": 728,
+    "median_spf": 3.905,
+    "p25": 3.497,
+    "p75": 4.294
+   }
+  },
+  "previous_figure": {
+   "median_spf": 3.88,
+   "systems": 612
+  }
+ },
+ "runtime_s": 3.0
+}

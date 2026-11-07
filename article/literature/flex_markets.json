@@ -1,0 +1,685 @@
+{
+  "strand": "Flexibility markets, the 2030 flexibility target and household payments (DFS after 2024, Axle VPP, DNO markets, BM access)",
+  "accessed": "2026-11-07",
+  "sources": [
+    {
+      "key": "DESNZ2024CP2030",
+      "harvard": "Department for Energy Security and Net Zero (2024) Clean Power 2030 Action Plan: a new era of clean electricity - main report. December. London: DESNZ. Available at: https://www.gov.uk/government/publications/clean-power-2030-action-plan/clean-power-2030-action-plan-a-new-era-of-clean-electricity-main-report (accessed 7 November 2026).",
+      "url": "https://www.gov.uk/government/publications/clean-power-2030-action-plan/clean-power-2030-action-plan-a-new-era-of-clean-electricity-main-report",
+      "doi": null,
+      "type": "government action plan",
+      "claims": [
+        {
+          "claim": "Headline 2030 flexible capacity: 23-27 GW batteries, 4-6 GW LDES, plus 'substantial opportunity' for consumer-led flexibility.",
+          "quote": "These will be complemented by flexible capacity, including 23-27 GW of battery capacity, 4-6 GW of long‑duration energy storage",
+          "locator": "Executive summary ('We have high ambition')",
+          "numbers": {
+            "batteries_GW": "23-27",
+            "LDES_GW": "4-6",
+            "offshore_wind_GW": "43-50",
+            "onshore_wind_GW": "27-29",
+            "solar_GW": "45-47"
+          }
+        },
+        {
+          "claim": "Short-duration flexibility is framed as an INCREASE of 29-35 GW from 2023 levels across batteries, consumer-led flexibility and interconnection; it is a capacity increment, not a total.",
+          "quote": "A significant increase in short‑duration flexibility of 29-35 GW across battery storage, consumer-led flexibility and interconnection capacity from 2023 levels is possible and can play a role in achieving clean power in 2030.",
+          "locator": "Chapter 'Short-duration flexibility', Summary",
+          "numbers": {
+            "short_duration_increase_GW": "29-35",
+            "base_year": 2023
+          }
+        },
+        {
+          "claim": "Consumer-led flexibility (CLF) range is 10-12 GW by 2030, excluding electric storage heaters, from 2.5 GW utilised in 2023; EV smart charging expected to drive growth.",
+          "quote": "Based on NESO and DESNZ scenarios for 2030, excluding electric storage heaters, we expect 10-12 GW of consumer-led flexibility capacity is possible by 2030 to support clean power.",
+          "locator": "Chapter 'Short-duration flexibility', section 'Consumer-led flexibility'",
+          "numbers": {
+            "CLF_2030_GW": "10-12",
+            "CLF_2023_GW": 2.5,
+            "excludes": "storage heaters (~4 GW shifted)"
+          }
+        },
+        {
+          "claim": "2023 CLF breakdown: 0.8 GW smart heat pumps and flexible district heating, 0.5 GW EV smart charging, 0.4 GW other smart appliances, 0.8 GW non-domestic.",
+          "quote": "with 0.8 GW from smart heat pumps and flexible district heating, 0.5 GW from EV smart charging, 0.4 GW from other smart appliances and 0.8 GW from non-domestic consumer-led flexibility.",
+          "locator": "Chapter 'Short-duration flexibility', section 'Consumer-led flexibility'",
+          "numbers": {
+            "heat_pumps_and_DH_GW": 0.8,
+            "EV_GW": 0.5,
+            "appliances_GW": 0.4,
+            "non_domestic_GW": 0.8
+          }
+        },
+        {
+          "claim": "Definition of CLF: voluntary shifting by consumers, or by Demand Side Response Service Providers on their behalf with consent, while energy needs are still met.",
+          "quote": "Consumer-led flexibility involves voluntary actions taken freely by energy consumers – or on their behalf by Demand Side Response Service Providers (DSRSPs) with consumers’ consent – to shift some of their electricity use",
+          "locator": "Chapter 'Short-duration flexibility', section 'Consumer-led flexibility'"
+        },
+        {
+          "claim": "A separate 40-50 GW of dispatchable and long-duration flexible capacity is needed in 2030; unabated gas retained as back-up.",
+          "quote": "We are projected to need 40-50 GW[footnote 7] of dispatchable and long‑duration flexible capacity in 2030 to support our power system in extended periods of low renewable output.",
+          "locator": "Executive summary, 'Long-duration flexibility'",
+          "numbers": {
+            "dispatchable_and_LD_GW": "40-50"
+          }
+        },
+        {
+          "claim": "The plan promised a Low Carbon Flexibility Roadmap the following year (published July 2025 as the Clean Flexibility Roadmap).",
+          "quote": "A Low Carbon Flexibility Roadmap will be published next year, with new actions to drive clean power flexibility by 2030.",
+          "locator": "Executive summary, 'Electricity market reform'"
+        }
+      ]
+    },
+    {
+      "key": "DESNZ2025CFR",
+      "harvard": "Department for Energy Security and Net Zero, Ofgem and National Energy System Operator (2025) Clean flexibility roadmap. July. London: DESNZ. Available at: https://www.gov.uk/government/publications/clean-flexibility-roadmap/clean-flexibility-roadmap (accessed 7 November 2026).",
+      "url": "https://www.gov.uk/government/publications/clean-flexibility-roadmap/clean-flexibility-roadmap",
+      "doi": null,
+      "type": "government/regulator/system operator roadmap",
+      "claims": [
+        {
+          "claim": "The total 2030 clean-flexibility range is 51-66 GW, a two- to three-fold increase on 24 GW installed in 2023. This is the headline 'total flex' number.",
+          "quote": "The Plan set out a flexibility capacity range of 51 GW to 66 GW by 2030, marking a two to three-fold increase on the 24 GW of capacity installed in 2023.",
+          "locator": "'Introduction' (context on the Clean Power 2030 Action Plan)",
+          "numbers": {
+            "total_clean_flex_2030_GW": "51-66",
+            "installed_2023_GW": 24
+          }
+        },
+        {
+          "claim": "The roadmap restates the short-duration increment as 28-36 GW, which differs from the 29-35 GW printed in the Action Plan itself; cite the Action Plan for the official range.",
+          "quote": "the ‘Clean Power 2030 Action Plan’ confirmed that a significant increase of 28 GW to 36 GW in short duration[footnote 18] flexibility from 2023 levels is possible",
+          "locator": "'What is short duration vs long duration flexibility?'",
+          "numbers": {
+            "short_duration_increase_GW_as_restated": "28-36",
+            "LDES_plus_LC_dispatchable_GW": "6-13"
+          }
+        },
+        {
+          "claim": "Table 1 (2024 baseline / CPAP 2030 / FES 2025 Holistic Transition 2030 / 2050): total CLF 1.6 / 10-12 / 10.3 / 74.6 GW; hybrid heat pumps 0.0 / - / 0.0 / 0.2 GW; smart charging 0.2 / - / 2.7 / 10.1 GW; batteries 6.8 / 23-27 / 23.2 / 39.3 GW. NESO's scenario expects no hybrid heat pump flexibility in 2030.",
+          "quote": "Table 1: 2030 and 2050 indicative flexibility capacity by technology scenarios, GW",
+          "locator": "Table 1 (values read from the table rows)",
+          "numbers": {
+            "CLF_2024_GW": 1.6,
+            "CLF_CPAP_2030_GW": "10-12",
+            "CLF_FES_HT_2030_GW": 10.3,
+            "hybrid_HP_2024_GW": 0.0,
+            "hybrid_HP_FES_2030_GW": 0.0,
+            "hybrid_HP_FES_2050_GW": 0.2,
+            "residential_appliances_FES_2030_GW": 3.0,
+            "thermal_storage_FES_2030_GW": 0.9,
+            "storage_heaters_2024_GW": 6.9
+          }
+        },
+        {
+          "claim": "Government would appoint a Flexibility Commissioner and hold an annual ministerial Roadmap Forum.",
+          "quote": "DESNZ to appoint a Flexibility Commissioner, as part of the Clean Power 2030 Advisory Commission, in 2025.",
+          "locator": "Governance and delivery, action (a) 'Flexibility leadership'"
+        }
+      ]
+    },
+    {
+      "key": "DESNZ2026CFRUpdate",
+      "harvard": "Department for Energy Security and Net Zero, Ofgem and National Energy System Operator (2026) Clean flexibility roadmap: July 2026 update. London: DESNZ. Available at: https://www.gov.uk/government/publications/clean-flexibility-roadmap/clean-flexibility-roadmap-july-2026-update-accessible-webpage (accessed 7 November 2026).",
+      "url": "https://www.gov.uk/government/publications/clean-flexibility-roadmap/clean-flexibility-roadmap-july-2026-update-accessible-webpage",
+      "doi": null,
+      "type": "government progress update",
+      "claims": [
+        {
+          "claim": "Flexibility Commissioner (Cathy McClay) appointed December 2025.",
+          "quote": "The government appointed Cathy McClay as Flexibility Commissioner in December 2025 to accelerate clean flexibility delivery across boundaries.",
+          "locator": "Ministerial foreword / introduction"
+        },
+        {
+          "claim": "NESO's first-year target of 170 MW of new CLF dispatchable in its markets (BM and DFS) was met; target 750 MW of I&C flexibility in NESO markets by 2030. These are small against a 10-12 GW ambition.",
+          "quote": "Year 1 target met: NESO’s Power Responsive can report that 170MW of new CLF is now dispatchable across its markets (specifically BM and DFS).",
+          "locator": "Chapter 1: consumer-led flexibility and markets",
+          "numbers": {
+            "new_CLF_in_NESO_markets_MW": 170,
+            "IC_target_2030_MW": 750
+          }
+        },
+        {
+          "claim": "UKRI CLF Challenge: GBP 74m, aiming at >= 2 GW by 2030.",
+          "quote": "UKRI has committed £74m to the CLF Challenge, aiming to deliver at least 2GW of flexibility by 2030.",
+          "locator": "Chapter 1, innovation",
+          "numbers": {
+            "UKRI_GBP_m": 74,
+            "target_GW": 2
+          }
+        },
+        {
+          "claim": "NESO is to set out the future of the Local Constraints Market and DFS by end-2026; Elexon (Market Facilitator) to align its market catalogue and data portal with NESO's Market Navigator Tool by summer 2027.",
+          "quote": "NESO will set out the future direction for the Local Constraints Market (LCM) and Demand Flexibility Service (DFS) by the end of 2026 (new milestone 33f).",
+          "locator": "Chapter 1, new actions"
+        },
+        {
+          "claim": "Over 11.3 million smart meters migrated to half-hourly settlement by mid-June 2026.",
+          "quote": "By mid-June 2026, Ofgem and Elexon had overseen the migration of more than 11.3 million smart meters to half-hourly settlement",
+          "locator": "Introduction",
+          "numbers": {
+            "meters_migrated_to_HHS": 11300000
+          }
+        }
+      ]
+    },
+    {
+      "key": "NESO2025DFSWinter2425",
+      "harvard": "National Energy System Operator (2025) Demand Flexibility Service (DFS): winter review as a merit-based margin tool from 27.11.2024 - 28.03.2025. 3 July. Warwick: NESO. Available at: https://www.neso.energy/document/363911/download (accessed 7 November 2026).",
+      "url": "https://www.neso.energy/document/363911/download",
+      "doi": null,
+      "type": "system operator evaluation report",
+      "claims": [
+        {
+          "claim": "DFS 2024/25 (first merit-based winter): 56 Service Requirements over 306 settlement periods; volume procured on 44 events covering 236 SPs; 28 providers, 1.98m MPANs.",
+          "quote": "Throughout the winter (27.11.24 – 28.03.25), 56 Service Requirements were published, covering 306 settlement periods (SP), with volume procured on 44 events covering 236 settlement periods.",
+          "locator": "Executive Summary, p.3",
+          "numbers": {
+            "service_requirements": 56,
+            "SPs_published": 306,
+            "events_procured": 44,
+            "SPs_procured": 236,
+            "providers": 28,
+            "MPANs": 1980000
+          }
+        },
+        {
+          "claim": "Bids 10,983.5 MWh, accepted 5,449.6 MWh; accepted tenders GBP 1,223,312 (p.3) or GBP 1,233,312 (p.16): the report is internally inconsistent; settled spend GBP 943,983.",
+          "quote": "During this winter period NESO received 10,983.5MWh of bids, with 5,449.6MWh accepted. This equates to a total of £1,223,312 tenders accepted. We paid out £943,983 for delivered volume.",
+          "locator": "Executive Summary, p.3; cf. Financial Summary, p.16",
+          "numbers": {
+            "bid_MWh": 10983.5,
+            "accepted_MWh": 5449.6,
+            "accepted_value_GBP": "1,223,312 (p.3) / 1,233,312 (p.16)",
+            "paid_GBP": 943983,
+            "penalties_GBP": 76665
+          }
+        },
+        {
+          "claim": "Delivered 3,917.7 MWh against 5,449.6 MWh accepted (71.9%), by month Dec 244.8, Jan 865.6, Feb 1,206.9, Mar 1,600.5 MWh.",
+          "quote": "Total 44 5449.6 3917.7 71.90%",
+          "locator": "Delivery Summary table, p.10 (columns: events, bid volume MWh, delivered MWh, accuracy)",
+          "numbers": {
+            "delivered_MWh": 3917.7,
+            "delivery_accuracy": "71.9%"
+          }
+        },
+        {
+          "claim": "Prices: average accepted bid GBP 210/MWh; highest GBP 1,290/MWh (8 Jan 2025, 18:00-19:00); lowest GBP 59/MWh. 7 of the top 10 participation events cleared at <= GBP 161/MWh. Compare GBP 1,110.9/MWh average in 2023/24 (ESO 2024).",
+          "quote": "Overall, the average accepted bid price across all accepted bids was £210/MWh. The lowest accepted bid price was £59 on 27 December 2024 for 1MW covering 1 SP.",
+          "locator": "Financial Summary, p.16",
+          "numbers": {
+            "avg_accepted_GBP_per_MWh": 210,
+            "max_GBP_per_MWh": 1290,
+            "min_GBP_per_MWh": 59,
+            "top5_prices": [
+              1290,
+              750,
+              740,
+              575,
+              572
+            ]
+          }
+        },
+        {
+          "claim": "The Guaranteed Acceptance Price was retained in the terms but never issued in 2024/25, so there was no guaranteed price that winter.",
+          "quote": "The Service Terms and Procurement Rules retained the concept of test events and Guaranteed Acceptance Price, but neither were issued during the winter period.",
+          "locator": "Core Changes & Developments, p.8"
+        },
+        {
+          "claim": "Day-ahead procurement removed: DFS is now within-day only.",
+          "quote": "NESO removed the day ahead procurement option to support our ambition to move as close to real time procurement as possible aligning to a compliant product.",
+          "locator": "Core Changes, 'Bidding Process & Rules', p.7"
+        },
+        {
+          "claim": "Domestic delivery stays tiny and manual: 91% of domestic delivery below 1 kW; >99% of MPANs manually initiated; ~60/40 domestic/I&C split by volume.",
+          "quote": "91% of delivery was below 1kW, and 9% between 1kW and 10kW. These figures are consistent with previous winters.",
+          "locator": "Delivery Insights, 'Domestic Delivery', p.12",
+          "numbers": {
+            "domestic_below_1kW": "91%",
+            "manual_MPANs": ">99%"
+          }
+        },
+        {
+          "claim": "Frequent events made baselining harder early in the season, an admission that event frequency erodes the baseline.",
+          "quote": "The frequent use of DFS during winter made it challenging for some parties to establish an accurate baseline early in the season.",
+          "locator": "Core Changes & Developments, p.8"
+        }
+      ]
+    },
+    {
+      "key": "NESO2026DFSProcRules",
+      "harvard": "National Energy System Operator (2026) Demand Flexibility Service: procurement rules. Version 5.0, effective 18 May 2026. Warwick: NESO. Available at: https://www.neso.energy/document/379391/download (accessed 7 November 2026).",
+      "url": "https://www.neso.energy/document/379391/download",
+      "doi": null,
+      "type": "system operator contract terms",
+      "claims": [
+        {
+          "claim": "Domestic DFS baseline = BSC P376 BL01 WITHOUT the in-day adjustment (self-nomination only for I&C/generation).",
+          "quote": "the methodology outlined in BSC P376 'Utilising a Baselining Methodology to set Physical Notifications’ (methodology id: BL01) ... will be applied ... but without the final in day adjustment",
+          "locator": "Schedule 3, Part 2 'Baselining methods', para 1, p.33 (ellipses mark omitted clauses)"
+        },
+        {
+          "claim": "BL01: eligible days are same-type days in the 60-day window D-60..D-1, with HH data, not Event Days, not clock-change days.",
+          "quote": "Step 1 of the BL01 process is to identify the historical Settlement Days (in the sixty-day window from day D–60 to day D–1) that will be used to calculate the DFS Operational Baseline.",
+          "locator": "Schedule 3, Part 3, BL01 Step 1, p.34",
+          "numbers": {
+            "window_days": 60
+          }
+        },
+        {
+          "claim": "Working day: the ten most recent eligible days (5-9 if fewer; <5 = no baseline). Non-working day: four most recent, middle two by daily volume. Baseline = arithmetic mean per settlement period. (Step 2 text says 'six to ten', Table 2 says 'five to nine': internal inconsistency.)",
+          "quote": "selected (four for a Non-Working Day, and up to ten for a Working Day)",
+          "locator": "Schedule 3, Part 3, Table 2 and Step 2, p.35",
+          "numbers": {
+            "working_day_days": 10,
+            "non_working_day_days": "middle 2 of 4",
+            "min_working_days": 5
+          }
+        },
+        {
+          "claim": "Event days excluded from the baseline include DFS acceptances, DNO flexibility instructions, Capacity Market delivery and NESO trials, so each event day drops out of the next baseline.",
+          "quote": "An Event Day for these purposes is a Settlement Day containing a Settlement Period in respect of which:-",
+          "locator": "Schedule 3, Part 3, BL01 Step 1, (a)-(d), pp.34-35"
+        },
+        {
+          "claim": "A Guaranteed Acceptance Price applies only to DFS Tests: bids at or below it are accepted without assessment; otherwise bids are ranked lowest-price-first.",
+          "quote": "with respect to all DFS Tests, DFS Submissions for which the Utilisation Price is at or below the Guaranteed Acceptance Price will not be assessed and NESO will issue DFS Acceptances",
+          "locator": "para 12.1, Assessment of DFS Submission"
+        },
+        {
+          "claim": "Minimum submission size reduced to 0.1 MW.",
+          "quote": "“Minimum Submission Size” 0.1MW;",
+          "locator": "Definitions",
+          "numbers": {
+            "min_submission_MW": 0.1
+          }
+        }
+      ]
+    },
+    {
+      "key": "NESO2025DFSConsult",
+      "harvard": "National Energy System Operator (2025) Demand Flexibility Service (DFS) EBR Article 18 consultation: proposed changes to the Demand Flexibility Service terms and conditions. 10 November. Warwick: NESO. Available at: https://www.neso.energy/document/371766/download (accessed 7 November 2026).",
+      "url": "https://www.neso.energy/document/371766/download",
+      "doi": null,
+      "type": "system operator consultation",
+      "claims": [
+        {
+          "claim": "DFS moved from a winter-only enhanced-action contingency service to a year-round merit-based margin tool, live 27 Nov 2024, because the winter outlook showed adequate margins.",
+          "quote": "We transitioned DFS from a winter-only enhanced action contingency service to a year- round merit-based margin tool to continue access and growth of consumer led flexibility.",
+          "locator": "Introduction, p.5"
+        },
+        {
+          "claim": "NESO kept P376, removing the within-day adjustment, because no alternative had been shown to be more accurate at portfolio level.",
+          "quote": "We are proposing to retain the agreed industry methodology based on P376, with the within day adjustment removed for Domestic and Industrial & Commercial (I&C)",
+          "locator": "s.3 Baseline, p.14"
+        }
+      ]
+    },
+    {
+      "key": "NESO2026DFSSubmission",
+      "harvard": "National Energy System Operator (2026) Demand Flexibility Service submission document: proposed changes to the Demand Flexibility Service terms and conditions. 30 January. Warwick: NESO. Available at: https://www.neso.energy/document/376621/download (accessed 7 November 2026).",
+      "url": "https://www.neso.energy/document/376621/download",
+      "doi": null,
+      "type": "system operator regulatory submission",
+      "claims": [
+        {
+          "claim": "Industry respondents themselves call P376 open to gaming; only 8 of 16 supported retaining it.",
+          "quote": "One respondent also explained how they believe the baseline is potentially imperfect and open to gaming, but in the absence of a better alternative, they are happy to retain this for now.",
+          "locator": "Annex, responses to baseline question, pp.~35-36",
+          "numbers": {
+            "respondents": 16,
+            "support_retain_P376": 8,
+            "disagree": 3
+          }
+        }
+      ]
+    },
+    {
+      "key": "NESO2026DFSSlides",
+      "harvard": "National Energy System Operator (2026) Demand Flexibility Service: post consultation update and preparing for go live. Slides, February. Warwick: NESO. Available at: https://www.neso.energy/document/377141/download (accessed 7 November 2026).",
+      "url": "https://www.neso.energy/document/377141/download",
+      "doi": null,
+      "type": "system operator slide deck",
+      "claims": [
+        {
+          "claim": "Cumulative merit-based period (Nov 2024 to ~Feb 2026, 'Year 3'): >2.3m MPANs registered, 148 live events, volume procured on 117 occasions. No MWh or spend given for 2025/26.",
+          "quote": "148 Live events, procured on 117 occasions",
+          "locator": "Slide 3 'DFS History', 'DFS Now' panel (text reflowed from columns)",
+          "numbers": {
+            "MPANs": 2300000,
+            "live_events": 148,
+            "procured_occasions": 117
+          }
+        }
+      ]
+    },
+    {
+      "key": "Drax2026FlexQ4",
+      "harvard": "Drax (2026) Flexibility focus: a review of Q4 2025. February. Available at: https://www.drax.com/wp-content/uploads/2026/02/Flexibility_Focus_Q4_2025.pdf (accessed 7 November 2026).",
+      "url": "https://www.drax.com/wp-content/uploads/2026/02/Flexibility_Focus_Q4_2025.pdf",
+      "doi": null,
+      "type": "industry market review (secondary, derived from NESO data)",
+      "claims": [
+        {
+          "claim": "DFS Q4 2025 (Oct-Dec): GBP 274,000 accepted across 35 events, 111 of 156 SPs, 1,721 MWh procured, max GBP 350/MWh, average GBP 152/MWh (Q3 2025: 2,550 MWh, max GBP 400, average GBP 121). Activity fell in early winter owing to mild weather.",
+          "quote": "NESO accepted bids worth a total of £274,000 across 35 events, during 111 of the 156 settlement periods. This resulted in 1,721MWh of procured volume",
+          "locator": "'Demand Flexibility Service (DFS)', p.8",
+          "numbers": {
+            "Q4_2025_GBP": 274000,
+            "events": 35,
+            "SPs": "111/156",
+            "procured_MWh": 1721,
+            "max_GBP_per_MWh": 350,
+            "avg_GBP_per_MWh": 152,
+            "Q3_2025_MWh": 2550,
+            "Q3_avg_GBP_per_MWh": 121
+          }
+        }
+      ]
+    },
+    {
+      "key": "NESO2026DFSMIR",
+      "harvard": "National Energy System Operator (2026) Demand Flexibility Service (DFS) market information report. 11 August. Warwick: NESO. Available at: https://www.neso.energy/document/385526/download (accessed 7 November 2026).",
+      "url": "https://www.neso.energy/document/385526/download",
+      "doi": null,
+      "type": "system operator market notice",
+      "claims": [
+        {
+          "claim": "Guaranteed Acceptance Prices for the Aug-Sep 2026 tests: GBP 500/MWh for turn-down and GBP 180/MWh for turn-up, set at 'the high end of attainable revenue'.",
+          "quote": "Each downward (demand turn down) test will carry a GAP of £500/MWh.",
+          "locator": "'Test Schedule Insights', p.1",
+          "numbers": {
+            "GAP_turn_down_GBP_per_MWh": 500,
+            "GAP_turn_up_GBP_per_MWh": 180
+          }
+        },
+        {
+          "claim": "DFS has been zonal (12 zones) since April 2026 and is being used for constraint management.",
+          "quote": "In April 2026, NESO introduced Zones for DFS to align with key transmission constraints.",
+          "locator": "Appendix 1, p.3"
+        }
+      ]
+    },
+    {
+      "key": "NESO2026RtMQ3",
+      "harvard": "National Energy System Operator (2026) Demand-side flexibility: routes to NESO markets review, Q3 2026. Published 29 September. Warwick: NESO. Available at: https://www.neso.energy/q3-2026-demand-side-flexibility-route-market-quarterly-update (accessed 7 November 2026).",
+      "url": "https://www.neso.energy/q3-2026-demand-side-flexibility-route-market-quarterly-update",
+      "doi": null,
+      "type": "system operator progress report",
+      "claims": [
+        {
+          "claim": "The Balancing Mechanism still requires 1 MW integer bids; sub-MW reform is only 'being reviewed'. DFS and sFFR moved to 0.1 MW in 2026.",
+          "quote": "Most NESO markets require minimum 1MW, Integer-sized bids, which prevents Sub-MW and Non-Integer bids from participating.",
+          "locator": "Barriers in Options Assessment, 'Sub-MW & Non-Integer' (B10), p.14",
+          "numbers": {
+            "BM_min_MW": 1,
+            "DFS_min_MW": 0.1,
+            "sFFR_min_MW": 0.1
+          }
+        },
+        {
+          "claim": "Scottish constraint management moved from the Local Constraints Market into DFS from 7 October 2026.",
+          "quote": "From 7 October 2026, NESO will begin procuring selected Scottish constraint management actions through DFS, marking the first phase of the transition from the Local Constraint Market (LCM).",
+          "locator": "'Recent progress in removing barriers', p.5"
+        }
+      ]
+    },
+    {
+      "key": "Axle2026VPP",
+      "harvard": "Axle Energy (2026) Get paid when the grid needs your battery. Axle Energy VPP. Available at: https://vpp.axle.energy/ (accessed 7 November 2026).",
+      "url": "https://vpp.axle.energy/",
+      "doi": null,
+      "type": "aggregator marketing page (primary for the offer, not for outcomes)",
+      "claims": [
+        {
+          "claim": "VERIFIED: Axle pays GBP 1 per kWh EXPORTED by a home battery during grid events, with a GBP 10/month minimum. This is a battery-export payment, not payment for turn-down against a baseline.",
+          "quote": "Axle pays you £1 per kWh you export during grid events, with a minimum of £10 a month. Keep your existing tariff and any export payments.",
+          "locator": "Hero section",
+          "numbers": {
+            "GBP_per_kWh_exported": 1.0,
+            "GBP_per_MWh_equiv": 1000,
+            "min_GBP_per_month": 10
+          }
+        },
+        {
+          "claim": "Typical 3-6 one-hour events per month per home, notified the day before; opt-out per event; supplier export tariff paid on top.",
+          "quote": "3–6 times a month Axle will ask your home battery to export for an hour when the grid needs it.",
+          "locator": "'Set up once, earn every month', step 2"
+        },
+        {
+          "claim": "The household product works only through supported battery inverters (AlphaESS, Solis, Fox ESS, GivEnergy, SolaX, Sigenergy, SolarEdge); a heat-pump-only home is not eligible.",
+          "quote": "Axle connects to your inverter rather than your battery, so any battery attached to a supported brand's inverter can join.",
+          "locator": "'Works with every inverter from these brands'"
+        }
+      ]
+    },
+    {
+      "key": "Axle2026Events",
+      "harvard": "Axle Energy (2026) Grid events: what they are and recent events. Axle Energy VPP. Available at: https://vpp.axle.energy/events (accessed 7 November 2026).",
+      "url": "https://vpp.axle.energy/events",
+      "doi": null,
+      "type": "aggregator information page",
+      "claims": [
+        {
+          "claim": "Most Axle events are called by a regional network (DNO) for its own area; others come from the wider system, often via DFS.",
+          "quote": "Most events are called by a regional network for its own area, so you'll see some in the list above that didn't include yours. Others come from the wider electricity system, often through the Demand Flexibility Service",
+          "locator": "'What is a grid event?'"
+        },
+        {
+          "claim": "GB-wide 15-25 events a month in winter, fewer in summer; Axle's log shows 21 events in Sept 2026 and 18 in Oct 2026, many at 06:00-07:00 or 17:00-21:00.",
+          "quote": "Across Great Britain there are typically 15 to 25 events a month in winter and fewer in summer, but most cover only a few areas.",
+          "locator": "FAQ 'How often do events happen'",
+          "numbers": {
+            "events_Sep_2026": 21,
+            "events_Oct_2026": 18
+          }
+        },
+        {
+          "claim": "Delivery is capped by the battery: export runs until the event ends or the manufacturer minimum reserve is reached; no user-set floor yet.",
+          "quote": "Your battery exports until the event ends or it reaches the minimum reserve set by its manufacturer, whichever comes first.",
+          "locator": "FAQ 'Can I set a minimum battery level?'"
+        }
+      ]
+    },
+    {
+      "key": "Axle2026ShortNotice",
+      "harvard": "Axle Energy (2026) Short notice events and the DFS. Axle Energy VPP. Available at: https://vpp.axle.energy/short-notice-events (accessed 7 November 2026).",
+      "url": "https://vpp.axle.energy/short-notice-events",
+      "doi": null,
+      "type": "aggregator information page",
+      "claims": [
+        {
+          "claim": "Short-notice (often DFS) events pay the same GBP 1/kWh; at least 2 hours' notice; opt-in only.",
+          "quote": "The same £1/kWh as any other grid event",
+          "locator": "'In short' box"
+        }
+      ]
+    },
+    {
+      "key": "Axle2026Terms",
+      "harvard": "Axle Energy (2026) Terms and conditions. Last updated January 2026. Available at: https://vpp.axle.energy/terms-and-conditions (accessed 7 November 2026).",
+      "url": "https://vpp.axle.energy/terms-and-conditions",
+      "doi": null,
+      "type": "aggregator contract terms",
+      "claims": [
+        {
+          "claim": "CAVEAT: contractually, Rewards are discretionary and not guaranteed, with no guarantee on event frequency or value.",
+          "quote": "Rewards are not guaranteed and are subject to change.",
+          "locator": "s.4 Rewards"
+        },
+        {
+          "claim": "CAVEAT: some programmes pay only for import reduction or export increase against a programme baseline from smart-meter data.",
+          "quote": "For certain programs within the Grid Services, eligibility for Rewards requires achieving a reduction in electricity import or an increase in electricity export to the grid, as measured against a baseline using data from your smart meter.",
+          "locator": "s.4 Rewards"
+        },
+        {
+          "claim": "CAVEAT: Axle pays only from what Programme Operators (DNOs, NESO) actually pay it.",
+          "quote": "We and our Partners will only pay you revenue from what is received directly from the Programme Operators",
+          "locator": "s.4 Rewards"
+        }
+      ]
+    },
+    {
+      "key": "UKPN2025Guidance",
+      "harvard": "UK Power Networks (2025) Participation guidance - flexibility services. Version 1.2, May 2025. London: UK Power Networks (Operations) Ltd. Available at: https://files.dso.ukpowernetworks.co.uk/app/uploads/2024/10/Participation-Guidance-V1.2.pdf (accessed 7 November 2026).",
+      "url": "https://files.dso.ukpowernetworks.co.uk/app/uploads/2024/10/Participation-Guidance-V1.2.pdf",
+      "doi": null,
+      "type": "DNO participation guidance",
+      "claims": [
+        {
+          "claim": "Payment structure: Availability Fee (GBP/MW/h) for standby plus Utilisation Fee (GBP/MWh) per instruction.",
+          "quote": "the FP receives an Availability Fee (£/MW/h) in return for guaranteeing availability for the service periods. The provider is also paid a Utilisation Fee (£/MWh) for each utilisation instruction.",
+          "locator": "s.2, product descriptions"
+        },
+        {
+          "claim": "Storage uses a ZERO baseline, so every kWh exported counts as delivery. This is why a battery VPP can promise payment per kWh exported.",
+          "quote": "Storage Zero baseline Zero baseline Zero baseline",
+          "locator": "s.6.2 Table 3 'Proposed baselines for each DER type' (row text)"
+        },
+        {
+          "claim": "Domestic heat pumps use a FIXED 'heat pump profile' (deemed diversified load per heat pump), not the household's own history; maximum turn-down 2 kW winter, 0.5 kW summer.",
+          "quote": "the maximum demand turn-down for a heat pump would be 2kW in the winter and 0.5kW in the summer.",
+          "locator": "s.6.2 'Heat Pump profile'",
+          "numbers": {
+            "HP_max_turn_down_winter_kW": 2.0,
+            "HP_max_turn_down_summer_kW": 0.5
+          }
+        },
+        {
+          "claim": "Commercial DSR 'recent history' baseline: 10 most recent eligible workdays (4 non-workdays) without events, mean per half-hour, the same structure as P376.",
+          "quote": "Select the set of Y most recent eligible days preceding a utilisation event. For workdays Y=10 and for non-workdays Y=4.",
+          "locator": "s.6.2 'Operational Baselines - Recent History'"
+        }
+      ]
+    },
+    {
+      "key": "UKPN2026FlexPage",
+      "harvard": "UK Power Networks DSO (2026) Flexibility. Available at: https://dso.ukpowernetworks.co.uk/flexibility (accessed 7 November 2026).",
+      "url": "https://dso.ukpowernetworks.co.uk/flexibility",
+      "doi": null,
+      "type": "DNO web page",
+      "claims": [
+        {
+          "claim": "Indicative DNO price ceiling: UKPN has offered up to GBP 600/MWh, location-dependent.",
+          "quote": "In the past, we have offered up to £600/MWh, but this varies by location.",
+          "locator": "'How much revenue can I earn?'",
+          "numbers": {
+            "max_offered_GBP_per_MWh": 600
+          }
+        }
+      ]
+    },
+    {
+      "key": "SSEN2026FlexReport",
+      "harvard": "SSEN Distribution (2026) Flexibility services procurement report (SLC 31E), 2025/26. April. Perth: Scottish and Southern Electricity Networks. Available at: https://www.ssen.co.uk/globalassets/our-services/flexibility-services-document-library/slc31e-reports--statements/slc31e--ssen-2025-26-flexibility-services-procurement-report.pdf (accessed 7 November 2026).",
+      "url": "https://www.ssen.co.uk/globalassets/our-services/flexibility-services-document-library/slc31e-reports--statements/slc31e--ssen-2025-26-flexibility-services-procurement-report.pdf",
+      "doi": null,
+      "type": "DNO statutory report",
+      "claims": [
+        {
+          "claim": "Scale of a DNO's year: 66.1 MW of bids accepted, 1,334.5 MWh dispatched across 10 providers (1 Apr 2025 to 31 Mar 2026), against 1,839 MWh expected.",
+          "quote": "1334.5MWh flexibility dispatched across 10 providers.",
+          "locator": "s.1 'Year highlights', p.4",
+          "numbers": {
+            "accepted_MW": 66.1,
+            "dispatched_MWh": 1334.5,
+            "providers": 10,
+            "expected_MWh": 1839.17
+          }
+        },
+        {
+          "claim": "A non-standard flat payment: suppliers tendered GBP 120 per household moved from RTS to smart meter in Load Managed Areas.",
+          "quote": "Suppliers tendered for a flat payment of £120 per participating household when the supplier switches from an RTS meter to a smart meter",
+          "locator": "s.2.2.4, p.8",
+          "numbers": {
+            "GBP_per_household": 120
+          }
+        }
+      ]
+    },
+    {
+      "key": "Elexon2024MF",
+      "harvard": "Elexon (2024) Elexon appointed as the market facilitator for local flexibility. News, 29 July. Available at: https://www.elexon.co.uk/2024/07/29/elexon-appointed-as-the-market-facilitator-for-local-flexibility/ (accessed 7 November 2026).",
+      "url": "https://www.elexon.co.uk/2024/07/29/elexon-appointed-as-the-market-facilitator-for-local-flexibility/",
+      "doi": null,
+      "type": "code administrator news release",
+      "claims": [
+        {
+          "claim": "Ofgem appointed Elexon (over NESO) as market facilitator on 29 July 2024, targeting operations by early 2026.",
+          "quote": "Ofgem has today (29 July 2024) announced that Elexon has been appointed as the market facilitator for local flexibility.",
+          "locator": "News body"
+        }
+      ]
+    },
+    {
+      "key": "Ofgem2025MFDecision",
+      "harvard": "Ofgem (2025) Market facilitator policy framework decision. 4 June. London: Ofgem. Available at: https://www.ofgem.gov.uk/sites/default/files/2025-06/Market-facilitator-policy-framework-decision.pdf (accessed 7 November 2026).",
+      "url": "https://www.ofgem.gov.uk/sites/default/files/2025-06/Market-facilitator-policy-framework-decision.pdf",
+      "doi": null,
+      "type": "regulator decision",
+      "claims": [
+        {
+          "claim": "Scope in the first delivery plan (Jan 2026 to Mar 2028): all DNO flexibility services, most NESO commercial ancillary services, the BM 'with some limitations'; wholesale from April 2028; Capacity Market out.",
+          "quote": "During the first delivery plan period (January 2026 to March 2028), the market facilitator's scope will include:",
+          "locator": "Executive summary, 'The market facilitator function', pp.5-6"
+        }
+      ]
+    },
+    {
+      "key": "Elexon2026FWP",
+      "harvard": "Elexon (2026) Elexon response to Ofgem consultation on forward work programme. 12 February. Available at: https://www.elexon.co.uk/elexondocuments/about/consultations/2026-consultations/elexon-response-to-ofgem-consultation-on-forward-work-programme-12feb2026/ (accessed 7 November 2026).",
+      "url": "https://www.elexon.co.uk/elexondocuments/about/consultations/2026-consultations/elexon-response-to-ofgem-consultation-on-forward-work-programme-12feb2026/",
+      "doi": null,
+      "type": "code administrator consultation response",
+      "claims": [
+        {
+          "claim": "Status: market facilitator live since December 2025, for local and national markets.",
+          "quote": "Ofgem has appointed us as the market facilitator for flexibility markets across both local and national markets, and we went live in December 2025.",
+          "locator": "Introduction, p.1"
+        }
+      ]
+    },
+    {
+      "key": "Elexon2025FMRSBM",
+      "harvard": "Elexon (2025) Draft flexibility market rule: standard baselining methodologies (FMR-SBM), version 0.1, draft for consultation. Available at: https://www.elexon.co.uk/elexondocuments/about/consultations/2025-consultations/mf/fmr-sbm-standardised-baselining-methodologies/ (accessed 7 November 2026).",
+      "url": "https://www.elexon.co.uk/elexondocuments/about/consultations/2025-consultations/mf/fmr-sbm-standardised-baselining-methodologies/",
+      "doi": null,
+      "type": "market facilitator draft rule",
+      "claims": [
+        {
+          "claim": "Five standard DNO baselines (Asset Capacity, Fixed Reference, Nomination, Recent History, Zero), in force for DNOs from 1 April 2026 (SSEN 1 July 2026). Fixed Reference = a representative group profile, not the site's own history.",
+          "quote": "This methodology uses a fixed daily profile derived from the energy behaviour of a representative group of DERs that represents normal operating behaviour or from a DNO’s planning scenarios.",
+          "locator": "'Fixed Reference' example, p.3; 'When?', p.1"
+        }
+      ]
+    }
+  ],
+  "not_verified": [
+    {
+      "source": "NESO Demand Flexibility Service winter 2025/26 review (MWh delivered, spend, average and maximum accepted price for the full winter)",
+      "tried": "NESO's Winter Review and Consultation 2025/26 (June 2026, document 383456) was read and has no DFS statistics. The DFS page lists no 2025/26 DFS-specific review. Only the cumulative 'Year 3' counts (148 live events, 117 procured; NESO Feb 2026 slides) and Drax's Q3/Q4 2025 quarter figures were verified. The 2025-26 Winter Review data workbook (doc 383461) was not opened."
+    },
+    {
+      "source": "Axle Energy as a Virtual Lead Party / BM participant",
+      "tried": "Searched for Axle in connection with VLP, BSC Party and the BM; nothing found. Elexon's VLP market-entry page fetched but gave only navigation text. Axle's own pages name DNOs and NESO (DFS) as Programme Operators, not the BM. NOT stated in the synthesis."
+    },
+    {
+      "source": "Indicative Balancing Mechanism bid/offer prices at winter peaks",
+      "tried": "NESO DFS Market Guidance (document 377071) was fetched, but its embedded fonts dropped the digits from the price tables (e.g. '~£1 /MWh'), so no BM figure could be recorded."
+    },
+    {
+      "source": "DNO tender clearing prices (GBP/MWh utilisation, GBP/MW/h availability) from published results 2024-2026",
+      "tried": "SSEN 2025/26 and NGED 2025/26 SLC31E reports and the SP ENW 2026 report were read: none prints prices. The ENW Spring 2025 results PDF returned an HTML error. UKPN results packs, Localflex and Piclo were not fetched. A search snippet citing ENW contracts at GBP 38.87 and GBP 91/MWh was NOT verified at source. Only UKPN's 'up to GBP 600/MWh' ceiling is recorded."
+    },
+    {
+      "source": "Exact technology mapping in Elexon FMR-SBM Table 2 (domestic heat pump default baseline)",
+      "tried": "The PDF table did not extract cleanly. 'Fixed Reference' appears for domestic Point-of-Connection rows, but the heat-pump cell could not be read unambiguously. Only the definitions are cited."
+    },
+    {
+      "source": "Clean Power 2030 Action Plan exact publication day",
+      "tried": "The GOV.UK HTML carries datePublished 2025-01-06 (the HTML edition). The Clean Flexibility Roadmap states the plan was 'published in December 2024'. Cited as (DESNZ 2024) without a day."
+    }
+  ]
+}

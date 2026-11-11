@@ -1,0 +1,557 @@
+{
+ "source": "/work/out/feeder_e_1962_Birmingham.npz",
+ "dates": [
+  "1963-01-11",
+  "1963-01-12",
+  "1963-01-13",
+  "1963-01-17",
+  "1963-01-18",
+  "1963-01-22",
+  "1963-01-23",
+  "1963-01-24",
+  "1963-01-25",
+  "1963-02-02",
+  "1963-02-03",
+  "1963-02-25"
+ ],
+ "homes": 4000,
+ "feeders": 40,
+ "homes_per_feeder": 100,
+ "base": {
+  "peak_kw_per_home_mean": 0.984,
+  "kwh_day_per_home": 12.92
+ },
+ "scenarios": {
+  "agile_h0": {
+   "all_electric": {
+    "feeder_days_over_pct": 100.0,
+    "feeder_slots_over_pct": 100.0,
+    "feeders_ever_over_pct": 100.0,
+    "max_over_pct_of_cap": 580.6,
+    "peak_kw_per_home_mean": 5.74
+   },
+   "hybrid_ccop": {
+    "feeder_days_over_pct": 92.9,
+    "feeder_slots_over_pct": 39.95,
+    "feeders_ever_over_pct": 100.0,
+    "max_over_pct_of_cap": 306.8,
+    "peak_kw_per_home_mean": 3.455
+   },
+   "hybrid_national": {
+    "feeder_days_over_pct": 92.9,
+    "feeder_slots_over_pct": 39.53,
+    "feeders_ever_over_pct": 100.0,
+    "max_over_pct_of_cap": 200.5,
+    "peak_kw_per_home_mean": 2.53
+   },
+   "hybrid_local": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": 0.0,
+    "peak_kw_per_home_mean": 0.984,
+    "home_slots_to_gas_pct": 62.45
+   },
+   "hybrid_both": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": 0.0,
+    "peak_kw_per_home_mean": 0.984,
+    "home_slots_to_gas_pct": 54.41
+   },
+   "conflict_feeder_slots": {
+    "feeder_over_national_silent_pct": 14.04,
+    "national_sheds_feeder_fine_pct": 0.31,
+    "both_pct": 25.91
+   }
+  },
+  "agile_h0.5": {
+   "all_electric": {
+    "feeder_days_over_pct": 100.0,
+    "feeder_slots_over_pct": 100.0,
+    "feeders_ever_over_pct": 100.0,
+    "max_over_pct_of_cap": 335.8,
+    "peak_kw_per_home_mean": 5.74
+   },
+   "hybrid_ccop": {
+    "feeder_days_over_pct": 74.8,
+    "feeder_slots_over_pct": 29.24,
+    "feeders_ever_over_pct": 100.0,
+    "max_over_pct_of_cap": 160.3,
+    "peak_kw_per_home_mean": 3.455
+   },
+   "hybrid_national": {
+    "feeder_days_over_pct": 74.8,
+    "feeder_slots_over_pct": 24.74,
+    "feeders_ever_over_pct": 100.0,
+    "max_over_pct_of_cap": 91.8,
+    "peak_kw_per_home_mean": 2.53
+   },
+   "hybrid_local": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": -0.0,
+    "peak_kw_per_home_mean": 1.484,
+    "home_slots_to_gas_pct": 33.23
+   },
+   "hybrid_both": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": -0.0,
+    "peak_kw_per_home_mean": 1.484,
+    "home_slots_to_gas_pct": 21.45
+   },
+   "conflict_feeder_slots": {
+    "feeder_over_national_silent_pct": 5.99,
+    "national_sheds_feeder_fine_pct": 2.96,
+    "both_pct": 23.26
+   }
+  },
+  "agile_h1": {
+   "all_electric": {
+    "feeder_days_over_pct": 100.0,
+    "feeder_slots_over_pct": 97.33,
+    "feeders_ever_over_pct": 100.0,
+    "max_over_pct_of_cap": 220.5,
+    "peak_kw_per_home_mean": 5.74
+   },
+   "hybrid_ccop": {
+    "feeder_days_over_pct": 65.0,
+    "feeder_slots_over_pct": 17.02,
+    "feeders_ever_over_pct": 100.0,
+    "max_over_pct_of_cap": 94.0,
+    "peak_kw_per_home_mean": 3.455
+   },
+   "hybrid_national": {
+    "feeder_days_over_pct": 64.0,
+    "feeder_slots_over_pct": 10.81,
+    "feeders_ever_over_pct": 100.0,
+    "max_over_pct_of_cap": 41.8,
+    "peak_kw_per_home_mean": 2.53
+   },
+   "hybrid_local": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": -0.0,
+    "peak_kw_per_home_mean": 1.984,
+    "home_slots_to_gas_pct": 14.59
+   },
+   "hybrid_both": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": -0.0,
+    "peak_kw_per_home_mean": 1.984,
+    "home_slots_to_gas_pct": 3.58
+   },
+   "conflict_feeder_slots": {
+    "feeder_over_national_silent_pct": 0.79,
+    "national_sheds_feeder_fine_pct": 9.99,
+    "both_pct": 16.23
+   }
+  },
+  "agile_h1.5": {
+   "all_electric": {
+    "feeder_days_over_pct": 100.0,
+    "feeder_slots_over_pct": 84.34,
+    "feeders_ever_over_pct": 100.0,
+    "max_over_pct_of_cap": 155.3,
+    "peak_kw_per_home_mean": 5.74
+   },
+   "hybrid_ccop": {
+    "feeder_days_over_pct": 50.0,
+    "feeder_slots_over_pct": 9.7,
+    "feeders_ever_over_pct": 100.0,
+    "max_over_pct_of_cap": 54.6,
+    "peak_kw_per_home_mean": 3.455
+   },
+   "hybrid_national": {
+    "feeder_days_over_pct": 11.5,
+    "feeder_slots_over_pct": 0.37,
+    "feeders_ever_over_pct": 67.5,
+    "max_over_pct_of_cap": 13.0,
+    "peak_kw_per_home_mean": 2.53
+   },
+   "hybrid_local": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": -0.0,
+    "peak_kw_per_home_mean": 2.484,
+    "home_slots_to_gas_pct": 5.04
+   },
+   "hybrid_both": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": -0.0,
+    "peak_kw_per_home_mean": 2.452,
+    "home_slots_to_gas_pct": 0.05
+   },
+   "conflict_feeder_slots": {
+    "feeder_over_national_silent_pct": 0.0,
+    "national_sheds_feeder_fine_pct": 16.51,
+    "both_pct": 9.7
+   }
+  },
+  "agile_h1.7": {
+   "all_electric": {
+    "feeder_days_over_pct": 100.0,
+    "feeder_slots_over_pct": 74.08,
+    "feeders_ever_over_pct": 100.0,
+    "max_over_pct_of_cap": 136.1,
+    "peak_kw_per_home_mean": 5.74
+   },
+   "hybrid_ccop": {
+    "feeder_days_over_pct": 48.5,
+    "feeder_slots_over_pct": 6.82,
+    "feeders_ever_over_pct": 100.0,
+    "max_over_pct_of_cap": 43.0,
+    "peak_kw_per_home_mean": 3.455
+   },
+   "hybrid_national": {
+    "feeder_days_over_pct": 1.0,
+    "feeder_slots_over_pct": 0.02,
+    "feeders_ever_over_pct": 7.5,
+    "max_over_pct_of_cap": 4.5,
+    "peak_kw_per_home_mean": 2.53
+   },
+   "hybrid_local": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": -0.0,
+    "peak_kw_per_home_mean": 2.684,
+    "home_slots_to_gas_pct": 2.76
+   },
+   "hybrid_both": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": -0.1,
+    "peak_kw_per_home_mean": 2.523,
+    "home_slots_to_gas_pct": 0.0
+   },
+   "conflict_feeder_slots": {
+    "feeder_over_national_silent_pct": 0.0,
+    "national_sheds_feeder_fine_pct": 19.4,
+    "both_pct": 6.82
+   }
+  },
+  "agile_h2.4": {
+   "all_electric": {
+    "feeder_days_over_pct": 100.0,
+    "feeder_slots_over_pct": 34.13,
+    "feeders_ever_over_pct": 100.0,
+    "max_over_pct_of_cap": 86.9,
+    "peak_kw_per_home_mean": 5.74
+   },
+   "hybrid_ccop": {
+    "feeder_days_over_pct": 7.3,
+    "feeder_slots_over_pct": 0.47,
+    "feeders_ever_over_pct": 70.0,
+    "max_over_pct_of_cap": 13.2,
+    "peak_kw_per_home_mean": 3.455
+   },
+   "hybrid_national": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": -17.2,
+    "peak_kw_per_home_mean": 2.53
+   },
+   "hybrid_local": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": -0.0,
+    "peak_kw_per_home_mean": 3.353,
+    "home_slots_to_gas_pct": 0.07
+   },
+   "hybrid_both": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": -17.2,
+    "peak_kw_per_home_mean": 2.53,
+    "home_slots_to_gas_pct": 0.0
+   },
+   "conflict_feeder_slots": {
+    "feeder_over_national_silent_pct": 0.0,
+    "national_sheds_feeder_fine_pct": 25.75,
+    "both_pct": 0.47
+   }
+  },
+  "even4_h0": {
+   "all_electric": {
+    "feeder_days_over_pct": 100.0,
+    "feeder_slots_over_pct": 100.0,
+    "feeders_ever_over_pct": 100.0,
+    "max_over_pct_of_cap": 580.6,
+    "peak_kw_per_home_mean": 5.74
+   },
+   "hybrid_ccop": {
+    "feeder_days_over_pct": 100.0,
+    "feeder_slots_over_pct": 50.5,
+    "feeders_ever_over_pct": 100.0,
+    "max_over_pct_of_cap": 204.9,
+    "peak_kw_per_home_mean": 2.59
+   },
+   "hybrid_national": {
+    "feeder_days_over_pct": 100.0,
+    "feeder_slots_over_pct": 32.6,
+    "feeders_ever_over_pct": 100.0,
+    "max_over_pct_of_cap": 137.2,
+    "peak_kw_per_home_mean": 1.986
+   },
+   "hybrid_local": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": 0.0,
+    "peak_kw_per_home_mean": 0.984,
+    "home_slots_to_gas_pct": 42.85
+   },
+   "hybrid_both": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": 0.0,
+    "peak_kw_per_home_mean": 0.984,
+    "home_slots_to_gas_pct": 25.43
+   },
+   "conflict_feeder_slots": {
+    "feeder_over_national_silent_pct": 29.02,
+    "national_sheds_feeder_fine_pct": 4.73,
+    "both_pct": 21.48
+   }
+  },
+  "even4_h0.5": {
+   "all_electric": {
+    "feeder_days_over_pct": 100.0,
+    "feeder_slots_over_pct": 100.0,
+    "feeders_ever_over_pct": 100.0,
+    "max_over_pct_of_cap": 335.8,
+    "peak_kw_per_home_mean": 5.74
+   },
+   "hybrid_ccop": {
+    "feeder_days_over_pct": 99.4,
+    "feeder_slots_over_pct": 17.53,
+    "feeders_ever_over_pct": 100.0,
+    "max_over_pct_of_cap": 102.2,
+    "peak_kw_per_home_mean": 2.59
+   },
+   "hybrid_national": {
+    "feeder_days_over_pct": 76.9,
+    "feeder_slots_over_pct": 5.03,
+    "feeders_ever_over_pct": 100.0,
+    "max_over_pct_of_cap": 58.0,
+    "peak_kw_per_home_mean": 1.986
+   },
+   "hybrid_local": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": -0.0,
+    "peak_kw_per_home_mean": 1.484,
+    "home_slots_to_gas_pct": 10.38
+   },
+   "hybrid_both": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": -0.0,
+    "peak_kw_per_home_mean": 1.483,
+    "home_slots_to_gas_pct": 2.44
+   },
+   "conflict_feeder_slots": {
+    "feeder_over_national_silent_pct": 7.06,
+    "national_sheds_feeder_fine_pct": 15.74,
+    "both_pct": 10.47
+   }
+  },
+  "even4_h1": {
+   "all_electric": {
+    "feeder_days_over_pct": 100.0,
+    "feeder_slots_over_pct": 97.33,
+    "feeders_ever_over_pct": 100.0,
+    "max_over_pct_of_cap": 220.5,
+    "peak_kw_per_home_mean": 5.74
+   },
+   "hybrid_ccop": {
+    "feeder_days_over_pct": 71.7,
+    "feeder_slots_over_pct": 4.38,
+    "feeders_ever_over_pct": 100.0,
+    "max_over_pct_of_cap": 51.6,
+    "peak_kw_per_home_mean": 2.59
+   },
+   "hybrid_national": {
+    "feeder_days_over_pct": 7.7,
+    "feeder_slots_over_pct": 0.2,
+    "feeders_ever_over_pct": 42.5,
+    "max_over_pct_of_cap": 18.4,
+    "peak_kw_per_home_mean": 1.986
+   },
+   "hybrid_local": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": -0.0,
+    "peak_kw_per_home_mean": 1.983,
+    "home_slots_to_gas_pct": 1.85
+   },
+   "hybrid_both": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": -0.1,
+    "peak_kw_per_home_mean": 1.925,
+    "home_slots_to_gas_pct": 0.05
+   },
+   "conflict_feeder_slots": {
+    "feeder_over_national_silent_pct": 1.43,
+    "national_sheds_feeder_fine_pct": 23.26,
+    "both_pct": 2.95
+   }
+  },
+  "even4_h1.5": {
+   "all_electric": {
+    "feeder_days_over_pct": 100.0,
+    "feeder_slots_over_pct": 84.34,
+    "feeders_ever_over_pct": 100.0,
+    "max_over_pct_of_cap": 155.3,
+    "peak_kw_per_home_mean": 5.74
+   },
+   "hybrid_ccop": {
+    "feeder_days_over_pct": 13.3,
+    "feeder_slots_over_pct": 0.51,
+    "feeders_ever_over_pct": 67.5,
+    "max_over_pct_of_cap": 21.2,
+    "peak_kw_per_home_mean": 2.59
+   },
+   "hybrid_national": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": -5.3,
+    "peak_kw_per_home_mean": 1.986
+   },
+   "hybrid_local": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": -0.0,
+    "peak_kw_per_home_mean": 2.45,
+    "home_slots_to_gas_pct": 0.12
+   },
+   "hybrid_both": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": -5.3,
+    "peak_kw_per_home_mean": 1.986,
+    "home_slots_to_gas_pct": 0.0
+   },
+   "conflict_feeder_slots": {
+    "feeder_over_national_silent_pct": 0.03,
+    "national_sheds_feeder_fine_pct": 25.74,
+    "both_pct": 0.48
+   }
+  },
+  "even4_h1.7": {
+   "all_electric": {
+    "feeder_days_over_pct": 100.0,
+    "feeder_slots_over_pct": 74.08,
+    "feeders_ever_over_pct": 100.0,
+    "max_over_pct_of_cap": 136.1,
+    "peak_kw_per_home_mean": 5.74
+   },
+   "hybrid_ccop": {
+    "feeder_days_over_pct": 3.8,
+    "feeder_slots_over_pct": 0.13,
+    "feeders_ever_over_pct": 27.5,
+    "max_over_pct_of_cap": 12.2,
+    "peak_kw_per_home_mean": 2.59
+   },
+   "hybrid_national": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": -12.3,
+    "peak_kw_per_home_mean": 1.986
+   },
+   "hybrid_local": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": -0.0,
+    "peak_kw_per_home_mean": 2.551,
+    "home_slots_to_gas_pct": 0.02
+   },
+   "hybrid_both": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": -12.3,
+    "peak_kw_per_home_mean": 1.986,
+    "home_slots_to_gas_pct": 0.0
+   },
+   "conflict_feeder_slots": {
+    "feeder_over_national_silent_pct": 0.0,
+    "national_sheds_feeder_fine_pct": 26.09,
+    "both_pct": 0.13
+   }
+  },
+  "even4_h2.4": {
+   "all_electric": {
+    "feeder_days_over_pct": 100.0,
+    "feeder_slots_over_pct": 34.13,
+    "feeders_ever_over_pct": 100.0,
+    "max_over_pct_of_cap": 86.9,
+    "peak_kw_per_home_mean": 5.74
+   },
+   "hybrid_ccop": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": -10.9,
+    "peak_kw_per_home_mean": 2.59
+   },
+   "hybrid_national": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": -30.4,
+    "peak_kw_per_home_mean": 1.986
+   },
+   "hybrid_local": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": -10.9,
+    "peak_kw_per_home_mean": 2.59,
+    "home_slots_to_gas_pct": 0.0
+   },
+   "hybrid_both": {
+    "feeder_days_over_pct": 0.0,
+    "feeder_slots_over_pct": 0.0,
+    "feeders_ever_over_pct": 0.0,
+    "max_over_pct_of_cap": -30.4,
+    "peak_kw_per_home_mean": 1.986,
+    "home_slots_to_gas_pct": 0.0
+   },
+   "conflict_feeder_slots": {
+    "feeder_over_national_silent_pct": 0.0,
+    "national_sheds_feeder_fine_pct": 26.22,
+    "both_pct": 0.0
+   }
+  }
+ },
+ "hp_diversified_kw_per_home": 4.755,
+ "hp_peak_kw_per_home_mean": 5.74,
+ "national_shed_slots": 151
+}

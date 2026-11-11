@@ -1,0 +1,308 @@
+{
+ "n": 12918,
+ "households_weighted": 24568372,
+ "share_Mainfueltype": {
+  "1": 0.8555,
+  "2": 0.0795,
+  "3": 0.065
+ },
+ "share_CentralHeating": {
+  "1": 0.9341,
+  "2": 0.0364,
+  "3": 0.0295
+ },
+ "share_boiler": {
+  "-9": 0.1019,
+  "1": 0.0506,
+  "2": 0.0074,
+  "3": 0.0234,
+  "4": 0.1948,
+  "5": 0.6218
+ },
+ "share_Ongas": {
+  "0": 0.1346,
+  "1": 0.8654
+ },
+ "share_EPC": {
+  "1": 0.5303,
+  "2": 0.3851,
+  "3": 0.0621,
+  "4": 0.0225
+ },
+ "share_FPEERband": {
+  "1": 0.5496,
+  "2": 0.3678,
+  "3": 0.0607,
+  "4": 0.022
+ },
+ "share_tenure4x": {
+  "1": 0.6484,
+  "2": 0.1869,
+  "3": 0.0625,
+  "4": 0.1022
+ },
+ "share_DWtype": {
+  "1": 0.104,
+  "2": 0.1901,
+  "3": 0.2726,
+  "4": 0.2196,
+  "5": 0.1774,
+  "6": 0.0363
+ },
+ "share_gorehs": {
+  "1": 0.0495,
+  "2": 0.1323,
+  "4": 0.0983,
+  "5": 0.0872,
+  "6": 0.1004,
+  "7": 0.1112,
+  "8": 0.1514,
+  "9": 0.1637,
+  "10": 0.106
+ },
+ "share_fpLILEEflg": {
+  "0": 0.886,
+  "1": 0.114
+ },
+ "share_fpvuln": {
+  "0": 0.4178,
+  "1": 0.5822
+ },
+ "share_BHCflg10": {
+  "0": 0.7688,
+  "1": 0.2312
+ },
+ "share_AHCflg10": {
+  "0": 0.6446,
+  "1": 0.3554
+ },
+ "gas_main_fuel_code_assumed": 1,
+ "share_EPC_gas": {
+  "1": 0.5634,
+  "2": 0.395,
+  "3": 0.0376,
+  "4": 0.004
+ },
+ "share_fpLILEEflg_by_fuel": {
+  "1": 0.1038,
+  "2": 0.2101,
+  "3": 0.1309
+ },
+ "heat_cost_gbp": {
+  "n": 12918,
+  "mean": 1351.0,
+  "p10": 737.0,
+  "p25": 944.0,
+  "p50": 1222.0,
+  "p75": 1592.0,
+  "p90": 2075.0
+ },
+ "heat_cost_gbp_gas": {
+  "n": 10791,
+  "mean": 1305.0,
+  "p10": 748.0,
+  "p25": 942.0,
+  "p50": 1204.0,
+  "p75": 1541.0,
+  "p90": 1945.0
+ },
+ "space_heat_cost_gbp_gas": {
+  "n": 10791,
+  "mean": 1051.0,
+  "p10": 532.0,
+  "p25": 721.0,
+  "p50": 968.0,
+  "p75": 1262.0,
+  "p90": 1642.0
+ },
+ "fuel_cost_all_gbp": {
+  "n": 12918,
+  "mean": 2277.0,
+  "p10": 1293.0,
+  "p25": 1657.0,
+  "p50": 2141.0,
+  "p75": 2685.0,
+  "p90": 3352.0
+ },
+ "full_income_gbp": {
+  "n": 12918,
+  "mean": 39712.0,
+  "p10": 13863.0,
+  "p25": 20589.0,
+  "p50": 33633.0,
+  "p75": 51717.0,
+  "p90": 73789.0
+ },
+ "ahc_income_gbp": {
+  "n": 12918,
+  "mean": 33071.0,
+  "p10": 9298.0,
+  "p25": 15600.0,
+  "p50": 27916.0,
+  "p75": 44336.0,
+  "p90": 64390.0
+ },
+ "ahc_eq_income_gbp": {
+  "n": 12918,
+  "mean": 33510.0,
+  "p10": 11383.0,
+  "p25": 18656.0,
+  "p50": 28816.0,
+  "p75": 42486.0,
+  "p90": 60759.0
+ },
+ "heat_share_of_ahc_income_pct": {
+  "n": 12918,
+  "mean": 2111.7,
+  "p10": 1.9,
+  "p25": 2.8,
+  "p50": 4.5,
+  "p75": 7.6,
+  "p90": 12.8
+ },
+ "heat_share_of_full_income_pct": {
+  "n": 12918,
+  "mean": 569.8,
+  "p10": 1.6,
+  "p25": 2.4,
+  "p50": 3.7,
+  "p75": 5.9,
+  "p90": 9.1
+ },
+ "share_heat_over_10pct_ahc": 0.1604,
+ "share_heat_over_10pct_ahc_gas": 0.1441,
+ "by_ahc_decile": {
+  "1": {
+   "heat_cost_gbp": 1278,
+   "heat_share_ahc_pct": 17.8,
+   "lilee_rate": 0.388,
+   "gas_share": 0.836,
+   "epc_d_or_worse": 0.418,
+   "epc_f_g": 0.019,
+   "ahc_income_p50": 5835,
+   "heat_cost_gas_gbp": 1246
+  },
+  "2": {
+   "heat_cost_gbp": 1276,
+   "heat_share_ahc_pct": 8.7,
+   "lilee_rate": 0.398,
+   "gas_share": 0.886,
+   "epc_d_or_worse": 0.448,
+   "epc_f_g": 0.02,
+   "ahc_income_p50": 14293,
+   "heat_cost_gas_gbp": 1242
+  },
+  "3": {
+   "heat_cost_gbp": 1293,
+   "heat_share_ahc_pct": 6.7,
+   "lilee_rate": 0.35,
+   "gas_share": 0.814,
+   "epc_d_or_worse": 0.454,
+   "epc_f_g": 0.032,
+   "ahc_income_p50": 17763,
+   "heat_cost_gas_gbp": 1249
+  },
+  "4": {
+   "heat_cost_gbp": 1290,
+   "heat_share_ahc_pct": 5.5,
+   "lilee_rate": 0.006,
+   "gas_share": 0.858,
+   "epc_d_or_worse": 0.48,
+   "epc_f_g": 0.016,
+   "ahc_income_p50": 22502,
+   "heat_cost_gas_gbp": 1255
+  },
+  "5": {
+   "heat_cost_gbp": 1347,
+   "heat_share_ahc_pct": 5.0,
+   "lilee_rate": 0.0,
+   "gas_share": 0.857,
+   "epc_d_or_worse": 0.49,
+   "epc_f_g": 0.035,
+   "ahc_income_p50": 26371,
+   "heat_cost_gas_gbp": 1301
+  },
+  "6": {
+   "heat_cost_gbp": 1311,
+   "heat_share_ahc_pct": 4.0,
+   "lilee_rate": 0.0,
+   "gas_share": 0.871,
+   "epc_d_or_worse": 0.471,
+   "epc_f_g": 0.016,
+   "ahc_income_p50": 31255,
+   "heat_cost_gas_gbp": 1274
+  },
+  "7": {
+   "heat_cost_gbp": 1382,
+   "heat_share_ahc_pct": 3.6,
+   "lilee_rate": 0.0,
+   "gas_share": 0.881,
+   "epc_d_or_worse": 0.483,
+   "epc_f_g": 0.017,
+   "ahc_income_p50": 36569,
+   "heat_cost_gas_gbp": 1331
+  },
+  "8": {
+   "heat_cost_gbp": 1415,
+   "heat_share_ahc_pct": 3.2,
+   "lilee_rate": 0.0,
+   "gas_share": 0.86,
+   "epc_d_or_worse": 0.473,
+   "epc_f_g": 0.019,
+   "ahc_income_p50": 42577,
+   "heat_cost_gas_gbp": 1350
+  },
+  "9": {
+   "heat_cost_gbp": 1415,
+   "heat_share_ahc_pct": 2.6,
+   "lilee_rate": 0.0,
+   "gas_share": 0.853,
+   "epc_d_or_worse": 0.494,
+   "epc_f_g": 0.026,
+   "ahc_income_p50": 51940,
+   "heat_cost_gas_gbp": 1350
+  },
+  "10": {
+   "heat_cost_gbp": 1504,
+   "heat_share_ahc_pct": 1.9,
+   "lilee_rate": 0.0,
+   "gas_share": 0.839,
+   "epc_d_or_worse": 0.485,
+   "epc_f_g": 0.025,
+   "ahc_income_p50": 70592,
+   "heat_cost_gas_gbp": 1451
+  }
+ },
+ "share_FloorArea_band": {
+  "1": 0.121,
+  "2": 0.2444,
+  "3": 0.2506,
+  "4": 0.1423,
+  "5": 0.2416
+ },
+ "share_FloorArea_band_gas": {
+  "1": 0.0928,
+  "2": 0.2454,
+  "3": 0.2693,
+  "4": 0.1497,
+  "5": 0.2428
+ },
+ "sap12": {
+  "n": 12918,
+  "mean": 67.4,
+  "p10": 56.3,
+  "p25": 63.8,
+  "p50": 69.0,
+  "p75": 73.2,
+  "p90": 78.0
+ },
+ "sap12_gas": {
+  "n": 10791,
+  "mean": 68.8,
+  "p10": 59.6,
+  "p25": 65.0,
+  "p50": 69.5,
+  "p75": 73.3,
+  "p90": 78.0
+ }
+}

@@ -1,0 +1,407 @@
+{
+  "strand": "Oxford Energy Forum 147 (March 2026): GB electricity prices, the electricity-to-gas ratio and heat pump economics (b); household price response and automation (c); over-synchronised demand under dynamic tariffs (a); control-theoretic and governance arguments for coordination (d)",
+  "compiled": "2026-11-07",
+  "method_note": "Source: local PDF tmp/OEF-147_Electricity_Prices_March_2026.pdf (74 pages; PDF page index equals printed page number throughout). Read on 2026-11-07 via pdftotext and visual page reads (Pollitt Table 4, p. 33; Grubb Figure 2b, p. 6). Quotes are verbatim from the extracted text. Line-break hyphenation is restored (e.g. 'time-varying'), and footnote reference numerals inside sentences are dropped (Waddams Price p. 45 '...marginal prices,134'; Pollitt p. 32 '...in Europe.89'). No URL is given because the PDF does not state the Forum's own web address; oxfordenergy.org appears only in footnotes citing other OIES papers. Claims in the 'claim' field paraphrase the source; links to findings (a)-(d) and the hybrid fuel-switch reading of Pollitt's 3.26 threshold are this reviewer's interpretation. No article in the issue mentions hybrid heat pumps. Grubb and Waddams Price carry 3 and 4 claims respectively because the brief named several specific points in each.",
+  "sources": [
+    {
+      "key": "Poudineh2026Intro",
+      "harvard": "Poudineh, R. (2026) 'Introduction', Oxford Energy Forum, Issue 147, March 2026, pp. 2-4. Oxford: Oxford Institute for Energy Studies.",
+      "url": null,
+      "doi": null,
+      "type": "journal_article (practitioner journal, OIES)",
+      "claims": [
+        {
+          "claim": "The issue editor summarises Schittekatte: uniform wholesale price signals over-synchronise EV and heat-pump demand and drive network reinforcement; coordination by suppliers/aggregators is needed. Supports (a) and (d).",
+          "quote": "Uniform wholesale price signals can lead to over-synchronised demand from EVs and heat pumps, accelerating costly network reinforcements.",
+          "locator": "PDF p. 3 (printed p. 3)",
+          "numbers": {}
+        },
+        {
+          "claim": "Editor's summary of Pollitt: GB's electricity-to-gas ratio is among the highest in Europe and above the level compatible with widespread heat pump adoption. Supports (b).",
+          "quote": "producing one of the highest electricity-to-gas price ratios in Europe- well above the level compatible with widespread heat pump adoption.",
+          "locator": "PDF p. 3 (printed p. 3)",
+          "numbers": {}
+        },
+        {
+          "claim": "Editor's summary of Waddams Price: household demand is price-inelastic and responds to average rather than marginal prices. Supports (c).",
+          "quote": "she argues that household demand is generally price-inelastic, that consumers often respond to average rather than marginal prices, and that competition and complex tariffs deliver uneven and limited benefits.",
+          "locator": "PDF p. 3 (printed p. 3)",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "Grubb2026",
+      "harvard": "Grubb, M. (2026) 'Peak bills? Deconstructing the UK's energy price crisis', Oxford Energy Forum, Issue 147, March 2026, pp. 5-10. Oxford: Oxford Institute for Energy Studies.",
+      "url": null,
+      "doi": null,
+      "type": "journal_article (practitioner journal, OIES)",
+      "claims": [
+        {
+          "claim": "The Ofgem benchmark dual-fuel bill was below GBP 1,100/yr until summer 2021 (about 40% wholesale), went above GBP 3,000 in the gas crisis and has stayed above GBP 1,700. With network and policy costs rising, electricity is now over half the bill. Figure 2b (Jan-Mar 2026 cap, before the Nov 2025 budget changes): electricity GBP 908 = wholesale 35%, network 23%, policy 18%, operating 16%, VAT 5%, other 3%; gas GBP 776 = wholesale 43%, network 22%, operating 19%, policy 7%, VAT 5%, other 4%.",
+          "quote": "With softening gas prices, against rising network and policy costs, electricity became over half of this benchmark household dual-fuel bill.",
+          "locator": "PDF p. 5 (text); Figure 2b, PDF p. 6 (pie-chart labels read from the page image)",
+          "numbers": {
+            "benchmark_bill_pre_summer_2021_GBP": "<1100",
+            "wholesale_share_pre_2021": "~40%",
+            "crisis_peak_GBP": ">3000",
+            "since_GBP": ">1700",
+            "elec_bill_JanMar2026_GBP": 908,
+            "elec_wholesale_pct": 35,
+            "elec_network_pct": 23,
+            "elec_policy_pct": 18,
+            "elec_operating_pct": 16,
+            "gas_bill_JanMar2026_GBP": 776,
+            "gas_wholesale_pct": 43,
+            "gas_network_pct": 22,
+            "gas_policy_pct": 7,
+            "gas_operating_pct": 19
+          }
+        },
+        {
+          "claim": "The UK has had the highest electricity-to-gas price ratio in Europe, which Grubb links to heat pump adoption being among Europe's lowest. On wholesale costs, gas set the GB wholesale price 97% of the time in 2021 while making up 45% of generation (p. 7). Supports (b).",
+          "quote": "indeed, the UK has had the highest ratio of electricity to gas prices of any European country, closely correlated with heat pump adoption being amongst the lowest in Europe.",
+          "locator": "PDF p. 8 (printed p. 8); 97%/45% figure at PDF p. 7",
+          "numbers": {
+            "gas_sets_price_pct_time_2021": 97,
+            "gas_share_generation_2021_pct": 45
+          }
+        },
+        {
+          "claim": "The ratio may get worse, not better, as gas prices fall, because lower LNG prices cut gas bills first. This qualifies (b): the hybrid-vs-heat-pump balance moves with gas prices, and falling gas prices push it toward the boiler.",
+          "quote": "The discrepancy of gas to electricity prices, which impedes electrification, may only worsen as and when European gas prices recede",
+          "locator": "PDF p. 10 (printed p. 10); see also p. 8: 'lower gas bills (exacerbating the hurdle for heat pumps)'",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "Galpin2026",
+      "harvard": "Galpin, C. (2026) 'Lower electricity prices are key to ensuring decarbonization is affordable for all', Oxford Energy Forum, Issue 147, March 2026, pp. 11-16. Oxford: Oxford Institute for Energy Studies.",
+      "url": null,
+      "doi": null,
+      "type": "journal_article (practitioner journal, OIES)",
+      "claims": [
+        {
+          "claim": "Legacy levies were nearly 20% of the household electricity bill in 2024 (nearly 25% with VAT). Galpin calls cutting them the largest single lever on electricity bills.",
+          "quote": "As of 2024, these levies made up nearly 20 per cent of the consumer electricity bill – or nearly 25 per cent when including VAT.",
+          "locator": "PDF p. 13 (printed p. 13)",
+          "numbers": {
+            "levy_share_2024_pct": "~20",
+            "levy_share_incl_VAT_pct": "~25"
+          }
+        },
+        {
+          "claim": "E3G puts the saving from replacing a gas boiler with a heat pump at over GBP 400/yr, but only if electricity price cuts are delivered. Supports (b): heat pump economics depend on relative prices.",
+          "quote": "If potential electricity price reductions can be realised, E3G analysis suggests the potential energy bill savings by switching from a gas boiler to a heat pump could reach over £400 per year.",
+          "locator": "PDF p. 14 (printed p. 14)",
+          "numbers": {
+            "hp_saving_GBP_per_yr": ">400",
+            "ev_saving_GBP_per_yr": "900-1050",
+            "total_potential_GBP": ">1800"
+          }
+        },
+        {
+          "claim": "Galpin treats consumer-led off-peak shifting as lowering system costs and says fixed costs should vary with renewable availability and network capacity. Compare Schittekatte2026: uncoordinated shifting can add network cost. Relevant to (a).",
+          "quote": "But some of these savings depend on enabling consumers to benefit from cheaper off-peak energy, as shown in Figure 5. In turn, this consumer-led flexibility will also further reduce overall system costs.",
+          "locator": "PDF p. 15 (printed p. 15)",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "Pollitt2026",
+      "harvard": "Pollitt, M.G. (2026) 'What are the prospects for residential electricity costs and the electrification of heating in Great Britain?', Oxford Energy Forum, Issue 147, March 2026, pp. 29-34. Oxford: Oxford Institute for Energy Studies.",
+      "url": null,
+      "doi": null,
+      "type": "journal_article (practitioner journal, OIES)",
+      "claims": [
+        {
+          "claim": "Break-even rule: with heat pump COP 3 and boiler efficiency 0.92, electricity can cost at most 3.26 times gas per kWh. This is the same COP/efficiency ratio that sets a hybrid's fuel-switch point; that link is this reviewer's reading, as Pollitt does not mention hybrids. Supports (b).",
+          "quote": "This means that, given the higher installation cost, the relative price of electricity per kWh cannot be more than 3.26 times the per-kWh price of gas.",
+          "locator": "PDF p. 32 (printed p. 32)",
+          "numbers": {
+            "hp_COP_in_use": 3,
+            "boiler_efficiency": 0.92,
+            "breakeven_ratio": 3.26
+          }
+        },
+        {
+          "claim": "The current GB electricity-to-gas unit price ratio is 4.7 (Table 4: 27.8p vs 6.0p/kWh, Jan-Mar 2026 cap) and 4.3 after the RO/ECO changes (24.5p vs 5.6p). Both are well above the 3.26 break-even. Supports (b).",
+          "quote": "In the UK, the current electricity to gas price ratio is 4.7 (see Table 4), which is one of the highest in Europe. Even after the proposed changes to the RO and ECO, this will still be 4.3.",
+          "locator": "PDF p. 32 (text); Table 4, PDF p. 33 (image)",
+          "numbers": {
+            "ratio_now": 4.7,
+            "ratio_after_RO_ECO": 4.3,
+            "elec_unit_GBP_per_kWh": 0.278,
+            "gas_unit_GBP_per_kWh": 0.06,
+            "elec_after_GBP_per_kWh": 0.245,
+            "gas_after_GBP_per_kWh": 0.056,
+            "table4_consumption_kWh": {
+              "elec": 2700,
+              "gas": 11500
+            }
+          }
+        },
+        {
+          "claim": "Moving GBP 100/MWh of policy costs from electricity to gas gives a ratio of 3.2. Adding a GBP 65/tCO2 carbon price on gas gives 2.5. Recycling that revenue into electricity unit prices gives 1.9 (15.8p vs 8.4p), the level Pollitt (citing EHPA) says heat pumps need at scale.",
+          "quote": "This does result in the ratio of electricity to gas unit prices falling to 1.9, the sort of level required for the adoption of electric heat pumps at scale.",
+          "locator": "PDF p. 33 (printed p. 33), Table 4",
+          "numbers": {
+            "ratio_step1_move_policy": 3.2,
+            "ratio_step1_2_plus_gas_carbon": 2.5,
+            "ratio_all_three": 1.9,
+            "gas_carbon_price_GBP_per_t": 65,
+            "recycled_subsidy_GBP": 134
+          }
+        },
+        {
+          "claim": "A holistic count (adding CfD, carbon, extra BSUoS, capacity market and DCC) puts policy-related costs at 33% of the pre-tax electricity bill, against 9% for gas. Ofgem reports 18% and 7%. Policy-related costs are up 151% since mid-2017 (GBP 126.65 to 317.65).",
+          "quote": "This brings the share of costs which are policy-related to 33 per cent of the current pre-tax electricity bill.",
+          "locator": "PDF p. 32 (printed p. 32); reported 18%/7% at p. 30",
+          "numbers": {
+            "elec_policy_share_holistic_pct": 33,
+            "gas_policy_share_holistic_pct": 9,
+            "elec_policy_reported_pct": 18,
+            "gas_policy_reported_pct": 7,
+            "policy_cost_rise_since_2017_pct": 151,
+            "elec_bill_rise_since_2017_pct": 101,
+            "RO_ECO_change_elec_GBP": -91,
+            "RO_ECO_change_gas_GBP": -36.23
+          }
+        },
+        {
+          "claim": "Without a much lower relative electricity price, heat pumps will not reach scale. Pollitt proposes revenue-neutral switching: move policy costs, extend carbon pricing to gas and recycle the revenue. Supports (b).",
+          "quote": "For instance, domestic heat pumps will not be rolled out at scale in the UK without significant further reductions in the relative unit price of electricity and gas.",
+          "locator": "PDF p. 33 (printed p. 33)",
+          "numbers": {}
+        },
+        {
+          "claim": "Qualifier: bills per household matter more than unit prices, and a high-price, low-consumption system can be better. Policy target: 450,000 heat pumps a year by 2030.",
+          "quote": "Low consumption and high unit prices may be a better combination than high consumption and low unit prices.",
+          "locator": "PDF p. 32 (printed p. 32)",
+          "numbers": {
+            "hp_target_per_yr_by_2030": 450000
+          }
+        }
+      ]
+    },
+    {
+      "key": "Farrell2026",
+      "harvard": "Farrell, N. (2026) 'Electricity tariff design: equity and efficiency considerations', Oxford Energy Forum, Issue 147, March 2026, pp. 39-42. Oxford: Oxford Institute for Energy Studies.",
+      "url": null,
+      "doi": null,
+      "type": "journal_article (practitioner journal, OIES)",
+      "claims": [
+        {
+          "claim": "Under complex tariffs (ToU, dynamic) consumers may respond to average rather than marginal prices, which weakens price signals. Supports (c).",
+          "quote": "Evidence has shown that consumers may respond to average, rather than marginal prices, when faced with complex tariff structures.",
+          "locator": "PDF p. 42 (printed p. 42); also fn 109, p. 39",
+          "numbers": {}
+        },
+        {
+          "claim": "Farrell's own mitigation: automated EVs, heat pumps and smart appliances can respond to marginal prices without consumers having to engage. This directly supports (c): automation is the mechanism.",
+          "quote": "Electricity demand is becoming increasingly automated through technologies such as electric vehicles, heat pumps, and smart appliances. These technologies may enable a response to marginal prices without active consumer engagement.",
+          "locator": "PDF p. 42 (printed p. 42)",
+          "numbers": {}
+        },
+        {
+          "claim": "Costs have three drivers, the third being network capacity, so three-part tariffs with a capacity charge have merit. This matches Schittekatte's call for capacity-based network tariffs. Relevant to (a) and (d).",
+          "quote": "it may be argued that electricity system costs are driven by three factors, not two: fixed costs, costs that vary with electricity generation, and costs that vary with network capacity requirements.",
+          "locator": "PDF p. 39, footnote 110",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "WaddamsPrice2026",
+      "harvard": "Waddams Price, C. (2026) 'Do we expect too much of household electricity prices?', Oxford Energy Forum, Issue 147, March 2026, pp. 43-46. Oxford: Oxford Institute for Energy Studies.",
+      "url": null,
+      "doi": null,
+      "type": "journal_article (practitioner journal, OIES)",
+      "claims": [
+        {
+          "claim": "Household electricity demand is price-inelastic. German estimates: short-run -0.27 (low income) to -0.44 (high income), long-run -0.22 to -0.64. Supports (c).",
+          "quote": "A recent study of German electricity demand calculated that residential own price elasticity ranges from -0.27 for low-income households to -0.44 for high-income households, while corresponding long-run elasticities are between -0.22 and -0.64.",
+          "locator": "PDF p. 43 (printed p. 43)",
+          "numbers": {
+            "elasticity_SR_low_income": -0.27,
+            "elasticity_SR_high_income": -0.44,
+            "elasticity_LR_range": [
+              -0.22,
+              -0.64
+            ]
+          }
+        },
+        {
+          "claim": "Consumer usage follows average rather than marginal prices (Ito 2014), so tariff structure has little effect on behaviour. Supports (c).",
+          "quote": "But evidence indicates that consumer usage responds to average rather than marginal prices, suggesting that consumers are not responsive to changes in tariff structure.",
+          "locator": "PDF p. 45 (printed p. 45)",
+          "numbers": {}
+        },
+        {
+          "claim": "A historical GB precedent for herding: the 1960s-70s off-peak tariffs drew so much demand into the cheap midday window that they created a new peak and had to be redesigned into Economy 7. Supports (a).",
+          "quote": "demand for electricity during the lower midday off-peak price was so strong that it created a new peak, so the tariff had to be amended, and evolved into the ‘Economy 7’ tariff",
+          "locator": "PDF p. 45 (printed p. 45)",
+          "numbers": {}
+        },
+        {
+          "claim": "Demand Flexibility Service responses were encouraging where rewards were clear and effort was low, but they are hard to scale without defaults and automation. 'Price alone may not be enough.' Supports (c).",
+          "quote": "However, there have been challenges in scaling these responses to a wider consumer base without the help of default and automated systems.",
+          "locator": "PDF p. 45 (printed p. 45)",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "Schittekatte2026",
+      "harvard": "Schittekatte, T. (2026) 'Time-varying electricity pricing is a powerful tool – but without the grid in the loop, it risks going off the rails', Oxford Energy Forum, Issue 147, March 2026, pp. 51-54. Oxford: Oxford Institute for Energy Studies.",
+      "url": null,
+      "doi": null,
+      "type": "journal_article (practitioner journal, OIES)",
+      "claims": [
+        {
+          "claim": "GB residential network design assumes a simultaneity (coincidence) factor of about 0.3: at feeder peak the average home draws about 30% of its own peak. Dynamic prices with shiftable loads can push this up quickly because everyone responds to the same signal. Supports (a).",
+          "quote": "Time-varying electricity prices and shiftable appliances could quickly increase this simultaneity factor as all consumers respond to the same price signal.",
+          "locator": "PDF p. 53 (printed p. 53)",
+          "numbers": {
+            "GB_residential_simultaneity_factor": 0.3,
+            "avg_household_share_of_individual_peak_at_coincident_peak": "~30%"
+          }
+        },
+        {
+          "claim": "Empirical thresholds: simultaneous EV charging creates a new low-voltage peak above the pre-EV peak at about 10-15% EV adoption (Massachusetts), and heat pumps do so at about 5% adoption (Slovenia). Supports (a) at local network level.",
+          "quote": "Another study using data from Slovenia finds that such peak-shifting can already occur after 5 per cent of HP adoption in a local network area.",
+          "locator": "PDF p. 53 (printed p. 53)",
+          "numbers": {
+            "EV_adoption_threshold_pct": "10-15",
+            "HP_adoption_threshold_pct": 5
+          }
+        },
+        {
+          "claim": "Unrestrained wholesale-reflective time-varying pricing will raise distribution costs. ACER expects grid costs up to 50% higher by 2050, possibly double, with two-thirds of investment at distribution level. Schittekatte says it is unclear the wholesale savings outweigh this. Supports (a).",
+          "quote": "unrestrained uptake of time-varying electricity retail pricing reflecting wholesale market conditions without any complement to reflect local grid costs will lead to increased distribution network costs.",
+          "locator": "PDF p. 53 (printed p. 53); see also p. 51",
+          "numbers": {
+            "ACER_grid_cost_rise_by_2050": "up to +50%, double in highest scenario",
+            "distribution_share_of_investment": "two-thirds"
+          }
+        },
+        {
+          "claim": "Direct DSO load control curtails everyone in proportion and has no way for consumers to reveal willingness to consume, so coordination is needed between consumer and DSO, directly or through a supplier or aggregator. Supports (d), with the qualifier that a coordinator must price or reveal preferences rather than simply curtail.",
+          "quote": "Therefore, coordination mechanisms between the consumer and the DSO (either directly or through a supplier or aggregator) need to be put in place.",
+          "locator": "PDF p. 53 (printed p. 53)",
+          "numbers": {}
+        },
+        {
+          "claim": "ToU volumetric network tariffs (GB's current design) do not substantially help. A capacity-based (EUR/kW) network tariff, preferably ToU, reduces 'over-synchronisation'. GB simulation: with 60% EVs, coincident feeder peak falls about 14% against a flat volumetric tariff. Supports (a) and (d).",
+          "quote": "While not perfect, overall, the ‘over-synchronisation’ of demand during the hours that the time-varying retail electricity price is cheapest is mitigated.",
+          "locator": "PDF p. 54 (printed p. 54)",
+          "numbers": {
+            "EV_adoption_in_sim_pct": 60,
+            "feeder_peak_reduction_pct": "~14"
+          }
+        },
+        {
+          "claim": "Every advanced option (dynamic network tariffs, flexibility markets, local capacity auctions) needs a third party that absorbs complexity, and retailer or app scheduling can make customer effort small. UKPN procured over 6 GW of flexibility for winter 2024/25. Supports (c) and (d).",
+          "quote": "they all underline the importance of a third party, whether it is a supplier, aggregator, or yet unknown entity, to absorb complexity and offer a comprehensive bundled service to the end consumer.",
+          "locator": "PDF p. 54 (printed p. 54); scheduling point at p. 52",
+          "numbers": {
+            "UKPN_flex_procured_winter_2024_25_GW": ">6",
+            "UKPN_Oct2025_award_MW": 20,
+            "UKPN_zones": 217
+          }
+        }
+      ]
+    },
+    {
+      "key": "Poudineh2026AI",
+      "harvard": "Poudineh, R. (2026) 'AI-driven electricity pricing: are consumers at risk in liberalized retail markets?', Oxford Energy Forum, Issue 147, March 2026, pp. 55-59. Oxford: Oxford Institute for Energy Studies.",
+      "url": null,
+      "doi": null,
+      "type": "journal_article (practitioner journal, OIES)",
+      "claims": [
+        {
+          "claim": "Analogy for (a): independently optimising algorithms can produce an emergent market-wide outcome nobody intended. In Poudineh's example it is tacit price coordination: a 1p/kWh drift across about 20 million UK households is about GBP 760m/yr. The example is hypothetical.",
+          "quote": "No individual supplier needs to intend this outcome; it emerges from the interaction of independently optimising algorithms.",
+          "locator": "PDF p. 56 (printed p. 56), Example 4",
+          "numbers": {
+            "drift_p_per_kWh": 1,
+            "households_m": 20,
+            "transfer_GBP_m_per_yr": 760
+          }
+        },
+        {
+          "claim": "Risk for automated home controllers: misclassifying heat-pump or EV households into the wrong tariff spreads at scale because decisions are automated. The hypothetical example costs GBP 140/yr per household, and no audit is currently required.",
+          "quote": "Here, AI is used to classify customers into tariff-eligibility groups, such as ‘owners' or heat-pump users. Errors in classification propagate directly into prices because decisions are automated.",
+          "locator": "PDF p. 57 (printed p. 57), Example 6",
+          "numbers": {
+            "misclassification_cost_GBP_per_yr": 140
+          }
+        },
+        {
+          "claim": "UK protection against algorithmic harms relies on principles-based ex-post enforcement. Poudineh calls for outcome-based supervision and auditing of algorithmic systems. Relevant to governance of any coordinating controller (d).",
+          "quote": "As a result, many AI-driven risks fall into areas governed primarily by principles-based, ex-post enforcement rather than clear ex-ante rules.",
+          "locator": "PDF p. 59 (printed p. 59)",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "Apostolopoulou2026",
+      "harvard": "Apostolopoulou, D. (2026) 'Who tunes the grid? Electricity markets under a control lens', Oxford Energy Forum, Issue 147, March 2026, pp. 59-63. Oxford: Oxford Institute for Energy Studies.",
+      "url": null,
+      "doi": null,
+      "type": "journal_article (practitioner journal, OIES)",
+      "claims": [
+        {
+          "claim": "Hybrid governance: an authoritative focal point (e.g. NESO) manages systemic risks the market cannot internalise, and prices coordinate distributed actors such as EVs and DERs underneath it. Supports (d).",
+          "quote": "Under this hybrid governance, the authoritative entity is vital for managing systemic risk externalities, such as cyber threats and cascading failures in tightly coupled cross-vector networks that the market cannot internalise on its own.",
+          "locator": "PDF p. 59 (printed p. 59)",
+          "numbers": {}
+        },
+        {
+          "claim": "Once the central authority sets the pathway, prices act as a decentralised 'nervous system' coordinating millions of agents, and markets act as sensors of private costs and constraints. Supports (d).",
+          "quote": "Once the central authority has defined the strategic pathway, prices serve as the decentralised nervous system that coordinates millions of heterogeneous agents.",
+          "locator": "PDF p. 59 (printed p. 59)",
+          "numbers": {}
+        },
+        {
+          "claim": "Explicit control-theoretic framing: OPF/LMP market clearing is treated as PID feedback on Lagrange multipliers. P = dispatch power, I = energy and storage (smoothing volatility), D = ramp products. Worked example: t=1 LMP of about GBP 20 + 30 = GBP 50/MWh including a ramp-scarcity shadow price. Supports (d).",
+          "quote": "We view the OPF problem as a traditional PID (Proportional–Integral–Derivative) control problem by treating the Lagrange multipliers as dynamic variables and designing feedback that converges to the optimal point.",
+          "locator": "PDF p. 60 (printed p. 60); P/I/D detail at p. 61",
+          "numbers": {
+            "example_marginal_cost_A_GBP_MWh": 20,
+            "example_ramp_multiplier_GBP_MW": 30,
+            "example_LMP_GBP_MWh": 50,
+            "Texas_battery_price_clip_USD_MWh": "500 -> ~250"
+          }
+        },
+        {
+          "claim": "Limitation: price feedback loops are local and myopic and give no long-horizon signals. This qualifies (d): price-following alone cannot see the aggregate consequences that need a supervisory layer.",
+          "quote": "control loops are local and myopic, and they do not produce long-horizon investment signals.",
+          "locator": "PDF p. 61 (printed p. 61)",
+          "numbers": {}
+        },
+        {
+          "claim": "Conclusion: a hybrid model in which central coordinators impose hard constraints and decentralised prices choreograph real-time flexibility. Supports (d): coordinator sets constraints, devices optimise within them.",
+          "quote": "Consequently, modern power system management is evolving into a hybrid model where central coordinators enforce strategic carbon targets as hard operational constraints while using decentralized prices to choreograph real-time resource flexibility.",
+          "locator": "PDF p. 61 (printed p. 61); restated p. 63",
+          "numbers": {}
+        },
+        {
+          "claim": "Aggregators and VPPs (Octopus/Kraken named) translate wholesale signals into automated household control, so households need not face raw prices. Supports (c) and (d).",
+          "quote": "Moreover, consumers do not need to be exposed to raw real-time prices; these can be managed through aggregators, thus preserving the system’s fast feedback while shielding households from volatility and behavioural burden.",
+          "locator": "PDF p. 63 (printed p. 63); Octopus/Kraken example same page",
+          "numbers": {}
+        }
+      ]
+    }
+  ],
+  "not_verified": [
+    {
+      "item": "Primary studies cited inside the OEF articles (Konstantelos, Sun & Strbac 2014 simultaneity ~0.3; Turk et al. 2025 EV 10-15%; Morell-Dameto et al. 2024 HP 5%; FTI Consulting 2024 14% peak reduction; Priesmann & Praktiknjo 2025 elasticities; Ito 2014; EHPA 1.9 threshold)",
+      "tried": "Not opened; figures are reported as stated by the OEF authors. Cite via the OEF article or retrieve the primaries before quoting them directly."
+    }
+  ]
+}

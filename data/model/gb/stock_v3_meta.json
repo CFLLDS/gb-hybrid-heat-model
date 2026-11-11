@@ -1,0 +1,8613 @@
+{
+ "built_by": "scripts/spark/gb_v3_stock.py",
+ "seed": 7112026,
+ "n_per_town": 20000,
+ "fields": {
+  "floor_area": "m2",
+  "form_code": "int, see form_codes",
+  "htc_w_k": "heat transfer coefficient W/K, central h = 0.86 gas-heated homes per meter",
+  "htc_low": "HTC with h_low = 0.813 (higher HTC)",
+  "htc_high": "HTC with h_high = 0.913",
+  "c_low": "C at SAP low 100 kJ/m2K",
+  "c_high": "C at SAP high 450 kJ/m2K",
+  "htc_mult": "per town and variant (central/low/high/per_meter): HTC multiplier vs htc_w_k",
+  "c_kwh_k": "effective heat capacity kWh/K (SAP medium 250 kJ/m2K x floor area)",
+  "heat_kwh_yr": "annual SPACE heat, useful kWh, at 1991-2020 mean weather (excludes hot water)",
+  "gas_factor": "per town: metered space heat / EPC (Canet) or NEED-NE (Scotland) mean space heat"
+ },
+ "form_codes": {
+  "0": {
+   "form": "detached (NEED bungalows folded in)",
+   "sap_tmp_kj_m2k": {
+    "low": 100,
+    "medium": 250,
+    "high": 450
+   }
+  },
+  "1": {
+   "form": "semi-detached",
+   "sap_tmp_kj_m2k": {
+    "low": 100,
+    "medium": 250,
+    "high": 450
+   }
+  },
+  "2": {
+   "form": "terraced (mid + end)",
+   "sap_tmp_kj_m2k": {
+    "low": 100,
+    "medium": 250,
+    "high": 450
+   }
+  },
+  "3": {
+   "form": "flat (incl. maisonette)",
+   "sap_tmp_kj_m2k": {
+    "low": 100,
+    "medium": 250,
+    "high": 450
+   }
+  }
+ },
+ "thermal_mass": "C uses SAP 'medium' 250 kJ/m2K for every form (RdSAP default). SAP 2012 v9.92 Table 1f indicative TMP: low 100, medium 250, high 450 kJ/m2K; SAP 10.2 Table 1e lists k per construction and 1f defines TMP = sum(k A)/TFA. Low/high scale c_kwh_k by 0.4 / 1.8.",
+ "constants": {
+  "boiler_eta": 0.89,
+  "dhw_heat_kwh_yr": 1825.0,
+  "base_temp_c": 15.5,
+  "weather_years": [
+   1991,
+   2020
+  ],
+  "radius_km": 10.0,
+  "radius_step_km": 2.0,
+  "min_dwellings": 5000,
+  "h_heated_homes_per_meter": {
+   "central": 0.86,
+   "low": 0.813,
+   "high": 0.913,
+   "per_meter": 1.0
+  },
+  "floor_band_m2": {
+   "1": [
+    30,
+    50
+   ],
+   "2": [
+    51,
+    100
+   ],
+   "3": [
+    101,
+    150
+   ],
+   "4": [
+    151,
+    200
+   ],
+   "5": [
+    201,
+    300
+   ]
+  }
+ },
+ "method": "Model v3 housing stock: an empirical dwelling distribution per town (79 towns), calibrated to metered gas.\n\nMethod (docs/article/lit/methods_v3.md section 3; plan \"Model v3\" item 3):\n  1. Canet et al. (UKERC EDC, doi:10.5286/ukerc.edc.000944, CC-BY 4.0, latest = version 2 of 14 Oct 2021):\n     per 2011 LSOA, number of gas-boiler dwellings and their mean EPC space-heating demand for 4 forms\n     (detached, semi, terraced, flat). EPC HEATING_COST_CURRENT -> kWh, i.e. SPACE heat only, at SAP\n     standard occupancy and climate. The file has NO floor area.\n  2. LSOAs whose ONS 2011 population-weighted centroid is within R of the town (R = 10 km, widened in 2 km\n     steps until >= 5,000 dwellings of all heating types).\n  3. HTC = space heat / degree-hours (base 15.5 C, ERA5 1991-2020 hourly from history.npz).\n  4. Halloran-style calibration: one factor per town so that mean modelled gas per gas dwelling\n     (space heat / 0.89 + hot water / 0.89) equals DESNZ 2024 mean domestic gas per GAS-HEATED HOME\n     (= mean per meter / h, h = 0.86 heated homes per meter, 0.813 / 0.913 / 1.0 as sensitivities) over the\n     MSOAs (2021 PWC) inside the same R. The factor bundles EPC over-prediction AND the SAP-climate vs\n     local-climate difference, because EPC demand is not at local weather.\n  5. Floor area and within-cell spread from NEED anonymised 2026 (50k, OGL): for gas-heated homes of the\n     same form and ONS region, the floor-area band mix, and each band's mean space-heat gas relative to the\n     form x region mean (mean-preserving). So HTC and floor area co-vary as they do in metered homes.\n  6. Scotland (regions N, P): no Canet. Form mix, floor area and band ratios from NEED North East\n     (E12000001) gas homes, scaled to the Scottish Intermediate Zone metered gas in R. Flagged as proxy.\n  7. C = 250 kJ/m2K x floor area (SAP \"medium\"; SAP 2012 Table 1f indicative TMP: low 100, medium 250,\n     high 450 kJ/m2K; RdSAP uses 250). tau = C / HTC.\n\nFew et al. (2023) band deflation is NOT applied: Canet gives no EPC band per LSOA, and the per-town gas\nfactor already removes the mean EPC bias. Downloaded files are data only; nothing in them is executed.",
+ "sources": [
+  {
+   "dir": "canet2021",
+   "file": "Annual_heat_demand_LSOA.csv",
+   "url": "https://dap.ceda.ac.uk/edc/d1/94510b6f-f8d5-4257-a0d9-e1c0ca7f929e/data/version_0/Annual_heat_demand_LSOA.csv?download=1",
+   "title": "Spatio-temporal heat demand for LSOAs in England and Wales (Annual_heat_demand_LSOA.csv)",
+   "publisher": "Canet, Cardiff University / UKERC Energy Data Centre (CEDA archive)",
+   "doi": "10.5286/ukerc.edc.000944",
+   "licence": "CC-BY 4.0",
+   "version": "version 2, 14 Oct 2021 (folder 'version_0' holds the latest per README_FIRST.txt)"
+  },
+  {
+   "dir": "lsoa2011_pwc",
+   "file": "lsoa11_pwc_27700.json",
+   "url": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/ArcGIS/rest/services/LSOA_Dec_2011_PWC_in_England_and_Wales_2022/FeatureServer/0/query",
+   "title": "LSOA (Dec 2011) population weighted centroids in England and Wales",
+   "publisher": "ONS Open Geography Portal",
+   "licence": "OGL v3",
+   "version": "2022 release, EPSG:27700"
+  },
+  {
+   "dir": "need2026",
+   "file": "anon2026_50k.csv",
+   "url": "https://assets.publishing.service.gov.uk/media/6a282ad83b15d05a7ce31fb1/anon2026_50k.csv",
+   "title": "Anonymised NEED data 2026: 50,000 row sample",
+   "publisher": "DESNZ",
+   "licence": "OGL v3",
+   "version": "published 11 Jun 2026; gas 2024, weather corrected"
+  },
+  {
+   "dir": "need2026",
+   "file": "NEED-2026-anonymised-dataset-metadata.ods",
+   "url": "https://assets.publishing.service.gov.uk/media/6a282d2be371d9d2c0052b39/NEED-2026-anonymised-dataset-metadata.ods",
+   "title": "NEED 2026 anonymised data: metadata",
+   "publisher": "DESNZ",
+   "licence": "OGL v3",
+   "version": "published 11 Jun 2026; gas 2024, weather corrected"
+  },
+  {
+   "dir": "sap",
+   "file": "SAP-2012_9-92.pdf",
+   "url": "https://files.bregroup.com/SAP/SAP-2012_9-92.pdf",
+   "title": "SAP 2012 version 9.92 (Oct 2013), Table 1f indicative TMP",
+   "publisher": "BRE for DESNZ",
+   "licence": "Crown copyright",
+   "version": "9.92"
+  },
+  {
+   "dir": "sap",
+   "file": "SAP_10.2_-_11-04-2023.pdf",
+   "url": "https://files.bregroup.com/SAP/SAP%2010.2%20-%2011-04-2023.pdf",
+   "title": "SAP 10.2 (11-04-2023), Tables 1e/1f (k values; TMP definition)",
+   "publisher": "BRE for DESNZ",
+   "licence": "Crown copyright",
+   "version": "10.2"
+  },
+  {
+   "file": "gas_domestic_MSOA_stacked_2010-2024.csv",
+   "year": "2024",
+   "publisher": "DESNZ",
+   "licence": "OGL v3",
+   "title": "Domestic gas by MSOA / Scottish IZ, 2010-2024 (already fetched by gb_national_scale.py)"
+  },
+  {
+   "title": "ONS MSOA Dec 2021 PWC; Scottish Government IZ 2022 centroids (already fetched)",
+   "file": "msoa_dec2021_ew_pwc_v2.json, iz2022_centroids_scotland.geojson"
+  },
+  {
+   "title": "ERA5 hourly 2 m temperature via Open-Meteo",
+   "file": "data/model/gb/history.npz"
+  }
+ ],
+ "caveats": [
+  "Per-meter bias corrected: gas per gas-heated home = gas per meter / h, h = 0.86 (midpoint of census 2021 E&W 0.813 mains-gas-only and 0.913 incl. multi-fuel homes per DESNZ meter); per_meter (h = 1) kept as the uncorrected sensitivity. Scotland: E&W ratio applied (no Scottish census ratio used).",
+  "Cooking gas is ignored; hot water is fixed at the model's own mean (5 kWh/day useful).",
+  "Within-cell spread is floor-area driven only (NEED band means); occupant behaviour is not in the HTC, so the within-town HTC spread is a lower bound.",
+  "Floor-area bands are uniform within band; band 1 taken as 30-50 m2 and band 5 as 201-300 m2.",
+  "Canet is gas-boiler dwellings only here; oil/electric/biomass homes are counted toward the 5,000 dwelling radius rule but are not in the records.",
+  "Scottish towns: NEED North East form mix, floor area and band ratios (Scotland is not in NEED or Canet), scaled to Intermediate Zone metered gas. scottish_proxy = true.",
+  "Few et al. (2023) band deflation not applied: no EPC band in Canet; the gas factor removes the mean bias.",
+  "1 DESNZ gas areas had no centroid (unallocated / old codes) and are not used."
+ ],
+ "towns": [
+  {
+   "town": "Wick",
+   "region_letter": "P",
+   "need_region": "E12000001",
+   "scottish_proxy": true,
+   "h_basis": "E&W ratio applied",
+   "radius_km": 60.0,
+   "n_lsoa": 0,
+   "dwellings": 4629,
+   "gas_areas": 7,
+   "gas_meters": 4629,
+   "gas_mean_kwh_per_meter_2024": 13313,
+   "epc_mean_space_heat_kwh": null,
+   "gas_factor": 1.492,
+   "degree_hours_kh": 60.43,
+   "median_htc_w_k": 178.8,
+   "p10_p90_htc": [
+    168.1,
+    250.2
+   ],
+   "median_tau_h": 32.5,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0666,
+    "high": 0.9331,
+    "per_meter": 0.8386
+   },
+   "median_htc_by_h": {
+    "central": 178.8,
+    "low": 190.7,
+    "high": 166.9,
+    "per_meter": 150.0
+   },
+   "median_tau_by_h": {
+    "central": 32.5,
+    "low": 30.4,
+    "high": 34.8,
+    "per_meter": 38.7
+   },
+   "median_floor_m2": 87.0,
+   "form_share": [
+    0.225,
+    0.35,
+    0.318,
+    0.107
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Ullapool",
+   "region_letter": "P",
+   "need_region": "E12000001",
+   "scottish_proxy": true,
+   "h_basis": "E&W ratio applied",
+   "radius_km": 60.0,
+   "n_lsoa": 0,
+   "dwellings": 7143,
+   "gas_areas": 5,
+   "gas_meters": 7143,
+   "gas_mean_kwh_per_meter_2024": 11785,
+   "epc_mean_space_heat_kwh": null,
+   "gas_factor": 1.295,
+   "degree_hours_kh": 61.57,
+   "median_htc_w_k": 152.3,
+   "p10_p90_htc": [
+    143.2,
+    213.1
+   ],
+   "median_tau_h": 38.0,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.068,
+    "high": 0.9317,
+    "per_meter": 0.8354
+   },
+   "median_htc_by_h": {
+    "central": 152.3,
+    "low": 162.6,
+    "high": 141.9,
+    "per_meter": 127.2
+   },
+   "median_tau_by_h": {
+    "central": 38.0,
+    "low": 35.5,
+    "high": 40.7,
+    "per_meter": 45.4
+   },
+   "median_floor_m2": 86.1,
+   "form_share": [
+    0.223,
+    0.35,
+    0.316,
+    0.111
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Elgin",
+   "region_letter": "P",
+   "need_region": "E12000001",
+   "scottish_proxy": true,
+   "h_basis": "E&W ratio applied",
+   "radius_km": 10.0,
+   "n_lsoa": 0,
+   "dwellings": 15531,
+   "gas_areas": 11,
+   "gas_meters": 15531,
+   "gas_mean_kwh_per_meter_2024": 11369,
+   "epc_mean_space_heat_kwh": null,
+   "gas_factor": 1.241,
+   "degree_hours_kh": 58.25,
+   "median_htc_w_k": 154.3,
+   "p10_p90_htc": [
+    145.1,
+    215.9
+   ],
+   "median_tau_h": 37.6,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0684,
+    "high": 0.9313,
+    "per_meter": 0.8343
+   },
+   "median_htc_by_h": {
+    "central": 154.3,
+    "low": 164.9,
+    "high": 143.7,
+    "per_meter": 128.7
+   },
+   "median_tau_by_h": {
+    "central": 37.6,
+    "low": 35.2,
+    "high": 40.4,
+    "per_meter": 45.1
+   },
+   "median_floor_m2": 86.9,
+   "form_share": [
+    0.222,
+    0.358,
+    0.309,
+    0.112
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Inverness",
+   "region_letter": "P",
+   "need_region": "E12000001",
+   "scottish_proxy": true,
+   "h_basis": "E&W ratio applied",
+   "radius_km": 10.0,
+   "n_lsoa": 0,
+   "dwellings": 27865,
+   "gas_areas": 17,
+   "gas_meters": 27865,
+   "gas_mean_kwh_per_meter_2024": 11671,
+   "epc_mean_space_heat_kwh": null,
+   "gas_factor": 1.28,
+   "degree_hours_kh": 64.99,
+   "median_htc_w_k": 142.6,
+   "p10_p90_htc": [
+    134.1,
+    199.6
+   ],
+   "median_tau_h": 40.8,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0681,
+    "high": 0.9316,
+    "per_meter": 0.8351
+   },
+   "median_htc_by_h": {
+    "central": 142.6,
+    "low": 152.4,
+    "high": 132.9,
+    "per_meter": 119.1
+   },
+   "median_tau_by_h": {
+    "central": 40.8,
+    "low": 38.2,
+    "high": 43.8,
+    "per_meter": 48.9
+   },
+   "median_floor_m2": 87.4,
+   "form_share": [
+    0.221,
+    0.353,
+    0.317,
+    0.109
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Aviemore",
+   "region_letter": "P",
+   "need_region": "E12000001",
+   "scottish_proxy": true,
+   "h_basis": "E&W ratio applied",
+   "radius_km": 38.0,
+   "n_lsoa": 0,
+   "dwellings": 13111,
+   "gas_areas": 8,
+   "gas_meters": 13111,
+   "gas_mean_kwh_per_meter_2024": 11431,
+   "epc_mean_space_heat_kwh": null,
+   "gas_factor": 1.249,
+   "degree_hours_kh": 73.8,
+   "median_htc_w_k": 122.6,
+   "p10_p90_htc": [
+    115.2,
+    171.5
+   ],
+   "median_tau_h": 47.4,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0684,
+    "high": 0.9314,
+    "per_meter": 0.8345
+   },
+   "median_htc_by_h": {
+    "central": 122.6,
+    "low": 130.9,
+    "high": 114.2,
+    "per_meter": 102.3
+   },
+   "median_tau_by_h": {
+    "central": 47.4,
+    "low": 44.4,
+    "high": 50.9,
+    "per_meter": 56.8
+   },
+   "median_floor_m2": 86.8,
+   "form_share": [
+    0.216,
+    0.359,
+    0.313,
+    0.112
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Aberdeen",
+   "region_letter": "P",
+   "need_region": "E12000001",
+   "scottish_proxy": true,
+   "h_basis": "E&W ratio applied",
+   "radius_km": 10.0,
+   "n_lsoa": 0,
+   "dwellings": 103428,
+   "gas_areas": 51,
+   "gas_meters": 103428,
+   "gas_mean_kwh_per_meter_2024": 11512,
+   "epc_mean_space_heat_kwh": null,
+   "gas_factor": 1.26,
+   "degree_hours_kh": 59.02,
+   "median_htc_w_k": 154.5,
+   "p10_p90_htc": [
+    145.3,
+    216.3
+   ],
+   "median_tau_h": 37.5,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0683,
+    "high": 0.9314,
+    "per_meter": 0.8347
+   },
+   "median_htc_by_h": {
+    "central": 154.5,
+    "low": 165.1,
+    "high": 144.0,
+    "per_meter": 129.0
+   },
+   "median_tau_by_h": {
+    "central": 37.5,
+    "low": 35.1,
+    "high": 40.3,
+    "per_meter": 44.9
+   },
+   "median_floor_m2": 86.9,
+   "form_share": [
+    0.222,
+    0.353,
+    0.314,
+    0.111
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Fort William",
+   "region_letter": "P",
+   "need_region": "E12000001",
+   "scottish_proxy": true,
+   "h_basis": "E&W ratio applied",
+   "radius_km": 60.0,
+   "n_lsoa": 0,
+   "dwellings": 1095,
+   "gas_areas": 2,
+   "gas_meters": 1095,
+   "gas_mean_kwh_per_meter_2024": 14122,
+   "epc_mean_space_heat_kwh": null,
+   "gas_factor": 1.597,
+   "degree_hours_kh": 62.15,
+   "median_htc_w_k": 186.1,
+   "p10_p90_htc": [
+    174.9,
+    260.4
+   ],
+   "median_tau_h": 31.3,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0661,
+    "high": 0.9337,
+    "per_meter": 0.84
+   },
+   "median_htc_by_h": {
+    "central": 186.1,
+    "low": 198.3,
+    "high": 173.7,
+    "per_meter": 156.3
+   },
+   "median_tau_by_h": {
+    "central": 31.3,
+    "low": 29.4,
+    "high": 33.5,
+    "per_meter": 37.3
+   },
+   "median_floor_m2": 86.8,
+   "form_share": [
+    0.224,
+    0.351,
+    0.315,
+    0.11
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Oban",
+   "region_letter": "P",
+   "need_region": "E12000001",
+   "scottish_proxy": true,
+   "h_basis": "E&W ratio applied",
+   "radius_km": 60.0,
+   "n_lsoa": 0,
+   "dwellings": 2372,
+   "gas_areas": 4,
+   "gas_meters": 2372,
+   "gas_mean_kwh_per_meter_2024": 13964,
+   "epc_mean_space_heat_kwh": null,
+   "gas_factor": 1.576,
+   "degree_hours_kh": 60.22,
+   "median_htc_w_k": 189.6,
+   "p10_p90_htc": [
+    178.2,
+    265.3
+   ],
+   "median_tau_h": 30.8,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0662,
+    "high": 0.9336,
+    "per_meter": 0.8398
+   },
+   "median_htc_by_h": {
+    "central": 189.6,
+    "low": 202.1,
+    "high": 177.0,
+    "per_meter": 159.2
+   },
+   "median_tau_by_h": {
+    "central": 30.8,
+    "low": 28.9,
+    "high": 33.0,
+    "per_meter": 36.6
+   },
+   "median_floor_m2": 87.4,
+   "form_share": [
+    0.222,
+    0.349,
+    0.319,
+    0.11
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Dundee",
+   "region_letter": "P",
+   "need_region": "E12000001",
+   "scottish_proxy": true,
+   "h_basis": "E&W ratio applied",
+   "radius_km": 10.0,
+   "n_lsoa": 0,
+   "dwellings": 75576,
+   "gas_areas": 42,
+   "gas_meters": 75576,
+   "gas_mean_kwh_per_meter_2024": 11259,
+   "epc_mean_space_heat_kwh": null,
+   "gas_factor": 1.227,
+   "degree_hours_kh": 61.89,
+   "median_htc_w_k": 143.5,
+   "p10_p90_htc": [
+    135.0,
+    200.9
+   ],
+   "median_tau_h": 40.5,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0685,
+    "high": 0.9312,
+    "per_meter": 0.834
+   },
+   "median_htc_by_h": {
+    "central": 143.5,
+    "low": 153.4,
+    "high": 133.7,
+    "per_meter": 119.7
+   },
+   "median_tau_by_h": {
+    "central": 40.5,
+    "low": 37.9,
+    "high": 43.5,
+    "per_meter": 48.6
+   },
+   "median_floor_m2": 86.9,
+   "form_share": [
+    0.216,
+    0.352,
+    0.32,
+    0.112
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Perth",
+   "region_letter": "P",
+   "need_region": "E12000001",
+   "scottish_proxy": true,
+   "h_basis": "E&W ratio applied",
+   "radius_km": 10.0,
+   "n_lsoa": 0,
+   "dwellings": 26822,
+   "gas_areas": 17,
+   "gas_meters": 26822,
+   "gas_mean_kwh_per_meter_2024": 11670,
+   "epc_mean_space_heat_kwh": null,
+   "gas_factor": 1.28,
+   "degree_hours_kh": 63.34,
+   "median_htc_w_k": 146.3,
+   "p10_p90_htc": [
+    137.6,
+    204.8
+   ],
+   "median_tau_h": 39.7,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0681,
+    "high": 0.9316,
+    "per_meter": 0.8351
+   },
+   "median_htc_by_h": {
+    "central": 146.3,
+    "low": 156.3,
+    "high": 136.3,
+    "per_meter": 122.2
+   },
+   "median_tau_by_h": {
+    "central": 39.7,
+    "low": 37.1,
+    "high": 42.6,
+    "per_meter": 47.5
+   },
+   "median_floor_m2": 86.7,
+   "form_share": [
+    0.218,
+    0.354,
+    0.318,
+    0.11
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Stirling",
+   "region_letter": "N",
+   "need_region": "E12000001",
+   "scottish_proxy": true,
+   "h_basis": "E&W ratio applied",
+   "radius_km": 10.0,
+   "n_lsoa": 0,
+   "dwellings": 43113,
+   "gas_areas": 25,
+   "gas_meters": 43113,
+   "gas_mean_kwh_per_meter_2024": 11983,
+   "epc_mean_space_heat_kwh": null,
+   "gas_factor": 1.32,
+   "degree_hours_kh": 63.2,
+   "median_htc_w_k": 151.3,
+   "p10_p90_htc": [
+    142.3,
+    211.7
+   ],
+   "median_tau_h": 38.5,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0678,
+    "high": 0.9319,
+    "per_meter": 0.8358
+   },
+   "median_htc_by_h": {
+    "central": 151.3,
+    "low": 161.5,
+    "high": 141.0,
+    "per_meter": 126.5
+   },
+   "median_tau_by_h": {
+    "central": 38.5,
+    "low": 36.1,
+    "high": 41.4,
+    "per_meter": 46.1
+   },
+   "median_floor_m2": 86.8,
+   "form_share": [
+    0.219,
+    0.346,
+    0.32,
+    0.115
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Edinburgh",
+   "region_letter": "N",
+   "need_region": "E12000001",
+   "scottish_proxy": true,
+   "h_basis": "E&W ratio applied",
+   "radius_km": 10.0,
+   "n_lsoa": 0,
+   "dwellings": 236374,
+   "gas_areas": 120,
+   "gas_meters": 236374,
+   "gas_mean_kwh_per_meter_2024": 10777,
+   "epc_mean_space_heat_kwh": null,
+   "gas_factor": 1.164,
+   "degree_hours_kh": 60.78,
+   "median_htc_w_k": 138.7,
+   "p10_p90_htc": [
+    130.5,
+    194.2
+   ],
+   "median_tau_h": 41.9,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0691,
+    "high": 0.9306,
+    "per_meter": 0.8326
+   },
+   "median_htc_by_h": {
+    "central": 138.7,
+    "low": 148.3,
+    "high": 129.1,
+    "per_meter": 115.5
+   },
+   "median_tau_by_h": {
+    "central": 41.9,
+    "low": 39.2,
+    "high": 45.0,
+    "per_meter": 50.3
+   },
+   "median_floor_m2": 86.7,
+   "form_share": [
+    0.22,
+    0.353,
+    0.317,
+    0.11
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Glasgow",
+   "region_letter": "N",
+   "need_region": "E12000001",
+   "scottish_proxy": true,
+   "h_basis": "E&W ratio applied",
+   "radius_km": 10.0,
+   "n_lsoa": 0,
+   "dwellings": 359916,
+   "gas_areas": 197,
+   "gas_meters": 359916,
+   "gas_mean_kwh_per_meter_2024": 10733,
+   "epc_mean_space_heat_kwh": null,
+   "gas_factor": 1.159,
+   "degree_hours_kh": 61.13,
+   "median_htc_w_k": 137.3,
+   "p10_p90_htc": [
+    129.1,
+    192.1
+   ],
+   "median_tau_h": 42.2,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0692,
+    "high": 0.9305,
+    "per_meter": 0.8325
+   },
+   "median_htc_by_h": {
+    "central": 137.3,
+    "low": 146.8,
+    "high": 127.7,
+    "per_meter": 114.3
+   },
+   "median_tau_by_h": {
+    "central": 42.2,
+    "low": 39.5,
+    "high": 45.3,
+    "per_meter": 50.7
+   },
+   "median_floor_m2": 86.3,
+   "form_share": [
+    0.22,
+    0.348,
+    0.322,
+    0.111
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Galashiels",
+   "region_letter": "N",
+   "need_region": "E12000001",
+   "scottish_proxy": true,
+   "h_basis": "E&W ratio applied",
+   "radius_km": 10.0,
+   "n_lsoa": 0,
+   "dwellings": 11618,
+   "gas_areas": 8,
+   "gas_meters": 11618,
+   "gas_mean_kwh_per_meter_2024": 11603,
+   "epc_mean_space_heat_kwh": null,
+   "gas_factor": 1.271,
+   "degree_hours_kh": 66.27,
+   "median_htc_w_k": 138.9,
+   "p10_p90_htc": [
+    130.6,
+    194.4
+   ],
+   "median_tau_h": 41.8,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0682,
+    "high": 0.9315,
+    "per_meter": 0.8349
+   },
+   "median_htc_by_h": {
+    "central": 138.9,
+    "low": 148.4,
+    "high": 129.4,
+    "per_meter": 116.0
+   },
+   "median_tau_by_h": {
+    "central": 41.8,
+    "low": 39.1,
+    "high": 44.8,
+    "per_meter": 50.0
+   },
+   "median_floor_m2": 86.9,
+   "form_share": [
+    0.216,
+    0.355,
+    0.32,
+    0.108
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Ayr",
+   "region_letter": "N",
+   "need_region": "E12000001",
+   "scottish_proxy": true,
+   "h_basis": "E&W ratio applied",
+   "radius_km": 10.0,
+   "n_lsoa": 0,
+   "dwellings": 37779,
+   "gas_areas": 20,
+   "gas_meters": 37779,
+   "gas_mean_kwh_per_meter_2024": 12251,
+   "epc_mean_space_heat_kwh": null,
+   "gas_factor": 1.355,
+   "degree_hours_kh": 56.01,
+   "median_htc_w_k": 175.2,
+   "p10_p90_htc": [
+    164.7,
+    245.2
+   ],
+   "median_tau_h": 33.0,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0675,
+    "high": 0.9322,
+    "per_meter": 0.8365
+   },
+   "median_htc_by_h": {
+    "central": 175.2,
+    "low": 187.0,
+    "high": 163.3,
+    "per_meter": 146.5
+   },
+   "median_tau_by_h": {
+    "central": 33.0,
+    "low": 31.0,
+    "high": 35.4,
+    "per_meter": 39.5
+   },
+   "median_floor_m2": 86.5,
+   "form_share": [
+    0.223,
+    0.352,
+    0.315,
+    0.11
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Dumfries",
+   "region_letter": "N",
+   "need_region": "E12000001",
+   "scottish_proxy": true,
+   "h_basis": "E&W ratio applied",
+   "radius_km": 10.0,
+   "n_lsoa": 0,
+   "dwellings": 18627,
+   "gas_areas": 14,
+   "gas_meters": 18627,
+   "gas_mean_kwh_per_meter_2024": 11234,
+   "epc_mean_space_heat_kwh": null,
+   "gas_factor": 1.224,
+   "degree_hours_kh": 59.83,
+   "median_htc_w_k": 148.1,
+   "p10_p90_htc": [
+    139.3,
+    207.3
+   ],
+   "median_tau_h": 39.3,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0686,
+    "high": 0.9311,
+    "per_meter": 0.8339
+   },
+   "median_htc_by_h": {
+    "central": 148.1,
+    "low": 158.3,
+    "high": 137.9,
+    "per_meter": 123.5
+   },
+   "median_tau_by_h": {
+    "central": 39.3,
+    "low": 36.8,
+    "high": 42.2,
+    "per_meter": 47.1
+   },
+   "median_floor_m2": 87.1,
+   "form_share": [
+    0.219,
+    0.353,
+    0.316,
+    0.112
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Berwick",
+   "region_letter": "F",
+   "need_region": "E12000001",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 10,
+   "dwellings": 7214,
+   "gas_areas": 2,
+   "gas_meters": 6268,
+   "gas_mean_kwh_per_meter_2024": 11267,
+   "epc_mean_space_heat_kwh": 17266,
+   "gas_factor": 0.57,
+   "degree_hours_kh": 54.34,
+   "median_htc_w_k": 157.7,
+   "p10_p90_htc": [
+    104.7,
+    285.5
+   ],
+   "median_tau_h": 35.0,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0685,
+    "high": 0.9312,
+    "per_meter": 0.834
+   },
+   "median_htc_by_h": {
+    "central": 157.7,
+    "low": 168.5,
+    "high": 146.9,
+    "per_meter": 131.5
+   },
+   "median_tau_by_h": {
+    "central": 35.0,
+    "low": 32.7,
+    "high": 37.6,
+    "per_meter": 42.0
+   },
+   "median_floor_m2": 83.7,
+   "form_share": [
+    0.148,
+    0.393,
+    0.28,
+    0.179
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Newcastle",
+   "region_letter": "F",
+   "need_region": "E12000001",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 419,
+   "dwellings": 284539,
+   "gas_areas": 86,
+   "gas_meters": 289308,
+   "gas_mean_kwh_per_meter_2024": 11478,
+   "epc_mean_space_heat_kwh": 15271,
+   "gas_factor": 0.658,
+   "degree_hours_kh": 57.82,
+   "median_htc_w_k": 157.6,
+   "p10_p90_htc": [
+    110.4,
+    261.5
+   ],
+   "median_tau_h": 35.9,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0683,
+    "high": 0.9314,
+    "per_meter": 0.8346
+   },
+   "median_htc_by_h": {
+    "central": 157.6,
+    "low": 168.4,
+    "high": 146.8,
+    "per_meter": 131.6
+   },
+   "median_tau_by_h": {
+    "central": 35.9,
+    "low": 33.7,
+    "high": 38.6,
+    "per_meter": 43.1
+   },
+   "median_floor_m2": 83.3,
+   "form_share": [
+    0.103,
+    0.427,
+    0.281,
+    0.19
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Durham",
+   "region_letter": "F",
+   "need_region": "E12000001",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 118,
+   "dwellings": 84629,
+   "gas_areas": 24,
+   "gas_meters": 86491,
+   "gas_mean_kwh_per_meter_2024": 11783,
+   "epc_mean_space_heat_kwh": 15205,
+   "gas_factor": 0.682,
+   "degree_hours_kh": 56.64,
+   "median_htc_w_k": 169.3,
+   "p10_p90_htc": [
+    125.0,
+    258.3
+   ],
+   "median_tau_h": 36.6,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.068,
+    "high": 0.9317,
+    "per_meter": 0.8354
+   },
+   "median_htc_by_h": {
+    "central": 169.3,
+    "low": 180.8,
+    "high": 157.7,
+    "per_meter": 141.4
+   },
+   "median_tau_by_h": {
+    "central": 36.6,
+    "low": 34.3,
+    "high": 39.3,
+    "per_meter": 43.8
+   },
+   "median_floor_m2": 88.3,
+   "form_share": [
+    0.182,
+    0.459,
+    0.301,
+    0.058
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Middlesbrough",
+   "region_letter": "F",
+   "need_region": "E12000001",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 230,
+   "dwellings": 154817,
+   "gas_areas": 50,
+   "gas_meters": 164895,
+   "gas_mean_kwh_per_meter_2024": 11053,
+   "epc_mean_space_heat_kwh": 15832,
+   "gas_factor": 0.607,
+   "degree_hours_kh": 54.05,
+   "median_htc_w_k": 162.2,
+   "p10_p90_htc": [
+    116.8,
+    256.6
+   ],
+   "median_tau_h": 37.3,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0688,
+    "high": 0.9309,
+    "per_meter": 0.8334
+   },
+   "median_htc_by_h": {
+    "central": 162.2,
+    "low": 173.3,
+    "high": 151.0,
+    "per_meter": 135.2
+   },
+   "median_tau_by_h": {
+    "central": 37.3,
+    "low": 34.9,
+    "high": 40.0,
+    "per_meter": 44.7
+   },
+   "median_floor_m2": 87.6,
+   "form_share": [
+    0.191,
+    0.452,
+    0.275,
+    0.082
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Carlisle",
+   "region_letter": "G",
+   "need_region": "E12000002",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 62,
+   "dwellings": 42851,
+   "gas_areas": 11,
+   "gas_meters": 43808,
+   "gas_mean_kwh_per_meter_2024": 11013,
+   "epc_mean_space_heat_kwh": 15927,
+   "gas_factor": 0.601,
+   "degree_hours_kh": 59.91,
+   "median_htc_w_k": 147.9,
+   "p10_p90_htc": [
+    106.1,
+    234.9
+   ],
+   "median_tau_h": 41.7,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0688,
+    "high": 0.9309,
+    "per_meter": 0.8333
+   },
+   "median_htc_by_h": {
+    "central": 147.9,
+    "low": 158.1,
+    "high": 137.7,
+    "per_meter": 123.3
+   },
+   "median_tau_by_h": {
+    "central": 41.7,
+    "low": 39.1,
+    "high": 44.8,
+    "per_meter": 50.1
+   },
+   "median_floor_m2": 87.8,
+   "form_share": [
+    0.202,
+    0.393,
+    0.305,
+    0.101
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Kendal",
+   "region_letter": "G",
+   "need_region": "E12000002",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 20,
+   "dwellings": 18132,
+   "gas_areas": 5,
+   "gas_meters": 16502,
+   "gas_mean_kwh_per_meter_2024": 11009,
+   "epc_mean_space_heat_kwh": 16213,
+   "gas_factor": 0.59,
+   "degree_hours_kh": 59.05,
+   "median_htc_w_k": 149.9,
+   "p10_p90_htc": [
+    106.7,
+    226.5
+   ],
+   "median_tau_h": 40.6,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0688,
+    "high": 0.9309,
+    "per_meter": 0.8333
+   },
+   "median_htc_by_h": {
+    "central": 149.9,
+    "low": 160.2,
+    "high": 139.5,
+    "per_meter": 124.9
+   },
+   "median_tau_by_h": {
+    "central": 40.6,
+    "low": 38.0,
+    "high": 43.7,
+    "per_meter": 48.8
+   },
+   "median_floor_m2": 87.9,
+   "form_share": [
+    0.249,
+    0.348,
+    0.281,
+    0.122
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Lancaster",
+   "region_letter": "G",
+   "need_region": "E12000002",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 83,
+   "dwellings": 53879,
+   "gas_areas": 17,
+   "gas_meters": 54515,
+   "gas_mean_kwh_per_meter_2024": 10618,
+   "epc_mean_space_heat_kwh": 16646,
+   "gas_factor": 0.55,
+   "degree_hours_kh": 53.45,
+   "median_htc_w_k": 152.2,
+   "p10_p90_htc": [
+    112.4,
+    247.1
+   ],
+   "median_tau_h": 38.2,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0693,
+    "high": 0.9304,
+    "per_meter": 0.8321
+   },
+   "median_htc_by_h": {
+    "central": 152.2,
+    "low": 162.8,
+    "high": 141.6,
+    "per_meter": 126.7
+   },
+   "median_tau_by_h": {
+    "central": 38.2,
+    "low": 35.7,
+    "high": 41.0,
+    "per_meter": 45.9
+   },
+   "median_floor_m2": 86.1,
+   "form_share": [
+    0.177,
+    0.411,
+    0.285,
+    0.127
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Blackpool",
+   "region_letter": "G",
+   "need_region": "E12000002",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 161,
+   "dwellings": 107451,
+   "gas_areas": 31,
+   "gas_meters": 110096,
+   "gas_mean_kwh_per_meter_2024": 11043,
+   "epc_mean_space_heat_kwh": 17474,
+   "gas_factor": 0.55,
+   "degree_hours_kh": 50.54,
+   "median_htc_w_k": 172.5,
+   "p10_p90_htc": [
+    120.6,
+    282.9
+   ],
+   "median_tau_h": 34.7,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0688,
+    "high": 0.9309,
+    "per_meter": 0.8334
+   },
+   "median_htc_by_h": {
+    "central": 172.5,
+    "low": 184.3,
+    "high": 160.6,
+    "per_meter": 143.7
+   },
+   "median_tau_by_h": {
+    "central": 34.7,
+    "low": 32.5,
+    "high": 37.3,
+    "per_meter": 41.7
+   },
+   "median_floor_m2": 87.3,
+   "form_share": [
+    0.196,
+    0.439,
+    0.234,
+    0.131
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Preston",
+   "region_letter": "G",
+   "need_region": "E12000002",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 177,
+   "dwellings": 114856,
+   "gas_areas": 39,
+   "gas_meters": 126102,
+   "gas_mean_kwh_per_meter_2024": 10959,
+   "epc_mean_space_heat_kwh": 15687,
+   "gas_factor": 0.607,
+   "degree_hours_kh": 53.9,
+   "median_htc_w_k": 159.3,
+   "p10_p90_htc": [
+    107.5,
+    257.0
+   ],
+   "median_tau_h": 38.5,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0689,
+    "high": 0.9308,
+    "per_meter": 0.8332
+   },
+   "median_htc_by_h": {
+    "central": 159.3,
+    "low": 170.3,
+    "high": 148.3,
+    "per_meter": 132.8
+   },
+   "median_tau_by_h": {
+    "central": 38.5,
+    "low": 36.0,
+    "high": 41.4,
+    "per_meter": 46.2
+   },
+   "median_floor_m2": 89.3,
+   "form_share": [
+    0.259,
+    0.4,
+    0.245,
+    0.096
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Manchester",
+   "region_letter": "G",
+   "need_region": "E12000002",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 684,
+   "dwellings": 475602,
+   "gas_areas": 148,
+   "gas_meters": 447683,
+   "gas_mean_kwh_per_meter_2024": 11116,
+   "epc_mean_space_heat_kwh": 15290,
+   "gas_factor": 0.633,
+   "degree_hours_kh": 56.18,
+   "median_htc_w_k": 155.9,
+   "p10_p90_htc": [
+    99.0,
+    258.2
+   ],
+   "median_tau_h": 36.6,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0687,
+    "high": 0.931,
+    "per_meter": 0.8336
+   },
+   "median_htc_by_h": {
+    "central": 155.9,
+    "low": 166.6,
+    "high": 145.1,
+    "per_meter": 129.9
+   },
+   "median_tau_by_h": {
+    "central": 36.6,
+    "low": 34.2,
+    "high": 39.3,
+    "per_meter": 43.9
+   },
+   "median_floor_m2": 83.2,
+   "form_share": [
+    0.09,
+    0.408,
+    0.329,
+    0.173
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Scarborough",
+   "region_letter": "M",
+   "need_region": "E12000003",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 46,
+   "dwellings": 32583,
+   "gas_areas": 9,
+   "gas_meters": 32803,
+   "gas_mean_kwh_per_meter_2024": 11096,
+   "epc_mean_space_heat_kwh": 17659,
+   "gas_factor": 0.547,
+   "degree_hours_kh": 52.9,
+   "median_htc_w_k": 166.7,
+   "p10_p90_htc": [
+    112.2,
+    271.7
+   ],
+   "median_tau_h": 32.6,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0687,
+    "high": 0.931,
+    "per_meter": 0.8335
+   },
+   "median_htc_by_h": {
+    "central": 166.7,
+    "low": 178.1,
+    "high": 155.2,
+    "per_meter": 138.9
+   },
+   "median_tau_by_h": {
+    "central": 32.6,
+    "low": 30.5,
+    "high": 35.0,
+    "per_meter": 39.1
+   },
+   "median_floor_m2": 80.7,
+   "form_share": [
+    0.177,
+    0.347,
+    0.249,
+    0.227
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Harrogate",
+   "region_letter": "M",
+   "need_region": "E12000003",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 70,
+   "dwellings": 45512,
+   "gas_areas": 14,
+   "gas_meters": 47457,
+   "gas_mean_kwh_per_meter_2024": 13404,
+   "epc_mean_space_heat_kwh": 18597,
+   "gas_factor": 0.648,
+   "degree_hours_kh": 60.17,
+   "median_htc_w_k": 172.9,
+   "p10_p90_htc": [
+    115.9,
+    322.9
+   ],
+   "median_tau_h": 31.8,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0666,
+    "high": 0.9332,
+    "per_meter": 0.8388
+   },
+   "median_htc_by_h": {
+    "central": 172.9,
+    "low": 184.4,
+    "high": 161.3,
+    "per_meter": 145.0
+   },
+   "median_tau_by_h": {
+    "central": 31.8,
+    "low": 29.8,
+    "high": 34.1,
+    "per_meter": 37.9
+   },
+   "median_floor_m2": 83.9,
+   "form_share": [
+    0.268,
+    0.333,
+    0.215,
+    0.184
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "York",
+   "region_letter": "M",
+   "need_region": "E12000003",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 119,
+   "dwellings": 83066,
+   "gas_areas": 24,
+   "gas_meters": 80601,
+   "gas_mean_kwh_per_meter_2024": 11727,
+   "epc_mean_space_heat_kwh": 15231,
+   "gas_factor": 0.677,
+   "degree_hours_kh": 56.29,
+   "median_htc_w_k": 170.1,
+   "p10_p90_htc": [
+    116.7,
+    257.6
+   ],
+   "median_tau_h": 35.0,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.068,
+    "high": 0.9317,
+    "per_meter": 0.8352
+   },
+   "median_htc_by_h": {
+    "central": 170.1,
+    "low": 181.7,
+    "high": 158.5,
+    "per_meter": 142.1
+   },
+   "median_tau_by_h": {
+    "central": 35.0,
+    "low": 32.8,
+    "high": 37.6,
+    "per_meter": 41.9
+   },
+   "median_floor_m2": 85.4,
+   "form_share": [
+    0.227,
+    0.394,
+    0.262,
+    0.118
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Leeds",
+   "region_letter": "M",
+   "need_region": "E12000003",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 405,
+   "dwellings": 263559,
+   "gas_areas": 89,
+   "gas_meters": 263897,
+   "gas_mean_kwh_per_meter_2024": 11580,
+   "epc_mean_space_heat_kwh": 16127,
+   "gas_factor": 0.63,
+   "degree_hours_kh": 55.57,
+   "median_htc_w_k": 167.6,
+   "p10_p90_htc": [
+    112.7,
+    266.6
+   ],
+   "median_tau_h": 34.3,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0682,
+    "high": 0.9315,
+    "per_meter": 0.8348
+   },
+   "median_htc_by_h": {
+    "central": 167.6,
+    "low": 179.0,
+    "high": 156.1,
+    "per_meter": 139.9
+   },
+   "median_tau_by_h": {
+    "central": 34.3,
+    "low": 32.2,
+    "high": 36.9,
+    "per_meter": 41.1
+   },
+   "median_floor_m2": 82.9,
+   "form_share": [
+    0.15,
+    0.416,
+    0.294,
+    0.14
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Hull",
+   "region_letter": "M",
+   "need_region": "E12000003",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 223,
+   "dwellings": 148036,
+   "gas_areas": 44,
+   "gas_meters": 154205,
+   "gas_mean_kwh_per_meter_2024": 10465,
+   "epc_mean_space_heat_kwh": 14792,
+   "gas_factor": 0.609,
+   "degree_hours_kh": 51.82,
+   "median_htc_w_k": 158.7,
+   "p10_p90_htc": [
+    113.9,
+    251.3
+   ],
+   "median_tau_h": 36.5,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0695,
+    "high": 0.9302,
+    "per_meter": 0.8316
+   },
+   "median_htc_by_h": {
+    "central": 158.7,
+    "low": 169.8,
+    "high": 147.6,
+    "per_meter": 132.0
+   },
+   "median_tau_by_h": {
+    "central": 36.5,
+    "low": 34.1,
+    "high": 39.2,
+    "per_meter": 43.8
+   },
+   "median_floor_m2": 83.9,
+   "form_share": [
+    0.133,
+    0.327,
+    0.438,
+    0.102
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Sheffield",
+   "region_letter": "M",
+   "need_region": "E12000003",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 382,
+   "dwellings": 244645,
+   "gas_areas": 78,
+   "gas_meters": 252094,
+   "gas_mean_kwh_per_meter_2024": 11810,
+   "epc_mean_space_heat_kwh": 15882,
+   "gas_factor": 0.655,
+   "degree_hours_kh": 54.18,
+   "median_htc_w_k": 171.4,
+   "p10_p90_htc": [
+    115.0,
+    294.4
+   ],
+   "median_tau_h": 33.3,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.068,
+    "high": 0.9318,
+    "per_meter": 0.8354
+   },
+   "median_htc_by_h": {
+    "central": 171.4,
+    "low": 183.1,
+    "high": 159.7,
+    "per_meter": 143.2
+   },
+   "median_tau_by_h": {
+    "central": 33.3,
+    "low": 31.2,
+    "high": 35.7,
+    "per_meter": 39.9
+   },
+   "median_floor_m2": 83.3,
+   "form_share": [
+    0.159,
+    0.426,
+    0.265,
+    0.15
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Liverpool",
+   "region_letter": "D",
+   "need_region": "E12000002",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 576,
+   "dwellings": 377254,
+   "gas_areas": 119,
+   "gas_meters": 392231,
+   "gas_mean_kwh_per_meter_2024": 10321,
+   "epc_mean_space_heat_kwh": 16377,
+   "gas_factor": 0.541,
+   "degree_hours_kh": 50.1,
+   "median_htc_w_k": 160.0,
+   "p10_p90_htc": [
+    106.2,
+    263.7
+   ],
+   "median_tau_h": 35.4,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0697,
+    "high": 0.93,
+    "per_meter": 0.8312
+   },
+   "median_htc_by_h": {
+    "central": 160.0,
+    "low": 171.2,
+    "high": 148.8,
+    "per_meter": 133.0
+   },
+   "median_tau_by_h": {
+    "central": 35.4,
+    "low": 33.1,
+    "high": 38.1,
+    "per_meter": 42.6
+   },
+   "median_floor_m2": 83.1,
+   "form_share": [
+    0.094,
+    0.375,
+    0.372,
+    0.159
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Bangor",
+   "region_letter": "D",
+   "need_region": "W92000004",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 30,
+   "dwellings": 19946,
+   "gas_areas": 7,
+   "gas_meters": 15995,
+   "gas_mean_kwh_per_meter_2024": 10122,
+   "epc_mean_space_heat_kwh": 16541,
+   "gas_factor": 0.523,
+   "degree_hours_kh": 50.19,
+   "median_htc_w_k": 158.1,
+   "p10_p90_htc": [
+    110.4,
+    249.2
+   ],
+   "median_tau_h": 41.1,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.07,
+    "high": 0.9297,
+    "per_meter": 0.8305
+   },
+   "median_htc_by_h": {
+    "central": 158.1,
+    "low": 169.2,
+    "high": 147.0,
+    "per_meter": 131.3
+   },
+   "median_tau_by_h": {
+    "central": 41.1,
+    "low": 38.4,
+    "high": 44.2,
+    "per_meter": 49.5
+   },
+   "median_floor_m2": 94.9,
+   "form_share": [
+    0.276,
+    0.303,
+    0.334,
+    0.087
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Chester",
+   "region_letter": "D",
+   "need_region": "E12000002",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 108,
+   "dwellings": 72712,
+   "gas_areas": 22,
+   "gas_meters": 68597,
+   "gas_mean_kwh_per_meter_2024": 10528,
+   "epc_mean_space_heat_kwh": 15053,
+   "gas_factor": 0.603,
+   "degree_hours_kh": 51.93,
+   "median_htc_w_k": 160.6,
+   "p10_p90_htc": [
+    112.0,
+    258.1
+   ],
+   "median_tau_h": 38.3,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0694,
+    "high": 0.9303,
+    "per_meter": 0.8318
+   },
+   "median_htc_by_h": {
+    "central": 160.6,
+    "low": 171.8,
+    "high": 149.4,
+    "per_meter": 133.6
+   },
+   "median_tau_by_h": {
+    "central": 38.3,
+    "low": 35.8,
+    "high": 41.2,
+    "per_meter": 46.1
+   },
+   "median_floor_m2": 88.7,
+   "form_share": [
+    0.251,
+    0.402,
+    0.236,
+    0.112
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Wrexham",
+   "region_letter": "D",
+   "need_region": "W92000004",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 81,
+   "dwellings": 52850,
+   "gas_areas": 17,
+   "gas_meters": 51451,
+   "gas_mean_kwh_per_meter_2024": 10166,
+   "epc_mean_space_heat_kwh": 14654,
+   "gas_factor": 0.593,
+   "degree_hours_kh": 54.35,
+   "median_htc_w_k": 148.1,
+   "p10_p90_htc": [
+    102.0,
+    229.0
+   ],
+   "median_tau_h": 43.7,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0699,
+    "high": 0.9298,
+    "per_meter": 0.8306
+   },
+   "median_htc_by_h": {
+    "central": 148.1,
+    "low": 158.4,
+    "high": 137.7,
+    "per_meter": 123.0
+   },
+   "median_tau_by_h": {
+    "central": 43.7,
+    "low": 40.8,
+    "high": 47.0,
+    "per_meter": 52.6
+   },
+   "median_floor_m2": 94.5,
+   "form_share": [
+    0.29,
+    0.396,
+    0.216,
+    0.097
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Aberystwyth",
+   "region_letter": "D",
+   "need_region": "W92000004",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 15,
+   "dwellings": 9707,
+   "gas_areas": 3,
+   "gas_meters": 5523,
+   "gas_mean_kwh_per_meter_2024": 10019,
+   "epc_mean_space_heat_kwh": 16357,
+   "gas_factor": 0.522,
+   "degree_hours_kh": 47.94,
+   "median_htc_w_k": 159.3,
+   "p10_p90_htc": [
+    96.2,
+    269.5
+   ],
+   "median_tau_h": 36.3,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0702,
+    "high": 0.9295,
+    "per_meter": 0.8301
+   },
+   "median_htc_by_h": {
+    "central": 159.3,
+    "low": 170.5,
+    "high": 148.1,
+    "per_meter": 132.3
+   },
+   "median_tau_by_h": {
+    "central": 36.3,
+    "low": 33.9,
+    "high": 39.0,
+    "per_meter": 43.7
+   },
+   "median_floor_m2": 87.7,
+   "form_share": [
+    0.238,
+    0.273,
+    0.281,
+    0.208
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Brecon",
+   "region_letter": "K",
+   "need_region": "W92000004",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 8,
+   "dwellings": 5321,
+   "gas_areas": 2,
+   "gas_meters": 3979,
+   "gas_mean_kwh_per_meter_2024": 10641,
+   "epc_mean_space_heat_kwh": 15165,
+   "gas_factor": 0.606,
+   "degree_hours_kh": 55.36,
+   "median_htc_w_k": 153.0,
+   "p10_p90_htc": [
+    105.9,
+    249.2
+   ],
+   "median_tau_h": 41.6,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0693,
+    "high": 0.9304,
+    "per_meter": 0.8322
+   },
+   "median_htc_by_h": {
+    "central": 153.0,
+    "low": 163.6,
+    "high": 142.3,
+    "per_meter": 127.3
+   },
+   "median_tau_by_h": {
+    "central": 41.6,
+    "low": 38.9,
+    "high": 44.7,
+    "per_meter": 50.0
+   },
+   "median_floor_m2": 93.5,
+   "form_share": [
+    0.257,
+    0.287,
+    0.348,
+    0.107
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Carmarthen",
+   "region_letter": "K",
+   "need_region": "W92000004",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 16,
+   "dwellings": 10880,
+   "gas_areas": 3,
+   "gas_meters": 7140,
+   "gas_mean_kwh_per_meter_2024": 10229,
+   "epc_mean_space_heat_kwh": 16617,
+   "gas_factor": 0.527,
+   "degree_hours_kh": 48.11,
+   "median_htc_w_k": 171.1,
+   "p10_p90_htc": [
+    106.0,
+    274.3
+   ],
+   "median_tau_h": 38.5,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0699,
+    "high": 0.9299,
+    "per_meter": 0.8308
+   },
+   "median_htc_by_h": {
+    "central": 171.1,
+    "low": 183.1,
+    "high": 159.1,
+    "per_meter": 142.2
+   },
+   "median_tau_by_h": {
+    "central": 38.5,
+    "low": 36.0,
+    "high": 41.4,
+    "per_meter": 46.4
+   },
+   "median_floor_m2": 95.5,
+   "form_share": [
+    0.32,
+    0.309,
+    0.27,
+    0.101
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Swansea",
+   "region_letter": "K",
+   "need_region": "W92000004",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 163,
+   "dwellings": 116624,
+   "gas_areas": 32,
+   "gas_meters": 115093,
+   "gas_mean_kwh_per_meter_2024": 10488,
+   "epc_mean_space_heat_kwh": 15140,
+   "gas_factor": 0.596,
+   "degree_hours_kh": 45.14,
+   "median_htc_w_k": 186.9,
+   "p10_p90_htc": [
+    121.7,
+    286.1
+   ],
+   "median_tau_h": 33.7,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0695,
+    "high": 0.9302,
+    "per_meter": 0.8317
+   },
+   "median_htc_by_h": {
+    "central": 186.9,
+    "low": 199.9,
+    "high": 173.9,
+    "per_meter": 155.4
+   },
+   "median_tau_by_h": {
+    "central": 33.7,
+    "low": 31.5,
+    "high": 36.3,
+    "per_meter": 40.6
+   },
+   "median_floor_m2": 91.7,
+   "form_share": [
+    0.217,
+    0.368,
+    0.283,
+    0.132
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Cardiff",
+   "region_letter": "K",
+   "need_region": "W92000004",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 256,
+   "dwellings": 172982,
+   "gas_areas": 56,
+   "gas_meters": 172268,
+   "gas_mean_kwh_per_meter_2024": 10534,
+   "epc_mean_space_heat_kwh": 15034,
+   "gas_factor": 0.604,
+   "degree_hours_kh": 47.65,
+   "median_htc_w_k": 176.0,
+   "p10_p90_htc": [
+    108.1,
+    281.6
+   ],
+   "median_tau_h": 33.8,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0694,
+    "high": 0.9303,
+    "per_meter": 0.8318
+   },
+   "median_htc_by_h": {
+    "central": 176.0,
+    "low": 188.2,
+    "high": 163.7,
+    "per_meter": 146.4
+   },
+   "median_tau_by_h": {
+    "central": 33.8,
+    "low": 31.6,
+    "high": 36.3,
+    "per_meter": 40.6
+   },
+   "median_floor_m2": 87.5,
+   "form_share": [
+    0.164,
+    0.325,
+    0.33,
+    0.182
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Stoke",
+   "region_letter": "E",
+   "need_region": "E12000005",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 239,
+   "dwellings": 157953,
+   "gas_areas": 49,
+   "gas_meters": 162991,
+   "gas_mean_kwh_per_meter_2024": 11258,
+   "epc_mean_space_heat_kwh": 14901,
+   "gas_factor": 0.659,
+   "degree_hours_kh": 56.17,
+   "median_htc_w_k": 165.1,
+   "p10_p90_htc": [
+    123.2,
+    237.5
+   ],
+   "median_tau_h": 36.8,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0685,
+    "high": 0.9312,
+    "per_meter": 0.834
+   },
+   "median_htc_by_h": {
+    "central": 165.1,
+    "low": 176.4,
+    "high": 153.7,
+    "per_meter": 137.7
+   },
+   "median_tau_by_h": {
+    "central": 36.8,
+    "low": 34.4,
+    "high": 39.5,
+    "per_meter": 44.1
+   },
+   "median_floor_m2": 86.9,
+   "form_share": [
+    0.19,
+    0.473,
+    0.263,
+    0.074
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Shrewsbury",
+   "region_letter": "E",
+   "need_region": "E12000005",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 55,
+   "dwellings": 40176,
+   "gas_areas": 11,
+   "gas_meters": 37366,
+   "gas_mean_kwh_per_meter_2024": 10061,
+   "epc_mean_space_heat_kwh": 15416,
+   "gas_factor": 0.557,
+   "degree_hours_kh": 54.21,
+   "median_htc_w_k": 142.5,
+   "p10_p90_htc": [
+    94.5,
+    240.7
+   ],
+   "median_tau_h": 43.1,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0701,
+    "high": 0.9296,
+    "per_meter": 0.8302
+   },
+   "median_htc_by_h": {
+    "central": 142.5,
+    "low": 152.5,
+    "high": 132.5,
+    "per_meter": 118.3
+   },
+   "median_tau_by_h": {
+    "central": 43.1,
+    "low": 40.3,
+    "high": 46.4,
+    "per_meter": 51.9
+   },
+   "median_floor_m2": 89.0,
+   "form_share": [
+    0.284,
+    0.413,
+    0.227,
+    0.076
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Birmingham",
+   "region_letter": "E",
+   "need_region": "E12000005",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 766,
+   "dwellings": 457776,
+   "gas_areas": 161,
+   "gas_meters": 468292,
+   "gas_mean_kwh_per_meter_2024": 12603,
+   "epc_mean_space_heat_kwh": 16750,
+   "gas_factor": 0.67,
+   "degree_hours_kh": 54.37,
+   "median_htc_w_k": 191.3,
+   "p10_p90_htc": [
+    121.8,
+    301.6
+   ],
+   "median_tau_h": 30.0,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0672,
+    "high": 0.9325,
+    "per_meter": 0.8372
+   },
+   "median_htc_by_h": {
+    "central": 191.3,
+    "low": 204.2,
+    "high": 178.4,
+    "per_meter": 160.2
+   },
+   "median_tau_by_h": {
+    "central": 30.0,
+    "low": 28.1,
+    "high": 32.2,
+    "per_meter": 35.8
+   },
+   "median_floor_m2": 82.5,
+   "form_share": [
+    0.122,
+    0.413,
+    0.312,
+    0.153
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Coventry",
+   "region_letter": "E",
+   "need_region": "E12000005",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 253,
+   "dwellings": 164260,
+   "gas_areas": 53,
+   "gas_meters": 167929,
+   "gas_mean_kwh_per_meter_2024": 11286,
+   "epc_mean_space_heat_kwh": 15591,
+   "gas_factor": 0.632,
+   "degree_hours_kh": 53.12,
+   "median_htc_w_k": 169.0,
+   "p10_p90_htc": [
+    121.9,
+    253.3
+   ],
+   "median_tau_h": 33.7,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0685,
+    "high": 0.9312,
+    "per_meter": 0.8341
+   },
+   "median_htc_by_h": {
+    "central": 169.0,
+    "low": 180.6,
+    "high": 157.4,
+    "per_meter": 141.0
+   },
+   "median_tau_by_h": {
+    "central": 33.7,
+    "low": 31.5,
+    "high": 36.1,
+    "per_meter": 40.4
+   },
+   "median_floor_m2": 84.0,
+   "form_share": [
+    0.158,
+    0.323,
+    0.396,
+    0.123
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Hereford",
+   "region_letter": "E",
+   "need_region": "E12000005",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 53,
+   "dwellings": 35385,
+   "gas_areas": 11,
+   "gas_meters": 32798,
+   "gas_mean_kwh_per_meter_2024": 9673,
+   "epc_mean_space_heat_kwh": 15261,
+   "gas_factor": 0.536,
+   "degree_hours_kh": 53.09,
+   "median_htc_w_k": 143.7,
+   "p10_p90_htc": [
+    93.7,
+    224.0
+   ],
+   "median_tau_h": 41.9,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0707,
+    "high": 0.929,
+    "per_meter": 0.8288
+   },
+   "median_htc_by_h": {
+    "central": 143.7,
+    "low": 153.8,
+    "high": 133.5,
+    "per_meter": 119.1
+   },
+   "median_tau_by_h": {
+    "central": 41.9,
+    "low": 39.1,
+    "high": 45.1,
+    "per_meter": 50.6
+   },
+   "median_floor_m2": 86.5,
+   "form_share": [
+    0.281,
+    0.348,
+    0.24,
+    0.132
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Buxton",
+   "region_letter": "B",
+   "need_region": "E12000004",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 28,
+   "dwellings": 18797,
+   "gas_areas": 5,
+   "gas_meters": 18842,
+   "gas_mean_kwh_per_meter_2024": 12936,
+   "epc_mean_space_heat_kwh": 18327,
+   "gas_factor": 0.631,
+   "degree_hours_kh": 64.57,
+   "median_htc_w_k": 165.3,
+   "p10_p90_htc": [
+    112.0,
+    263.1
+   ],
+   "median_tau_h": 35.0,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0669,
+    "high": 0.9328,
+    "per_meter": 0.8379
+   },
+   "median_htc_by_h": {
+    "central": 165.3,
+    "low": 176.3,
+    "high": 154.2,
+    "per_meter": 138.5
+   },
+   "median_tau_by_h": {
+    "central": 35.0,
+    "low": 32.8,
+    "high": 37.5,
+    "per_meter": 41.7
+   },
+   "median_floor_m2": 85.0,
+   "form_share": [
+    0.233,
+    0.363,
+    0.268,
+    0.136
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Lincoln",
+   "region_letter": "B",
+   "need_region": "E12000004",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 100,
+   "dwellings": 72157,
+   "gas_areas": 19,
+   "gas_meters": 72020,
+   "gas_mean_kwh_per_meter_2024": 10523,
+   "epc_mean_space_heat_kwh": 14838,
+   "gas_factor": 0.611,
+   "degree_hours_kh": 52.45,
+   "median_htc_w_k": 165.0,
+   "p10_p90_htc": [
+    111.1,
+    242.7
+   ],
+   "median_tau_h": 38.9,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0694,
+    "high": 0.9303,
+    "per_meter": 0.8318
+   },
+   "median_htc_by_h": {
+    "central": 165.0,
+    "low": 176.4,
+    "high": 153.5,
+    "per_meter": 137.2
+   },
+   "median_tau_by_h": {
+    "central": 38.9,
+    "low": 36.4,
+    "high": 41.9,
+    "per_meter": 46.8
+   },
+   "median_floor_m2": 89.8,
+   "form_share": [
+    0.389,
+    0.283,
+    0.227,
+    0.101
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Nottingham",
+   "region_letter": "B",
+   "need_region": "E12000004",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 371,
+   "dwellings": 241323,
+   "gas_areas": 73,
+   "gas_meters": 242913,
+   "gas_mean_kwh_per_meter_2024": 11514,
+   "epc_mean_space_heat_kwh": 16455,
+   "gas_factor": 0.613,
+   "degree_hours_kh": 53.23,
+   "median_htc_w_k": 175.0,
+   "p10_p90_htc": [
+    115.2,
+    283.0
+   ],
+   "median_tau_h": 34.2,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0683,
+    "high": 0.9315,
+    "per_meter": 0.8347
+   },
+   "median_htc_by_h": {
+    "central": 175.0,
+    "low": 187.0,
+    "high": 163.0,
+    "per_meter": 146.1
+   },
+   "median_tau_by_h": {
+    "central": 34.2,
+    "low": 32.0,
+    "high": 36.7,
+    "per_meter": 41.0
+   },
+   "median_floor_m2": 86.5,
+   "form_share": [
+    0.276,
+    0.367,
+    0.232,
+    0.125
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Derby",
+   "region_letter": "B",
+   "need_region": "E12000004",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 183,
+   "dwellings": 123939,
+   "gas_areas": 37,
+   "gas_meters": 126530,
+   "gas_mean_kwh_per_meter_2024": 11268,
+   "epc_mean_space_heat_kwh": 15939,
+   "gas_factor": 0.617,
+   "degree_hours_kh": 53.92,
+   "median_htc_w_k": 170.9,
+   "p10_p90_htc": [
+    111.1,
+    261.5
+   ],
+   "median_tau_h": 36.4,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0685,
+    "high": 0.9312,
+    "per_meter": 0.834
+   },
+   "median_htc_by_h": {
+    "central": 170.9,
+    "low": 182.6,
+    "high": 159.2,
+    "per_meter": 142.6
+   },
+   "median_tau_by_h": {
+    "central": 36.4,
+    "low": 34.1,
+    "high": 39.1,
+    "per_meter": 43.6
+   },
+   "median_floor_m2": 87.7,
+   "form_share": [
+    0.299,
+    0.403,
+    0.207,
+    0.091
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Leicester",
+   "region_letter": "B",
+   "need_region": "E12000004",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 328,
+   "dwellings": 210608,
+   "gas_areas": 67,
+   "gas_meters": 219012,
+   "gas_mean_kwh_per_meter_2024": 12408,
+   "epc_mean_space_heat_kwh": 16364,
+   "gas_factor": 0.673,
+   "degree_hours_kh": 52.23,
+   "median_htc_w_k": 197.6,
+   "p10_p90_htc": [
+    127.5,
+    299.9
+   ],
+   "median_tau_h": 30.4,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0674,
+    "high": 0.9323,
+    "per_meter": 0.8368
+   },
+   "median_htc_by_h": {
+    "central": 197.6,
+    "low": 210.9,
+    "high": 184.2,
+    "per_meter": 165.3
+   },
+   "median_tau_by_h": {
+    "central": 30.4,
+    "low": 28.5,
+    "high": 32.6,
+    "per_meter": 36.4
+   },
+   "median_floor_m2": 85.5,
+   "form_share": [
+    0.229,
+    0.426,
+    0.24,
+    0.105
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Northampton",
+   "region_letter": "B",
+   "need_region": "E12000004",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 156,
+   "dwellings": 105283,
+   "gas_areas": 37,
+   "gas_meters": 115197,
+   "gas_mean_kwh_per_meter_2024": 11309,
+   "epc_mean_space_heat_kwh": 15302,
+   "gas_factor": 0.646,
+   "degree_hours_kh": 52.44,
+   "median_htc_w_k": 178.6,
+   "p10_p90_htc": [
+    113.4,
+    276.4
+   ],
+   "median_tau_h": 34.4,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0685,
+    "high": 0.9312,
+    "per_meter": 0.8341
+   },
+   "median_htc_by_h": {
+    "central": 178.6,
+    "low": 190.9,
+    "high": 166.3,
+    "per_meter": 149.0
+   },
+   "median_tau_by_h": {
+    "central": 34.4,
+    "low": 32.2,
+    "high": 36.9,
+    "per_meter": 41.2
+   },
+   "median_floor_m2": 86.9,
+   "form_share": [
+    0.285,
+    0.317,
+    0.291,
+    0.106
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "King's Lynn",
+   "region_letter": "A",
+   "need_region": "E12000006",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 41,
+   "dwellings": 28422,
+   "gas_areas": 8,
+   "gas_meters": 22327,
+   "gas_mean_kwh_per_meter_2024": 10342,
+   "epc_mean_space_heat_kwh": 14387,
+   "gas_factor": 0.617,
+   "degree_hours_kh": 49.82,
+   "median_htc_w_k": 165.0,
+   "p10_p90_htc": [
+    107.7,
+    256.1
+   ],
+   "median_tau_h": 38.0,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0697,
+    "high": 0.93,
+    "per_meter": 0.8312
+   },
+   "median_htc_by_h": {
+    "central": 165.0,
+    "low": 176.5,
+    "high": 153.4,
+    "per_meter": 137.1
+   },
+   "median_tau_by_h": {
+    "central": 38.0,
+    "low": 35.5,
+    "high": 40.8,
+    "per_meter": 45.7
+   },
+   "median_floor_m2": 90.8,
+   "form_share": [
+    0.31,
+    0.342,
+    0.23,
+    0.119
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Norwich",
+   "region_letter": "A",
+   "need_region": "E12000006",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 165,
+   "dwellings": 117863,
+   "gas_areas": 34,
+   "gas_meters": 118637,
+   "gas_mean_kwh_per_meter_2024": 10083,
+   "epc_mean_space_heat_kwh": 14134,
+   "gas_factor": 0.609,
+   "degree_hours_kh": 49.02,
+   "median_htc_w_k": 159.9,
+   "p10_p90_htc": [
+    91.7,
+    268.5
+   ],
+   "median_tau_h": 37.6,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0701,
+    "high": 0.9296,
+    "per_meter": 0.8303
+   },
+   "median_htc_by_h": {
+    "central": 159.9,
+    "low": 171.1,
+    "high": 148.6,
+    "per_meter": 132.7
+   },
+   "median_tau_by_h": {
+    "central": 37.6,
+    "low": 35.2,
+    "high": 40.5,
+    "per_meter": 45.3
+   },
+   "median_floor_m2": 88.3,
+   "form_share": [
+    0.285,
+    0.297,
+    0.246,
+    0.172
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Peterborough",
+   "region_letter": "A",
+   "need_region": "E12000006",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 122,
+   "dwellings": 84907,
+   "gas_areas": 24,
+   "gas_meters": 91330,
+   "gas_mean_kwh_per_meter_2024": 10553,
+   "epc_mean_space_heat_kwh": 14374,
+   "gas_factor": 0.633,
+   "degree_hours_kh": 49.95,
+   "median_htc_w_k": 162.6,
+   "p10_p90_htc": [
+    107.8,
+    279.5
+   ],
+   "median_tau_h": 37.9,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0694,
+    "high": 0.9303,
+    "per_meter": 0.8319
+   },
+   "median_htc_by_h": {
+    "central": 162.6,
+    "low": 173.8,
+    "high": 151.2,
+    "per_meter": 135.2
+   },
+   "median_tau_by_h": {
+    "central": 37.9,
+    "low": 35.4,
+    "high": 40.7,
+    "per_meter": 45.5
+   },
+   "median_floor_m2": 89.8,
+   "form_share": [
+    0.305,
+    0.328,
+    0.244,
+    0.123
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Cambridge",
+   "region_letter": "A",
+   "need_region": "E12000006",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 118,
+   "dwellings": 81889,
+   "gas_areas": 24,
+   "gas_meters": 79223,
+   "gas_mean_kwh_per_meter_2024": 11653,
+   "epc_mean_space_heat_kwh": 15731,
+   "gas_factor": 0.651,
+   "degree_hours_kh": 49.19,
+   "median_htc_w_k": 189.6,
+   "p10_p90_htc": [
+    111.0,
+    325.2
+   ],
+   "median_tau_h": 31.2,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0681,
+    "high": 0.9316,
+    "per_meter": 0.835
+   },
+   "median_htc_by_h": {
+    "central": 189.6,
+    "low": 202.5,
+    "high": 176.6,
+    "per_meter": 158.3
+   },
+   "median_tau_by_h": {
+    "central": 31.2,
+    "low": 29.2,
+    "high": 33.5,
+    "per_meter": 37.4
+   },
+   "median_floor_m2": 86.1,
+   "form_share": [
+    0.225,
+    0.318,
+    0.274,
+    0.183
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Ipswich",
+   "region_letter": "A",
+   "need_region": "E12000006",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 120,
+   "dwellings": 79622,
+   "gas_areas": 22,
+   "gas_meters": 70577,
+   "gas_mean_kwh_per_meter_2024": 10425,
+   "epc_mean_space_heat_kwh": 14654,
+   "gas_factor": 0.612,
+   "degree_hours_kh": 48.01,
+   "median_htc_w_k": 171.3,
+   "p10_p90_htc": [
+    109.1,
+    271.3
+   ],
+   "median_tau_h": 36.4,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0696,
+    "high": 0.9301,
+    "per_meter": 0.8315
+   },
+   "median_htc_by_h": {
+    "central": 171.3,
+    "low": 183.2,
+    "high": 159.4,
+    "per_meter": 142.5
+   },
+   "median_tau_by_h": {
+    "central": 36.4,
+    "low": 34.0,
+    "high": 39.1,
+    "per_meter": 43.8
+   },
+   "median_floor_m2": 89.5,
+   "form_share": [
+    0.262,
+    0.379,
+    0.233,
+    0.127
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Chelmsford",
+   "region_letter": "A",
+   "need_region": "E12000006",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 96,
+   "dwellings": 63226,
+   "gas_areas": 19,
+   "gas_meters": 57256,
+   "gas_mean_kwh_per_meter_2024": 11696,
+   "epc_mean_space_heat_kwh": 15114,
+   "gas_factor": 0.68,
+   "degree_hours_kh": 48.09,
+   "median_htc_w_k": 197.3,
+   "p10_p90_htc": [
+    126.0,
+    326.4
+   ],
+   "median_tau_h": 31.3,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0681,
+    "high": 0.9316,
+    "per_meter": 0.8351
+   },
+   "median_htc_by_h": {
+    "central": 197.3,
+    "low": 210.8,
+    "high": 183.9,
+    "per_meter": 164.8
+   },
+   "median_tau_by_h": {
+    "central": 31.3,
+    "low": 29.3,
+    "high": 33.6,
+    "per_meter": 37.5
+   },
+   "median_floor_m2": 89.7,
+   "form_share": [
+    0.276,
+    0.358,
+    0.236,
+    0.13
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Bristol",
+   "region_letter": "L",
+   "need_region": "E12000009",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 389,
+   "dwellings": 271276,
+   "gas_areas": 81,
+   "gas_meters": 253038,
+   "gas_mean_kwh_per_meter_2024": 9950,
+   "epc_mean_space_heat_kwh": 15071,
+   "gas_factor": 0.562,
+   "degree_hours_kh": 48.17,
+   "median_htc_w_k": 156.7,
+   "p10_p90_htc": [
+    98.0,
+    265.1
+   ],
+   "median_tau_h": 36.5,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0703,
+    "high": 0.9294,
+    "per_meter": 0.8298
+   },
+   "median_htc_by_h": {
+    "central": 156.7,
+    "low": 167.7,
+    "high": 145.6,
+    "per_meter": 130.0
+   },
+   "median_tau_by_h": {
+    "central": 36.5,
+    "low": 34.1,
+    "high": 39.2,
+    "per_meter": 43.9
+   },
+   "median_floor_m2": 84.3,
+   "form_share": [
+    0.122,
+    0.323,
+    0.352,
+    0.203
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Taunton",
+   "region_letter": "L",
+   "need_region": "E12000009",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 60,
+   "dwellings": 44487,
+   "gas_areas": 12,
+   "gas_meters": 39576,
+   "gas_mean_kwh_per_meter_2024": 9201,
+   "epc_mean_space_heat_kwh": 13872,
+   "gas_factor": 0.555,
+   "degree_hours_kh": 46.25,
+   "median_htc_w_k": 154.4,
+   "p10_p90_htc": [
+    98.2,
+    251.3
+   ],
+   "median_tau_h": 41.0,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0715,
+    "high": 0.9282,
+    "per_meter": 0.8268
+   },
+   "median_htc_by_h": {
+    "central": 154.4,
+    "low": 165.4,
+    "high": 143.3,
+    "per_meter": 127.6
+   },
+   "median_tau_by_h": {
+    "central": 41.0,
+    "low": 38.3,
+    "high": 44.2,
+    "per_meter": 49.6
+   },
+   "median_floor_m2": 90.9,
+   "form_share": [
+    0.287,
+    0.32,
+    0.269,
+    0.124
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Barnstaple",
+   "region_letter": "L",
+   "need_region": "E12000009",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 37,
+   "dwellings": 25025,
+   "gas_areas": 8,
+   "gas_meters": 22765,
+   "gas_mean_kwh_per_meter_2024": 9063,
+   "epc_mean_space_heat_kwh": 13965,
+   "gas_factor": 0.541,
+   "degree_hours_kh": 41.27,
+   "median_htc_w_k": 171.2,
+   "p10_p90_htc": [
+    107.6,
+    264.2
+   ],
+   "median_tau_h": 38.5,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0718,
+    "high": 0.9279,
+    "per_meter": 0.8262
+   },
+   "median_htc_by_h": {
+    "central": 171.2,
+    "low": 183.5,
+    "high": 158.9,
+    "per_meter": 141.5
+   },
+   "median_tau_by_h": {
+    "central": 38.5,
+    "low": 35.9,
+    "high": 41.5,
+    "per_meter": 46.6
+   },
+   "median_floor_m2": 94.2,
+   "form_share": [
+    0.383,
+    0.248,
+    0.259,
+    0.11
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Exeter",
+   "region_letter": "L",
+   "need_region": "E12000009",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 88,
+   "dwellings": 60829,
+   "gas_areas": 19,
+   "gas_meters": 56647,
+   "gas_mean_kwh_per_meter_2024": 9177,
+   "epc_mean_space_heat_kwh": 13701,
+   "gas_factor": 0.56,
+   "degree_hours_kh": 45.46,
+   "median_htc_w_k": 154.7,
+   "p10_p90_htc": [
+    98.6,
+    251.3
+   ],
+   "median_tau_h": 38.7,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0716,
+    "high": 0.9281,
+    "per_meter": 0.8267
+   },
+   "median_htc_by_h": {
+    "central": 154.7,
+    "low": 165.8,
+    "high": 143.6,
+    "per_meter": 127.9
+   },
+   "median_tau_by_h": {
+    "central": 38.7,
+    "low": 36.1,
+    "high": 41.7,
+    "per_meter": 46.8
+   },
+   "median_floor_m2": 87.3,
+   "form_share": [
+    0.202,
+    0.29,
+    0.325,
+    0.183
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Plymouth",
+   "region_letter": "L",
+   "need_region": "E12000009",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 185,
+   "dwellings": 124718,
+   "gas_areas": 40,
+   "gas_meters": 127178,
+   "gas_mean_kwh_per_meter_2024": 8079,
+   "epc_mean_space_heat_kwh": 13490,
+   "gas_factor": 0.485,
+   "degree_hours_kh": 41.2,
+   "median_htc_w_k": 142.4,
+   "p10_p90_htc": [
+    92.2,
+    240.1
+   ],
+   "median_tau_h": 40.1,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.074,
+    "high": 0.9257,
+    "per_meter": 0.8209
+   },
+   "median_htc_by_h": {
+    "central": 142.4,
+    "low": 153.0,
+    "high": 131.9,
+    "per_meter": 116.9
+   },
+   "median_tau_by_h": {
+    "central": 40.1,
+    "low": 37.4,
+    "high": 43.4,
+    "per_meter": 48.9
+   },
+   "median_floor_m2": 84.8,
+   "form_share": [
+    0.142,
+    0.318,
+    0.339,
+    0.201
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Truro",
+   "region_letter": "L",
+   "need_region": "E12000009",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 30,
+   "dwellings": 21163,
+   "gas_areas": 7,
+   "gas_meters": 13921,
+   "gas_mean_kwh_per_meter_2024": 9255,
+   "epc_mean_space_heat_kwh": 14247,
+   "gas_factor": 0.544,
+   "degree_hours_kh": 38.37,
+   "median_htc_w_k": 184.6,
+   "p10_p90_htc": [
+    112.2,
+    311.4
+   ],
+   "median_tau_h": 34.3,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0714,
+    "high": 0.9283,
+    "per_meter": 0.827
+   },
+   "median_htc_by_h": {
+    "central": 184.6,
+    "low": 197.7,
+    "high": 171.3,
+    "per_meter": 152.6
+   },
+   "median_tau_by_h": {
+    "central": 34.3,
+    "low": 32.0,
+    "high": 37.0,
+    "per_meter": 41.5
+   },
+   "median_floor_m2": 93.8,
+   "form_share": [
+    0.364,
+    0.286,
+    0.234,
+    0.116
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Penzance",
+   "region_letter": "L",
+   "need_region": "E12000009",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 24,
+   "dwellings": 18053,
+   "gas_areas": 6,
+   "gas_meters": 12323,
+   "gas_mean_kwh_per_meter_2024": 8521,
+   "epc_mean_space_heat_kwh": 14859,
+   "gas_factor": 0.471,
+   "degree_hours_kh": 36.17,
+   "median_htc_w_k": 182.9,
+   "p10_p90_htc": [
+    115.6,
+    280.0
+   ],
+   "median_tau_h": 33.7,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0729,
+    "high": 0.9268,
+    "per_meter": 0.8235
+   },
+   "median_htc_by_h": {
+    "central": 182.9,
+    "low": 196.3,
+    "high": 169.5,
+    "per_meter": 150.6
+   },
+   "median_tau_by_h": {
+    "central": 33.7,
+    "low": 31.4,
+    "high": 36.3,
+    "per_meter": 40.9
+   },
+   "median_floor_m2": 87.9,
+   "form_share": [
+    0.262,
+    0.216,
+    0.336,
+    0.186
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Oxford",
+   "region_letter": "H",
+   "need_region": "E12000008",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 147,
+   "dwellings": 92983,
+   "gas_areas": 32,
+   "gas_meters": 89512,
+   "gas_mean_kwh_per_meter_2024": 12353,
+   "epc_mean_space_heat_kwh": 15443,
+   "gas_factor": 0.71,
+   "degree_hours_kh": 51.19,
+   "median_htc_w_k": 192.5,
+   "p10_p90_htc": [
+    109.9,
+    322.6
+   ],
+   "median_tau_h": 31.6,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0674,
+    "high": 0.9323,
+    "per_meter": 0.8367
+   },
+   "median_htc_by_h": {
+    "central": 192.5,
+    "low": 205.5,
+    "high": 179.5,
+    "per_meter": 161.1
+   },
+   "median_tau_by_h": {
+    "central": 31.6,
+    "low": 29.6,
+    "high": 33.9,
+    "per_meter": 37.7
+   },
+   "median_floor_m2": 87.9,
+   "form_share": [
+    0.208,
+    0.35,
+    0.257,
+    0.184
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Swindon",
+   "region_letter": "H",
+   "need_region": "E12000009",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 145,
+   "dwellings": 100710,
+   "gas_areas": 29,
+   "gas_meters": 96420,
+   "gas_mean_kwh_per_meter_2024": 10498,
+   "epc_mean_space_heat_kwh": 14372,
+   "gas_factor": 0.629,
+   "degree_hours_kh": 52.44,
+   "median_htc_w_k": 153.3,
+   "p10_p90_htc": [
+    102.3,
+    258.0
+   ],
+   "median_tau_h": 40.1,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0695,
+    "high": 0.9302,
+    "per_meter": 0.8317
+   },
+   "median_htc_by_h": {
+    "central": 153.3,
+    "low": 164.0,
+    "high": 142.6,
+    "per_meter": 127.5
+   },
+   "median_tau_by_h": {
+    "central": 40.1,
+    "low": 37.5,
+    "high": 43.1,
+    "per_meter": 48.2
+   },
+   "median_floor_m2": 90.9,
+   "form_share": [
+    0.251,
+    0.324,
+    0.32,
+    0.105
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Chippenham",
+   "region_letter": "H",
+   "need_region": "E12000009",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 58,
+   "dwellings": 40226,
+   "gas_areas": 11,
+   "gas_meters": 36775,
+   "gas_mean_kwh_per_meter_2024": 10468,
+   "epc_mean_space_heat_kwh": 14353,
+   "gas_factor": 0.628,
+   "degree_hours_kh": 49.88,
+   "median_htc_w_k": 162.5,
+   "p10_p90_htc": [
+    105.2,
+    267.4
+   ],
+   "median_tau_h": 39.2,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0695,
+    "high": 0.9302,
+    "per_meter": 0.8316
+   },
+   "median_htc_by_h": {
+    "central": 162.5,
+    "low": 173.8,
+    "high": 151.2,
+    "per_meter": 135.2
+   },
+   "median_tau_by_h": {
+    "central": 39.2,
+    "low": 36.6,
+    "high": 42.1,
+    "per_meter": 47.1
+   },
+   "median_floor_m2": 93.5,
+   "form_share": [
+    0.323,
+    0.337,
+    0.258,
+    0.082
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Reading",
+   "region_letter": "H",
+   "need_region": "E12000008",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 209,
+   "dwellings": 135841,
+   "gas_areas": 44,
+   "gas_meters": 132400,
+   "gas_mean_kwh_per_meter_2024": 12431,
+   "epc_mean_space_heat_kwh": 15512,
+   "gas_factor": 0.712,
+   "degree_hours_kh": 49.12,
+   "median_htc_w_k": 201.5,
+   "p10_p90_htc": [
+    123.7,
+    351.2
+   ],
+   "median_tau_h": 31.4,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0674,
+    "high": 0.9324,
+    "per_meter": 0.8369
+   },
+   "median_htc_by_h": {
+    "central": 201.5,
+    "low": 215.1,
+    "high": 187.9,
+    "per_meter": 168.6
+   },
+   "median_tau_by_h": {
+    "central": 31.4,
+    "low": 29.4,
+    "high": 33.6,
+    "per_meter": 37.5
+   },
+   "median_floor_m2": 92.4,
+   "form_share": [
+    0.301,
+    0.325,
+    0.24,
+    0.134
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Salisbury",
+   "region_letter": "H",
+   "need_region": "E12000009",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 41,
+   "dwellings": 30094,
+   "gas_areas": 11,
+   "gas_meters": 26726,
+   "gas_mean_kwh_per_meter_2024": 10418,
+   "epc_mean_space_heat_kwh": 14510,
+   "gas_factor": 0.617,
+   "degree_hours_kh": 48.03,
+   "median_htc_w_k": 172.0,
+   "p10_p90_htc": [
+    106.5,
+    275.0
+   ],
+   "median_tau_h": 36.3,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0696,
+    "high": 0.9301,
+    "per_meter": 0.8315
+   },
+   "median_htc_by_h": {
+    "central": 172.0,
+    "low": 184.0,
+    "high": 160.0,
+    "per_meter": 143.0
+   },
+   "median_tau_by_h": {
+    "central": 36.3,
+    "low": 33.9,
+    "high": 39.0,
+    "per_meter": 43.6
+   },
+   "median_floor_m2": 89.9,
+   "form_share": [
+    0.291,
+    0.285,
+    0.268,
+    0.157
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Southampton",
+   "region_letter": "H",
+   "need_region": "E12000008",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 288,
+   "dwellings": 190431,
+   "gas_areas": 62,
+   "gas_meters": 181065,
+   "gas_mean_kwh_per_meter_2024": 10176,
+   "epc_mean_space_heat_kwh": 13383,
+   "gas_factor": 0.65,
+   "degree_hours_kh": 44.54,
+   "median_htc_w_k": 178.5,
+   "p10_p90_htc": [
+    113.0,
+    286.8
+   ],
+   "median_tau_h": 34.6,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0699,
+    "high": 0.9298,
+    "per_meter": 0.8307
+   },
+   "median_htc_by_h": {
+    "central": 178.5,
+    "low": 191.0,
+    "high": 166.0,
+    "per_meter": 148.3
+   },
+   "median_tau_by_h": {
+    "central": 34.6,
+    "low": 32.3,
+    "high": 37.2,
+    "per_meter": 41.6
+   },
+   "median_floor_m2": 89.9,
+   "form_share": [
+    0.29,
+    0.307,
+    0.23,
+    0.173
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Portsmouth",
+   "region_letter": "H",
+   "need_region": "E12000008",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 261,
+   "dwellings": 172654,
+   "gas_areas": 52,
+   "gas_meters": 161476,
+   "gas_mean_kwh_per_meter_2024": 9575,
+   "epc_mean_space_heat_kwh": 14061,
+   "gas_factor": 0.575,
+   "degree_hours_kh": 43.47,
+   "median_htc_w_k": 172.0,
+   "p10_p90_htc": [
+    111.9,
+    272.0
+   ],
+   "median_tau_h": 33.8,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0709,
+    "high": 0.9288,
+    "per_meter": 0.8284
+   },
+   "median_htc_by_h": {
+    "central": 172.0,
+    "low": 184.2,
+    "high": 159.8,
+    "per_meter": 142.5
+   },
+   "median_tau_by_h": {
+    "central": 33.8,
+    "low": 31.5,
+    "high": 36.4,
+    "per_meter": 40.8
+   },
+   "median_floor_m2": 84.1,
+   "form_share": [
+    0.16,
+    0.26,
+    0.376,
+    0.205
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Poole",
+   "region_letter": "H",
+   "need_region": "E12000009",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 190,
+   "dwellings": 137216,
+   "gas_areas": 38,
+   "gas_meters": 128633,
+   "gas_mean_kwh_per_meter_2024": 10602,
+   "epc_mean_space_heat_kwh": 14677,
+   "gas_factor": 0.623,
+   "degree_hours_kh": 40.67,
+   "median_htc_w_k": 200.5,
+   "p10_p90_htc": [
+    127.8,
+    355.0
+   ],
+   "median_tau_h": 29.3,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0693,
+    "high": 0.9304,
+    "per_meter": 0.8321
+   },
+   "median_htc_by_h": {
+    "central": 200.5,
+    "low": 214.4,
+    "high": 186.6,
+    "per_meter": 166.8
+   },
+   "median_tau_by_h": {
+    "central": 29.3,
+    "low": 27.4,
+    "high": 31.5,
+    "per_meter": 35.3
+   },
+   "median_floor_m2": 87.2,
+   "form_share": [
+    0.415,
+    0.192,
+    0.11,
+    0.283
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "London",
+   "region_letter": "C",
+   "need_region": "E12000007",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 1783,
+   "dwellings": 1272820,
+   "gas_areas": 372,
+   "gas_meters": 1115940,
+   "gas_mean_kwh_per_meter_2024": 10692,
+   "epc_mean_space_heat_kwh": 13657,
+   "gas_factor": 0.677,
+   "degree_hours_kh": 48.72,
+   "median_htc_w_k": 152.5,
+   "p10_p90_htc": [
+    107.1,
+    328.0
+   ],
+   "median_tau_h": 25.3,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0692,
+    "high": 0.9305,
+    "per_meter": 0.8323
+   },
+   "median_htc_by_h": {
+    "central": 152.5,
+    "low": 163.1,
+    "high": 141.9,
+    "per_meter": 127.0
+   },
+   "median_tau_by_h": {
+    "central": 25.3,
+    "low": 23.6,
+    "high": 27.2,
+    "per_meter": 30.4
+   },
+   "median_floor_m2": 57.1,
+   "form_share": [
+    0.026,
+    0.074,
+    0.194,
+    0.706
+   ],
+   "zero_heat_share": 0.0004
+  },
+  {
+   "town": "Maidstone",
+   "region_letter": "J",
+   "need_region": "E12000008",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 150,
+   "dwellings": 102147,
+   "gas_areas": 28,
+   "gas_meters": 103930,
+   "gas_mean_kwh_per_meter_2024": 10983,
+   "epc_mean_space_heat_kwh": 14241,
+   "gas_factor": 0.67,
+   "degree_hours_kh": 46.43,
+   "median_htc_w_k": 187.0,
+   "p10_p90_htc": [
+    124.0,
+    299.8
+   ],
+   "median_tau_h": 33.5,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0689,
+    "high": 0.9308,
+    "per_meter": 0.8332
+   },
+   "median_htc_by_h": {
+    "central": 187.0,
+    "low": 199.9,
+    "high": 174.1,
+    "per_meter": 155.8
+   },
+   "median_tau_by_h": {
+    "central": 33.5,
+    "low": 31.4,
+    "high": 36.0,
+    "per_meter": 40.3
+   },
+   "median_floor_m2": 92.0,
+   "form_share": [
+    0.241,
+    0.361,
+    0.296,
+    0.103
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Canterbury",
+   "region_letter": "J",
+   "need_region": "E12000008",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 82,
+   "dwellings": 54757,
+   "gas_areas": 18,
+   "gas_meters": 57226,
+   "gas_mean_kwh_per_meter_2024": 11179,
+   "epc_mean_space_heat_kwh": 14645,
+   "gas_factor": 0.665,
+   "degree_hours_kh": 44.17,
+   "median_htc_w_k": 201.9,
+   "p10_p90_htc": [
+    138.1,
+    324.7
+   ],
+   "median_tau_h": 31.7,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0686,
+    "high": 0.9311,
+    "per_meter": 0.8338
+   },
+   "median_htc_by_h": {
+    "central": 201.9,
+    "low": 215.7,
+    "high": 188.0,
+    "per_meter": 168.3
+   },
+   "median_tau_by_h": {
+    "central": 31.7,
+    "low": 29.6,
+    "high": 34.0,
+    "per_meter": 38.0
+   },
+   "median_floor_m2": 93.7,
+   "form_share": [
+    0.31,
+    0.345,
+    0.219,
+    0.126
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Dover",
+   "region_letter": "J",
+   "need_region": "E12000008",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 46,
+   "dwellings": 32267,
+   "gas_areas": 8,
+   "gas_meters": 27383,
+   "gas_mean_kwh_per_meter_2024": 10058,
+   "epc_mean_space_heat_kwh": 15217,
+   "gas_factor": 0.564,
+   "degree_hours_kh": 42.33,
+   "median_htc_w_k": 188.3,
+   "p10_p90_htc": [
+    120.1,
+    292.5
+   ],
+   "median_tau_h": 32.9,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0701,
+    "high": 0.9296,
+    "per_meter": 0.8302
+   },
+   "median_htc_by_h": {
+    "central": 188.3,
+    "low": 201.5,
+    "high": 175.1,
+    "per_meter": 156.4
+   },
+   "median_tau_by_h": {
+    "central": 32.9,
+    "low": 30.7,
+    "high": 35.4,
+    "per_meter": 39.6
+   },
+   "median_floor_m2": 89.1,
+   "form_share": [
+    0.229,
+    0.279,
+    0.337,
+    0.156
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Hastings",
+   "region_letter": "J",
+   "need_region": "E12000008",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 91,
+   "dwellings": 67657,
+   "gas_areas": 18,
+   "gas_meters": 63739,
+   "gas_mean_kwh_per_meter_2024": 10637,
+   "epc_mean_space_heat_kwh": 15245,
+   "gas_factor": 0.602,
+   "degree_hours_kh": 45.26,
+   "median_htc_w_k": 180.6,
+   "p10_p90_htc": [
+    120.6,
+    315.2
+   ],
+   "median_tau_h": 31.6,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0693,
+    "high": 0.9304,
+    "per_meter": 0.8322
+   },
+   "median_htc_by_h": {
+    "central": 180.6,
+    "low": 193.1,
+    "high": 168.0,
+    "per_meter": 150.3
+   },
+   "median_tau_by_h": {
+    "central": 31.6,
+    "low": 29.6,
+    "high": 34.0,
+    "per_meter": 38.0
+   },
+   "median_floor_m2": 85.9,
+   "form_share": [
+    0.305,
+    0.219,
+    0.203,
+    0.272
+   ],
+   "zero_heat_share": 0.0
+  },
+  {
+   "town": "Brighton",
+   "region_letter": "J",
+   "need_region": "E12000008",
+   "scottish_proxy": false,
+   "h_basis": "census 2021 E&W",
+   "radius_km": 10.0,
+   "n_lsoa": 194,
+   "dwellings": 135054,
+   "gas_areas": 38,
+   "gas_meters": 126990,
+   "gas_mean_kwh_per_meter_2024": 10375,
+   "epc_mean_space_heat_kwh": 14562,
+   "gas_factor": 0.612,
+   "degree_hours_kh": 43.42,
+   "median_htc_w_k": 184.4,
+   "p10_p90_htc": [
+    112.9,
+    319.2
+   ],
+   "median_tau_h": 27.6,
+   "htc_mult": {
+    "central": 1.0,
+    "low": 1.0696,
+    "high": 0.9301,
+    "per_meter": 0.8313
+   },
+   "median_htc_by_h": {
+    "central": 184.4,
+    "low": 197.3,
+    "high": 171.5,
+    "per_meter": 153.3
+   },
+   "median_tau_by_h": {
+    "central": 27.6,
+    "low": 25.8,
+    "high": 29.7,
+    "per_meter": 33.2
+   },
+   "median_floor_m2": 75.8,
+   "form_share": [
+    0.139,
+    0.248,
+    0.23,
+    0.383
+   ],
+   "zero_heat_share": 0.0
+  }
+ ],
+ "epc_check": {
+  "method": "Independent EPC-register check of the v3 stock (gb_v3_stock.py) for the English and Welsh towns.\n\nFor each town: draw LSOAs from the town's v3 LSOA set weighted by Canet dwelling count, take each LSOA's\npopulation-weighted centroid, find the nearest postcode (postcodes.io bulk reverse geocode, OGL/ONSPD data),\nlist that postcode's certificates (EPC API /api/domestic/search?postcode=), keep the latest per UPRN, and fetch\nup to CERTS_PER_PC certificates (/api/certificate) until CAP certificates for the town. From each: dwelling form\n(property_type + built_form), total floor area, main heating (mains gas or not) and the RdSAP space-heat demand\n(renewable_heat_incentive.space_heating_existing_dwelling, kWh/yr). EPC HTC = that demand / the town's\n1991-2020 degree-hours (same basis as the Canet HTC before calibration); \"calibrated\" multiplies by the town's\ngas factor. Results go into stock_v3_meta.json under \"epc_check\". Extracted fields only are cached (no address,\nno UPRN) in data/model/gb/sources/epc_check/<town>.jsonl so a rerun resumes.\n\nAPI notes (probed 7 Nov 2026): search needs a FULL postcode (sector / district -> 400) or a date range\n(date_start, date_end; page, page_size up to 5000, pagination block in the reply). local_authority and council\nfilters are ignored or rejected. No OpenAPI document at /api/docs or /openapi.json.\nKey: state/epc.key, sent only as a Bearer header; never printed. <= 2 EPC requests/s.",
+  "cap_per_town": 150,
+  "certs_per_postcode": 6,
+  "sources": [
+   {
+    "title": "EPC register API (domestic), MHCLG",
+    "url": "https://api.get-energy-performance-data.communities.gov.uk",
+    "licence": "OGL v3 (EPC open data terms; address data restricted - none stored)"
+   },
+   {
+    "title": "postcodes.io bulk reverse geocode (ONS Postcode Directory)",
+    "url": "https://api.postcodes.io/postcodes",
+    "licence": "OGL v3"
+   }
+  ],
+  "summary": {
+   "towns": 63,
+   "certificates": 9335,
+   "median_epc_over_canet_space_heat": 0.699,
+   "median_town_floor_epc_m2": 84.5,
+   "median_town_floor_model_m2": 87.7,
+   "median_town_htc_epc_calibrated": 110.6,
+   "median_town_htc_model": 167.6,
+   "median_ks_floor": 0.154,
+   "median_ks_htc": 0.449,
+   "median_tau_epc_calibrated_h": 52.5
+  },
+  "caveats": [
+   "Certificates are the latest per UPRN at sampled postcodes: the register over-represents sold and rented homes and recent certificates (newer SAP versions), not the whole stock.",
+   "EPC space heat is RdSAP's standard-occupancy figure; raw HTC is on the same basis as Canet's before the gas factor, so 'calibrated' applies the town's v3 gas factor.",
+   "Postcodes come from dwelling-weighted LSOA centroids, so a few postcodes per LSOA dominate."
+  ],
+  "towns": [
+   {
+    "town": "Berwick",
+    "n_certs": 128,
+    "n_gas": 108,
+    "n_gas_with_space_heat": 96,
+    "gas_share": 0.844,
+    "form_share_epc_gas": [
+     0.167,
+     0.583,
+     0.176,
+     0.074
+    ],
+    "form_share_epc_all": [
+     0.18,
+     0.586,
+     0.164,
+     0.07
+    ],
+    "form_share_model": [
+     0.148,
+     0.393,
+     0.28,
+     0.179
+    ],
+    "floor_q_epc": [
+     65.0,
+     84.0,
+     91.0
+    ],
+    "floor_q_model": [
+     62.8,
+     83.7,
+     111.1
+    ],
+    "ks_floor": 0.162,
+    "epc_mean_space_heat_kwh": 10673,
+    "canet_mean_space_heat_kwh": 17266,
+    "htc_raw_q_epc": [
+     132.7,
+     180.5,
+     240.5
+    ],
+    "htc_calibrated_q_epc": [
+     75.6,
+     102.9,
+     137.1
+    ],
+    "htc_q_model": [
+     134.0,
+     157.7,
+     212.4
+    ],
+    "ks_htc_calibrated": 0.576,
+    "tau_median_epc_calibrated_h": 57.0,
+    "bands_epc_gas": {
+     "A": 1,
+     "B": 6,
+     "C": 50,
+     "D": 43,
+     "E": 7,
+     "F": 1,
+     "G": 0
+    }
+   },
+   {
+    "town": "Newcastle",
+    "n_certs": 150,
+    "n_gas": 147,
+    "n_gas_with_space_heat": 128,
+    "gas_share": 0.98,
+    "form_share_epc_gas": [
+     0.054,
+     0.449,
+     0.408,
+     0.088
+    ],
+    "form_share_epc_all": [
+     0.053,
+     0.44,
+     0.42,
+     0.087
+    ],
+    "form_share_model": [
+     0.103,
+     0.427,
+     0.281,
+     0.19
+    ],
+    "floor_q_epc": [
+     66.0,
+     76.5,
+     87.0
+    ],
+    "floor_q_model": [
+     63.0,
+     83.3,
+     109.3
+    ],
+    "ks_floor": 0.21,
+    "epc_mean_space_heat_kwh": 10646,
+    "canet_mean_space_heat_kwh": 15271,
+    "htc_raw_q_epc": [
+     119.1,
+     156.6,
+     205.4
+    ],
+    "htc_calibrated_q_epc": [
+     78.3,
+     103.0,
+     135.1
+    ],
+    "htc_q_model": [
+     130.3,
+     157.6,
+     200.8
+    ],
+    "ks_htc_calibrated": 0.5,
+    "tau_median_epc_calibrated_h": 51.7,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 5,
+     "C": 58,
+     "D": 73,
+     "E": 11,
+     "F": 0,
+     "G": 0
+    }
+   },
+   {
+    "town": "Durham",
+    "n_certs": 150,
+    "n_gas": 147,
+    "n_gas_with_space_heat": 122,
+    "gas_share": 0.98,
+    "form_share_epc_gas": [
+     0.252,
+     0.531,
+     0.15,
+     0.068
+    ],
+    "form_share_epc_all": [
+     0.253,
+     0.527,
+     0.147,
+     0.073
+    ],
+    "form_share_model": [
+     0.182,
+     0.459,
+     0.301,
+     0.058
+    ],
+    "floor_q_epc": [
+     72.2,
+     85.5,
+     107.0
+    ],
+    "floor_q_model": [
+     68.1,
+     88.3,
+     118.2
+    ],
+    "ks_floor": 0.135,
+    "epc_mean_space_heat_kwh": 12041,
+    "canet_mean_space_heat_kwh": 15205,
+    "htc_raw_q_epc": [
+     151.2,
+     195.1,
+     260.8
+    ],
+    "htc_calibrated_q_epc": [
+     103.1,
+     133.1,
+     177.9
+    ],
+    "htc_q_model": [
+     140.4,
+     169.3,
+     204.4
+    ],
+    "ks_htc_calibrated": 0.344,
+    "tau_median_epc_calibrated_h": 49.1,
+    "bands_epc_gas": {
+     "A": 1,
+     "B": 20,
+     "C": 52,
+     "D": 62,
+     "E": 11,
+     "F": 1,
+     "G": 0
+    }
+   },
+   {
+    "town": "Middlesbrough",
+    "n_certs": 150,
+    "n_gas": 149,
+    "n_gas_with_space_heat": 125,
+    "gas_share": 0.993,
+    "form_share_epc_gas": [
+     0.275,
+     0.383,
+     0.262,
+     0.081
+    ],
+    "form_share_epc_all": [
+     0.273,
+     0.38,
+     0.267,
+     0.08
+    ],
+    "form_share_model": [
+     0.191,
+     0.452,
+     0.275,
+     0.082
+    ],
+    "floor_q_epc": [
+     70.2,
+     85.0,
+     105.0
+    ],
+    "floor_q_model": [
+     66.9,
+     87.6,
+     117.3
+    ],
+    "ks_floor": 0.131,
+    "epc_mean_space_heat_kwh": 10335,
+    "canet_mean_space_heat_kwh": 15832,
+    "htc_raw_q_epc": [
+     145.4,
+     178.4,
+     226.3
+    ],
+    "htc_calibrated_q_epc": [
+     88.2,
+     108.3,
+     137.3
+    ],
+    "htc_q_model": [
+     136.1,
+     162.2,
+     206.7
+    ],
+    "ks_htc_calibrated": 0.526,
+    "tau_median_epc_calibrated_h": 54.3,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 3,
+     "C": 54,
+     "D": 77,
+     "E": 13,
+     "F": 2,
+     "G": 0
+    }
+   },
+   {
+    "town": "Carlisle",
+    "n_certs": 150,
+    "n_gas": 142,
+    "n_gas_with_space_heat": 134,
+    "gas_share": 0.947,
+    "form_share_epc_gas": [
+     0.162,
+     0.415,
+     0.359,
+     0.063
+    ],
+    "form_share_epc_all": [
+     0.16,
+     0.413,
+     0.36,
+     0.067
+    ],
+    "form_share_model": [
+     0.202,
+     0.393,
+     0.305,
+     0.101
+    ],
+    "floor_q_epc": [
+     69.2,
+     84.0,
+     107.8
+    ],
+    "floor_q_model": [
+     66.2,
+     87.8,
+     118.8
+    ],
+    "ks_floor": 0.088,
+    "epc_mean_space_heat_kwh": 11937,
+    "canet_mean_space_heat_kwh": 15927,
+    "htc_raw_q_epc": [
+     135.2,
+     176.1,
+     234.7
+    ],
+    "htc_calibrated_q_epc": [
+     81.2,
+     105.8,
+     141.1
+    ],
+    "htc_q_model": [
+     117.4,
+     147.9,
+     181.1
+    ],
+    "ks_htc_calibrated": 0.412,
+    "tau_median_epc_calibrated_h": 56.2,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 3,
+     "C": 36,
+     "D": 87,
+     "E": 15,
+     "F": 1,
+     "G": 0
+    }
+   },
+   {
+    "town": "Kendal",
+    "n_certs": 150,
+    "n_gas": 122,
+    "n_gas_with_space_heat": 106,
+    "gas_share": 0.813,
+    "form_share_epc_gas": [
+     0.279,
+     0.459,
+     0.213,
+     0.049
+    ],
+    "form_share_epc_all": [
+     0.247,
+     0.42,
+     0.2,
+     0.133
+    ],
+    "form_share_model": [
+     0.249,
+     0.348,
+     0.281,
+     0.122
+    ],
+    "floor_q_epc": [
+     67.5,
+     84.0,
+     106.5
+    ],
+    "floor_q_model": [
+     65.8,
+     87.9,
+     119.2
+    ],
+    "ks_floor": 0.129,
+    "epc_mean_space_heat_kwh": 13280,
+    "canet_mean_space_heat_kwh": 16213,
+    "htc_raw_q_epc": [
+     146.6,
+     187.4,
+     255.1
+    ],
+    "htc_calibrated_q_epc": [
+     86.5,
+     110.6,
+     150.5
+    ],
+    "htc_q_model": [
+     124.8,
+     149.9,
+     183.4
+    ],
+    "ks_htc_calibrated": 0.394,
+    "tau_median_epc_calibrated_h": 54.9,
+    "bands_epc_gas": {
+     "A": 3,
+     "B": 4,
+     "C": 38,
+     "D": 64,
+     "E": 12,
+     "F": 1,
+     "G": 0
+    }
+   },
+   {
+    "town": "Lancaster",
+    "n_certs": 150,
+    "n_gas": 131,
+    "n_gas_with_space_heat": 109,
+    "gas_share": 0.873,
+    "form_share_epc_gas": [
+     0.214,
+     0.443,
+     0.214,
+     0.13
+    ],
+    "form_share_epc_all": [
+     0.193,
+     0.393,
+     0.213,
+     0.2
+    ],
+    "form_share_model": [
+     0.177,
+     0.411,
+     0.285,
+     0.127
+    ],
+    "floor_q_epc": [
+     67.0,
+     90.0,
+     106.0
+    ],
+    "floor_q_model": [
+     64.8,
+     86.1,
+     116.6
+    ],
+    "ks_floor": 0.084,
+    "epc_mean_space_heat_kwh": 12208,
+    "canet_mean_space_heat_kwh": 16646,
+    "htc_raw_q_epc": [
+     148.8,
+     209.1,
+     278.0
+    ],
+    "htc_calibrated_q_epc": [
+     81.9,
+     115.0,
+     152.9
+    ],
+    "htc_q_model": [
+     130.9,
+     152.2,
+     194.9
+    ],
+    "ks_htc_calibrated": 0.438,
+    "tau_median_epc_calibrated_h": 53.4,
+    "bands_epc_gas": {
+     "A": 1,
+     "B": 6,
+     "C": 34,
+     "D": 68,
+     "E": 18,
+     "F": 4,
+     "G": 0
+    }
+   },
+   {
+    "town": "Blackpool",
+    "n_certs": 150,
+    "n_gas": 138,
+    "n_gas_with_space_heat": 130,
+    "gas_share": 0.92,
+    "form_share_epc_gas": [
+     0.254,
+     0.442,
+     0.181,
+     0.123
+    ],
+    "form_share_epc_all": [
+     0.24,
+     0.413,
+     0.173,
+     0.173
+    ],
+    "form_share_model": [
+     0.196,
+     0.439,
+     0.234,
+     0.131
+    ],
+    "floor_q_epc": [
+     74.0,
+     86.0,
+     102.5
+    ],
+    "floor_q_model": [
+     64.8,
+     87.3,
+     119.2
+    ],
+    "ks_floor": 0.141,
+    "epc_mean_space_heat_kwh": 12221,
+    "canet_mean_space_heat_kwh": 17474,
+    "htc_raw_q_epc": [
+     151.1,
+     212.8,
+     282.9
+    ],
+    "htc_calibrated_q_epc": [
+     83.1,
+     117.0,
+     155.6
+    ],
+    "htc_q_model": [
+     143.8,
+     172.5,
+     217.9
+    ],
+    "ks_htc_calibrated": 0.451,
+    "tau_median_epc_calibrated_h": 51.8,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 2,
+     "C": 31,
+     "D": 86,
+     "E": 15,
+     "F": 4,
+     "G": 0
+    }
+   },
+   {
+    "town": "Preston",
+    "n_certs": 150,
+    "n_gas": 130,
+    "n_gas_with_space_heat": 114,
+    "gas_share": 0.867,
+    "form_share_epc_gas": [
+     0.254,
+     0.508,
+     0.215,
+     0.023
+    ],
+    "form_share_epc_all": [
+     0.22,
+     0.46,
+     0.187,
+     0.133
+    ],
+    "form_share_model": [
+     0.259,
+     0.4,
+     0.245,
+     0.096
+    ],
+    "floor_q_epc": [
+     69.0,
+     82.0,
+     109.0
+    ],
+    "floor_q_model": [
+     67.0,
+     89.3,
+     121.2
+    ],
+    "ks_floor": 0.128,
+    "epc_mean_space_heat_kwh": 10568,
+    "canet_mean_space_heat_kwh": 15687,
+    "htc_raw_q_epc": [
+     132.9,
+     173.5,
+     233.6
+    ],
+    "htc_calibrated_q_epc": [
+     80.7,
+     105.3,
+     141.8
+    ],
+    "htc_q_model": [
+     136.2,
+     159.3,
+     202.8
+    ],
+    "ks_htc_calibrated": 0.507,
+    "tau_median_epc_calibrated_h": 54.4,
+    "bands_epc_gas": {
+     "A": 1,
+     "B": 2,
+     "C": 42,
+     "D": 70,
+     "E": 15,
+     "F": 0,
+     "G": 0
+    }
+   },
+   {
+    "town": "Manchester",
+    "n_certs": 150,
+    "n_gas": 142,
+    "n_gas_with_space_heat": 131,
+    "gas_share": 0.947,
+    "form_share_epc_gas": [
+     0.127,
+     0.493,
+     0.268,
+     0.113
+    ],
+    "form_share_epc_all": [
+     0.127,
+     0.473,
+     0.253,
+     0.147
+    ],
+    "form_share_model": [
+     0.09,
+     0.408,
+     0.329,
+     0.173
+    ],
+    "floor_q_epc": [
+     68.0,
+     81.0,
+     100.0
+    ],
+    "floor_q_model": [
+     62.3,
+     83.2,
+     109.5
+    ],
+    "ks_floor": 0.13,
+    "epc_mean_space_heat_kwh": 11216,
+    "canet_mean_space_heat_kwh": 15290,
+    "htc_raw_q_epc": [
+     126.8,
+     168.4,
+     249.7
+    ],
+    "htc_calibrated_q_epc": [
+     80.3,
+     106.6,
+     158.0
+    ],
+    "htc_q_model": [
+     127.7,
+     155.9,
+     199.8
+    ],
+    "ks_htc_calibrated": 0.382,
+    "tau_median_epc_calibrated_h": 52.7,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 7,
+     "C": 54,
+     "D": 60,
+     "E": 20,
+     "F": 1,
+     "G": 0
+    }
+   },
+   {
+    "town": "Scarborough",
+    "n_certs": 150,
+    "n_gas": 126,
+    "n_gas_with_space_heat": 111,
+    "gas_share": 0.84,
+    "form_share_epc_gas": [
+     0.151,
+     0.389,
+     0.206,
+     0.254
+    ],
+    "form_share_epc_all": [
+     0.133,
+     0.36,
+     0.193,
+     0.313
+    ],
+    "form_share_model": [
+     0.177,
+     0.347,
+     0.249,
+     0.227
+    ],
+    "floor_q_epc": [
+     72.0,
+     87.0,
+     104.0
+    ],
+    "floor_q_model": [
+     59.6,
+     80.7,
+     105.9
+    ],
+    "ks_floor": 0.212,
+    "epc_mean_space_heat_kwh": 12922,
+    "canet_mean_space_heat_kwh": 17659,
+    "htc_raw_q_epc": [
+     167.1,
+     227.2,
+     290.9
+    ],
+    "htc_calibrated_q_epc": [
+     91.4,
+     124.3,
+     159.1
+    ],
+    "htc_q_model": [
+     136.6,
+     166.7,
+     210.8
+    ],
+    "ks_htc_calibrated": 0.364,
+    "tau_median_epc_calibrated_h": 50.2,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 5,
+     "C": 31,
+     "D": 75,
+     "E": 15,
+     "F": 0,
+     "G": 0
+    }
+   },
+   {
+    "town": "Harrogate",
+    "n_certs": 150,
+    "n_gas": 127,
+    "n_gas_with_space_heat": 108,
+    "gas_share": 0.847,
+    "form_share_epc_gas": [
+     0.276,
+     0.299,
+     0.205,
+     0.22
+    ],
+    "form_share_epc_all": [
+     0.28,
+     0.267,
+     0.18,
+     0.273
+    ],
+    "form_share_model": [
+     0.268,
+     0.333,
+     0.215,
+     0.184
+    ],
+    "floor_q_epc": [
+     60.0,
+     89.5,
+     120.5
+    ],
+    "floor_q_model": [
+     62.4,
+     83.9,
+     112.9
+    ],
+    "ks_floor": 0.107,
+    "epc_mean_space_heat_kwh": 12251,
+    "canet_mean_space_heat_kwh": 18597,
+    "htc_raw_q_epc": [
+     118.3,
+     192.2,
+     253.2
+    ],
+    "htc_calibrated_q_epc": [
+     76.6,
+     124.6,
+     164.0
+    ],
+    "htc_q_model": [
+     141.5,
+     172.9,
+     231.1
+    ],
+    "ks_htc_calibrated": 0.473,
+    "tau_median_epc_calibrated_h": 50.7,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 3,
+     "C": 50,
+     "D": 63,
+     "E": 11,
+     "F": 0,
+     "G": 0
+    }
+   },
+   {
+    "town": "York",
+    "n_certs": 150,
+    "n_gas": 140,
+    "n_gas_with_space_heat": 125,
+    "gas_share": 0.933,
+    "form_share_epc_gas": [
+     0.243,
+     0.3,
+     0.321,
+     0.136
+    ],
+    "form_share_epc_all": [
+     0.227,
+     0.293,
+     0.307,
+     0.173
+    ],
+    "form_share_model": [
+     0.227,
+     0.394,
+     0.262,
+     0.118
+    ],
+    "floor_q_epc": [
+     59.0,
+     80.0,
+     97.0
+    ],
+    "floor_q_model": [
+     64.8,
+     85.4,
+     114.0
+    ],
+    "ks_floor": 0.136,
+    "epc_mean_space_heat_kwh": 9354,
+    "canet_mean_space_heat_kwh": 15231,
+    "htc_raw_q_epc": [
+     107.7,
+     148.1,
+     218.4
+    ],
+    "htc_calibrated_q_epc": [
+     72.9,
+     100.3,
+     147.8
+    ],
+    "htc_q_model": [
+     143.9,
+     170.1,
+     207.1
+    ],
+    "ks_htc_calibrated": 0.535,
+    "tau_median_epc_calibrated_h": 53.0,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 0,
+     "C": 74,
+     "D": 58,
+     "E": 8,
+     "F": 0,
+     "G": 0
+    }
+   },
+   {
+    "town": "Leeds",
+    "n_certs": 150,
+    "n_gas": 136,
+    "n_gas_with_space_heat": 119,
+    "gas_share": 0.907,
+    "form_share_epc_gas": [
+     0.162,
+     0.566,
+     0.184,
+     0.088
+    ],
+    "form_share_epc_all": [
+     0.18,
+     0.527,
+     0.18,
+     0.113
+    ],
+    "form_share_model": [
+     0.15,
+     0.416,
+     0.294,
+     0.14
+    ],
+    "floor_q_epc": [
+     74.0,
+     85.0,
+     97.0
+    ],
+    "floor_q_model": [
+     63.5,
+     82.9,
+     108.4
+    ],
+    "ks_floor": 0.167,
+    "epc_mean_space_heat_kwh": 12353,
+    "canet_mean_space_heat_kwh": 16127,
+    "htc_raw_q_epc": [
+     142.3,
+     169.0,
+     265.5
+    ],
+    "htc_calibrated_q_epc": [
+     89.7,
+     106.5,
+     167.3
+    ],
+    "htc_q_model": [
+     138.7,
+     167.6,
+     207.4
+    ],
+    "ks_htc_calibrated": 0.443,
+    "tau_median_epc_calibrated_h": 51.5,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 3,
+     "C": 62,
+     "D": 58,
+     "E": 12,
+     "F": 1,
+     "G": 0
+    }
+   },
+   {
+    "town": "Hull",
+    "n_certs": 150,
+    "n_gas": 148,
+    "n_gas_with_space_heat": 128,
+    "gas_share": 0.987,
+    "form_share_epc_gas": [
+     0.081,
+     0.25,
+     0.568,
+     0.101
+    ],
+    "form_share_epc_all": [
+     0.08,
+     0.253,
+     0.567,
+     0.1
+    ],
+    "form_share_model": [
+     0.133,
+     0.327,
+     0.438,
+     0.102
+    ],
+    "floor_q_epc": [
+     65.0,
+     72.5,
+     87.2
+    ],
+    "floor_q_model": [
+     65.0,
+     83.9,
+     108.5
+    ],
+    "ks_floor": 0.256,
+    "epc_mean_space_heat_kwh": 9155,
+    "canet_mean_space_heat_kwh": 14792,
+    "htc_raw_q_epc": [
+     132.0,
+     158.9,
+     224.2
+    ],
+    "htc_calibrated_q_epc": [
+     80.4,
+     96.8,
+     136.6
+    ],
+    "htc_q_model": [
+     127.2,
+     158.7,
+     197.4
+    ],
+    "ks_htc_calibrated": 0.596,
+    "tau_median_epc_calibrated_h": 53.5,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 11,
+     "C": 71,
+     "D": 55,
+     "E": 11,
+     "F": 0,
+     "G": 0
+    }
+   },
+   {
+    "town": "Sheffield",
+    "n_certs": 150,
+    "n_gas": 139,
+    "n_gas_with_space_heat": 122,
+    "gas_share": 0.927,
+    "form_share_epc_gas": [
+     0.151,
+     0.374,
+     0.353,
+     0.122
+    ],
+    "form_share_epc_all": [
+     0.14,
+     0.353,
+     0.327,
+     0.18
+    ],
+    "form_share_model": [
+     0.159,
+     0.426,
+     0.265,
+     0.15
+    ],
+    "floor_q_epc": [
+     64.5,
+     75.0,
+     97.5
+    ],
+    "floor_q_model": [
+     63.2,
+     83.3,
+     108.9
+    ],
+    "ks_floor": 0.158,
+    "epc_mean_space_heat_kwh": 10089,
+    "canet_mean_space_heat_kwh": 15882,
+    "htc_raw_q_epc": [
+     122.8,
+     151.8,
+     231.7
+    ],
+    "htc_calibrated_q_epc": [
+     80.4,
+     99.4,
+     151.7
+    ],
+    "htc_q_model": [
+     141.6,
+     171.4,
+     219.8
+    ],
+    "ks_htc_calibrated": 0.488,
+    "tau_median_epc_calibrated_h": 51.4,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 13,
+     "C": 46,
+     "D": 62,
+     "E": 17,
+     "F": 1,
+     "G": 0
+    }
+   },
+   {
+    "town": "Liverpool",
+    "n_certs": 150,
+    "n_gas": 144,
+    "n_gas_with_space_heat": 132,
+    "gas_share": 0.96,
+    "form_share_epc_gas": [
+     0.021,
+     0.368,
+     0.514,
+     0.097
+    ],
+    "form_share_epc_all": [
+     0.02,
+     0.36,
+     0.52,
+     0.1
+    ],
+    "form_share_model": [
+     0.094,
+     0.375,
+     0.372,
+     0.159
+    ],
+    "floor_q_epc": [
+     71.0,
+     83.0,
+     94.0
+    ],
+    "floor_q_model": [
+     62.8,
+     83.1,
+     110.6
+    ],
+    "ks_floor": 0.133,
+    "epc_mean_space_heat_kwh": 10972,
+    "canet_mean_space_heat_kwh": 16377,
+    "htc_raw_q_epc": [
+     145.4,
+     200.4,
+     259.6
+    ],
+    "htc_calibrated_q_epc": [
+     78.7,
+     108.4,
+     140.4
+    ],
+    "htc_q_model": [
+     128.3,
+     160.0,
+     204.2
+    ],
+    "ks_htc_calibrated": 0.44,
+    "tau_median_epc_calibrated_h": 56.3,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 9,
+     "C": 51,
+     "D": 63,
+     "E": 20,
+     "F": 1,
+     "G": 0
+    }
+   },
+   {
+    "town": "Bangor",
+    "n_certs": 150,
+    "n_gas": 105,
+    "n_gas_with_space_heat": 99,
+    "gas_share": 0.7,
+    "form_share_epc_gas": [
+     0.181,
+     0.371,
+     0.295,
+     0.152
+    ],
+    "form_share_epc_all": [
+     0.253,
+     0.333,
+     0.26,
+     0.153
+    ],
+    "form_share_model": [
+     0.276,
+     0.303,
+     0.334,
+     0.087
+    ],
+    "floor_q_epc": [
+     66.0,
+     89.5,
+     107.8
+    ],
+    "floor_q_model": [
+     69.3,
+     94.9,
+     127.4
+    ],
+    "ks_floor": 0.154,
+    "epc_mean_space_heat_kwh": 11788,
+    "canet_mean_space_heat_kwh": 16541,
+    "htc_raw_q_epc": [
+     128.0,
+     193.8,
+     263.9
+    ],
+    "htc_calibrated_q_epc": [
+     66.9,
+     101.4,
+     138.0
+    ],
+    "htc_q_model": [
+     131.7,
+     158.1,
+     197.1
+    ],
+    "ks_htc_calibrated": 0.48,
+    "tau_median_epc_calibrated_h": 61.4,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 2,
+     "C": 39,
+     "D": 48,
+     "E": 16,
+     "F": 0,
+     "G": 0
+    }
+   },
+   {
+    "town": "Chester",
+    "n_certs": 150,
+    "n_gas": 141,
+    "n_gas_with_space_heat": 124,
+    "gas_share": 0.94,
+    "form_share_epc_gas": [
+     0.284,
+     0.277,
+     0.27,
+     0.17
+    ],
+    "form_share_epc_all": [
+     0.28,
+     0.26,
+     0.26,
+     0.2
+    ],
+    "form_share_model": [
+     0.251,
+     0.402,
+     0.236,
+     0.112
+    ],
+    "floor_q_epc": [
+     63.2,
+     84.5,
+     101.2
+    ],
+    "floor_q_model": [
+     66.1,
+     88.7,
+     121.1
+    ],
+    "ks_floor": 0.157,
+    "epc_mean_space_heat_kwh": 9364,
+    "canet_mean_space_heat_kwh": 15053,
+    "htc_raw_q_epc": [
+     118.7,
+     159.0,
+     234.9
+    ],
+    "htc_calibrated_q_epc": [
+     71.6,
+     95.9,
+     141.6
+    ],
+    "htc_q_model": [
+     130.4,
+     160.6,
+     199.5
+    ],
+    "ks_htc_calibrated": 0.483,
+    "tau_median_epc_calibrated_h": 59.1,
+    "bands_epc_gas": {
+     "A": 7,
+     "B": 4,
+     "C": 70,
+     "D": 51,
+     "E": 8,
+     "F": 1,
+     "G": 0
+    }
+   },
+   {
+    "town": "Wrexham",
+    "n_certs": 150,
+    "n_gas": 144,
+    "n_gas_with_space_heat": 129,
+    "gas_share": 0.96,
+    "form_share_epc_gas": [
+     0.181,
+     0.34,
+     0.361,
+     0.118
+    ],
+    "form_share_epc_all": [
+     0.18,
+     0.34,
+     0.367,
+     0.113
+    ],
+    "form_share_model": [
+     0.29,
+     0.396,
+     0.216,
+     0.097
+    ],
+    "floor_q_epc": [
+     64.0,
+     79.0,
+     91.8
+    ],
+    "floor_q_model": [
+     68.9,
+     94.5,
+     127.9
+    ],
+    "ks_floor": 0.291,
+    "epc_mean_space_heat_kwh": 9313,
+    "canet_mean_space_heat_kwh": 14654,
+    "htc_raw_q_epc": [
+     121.4,
+     152.5,
+     197.9
+    ],
+    "htc_calibrated_q_epc": [
+     72.0,
+     90.5,
+     117.4
+    ],
+    "htc_q_model": [
+     124.2,
+     148.1,
+     182.7
+    ],
+    "ks_htc_calibrated": 0.576,
+    "tau_median_epc_calibrated_h": 58.3,
+    "bands_epc_gas": {
+     "A": 1,
+     "B": 5,
+     "C": 60,
+     "D": 67,
+     "E": 9,
+     "F": 2,
+     "G": 0
+    }
+   },
+   {
+    "town": "Aberystwyth",
+    "n_certs": 150,
+    "n_gas": 84,
+    "n_gas_with_space_heat": 76,
+    "gas_share": 0.56,
+    "form_share_epc_gas": [
+     0.31,
+     0.155,
+     0.274,
+     0.262
+    ],
+    "form_share_epc_all": [
+     0.267,
+     0.173,
+     0.253,
+     0.307
+    ],
+    "form_share_model": [
+     0.238,
+     0.273,
+     0.281,
+     0.208
+    ],
+    "floor_q_epc": [
+     76.2,
+     88.5,
+     122.0
+    ],
+    "floor_q_model": [
+     61.2,
+     87.7,
+     121.6
+    ],
+    "ks_floor": 0.157,
+    "epc_mean_space_heat_kwh": 12526,
+    "canet_mean_space_heat_kwh": 16357,
+    "htc_raw_q_epc": [
+     148.5,
+     220.3,
+     324.2
+    ],
+    "htc_calibrated_q_epc": [
+     77.5,
+     115.0,
+     169.2
+    ],
+    "htc_q_model": [
+     125.0,
+     159.3,
+     205.5
+    ],
+    "ks_htc_calibrated": 0.362,
+    "tau_median_epc_calibrated_h": 55.6,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 1,
+     "C": 33,
+     "D": 43,
+     "E": 5,
+     "F": 2,
+     "G": 0
+    }
+   },
+   {
+    "town": "Brecon",
+    "n_certs": 63,
+    "n_gas": 47,
+    "n_gas_with_space_heat": 45,
+    "gas_share": 0.746,
+    "form_share_epc_gas": [
+     0.404,
+     0.085,
+     0.468,
+     0.043
+    ],
+    "form_share_epc_all": [
+     0.46,
+     0.143,
+     0.349,
+     0.048
+    ],
+    "form_share_model": [
+     0.257,
+     0.287,
+     0.348,
+     0.107
+    ],
+    "floor_q_epc": [
+     65.0,
+     78.0,
+     102.5
+    ],
+    "floor_q_model": [
+     68.1,
+     93.5,
+     125.5
+    ],
+    "ks_floor": 0.233,
+    "epc_mean_space_heat_kwh": 10992,
+    "canet_mean_space_heat_kwh": 15165,
+    "htc_raw_q_epc": [
+     133.7,
+     171.2,
+     246.0
+    ],
+    "htc_calibrated_q_epc": [
+     81.0,
+     103.7,
+     149.1
+    ],
+    "htc_q_model": [
+     116.6,
+     153.0,
+     191.1
+    ],
+    "ks_htc_calibrated": 0.431,
+    "tau_median_epc_calibrated_h": 50.2,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 0,
+     "C": 18,
+     "D": 25,
+     "E": 4,
+     "F": 0,
+     "G": 0
+    }
+   },
+   {
+    "town": "Carmarthen",
+    "n_certs": 144,
+    "n_gas": 93,
+    "n_gas_with_space_heat": 83,
+    "gas_share": 0.646,
+    "form_share_epc_gas": [
+     0.14,
+     0.28,
+     0.548,
+     0.032
+    ],
+    "form_share_epc_all": [
+     0.333,
+     0.229,
+     0.375,
+     0.062
+    ],
+    "form_share_model": [
+     0.32,
+     0.309,
+     0.27,
+     0.101
+    ],
+    "floor_q_epc": [
+     74.2,
+     82.0,
+     95.5
+    ],
+    "floor_q_model": [
+     69.6,
+     95.5,
+     128.8
+    ],
+    "ks_floor": 0.313,
+    "epc_mean_space_heat_kwh": 10336,
+    "canet_mean_space_heat_kwh": 16617,
+    "htc_raw_q_epc": [
+     161.3,
+     219.6,
+     267.1
+    ],
+    "htc_calibrated_q_epc": [
+     85.0,
+     115.7,
+     140.8
+    ],
+    "htc_q_model": [
+     133.9,
+     171.1,
+     215.6
+    ],
+    "ks_htc_calibrated": 0.515,
+    "tau_median_epc_calibrated_h": 51.9,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 0,
+     "C": 30,
+     "D": 51,
+     "E": 11,
+     "F": 1,
+     "G": 0
+    }
+   },
+   {
+    "town": "Swansea",
+    "n_certs": 150,
+    "n_gas": 145,
+    "n_gas_with_space_heat": 123,
+    "gas_share": 0.967,
+    "form_share_epc_gas": [
+     0.159,
+     0.283,
+     0.434,
+     0.124
+    ],
+    "form_share_epc_all": [
+     0.16,
+     0.273,
+     0.42,
+     0.147
+    ],
+    "form_share_model": [
+     0.217,
+     0.368,
+     0.283,
+     0.132
+    ],
+    "floor_q_epc": [
+     63.8,
+     81.5,
+     99.5
+    ],
+    "floor_q_model": [
+     66.3,
+     91.7,
+     124.6
+    ],
+    "ks_floor": 0.21,
+    "epc_mean_space_heat_kwh": 9870,
+    "canet_mean_space_heat_kwh": 15140,
+    "htc_raw_q_epc": [
+     121.9,
+     184.6,
+     290.5
+    ],
+    "htc_calibrated_q_epc": [
+     72.7,
+     110.0,
+     173.2
+    ],
+    "htc_q_model": [
+     149.7,
+     186.9,
+     232.3
+    ],
+    "ks_htc_calibrated": 0.469,
+    "tau_median_epc_calibrated_h": 49.7,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 16,
+     "C": 50,
+     "D": 57,
+     "E": 21,
+     "F": 1,
+     "G": 0
+    }
+   },
+   {
+    "town": "Cardiff",
+    "n_certs": 150,
+    "n_gas": 135,
+    "n_gas_with_space_heat": 126,
+    "gas_share": 0.9,
+    "form_share_epc_gas": [
+     0.163,
+     0.267,
+     0.37,
+     0.2
+    ],
+    "form_share_epc_all": [
+     0.147,
+     0.247,
+     0.333,
+     0.273
+    ],
+    "form_share_model": [
+     0.164,
+     0.325,
+     0.33,
+     0.182
+    ],
+    "floor_q_epc": [
+     65.8,
+     86.5,
+     125.0
+    ],
+    "floor_q_model": [
+     62.9,
+     87.5,
+     120.5
+    ],
+    "ks_floor": 0.11,
+    "epc_mean_space_heat_kwh": 11823,
+    "canet_mean_space_heat_kwh": 15034,
+    "htc_raw_q_epc": [
+     144.5,
+     197.2,
+     292.2
+    ],
+    "htc_calibrated_q_epc": [
+     87.3,
+     119.1,
+     176.5
+    ],
+    "htc_q_model": [
+     138.7,
+     176.0,
+     223.9
+    ],
+    "ks_htc_calibrated": 0.367,
+    "tau_median_epc_calibrated_h": 52.7,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 4,
+     "C": 50,
+     "D": 64,
+     "E": 14,
+     "F": 3,
+     "G": 0
+    }
+   },
+   {
+    "town": "Stoke",
+    "n_certs": 150,
+    "n_gas": 141,
+    "n_gas_with_space_heat": 130,
+    "gas_share": 0.94,
+    "form_share_epc_gas": [
+     0.213,
+     0.447,
+     0.284,
+     0.057
+    ],
+    "form_share_epc_all": [
+     0.2,
+     0.433,
+     0.273,
+     0.093
+    ],
+    "form_share_model": [
+     0.19,
+     0.473,
+     0.263,
+     0.074
+    ],
+    "floor_q_epc": [
+     59.5,
+     73.0,
+     85.0
+    ],
+    "floor_q_model": [
+     66.7,
+     86.9,
+     115.8
+    ],
+    "ks_floor": 0.303,
+    "epc_mean_space_heat_kwh": 9660,
+    "canet_mean_space_heat_kwh": 14901,
+    "htc_raw_q_epc": [
+     126.8,
+     158.4,
+     211.6
+    ],
+    "htc_calibrated_q_epc": [
+     83.5,
+     104.4,
+     139.5
+    ],
+    "htc_q_model": [
+     142.0,
+     165.1,
+     195.7
+    ],
+    "ks_htc_calibrated": 0.579,
+    "tau_median_epc_calibrated_h": 47.1,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 3,
+     "C": 40,
+     "D": 84,
+     "E": 14,
+     "F": 0,
+     "G": 0
+    }
+   },
+   {
+    "town": "Shrewsbury",
+    "n_certs": 150,
+    "n_gas": 136,
+    "n_gas_with_space_heat": 122,
+    "gas_share": 0.907,
+    "form_share_epc_gas": [
+     0.206,
+     0.507,
+     0.257,
+     0.029
+    ],
+    "form_share_epc_all": [
+     0.2,
+     0.48,
+     0.253,
+     0.067
+    ],
+    "form_share_model": [
+     0.284,
+     0.413,
+     0.227,
+     0.076
+    ],
+    "floor_q_epc": [
+     71.0,
+     80.0,
+     103.0
+    ],
+    "floor_q_model": [
+     67.7,
+     89.0,
+     120.0
+    ],
+    "ks_floor": 0.168,
+    "epc_mean_space_heat_kwh": 10374,
+    "canet_mean_space_heat_kwh": 15416,
+    "htc_raw_q_epc": [
+     126.8,
+     159.0,
+     236.1
+    ],
+    "htc_calibrated_q_epc": [
+     70.7,
+     88.6,
+     131.5
+    ],
+    "htc_q_model": [
+     118.2,
+     142.5,
+     185.7
+    ],
+    "ks_htc_calibrated": 0.476,
+    "tau_median_epc_calibrated_h": 62.2,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 4,
+     "C": 55,
+     "D": 61,
+     "E": 16,
+     "F": 0,
+     "G": 0
+    }
+   },
+   {
+    "town": "Birmingham",
+    "n_certs": 150,
+    "n_gas": 140,
+    "n_gas_with_space_heat": 130,
+    "gas_share": 0.933,
+    "form_share_epc_gas": [
+     0.021,
+     0.593,
+     0.264,
+     0.121
+    ],
+    "form_share_epc_all": [
+     0.02,
+     0.567,
+     0.247,
+     0.167
+    ],
+    "form_share_model": [
+     0.122,
+     0.413,
+     0.312,
+     0.153
+    ],
+    "floor_q_epc": [
+     66.2,
+     79.0,
+     96.0
+    ],
+    "floor_q_model": [
+     63.2,
+     82.5,
+     106.3
+    ],
+    "ks_floor": 0.1,
+    "epc_mean_space_heat_kwh": 11741,
+    "canet_mean_space_heat_kwh": 16750,
+    "htc_raw_q_epc": [
+     146.3,
+     201.0,
+     255.2
+    ],
+    "htc_calibrated_q_epc": [
+     98.0,
+     134.7,
+     171.0
+    ],
+    "htc_q_model": [
+     153.0,
+     191.3,
+     236.1
+    ],
+    "ks_htc_calibrated": 0.403,
+    "tau_median_epc_calibrated_h": 40.1,
+    "bands_epc_gas": {
+     "A": 1,
+     "B": 3,
+     "C": 33,
+     "D": 78,
+     "E": 21,
+     "F": 4,
+     "G": 0
+    }
+   },
+   {
+    "town": "Coventry",
+    "n_certs": 150,
+    "n_gas": 140,
+    "n_gas_with_space_heat": 128,
+    "gas_share": 0.933,
+    "form_share_epc_gas": [
+     0.25,
+     0.236,
+     0.379,
+     0.136
+    ],
+    "form_share_epc_all": [
+     0.233,
+     0.22,
+     0.367,
+     0.18
+    ],
+    "form_share_model": [
+     0.158,
+     0.323,
+     0.396,
+     0.123
+    ],
+    "floor_q_epc": [
+     69.0,
+     85.0,
+     109.8
+    ],
+    "floor_q_model": [
+     64.3,
+     84.0,
+     109.7
+    ],
+    "ks_floor": 0.126,
+    "epc_mean_space_heat_kwh": 11225,
+    "canet_mean_space_heat_kwh": 15591,
+    "htc_raw_q_epc": [
+     136.9,
+     184.7,
+     248.2
+    ],
+    "htc_calibrated_q_epc": [
+     86.5,
+     116.8,
+     156.8
+    ],
+    "htc_q_model": [
+     148.4,
+     169.0,
+     210.3
+    ],
+    "ks_htc_calibrated": 0.485,
+    "tau_median_epc_calibrated_h": 53.1,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 3,
+     "C": 60,
+     "D": 61,
+     "E": 13,
+     "F": 3,
+     "G": 0
+    }
+   },
+   {
+    "town": "Hereford",
+    "n_certs": 150,
+    "n_gas": 110,
+    "n_gas_with_space_heat": 96,
+    "gas_share": 0.733,
+    "form_share_epc_gas": [
+     0.464,
+     0.309,
+     0.136,
+     0.091
+    ],
+    "form_share_epc_all": [
+     0.413,
+     0.293,
+     0.147,
+     0.147
+    ],
+    "form_share_model": [
+     0.281,
+     0.348,
+     0.24,
+     0.132
+    ],
+    "floor_q_epc": [
+     70.0,
+     91.0,
+     116.0
+    ],
+    "floor_q_model": [
+     65.2,
+     86.5,
+     117.7
+    ],
+    "ks_floor": 0.079,
+    "epc_mean_space_heat_kwh": 9600,
+    "canet_mean_space_heat_kwh": 15261,
+    "htc_raw_q_epc": [
+     122.4,
+     168.2,
+     212.4
+    ],
+    "htc_calibrated_q_epc": [
+     65.6,
+     90.1,
+     113.9
+    ],
+    "htc_q_model": [
+     113.8,
+     143.7,
+     181.5
+    ],
+    "ks_htc_calibrated": 0.513,
+    "tau_median_epc_calibrated_h": 67.8,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 5,
+     "C": 53,
+     "D": 45,
+     "E": 6,
+     "F": 1,
+     "G": 0
+    }
+   },
+   {
+    "town": "Buxton",
+    "n_certs": 150,
+    "n_gas": 134,
+    "n_gas_with_space_heat": 124,
+    "gas_share": 0.893,
+    "form_share_epc_gas": [
+     0.149,
+     0.366,
+     0.291,
+     0.194
+    ],
+    "form_share_epc_all": [
+     0.16,
+     0.333,
+     0.327,
+     0.18
+    ],
+    "form_share_model": [
+     0.233,
+     0.363,
+     0.268,
+     0.136
+    ],
+    "floor_q_epc": [
+     67.0,
+     82.0,
+     100.0
+    ],
+    "floor_q_model": [
+     63.8,
+     85.0,
+     113.1
+    ],
+    "ks_floor": 0.088,
+    "epc_mean_space_heat_kwh": 13507,
+    "canet_mean_space_heat_kwh": 18327,
+    "htc_raw_q_epc": [
+     127.5,
+     187.4,
+     235.5
+    ],
+    "htc_calibrated_q_epc": [
+     80.5,
+     118.3,
+     148.6
+    ],
+    "htc_q_model": [
+     130.1,
+     165.3,
+     207.3
+    ],
+    "ks_htc_calibrated": 0.421,
+    "tau_median_epc_calibrated_h": 50.8,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 0,
+     "C": 47,
+     "D": 69,
+     "E": 15,
+     "F": 3,
+     "G": 0
+    }
+   },
+   {
+    "town": "Lincoln",
+    "n_certs": 150,
+    "n_gas": 139,
+    "n_gas_with_space_heat": 119,
+    "gas_share": 0.927,
+    "form_share_epc_gas": [
+     0.388,
+     0.266,
+     0.309,
+     0.036
+    ],
+    "form_share_epc_all": [
+     0.373,
+     0.247,
+     0.307,
+     0.073
+    ],
+    "form_share_model": [
+     0.389,
+     0.283,
+     0.227,
+     0.101
+    ],
+    "floor_q_epc": [
+     70.0,
+     85.0,
+     115.0
+    ],
+    "floor_q_model": [
+     67.0,
+     89.8,
+     122.3
+    ],
+    "ks_floor": 0.096,
+    "epc_mean_space_heat_kwh": 11008,
+    "canet_mean_space_heat_kwh": 14838,
+    "htc_raw_q_epc": [
+     148.9,
+     192.5,
+     261.0
+    ],
+    "htc_calibrated_q_epc": [
+     91.0,
+     117.6,
+     159.5
+    ],
+    "htc_q_model": [
+     130.2,
+     165.0,
+     203.2
+    ],
+    "ks_htc_calibrated": 0.381,
+    "tau_median_epc_calibrated_h": 55.1,
+    "bands_epc_gas": {
+     "A": 1,
+     "B": 8,
+     "C": 59,
+     "D": 61,
+     "E": 10,
+     "F": 0,
+     "G": 0
+    }
+   },
+   {
+    "town": "Nottingham",
+    "n_certs": 150,
+    "n_gas": 137,
+    "n_gas_with_space_heat": 113,
+    "gas_share": 0.913,
+    "form_share_epc_gas": [
+     0.146,
+     0.438,
+     0.117,
+     0.299
+    ],
+    "form_share_epc_all": [
+     0.14,
+     0.4,
+     0.107,
+     0.353
+    ],
+    "form_share_model": [
+     0.276,
+     0.367,
+     0.232,
+     0.125
+    ],
+    "floor_q_epc": [
+     65.0,
+     81.0,
+     97.2
+    ],
+    "floor_q_model": [
+     64.6,
+     86.5,
+     116.4
+    ],
+    "ks_floor": 0.157,
+    "epc_mean_space_heat_kwh": 10098,
+    "canet_mean_space_heat_kwh": 16455,
+    "htc_raw_q_epc": [
+     101.8,
+     173.5,
+     237.6
+    ],
+    "htc_calibrated_q_epc": [
+     62.4,
+     106.4,
+     145.6
+    ],
+    "htc_q_model": [
+     140.0,
+     175.0,
+     220.4
+    ],
+    "ks_htc_calibrated": 0.507,
+    "tau_median_epc_calibrated_h": 53.9,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 10,
+     "C": 60,
+     "D": 48,
+     "E": 15,
+     "F": 4,
+     "G": 0
+    }
+   },
+   {
+    "town": "Derby",
+    "n_certs": 150,
+    "n_gas": 133,
+    "n_gas_with_space_heat": 114,
+    "gas_share": 0.887,
+    "form_share_epc_gas": [
+     0.376,
+     0.376,
+     0.226,
+     0.023
+    ],
+    "form_share_epc_all": [
+     0.347,
+     0.353,
+     0.22,
+     0.08
+    ],
+    "form_share_model": [
+     0.299,
+     0.403,
+     0.207,
+     0.091
+    ],
+    "floor_q_epc": [
+     75.0,
+     86.0,
+     112.0
+    ],
+    "floor_q_model": [
+     66.6,
+     87.7,
+     118.6
+    ],
+    "ks_floor": 0.139,
+    "epc_mean_space_heat_kwh": 11390,
+    "canet_mean_space_heat_kwh": 15939,
+    "htc_raw_q_epc": [
+     155.2,
+     185.8,
+     228.6
+    ],
+    "htc_calibrated_q_epc": [
+     95.7,
+     114.7,
+     141.0
+    ],
+    "htc_q_model": [
+     142.0,
+     170.9,
+     211.2
+    ],
+    "ks_htc_calibrated": 0.518,
+    "tau_median_epc_calibrated_h": 52.4,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 3,
+     "C": 35,
+     "D": 79,
+     "E": 13,
+     "F": 3,
+     "G": 0
+    }
+   },
+   {
+    "town": "Leicester",
+    "n_certs": 150,
+    "n_gas": 142,
+    "n_gas_with_space_heat": 131,
+    "gas_share": 0.947,
+    "form_share_epc_gas": [
+     0.148,
+     0.43,
+     0.31,
+     0.113
+    ],
+    "form_share_epc_all": [
+     0.14,
+     0.433,
+     0.293,
+     0.133
+    ],
+    "form_share_model": [
+     0.229,
+     0.426,
+     0.24,
+     0.105
+    ],
+    "floor_q_epc": [
+     69.0,
+     87.0,
+     106.0
+    ],
+    "floor_q_model": [
+     65.1,
+     85.5,
+     114.2
+    ],
+    "ks_floor": 0.096,
+    "epc_mean_space_heat_kwh": 11623,
+    "canet_mean_space_heat_kwh": 16364,
+    "htc_raw_q_epc": [
+     139.2,
+     187.2,
+     263.1
+    ],
+    "htc_calibrated_q_epc": [
+     93.7,
+     126.0,
+     177.1
+    ],
+    "htc_q_model": [
+     161.2,
+     197.6,
+     242.7
+    ],
+    "ks_htc_calibrated": 0.458,
+    "tau_median_epc_calibrated_h": 47.4,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 2,
+     "C": 55,
+     "D": 63,
+     "E": 18,
+     "F": 4,
+     "G": 0
+    }
+   },
+   {
+    "town": "Northampton",
+    "n_certs": 150,
+    "n_gas": 133,
+    "n_gas_with_space_heat": 109,
+    "gas_share": 0.887,
+    "form_share_epc_gas": [
+     0.308,
+     0.323,
+     0.286,
+     0.083
+    ],
+    "form_share_epc_all": [
+     0.28,
+     0.307,
+     0.3,
+     0.113
+    ],
+    "form_share_model": [
+     0.285,
+     0.317,
+     0.291,
+     0.106
+    ],
+    "floor_q_epc": [
+     72.0,
+     85.0,
+     104.0
+    ],
+    "floor_q_model": [
+     65.3,
+     86.9,
+     117.4
+    ],
+    "ks_floor": 0.13,
+    "epc_mean_space_heat_kwh": 9974,
+    "canet_mean_space_heat_kwh": 15302,
+    "htc_raw_q_epc": [
+     138.8,
+     168.0,
+     216.8
+    ],
+    "htc_calibrated_q_epc": [
+     89.6,
+     108.6,
+     140.1
+    ],
+    "htc_q_model": [
+     141.7,
+     178.6,
+     223.1
+    ],
+    "ks_htc_calibrated": 0.538,
+    "tau_median_epc_calibrated_h": 53.5,
+    "bands_epc_gas": {
+     "A": 4,
+     "B": 12,
+     "C": 55,
+     "D": 56,
+     "E": 5,
+     "F": 1,
+     "G": 0
+    }
+   },
+   {
+    "town": "King's Lynn",
+    "n_certs": 150,
+    "n_gas": 119,
+    "n_gas_with_space_heat": 100,
+    "gas_share": 0.793,
+    "form_share_epc_gas": [
+     0.437,
+     0.328,
+     0.21,
+     0.025
+    ],
+    "form_share_epc_all": [
+     0.433,
+     0.327,
+     0.2,
+     0.04
+    ],
+    "form_share_model": [
+     0.31,
+     0.342,
+     0.23,
+     0.119
+    ],
+    "floor_q_epc": [
+     70.0,
+     88.0,
+     106.0
+    ],
+    "floor_q_model": [
+     66.7,
+     90.8,
+     126.2
+    ],
+    "ks_floor": 0.15,
+    "epc_mean_space_heat_kwh": 10424,
+    "canet_mean_space_heat_kwh": 14387,
+    "htc_raw_q_epc": [
+     133.3,
+     197.3,
+     285.4
+    ],
+    "htc_calibrated_q_epc": [
+     82.2,
+     121.7,
+     176.1
+    ],
+    "htc_q_model": [
+     133.3,
+     165.0,
+     219.0
+    ],
+    "ks_htc_calibrated": 0.366,
+    "tau_median_epc_calibrated_h": 52.1,
+    "bands_epc_gas": {
+     "A": 1,
+     "B": 10,
+     "C": 46,
+     "D": 46,
+     "E": 15,
+     "F": 1,
+     "G": 0
+    }
+   },
+   {
+    "town": "Norwich",
+    "n_certs": 150,
+    "n_gas": 138,
+    "n_gas_with_space_heat": 114,
+    "gas_share": 0.92,
+    "form_share_epc_gas": [
+     0.406,
+     0.283,
+     0.196,
+     0.116
+    ],
+    "form_share_epc_all": [
+     0.387,
+     0.287,
+     0.207,
+     0.12
+    ],
+    "form_share_model": [
+     0.285,
+     0.297,
+     0.246,
+     0.172
+    ],
+    "floor_q_epc": [
+     72.5,
+     87.5,
+     108.5
+    ],
+    "floor_q_model": [
+     63.0,
+     88.3,
+     122.5
+    ],
+    "ks_floor": 0.105,
+    "epc_mean_space_heat_kwh": 10249,
+    "canet_mean_space_heat_kwh": 14134,
+    "htc_raw_q_epc": [
+     150.3,
+     201.8,
+     252.7
+    ],
+    "htc_calibrated_q_epc": [
+     91.5,
+     122.9,
+     153.9
+    ],
+    "htc_q_model": [
+     130.8,
+     159.9,
+     207.2
+    ],
+    "ks_htc_calibrated": 0.336,
+    "tau_median_epc_calibrated_h": 50.8,
+    "bands_epc_gas": {
+     "A": 1,
+     "B": 5,
+     "C": 50,
+     "D": 70,
+     "E": 11,
+     "F": 1,
+     "G": 0
+    }
+   },
+   {
+    "town": "Peterborough",
+    "n_certs": 150,
+    "n_gas": 132,
+    "n_gas_with_space_heat": 120,
+    "gas_share": 0.88,
+    "form_share_epc_gas": [
+     0.311,
+     0.288,
+     0.28,
+     0.121
+    ],
+    "form_share_epc_all": [
+     0.273,
+     0.273,
+     0.26,
+     0.193
+    ],
+    "form_share_model": [
+     0.305,
+     0.328,
+     0.244,
+     0.123
+    ],
+    "floor_q_epc": [
+     68.0,
+     87.0,
+     113.0
+    ],
+    "floor_q_model": [
+     65.7,
+     89.8,
+     123.6
+    ],
+    "ks_floor": 0.097,
+    "epc_mean_space_heat_kwh": 10517,
+    "canet_mean_space_heat_kwh": 14374,
+    "htc_raw_q_epc": [
+     138.7,
+     174.6,
+     267.0
+    ],
+    "htc_calibrated_q_epc": [
+     87.8,
+     110.5,
+     169.0
+    ],
+    "htc_q_model": [
+     129.5,
+     162.6,
+     215.3
+    ],
+    "ks_htc_calibrated": 0.421,
+    "tau_median_epc_calibrated_h": 51.2,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 8,
+     "C": 49,
+     "D": 59,
+     "E": 16,
+     "F": 0,
+     "G": 0
+    }
+   },
+   {
+    "town": "Cambridge",
+    "n_certs": 150,
+    "n_gas": 134,
+    "n_gas_with_space_heat": 112,
+    "gas_share": 0.893,
+    "form_share_epc_gas": [
+     0.321,
+     0.291,
+     0.306,
+     0.082
+    ],
+    "form_share_epc_all": [
+     0.307,
+     0.287,
+     0.28,
+     0.127
+    ],
+    "form_share_model": [
+     0.225,
+     0.318,
+     0.274,
+     0.183
+    ],
+    "floor_q_epc": [
+     78.5,
+     94.0,
+     130.0
+    ],
+    "floor_q_model": [
+     62.1,
+     86.1,
+     119.6
+    ],
+    "ks_floor": 0.183,
+    "epc_mean_space_heat_kwh": 10535,
+    "canet_mean_space_heat_kwh": 15731,
+    "htc_raw_q_epc": [
+     133.3,
+     198.7,
+     267.1
+    ],
+    "htc_calibrated_q_epc": [
+     86.8,
+     129.4,
+     173.9
+    ],
+    "htc_q_model": [
+     144.3,
+     189.6,
+     251.6
+    ],
+    "ks_htc_calibrated": 0.359,
+    "tau_median_epc_calibrated_h": 51.7,
+    "bands_epc_gas": {
+     "A": 2,
+     "B": 11,
+     "C": 55,
+     "D": 56,
+     "E": 10,
+     "F": 0,
+     "G": 0
+    }
+   },
+   {
+    "town": "Ipswich",
+    "n_certs": 150,
+    "n_gas": 121,
+    "n_gas_with_space_heat": 108,
+    "gas_share": 0.807,
+    "form_share_epc_gas": [
+     0.182,
+     0.388,
+     0.256,
+     0.174
+    ],
+    "form_share_epc_all": [
+     0.22,
+     0.32,
+     0.22,
+     0.24
+    ],
+    "form_share_model": [
+     0.262,
+     0.379,
+     0.233,
+     0.127
+    ],
+    "floor_q_epc": [
+     68.0,
+     81.0,
+     91.0
+    ],
+    "floor_q_model": [
+     65.5,
+     89.5,
+     123.3
+    ],
+    "ks_floor": 0.243,
+    "epc_mean_space_heat_kwh": 9509,
+    "canet_mean_space_heat_kwh": 14654,
+    "htc_raw_q_epc": [
+     130.3,
+     169.7,
+     220.0
+    ],
+    "htc_calibrated_q_epc": [
+     79.7,
+     103.9,
+     134.7
+    ],
+    "htc_q_model": [
+     140.0,
+     171.3,
+     218.5
+    ],
+    "ks_htc_calibrated": 0.545,
+    "tau_median_epc_calibrated_h": 53.9,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 8,
+     "C": 67,
+     "D": 37,
+     "E": 9,
+     "F": 0,
+     "G": 0
+    }
+   },
+   {
+    "town": "Chelmsford",
+    "n_certs": 150,
+    "n_gas": 123,
+    "n_gas_with_space_heat": 116,
+    "gas_share": 0.82,
+    "form_share_epc_gas": [
+     0.366,
+     0.317,
+     0.276,
+     0.041
+    ],
+    "form_share_epc_all": [
+     0.307,
+     0.273,
+     0.233,
+     0.187
+    ],
+    "form_share_model": [
+     0.276,
+     0.358,
+     0.236,
+     0.13
+    ],
+    "floor_q_epc": [
+     78.0,
+     92.0,
+     130.5
+    ],
+    "floor_q_model": [
+     65.4,
+     89.7,
+     124.0
+    ],
+    "ks_floor": 0.186,
+    "epc_mean_space_heat_kwh": 13353,
+    "canet_mean_space_heat_kwh": 15114,
+    "htc_raw_q_epc": [
+     187.1,
+     256.0,
+     328.2
+    ],
+    "htc_calibrated_q_epc": [
+     127.2,
+     174.1,
+     223.2
+    ],
+    "htc_q_model": [
+     159.5,
+     197.3,
+     252.5
+    ],
+    "ks_htc_calibrated": 0.203,
+    "tau_median_epc_calibrated_h": 40.0,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 2,
+     "C": 36,
+     "D": 66,
+     "E": 15,
+     "F": 4,
+     "G": 0
+    }
+   },
+   {
+    "town": "Bristol",
+    "n_certs": 150,
+    "n_gas": 124,
+    "n_gas_with_space_heat": 109,
+    "gas_share": 0.827,
+    "form_share_epc_gas": [
+     0.121,
+     0.25,
+     0.347,
+     0.282
+    ],
+    "form_share_epc_all": [
+     0.113,
+     0.213,
+     0.313,
+     0.36
+    ],
+    "form_share_model": [
+     0.122,
+     0.323,
+     0.352,
+     0.203
+    ],
+    "floor_q_epc": [
+     71.0,
+     89.0,
+     105.0
+    ],
+    "floor_q_model": [
+     61.0,
+     84.3,
+     115.8
+    ],
+    "ks_floor": 0.144,
+    "epc_mean_space_heat_kwh": 9695,
+    "canet_mean_space_heat_kwh": 15071,
+    "htc_raw_q_epc": [
+     107.5,
+     185.5,
+     269.4
+    ],
+    "htc_calibrated_q_epc": [
+     60.4,
+     104.3,
+     151.4
+    ],
+    "htc_q_model": [
+     127.2,
+     156.7,
+     201.5
+    ],
+    "ks_htc_calibrated": 0.47,
+    "tau_median_epc_calibrated_h": 64.2,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 3,
+     "C": 59,
+     "D": 44,
+     "E": 18,
+     "F": 0,
+     "G": 0
+    }
+   },
+   {
+    "town": "Taunton",
+    "n_certs": 150,
+    "n_gas": 118,
+    "n_gas_with_space_heat": 104,
+    "gas_share": 0.787,
+    "form_share_epc_gas": [
+     0.305,
+     0.297,
+     0.305,
+     0.093
+    ],
+    "form_share_epc_all": [
+     0.32,
+     0.28,
+     0.273,
+     0.127
+    ],
+    "form_share_model": [
+     0.287,
+     0.32,
+     0.269,
+     0.124
+    ],
+    "floor_q_epc": [
+     67.0,
+     82.0,
+     99.5
+    ],
+    "floor_q_model": [
+     66.9,
+     90.9,
+     124.8
+    ],
+    "ks_floor": 0.175,
+    "epc_mean_space_heat_kwh": 9284,
+    "canet_mean_space_heat_kwh": 13872,
+    "htc_raw_q_epc": [
+     128.4,
+     191.9,
+     242.7
+    ],
+    "htc_calibrated_q_epc": [
+     71.3,
+     106.5,
+     134.7
+    ],
+    "htc_q_model": [
+     120.0,
+     154.4,
+     192.8
+    ],
+    "ks_htc_calibrated": 0.404,
+    "tau_median_epc_calibrated_h": 57.7,
+    "bands_epc_gas": {
+     "A": 1,
+     "B": 4,
+     "C": 49,
+     "D": 51,
+     "E": 12,
+     "F": 1,
+     "G": 0
+    }
+   },
+   {
+    "town": "Barnstaple",
+    "n_certs": 150,
+    "n_gas": 109,
+    "n_gas_with_space_heat": 102,
+    "gas_share": 0.727,
+    "form_share_epc_gas": [
+     0.495,
+     0.11,
+     0.312,
+     0.083
+    ],
+    "form_share_epc_all": [
+     0.427,
+     0.093,
+     0.313,
+     0.167
+    ],
+    "form_share_model": [
+     0.383,
+     0.248,
+     0.259,
+     0.11
+    ],
+    "floor_q_epc": [
+     60.2,
+     85.5,
+     105.0
+    ],
+    "floor_q_model": [
+     68.8,
+     94.2,
+     128.0
+    ],
+    "ks_floor": 0.183,
+    "epc_mean_space_heat_kwh": 8911,
+    "canet_mean_space_heat_kwh": 13965,
+    "htc_raw_q_epc": [
+     152.9,
+     189.2,
+     255.9
+    ],
+    "htc_calibrated_q_epc": [
+     82.7,
+     102.4,
+     138.5
+    ],
+    "htc_q_model": [
+     137.5,
+     171.2,
+     207.9
+    ],
+    "ks_htc_calibrated": 0.498,
+    "tau_median_epc_calibrated_h": 53.3,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 4,
+     "C": 43,
+     "D": 55,
+     "E": 6,
+     "F": 1,
+     "G": 0
+    }
+   },
+   {
+    "town": "Exeter",
+    "n_certs": 150,
+    "n_gas": 126,
+    "n_gas_with_space_heat": 109,
+    "gas_share": 0.84,
+    "form_share_epc_gas": [
+     0.183,
+     0.286,
+     0.421,
+     0.111
+    ],
+    "form_share_epc_all": [
+     0.193,
+     0.247,
+     0.407,
+     0.153
+    ],
+    "form_share_model": [
+     0.202,
+     0.29,
+     0.325,
+     0.183
+    ],
+    "floor_q_epc": [
+     74.0,
+     82.0,
+     111.0
+    ],
+    "floor_q_model": [
+     62.9,
+     87.3,
+     119.9
+    ],
+    "ks_floor": 0.146,
+    "epc_mean_space_heat_kwh": 9996,
+    "canet_mean_space_heat_kwh": 13701,
+    "htc_raw_q_epc": [
+     142.9,
+     193.1,
+     255.1
+    ],
+    "htc_calibrated_q_epc": [
+     80.0,
+     108.1,
+     142.9
+    ],
+    "htc_q_model": [
+     122.5,
+     154.7,
+     193.6
+    ],
+    "ks_htc_calibrated": 0.382,
+    "tau_median_epc_calibrated_h": 54.3,
+    "bands_epc_gas": {
+     "A": 1,
+     "B": 0,
+     "C": 47,
+     "D": 66,
+     "E": 11,
+     "F": 1,
+     "G": 0
+    }
+   },
+   {
+    "town": "Plymouth",
+    "n_certs": 150,
+    "n_gas": 116,
+    "n_gas_with_space_heat": 106,
+    "gas_share": 0.773,
+    "form_share_epc_gas": [
+     0.069,
+     0.293,
+     0.509,
+     0.129
+    ],
+    "form_share_epc_all": [
+     0.073,
+     0.247,
+     0.413,
+     0.267
+    ],
+    "form_share_model": [
+     0.142,
+     0.318,
+     0.339,
+     0.201
+    ],
+    "floor_q_epc": [
+     66.0,
+     82.0,
+     93.0
+    ],
+    "floor_q_model": [
+     61.0,
+     84.8,
+     116.6
+    ],
+    "ks_floor": 0.166,
+    "epc_mean_space_heat_kwh": 8929,
+    "canet_mean_space_heat_kwh": 13490,
+    "htc_raw_q_epc": [
+     143.4,
+     179.9,
+     250.6
+    ],
+    "htc_calibrated_q_epc": [
+     69.5,
+     87.2,
+     121.5
+    ],
+    "htc_q_model": [
+     110.5,
+     142.4,
+     184.0
+    ],
+    "ks_htc_calibrated": 0.493,
+    "tau_median_epc_calibrated_h": 59.5,
+    "bands_epc_gas": {
+     "A": 4,
+     "B": 3,
+     "C": 56,
+     "D": 45,
+     "E": 8,
+     "F": 0,
+     "G": 0
+    }
+   },
+   {
+    "town": "Truro",
+    "n_certs": 150,
+    "n_gas": 82,
+    "n_gas_with_space_heat": 65,
+    "gas_share": 0.547,
+    "form_share_epc_gas": [
+     0.451,
+     0.293,
+     0.256,
+     0.0
+    ],
+    "form_share_epc_all": [
+     0.433,
+     0.28,
+     0.233,
+     0.053
+    ],
+    "form_share_model": [
+     0.364,
+     0.286,
+     0.234,
+     0.116
+    ],
+    "floor_q_epc": [
+     71.0,
+     97.0,
+     129.0
+    ],
+    "floor_q_model": [
+     68.3,
+     93.8,
+     128.4
+    ],
+    "ks_floor": 0.12,
+    "epc_mean_space_heat_kwh": 10593,
+    "canet_mean_space_heat_kwh": 14247,
+    "htc_raw_q_epc": [
+     171.6,
+     218.3,
+     331.2
+    ],
+    "htc_calibrated_q_epc": [
+     93.3,
+     118.7,
+     180.2
+    ],
+    "htc_q_model": [
+     146.9,
+     184.6,
+     240.6
+    ],
+    "ks_htc_calibrated": 0.413,
+    "tau_median_epc_calibrated_h": 56.2,
+    "bands_epc_gas": {
+     "A": 1,
+     "B": 10,
+     "C": 35,
+     "D": 28,
+     "E": 6,
+     "F": 2,
+     "G": 0
+    }
+   },
+   {
+    "town": "Penzance",
+    "n_certs": 150,
+    "n_gas": 74,
+    "n_gas_with_space_heat": 64,
+    "gas_share": 0.493,
+    "form_share_epc_gas": [
+     0.216,
+     0.257,
+     0.419,
+     0.108
+    ],
+    "form_share_epc_all": [
+     0.26,
+     0.293,
+     0.327,
+     0.12
+    ],
+    "form_share_model": [
+     0.262,
+     0.216,
+     0.336,
+     0.186
+    ],
+    "floor_q_epc": [
+     62.5,
+     83.5,
+     111.8
+    ],
+    "floor_q_model": [
+     62.9,
+     87.9,
+     121.9
+    ],
+    "ks_floor": 0.105,
+    "epc_mean_space_heat_kwh": 11708,
+    "canet_mean_space_heat_kwh": 14859,
+    "htc_raw_q_epc": [
+     171.3,
+     243.1,
+     448.8
+    ],
+    "htc_calibrated_q_epc": [
+     80.7,
+     114.5,
+     211.4
+    ],
+    "htc_q_model": [
+     147.2,
+     182.9,
+     220.8
+    ],
+    "ks_htc_calibrated": 0.419,
+    "tau_median_epc_calibrated_h": 46.8,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 3,
+     "C": 24,
+     "D": 31,
+     "E": 14,
+     "F": 2,
+     "G": 0
+    }
+   },
+   {
+    "town": "Oxford",
+    "n_certs": 150,
+    "n_gas": 135,
+    "n_gas_with_space_heat": 129,
+    "gas_share": 0.9,
+    "form_share_epc_gas": [
+     0.111,
+     0.43,
+     0.311,
+     0.148
+    ],
+    "form_share_epc_all": [
+     0.1,
+     0.4,
+     0.3,
+     0.2
+    ],
+    "form_share_model": [
+     0.208,
+     0.35,
+     0.257,
+     0.184
+    ],
+    "floor_q_epc": [
+     69.0,
+     91.0,
+     114.0
+    ],
+    "floor_q_model": [
+     63.0,
+     87.9,
+     121.9
+    ],
+    "ks_floor": 0.106,
+    "epc_mean_space_heat_kwh": 12066,
+    "canet_mean_space_heat_kwh": 15443,
+    "htc_raw_q_epc": [
+     133.5,
+     195.2,
+     290.9
+    ],
+    "htc_calibrated_q_epc": [
+     94.8,
+     138.6,
+     206.6
+    ],
+    "htc_q_model": [
+     152.4,
+     192.5,
+     247.4
+    ],
+    "ks_htc_calibrated": 0.344,
+    "tau_median_epc_calibrated_h": 46.7,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 1,
+     "C": 55,
+     "D": 64,
+     "E": 13,
+     "F": 2,
+     "G": 0
+    }
+   },
+   {
+    "town": "Swindon",
+    "n_certs": 150,
+    "n_gas": 135,
+    "n_gas_with_space_heat": 118,
+    "gas_share": 0.9,
+    "form_share_epc_gas": [
+     0.289,
+     0.326,
+     0.296,
+     0.089
+    ],
+    "form_share_epc_all": [
+     0.267,
+     0.327,
+     0.273,
+     0.133
+    ],
+    "form_share_model": [
+     0.251,
+     0.324,
+     0.32,
+     0.105
+    ],
+    "floor_q_epc": [
+     67.0,
+     83.0,
+     99.0
+    ],
+    "floor_q_model": [
+     67.5,
+     90.9,
+     124.5
+    ],
+    "ks_floor": 0.208,
+    "epc_mean_space_heat_kwh": 9437,
+    "canet_mean_space_heat_kwh": 14372,
+    "htc_raw_q_epc": [
+     111.5,
+     147.7,
+     217.4
+    ],
+    "htc_calibrated_q_epc": [
+     70.1,
+     92.9,
+     136.7
+    ],
+    "htc_q_model": [
+     128.4,
+     153.3,
+     199.3
+    ],
+    "ks_htc_calibrated": 0.518,
+    "tau_median_epc_calibrated_h": 59.2,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 14,
+     "C": 61,
+     "D": 48,
+     "E": 12,
+     "F": 0,
+     "G": 0
+    }
+   },
+   {
+    "town": "Chippenham",
+    "n_certs": 150,
+    "n_gas": 109,
+    "n_gas_with_space_heat": 89,
+    "gas_share": 0.727,
+    "form_share_epc_gas": [
+     0.385,
+     0.156,
+     0.367,
+     0.092
+    ],
+    "form_share_epc_all": [
+     0.367,
+     0.16,
+     0.367,
+     0.107
+    ],
+    "form_share_model": [
+     0.323,
+     0.337,
+     0.258,
+     0.082
+    ],
+    "floor_q_epc": [
+     70.5,
+     88.0,
+     108.0
+    ],
+    "floor_q_model": [
+     69.4,
+     93.5,
+     127.6
+    ],
+    "ks_floor": 0.181,
+    "epc_mean_space_heat_kwh": 10462,
+    "canet_mean_space_heat_kwh": 14353,
+    "htc_raw_q_epc": [
+     157.2,
+     199.8,
+     266.6
+    ],
+    "htc_calibrated_q_epc": [
+     98.7,
+     125.4,
+     167.4
+    ],
+    "htc_q_model": [
+     133.2,
+     162.5,
+     205.1
+    ],
+    "ks_htc_calibrated": 0.35,
+    "tau_median_epc_calibrated_h": 50.9,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 11,
+     "C": 44,
+     "D": 43,
+     "E": 10,
+     "F": 1,
+     "G": 0
+    }
+   },
+   {
+    "town": "Reading",
+    "n_certs": 150,
+    "n_gas": 131,
+    "n_gas_with_space_heat": 114,
+    "gas_share": 0.873,
+    "form_share_epc_gas": [
+     0.313,
+     0.382,
+     0.145,
+     0.16
+    ],
+    "form_share_epc_all": [
+     0.307,
+     0.34,
+     0.147,
+     0.207
+    ],
+    "form_share_model": [
+     0.301,
+     0.325,
+     0.24,
+     0.134
+    ],
+    "floor_q_epc": [
+     70.5,
+     84.0,
+     111.8
+    ],
+    "floor_q_model": [
+     66.5,
+     92.4,
+     128.2
+    ],
+    "ks_floor": 0.129,
+    "epc_mean_space_heat_kwh": 10293,
+    "canet_mean_space_heat_kwh": 15512,
+    "htc_raw_q_epc": [
+     138.5,
+     182.7,
+     263.8
+    ],
+    "htc_calibrated_q_epc": [
+     98.6,
+     130.0,
+     187.8
+    ],
+    "htc_q_model": [
+     165.2,
+     201.5,
+     262.0
+    ],
+    "ks_htc_calibrated": 0.428,
+    "tau_median_epc_calibrated_h": 47.5,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 7,
+     "C": 57,
+     "D": 49,
+     "E": 16,
+     "F": 2,
+     "G": 0
+    }
+   },
+   {
+    "town": "Salisbury",
+    "n_certs": 150,
+    "n_gas": 116,
+    "n_gas_with_space_heat": 102,
+    "gas_share": 0.773,
+    "form_share_epc_gas": [
+     0.112,
+     0.379,
+     0.362,
+     0.147
+    ],
+    "form_share_epc_all": [
+     0.113,
+     0.34,
+     0.36,
+     0.187
+    ],
+    "form_share_model": [
+     0.291,
+     0.285,
+     0.268,
+     0.157
+    ],
+    "floor_q_epc": [
+     58.0,
+     75.0,
+     96.0
+    ],
+    "floor_q_model": [
+     65.4,
+     89.9,
+     123.9
+    ],
+    "ks_floor": 0.223,
+    "epc_mean_space_heat_kwh": 9642,
+    "canet_mean_space_heat_kwh": 14510,
+    "htc_raw_q_epc": [
+     118.0,
+     146.0,
+     223.3
+    ],
+    "htc_calibrated_q_epc": [
+     72.8,
+     90.1,
+     137.8
+    ],
+    "htc_q_model": [
+     139.0,
+     172.0,
+     215.1
+    ],
+    "ks_htc_calibrated": 0.566,
+    "tau_median_epc_calibrated_h": 52.5,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 6,
+     "C": 58,
+     "D": 43,
+     "E": 9,
+     "F": 0,
+     "G": 0
+    }
+   },
+   {
+    "town": "Southampton",
+    "n_certs": 150,
+    "n_gas": 129,
+    "n_gas_with_space_heat": 111,
+    "gas_share": 0.86,
+    "form_share_epc_gas": [
+     0.287,
+     0.24,
+     0.333,
+     0.14
+    ],
+    "form_share_epc_all": [
+     0.253,
+     0.227,
+     0.313,
+     0.207
+    ],
+    "form_share_model": [
+     0.29,
+     0.307,
+     0.23,
+     0.173
+    ],
+    "floor_q_epc": [
+     73.2,
+     86.0,
+     102.0
+    ],
+    "floor_q_model": [
+     63.9,
+     89.9,
+     126.6
+    ],
+    "ks_floor": 0.167,
+    "epc_mean_space_heat_kwh": 9806,
+    "canet_mean_space_heat_kwh": 13383,
+    "htc_raw_q_epc": [
+     143.1,
+     200.7,
+     275.8
+    ],
+    "htc_calibrated_q_epc": [
+     93.0,
+     130.4,
+     179.3
+    ],
+    "htc_q_model": [
+     146.1,
+     178.5,
+     225.2
+    ],
+    "ks_htc_calibrated": 0.337,
+    "tau_median_epc_calibrated_h": 48.0,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 10,
+     "C": 51,
+     "D": 52,
+     "E": 14,
+     "F": 2,
+     "G": 0
+    }
+   },
+   {
+    "town": "Portsmouth",
+    "n_certs": 150,
+    "n_gas": 139,
+    "n_gas_with_space_heat": 130,
+    "gas_share": 0.927,
+    "form_share_epc_gas": [
+     0.072,
+     0.302,
+     0.489,
+     0.137
+    ],
+    "form_share_epc_all": [
+     0.067,
+     0.293,
+     0.487,
+     0.153
+    ],
+    "form_share_model": [
+     0.16,
+     0.26,
+     0.376,
+     0.205
+    ],
+    "floor_q_epc": [
+     68.0,
+     86.0,
+     92.0
+    ],
+    "floor_q_model": [
+     60.9,
+     84.1,
+     116.9
+    ],
+    "ks_floor": 0.204,
+    "epc_mean_space_heat_kwh": 8431,
+    "canet_mean_space_heat_kwh": 14061,
+    "htc_raw_q_epc": [
+     141.4,
+     170.6,
+     234.9
+    ],
+    "htc_calibrated_q_epc": [
+     81.3,
+     98.1,
+     135.1
+    ],
+    "htc_q_model": [
+     144.5,
+     172.0,
+     210.6
+    ],
+    "ks_htc_calibrated": 0.571,
+    "tau_median_epc_calibrated_h": 57.3,
+    "bands_epc_gas": {
+     "A": 1,
+     "B": 0,
+     "C": 67,
+     "D": 59,
+     "E": 12,
+     "F": 0,
+     "G": 0
+    }
+   },
+   {
+    "town": "Poole",
+    "n_certs": 150,
+    "n_gas": 136,
+    "n_gas_with_space_heat": 118,
+    "gas_share": 0.913,
+    "form_share_epc_gas": [
+     0.551,
+     0.199,
+     0.015,
+     0.235
+    ],
+    "form_share_epc_all": [
+     0.517,
+     0.195,
+     0.013,
+     0.275
+    ],
+    "form_share_model": [
+     0.415,
+     0.192,
+     0.11,
+     0.283
+    ],
+    "floor_q_epc": [
+     68.0,
+     83.0,
+     108.5
+    ],
+    "floor_q_model": [
+     57.9,
+     87.2,
+     124.4
+    ],
+    "ks_floor": 0.186,
+    "epc_mean_space_heat_kwh": 10300,
+    "canet_mean_space_heat_kwh": 14677,
+    "htc_raw_q_epc": [
+     167.7,
+     240.6,
+     329.8
+    ],
+    "htc_calibrated_q_epc": [
+     104.5,
+     149.9,
+     205.4
+    ],
+    "htc_q_model": [
+     151.8,
+     200.5,
+     256.7
+    ],
+    "ks_htc_calibrated": 0.314,
+    "tau_median_epc_calibrated_h": 42.3,
+    "bands_epc_gas": {
+     "A": 1,
+     "B": 8,
+     "C": 44,
+     "D": 64,
+     "E": 19,
+     "F": 0,
+     "G": 0
+    }
+   },
+   {
+    "town": "London",
+    "n_certs": 150,
+    "n_gas": 115,
+    "n_gas_with_space_heat": 101,
+    "gas_share": 0.767,
+    "form_share_epc_gas": [
+     0.009,
+     0.087,
+     0.191,
+     0.713
+    ],
+    "form_share_epc_all": [
+     0.007,
+     0.067,
+     0.167,
+     0.76
+    ],
+    "form_share_model": [
+     0.026,
+     0.074,
+     0.194,
+     0.706
+    ],
+    "floor_q_epc": [
+     58.5,
+     80.0,
+     107.0
+    ],
+    "floor_q_model": [
+     41.1,
+     57.1,
+     88.2
+    ],
+    "ks_floor": 0.308,
+    "epc_mean_space_heat_kwh": 9852,
+    "canet_mean_space_heat_kwh": 13657,
+    "htc_raw_q_epc": [
+     90.3,
+     168.2,
+     265.8
+    ],
+    "htc_calibrated_q_epc": [
+     61.1,
+     113.9,
+     179.9
+    ],
+    "htc_q_model": [
+     120.0,
+     152.5,
+     207.6
+    ],
+    "ks_htc_calibrated": 0.398,
+    "tau_median_epc_calibrated_h": 49.1,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 3,
+     "C": 45,
+     "D": 55,
+     "E": 12,
+     "F": 0,
+     "G": 0
+    }
+   },
+   {
+    "town": "Maidstone",
+    "n_certs": 150,
+    "n_gas": 132,
+    "n_gas_with_space_heat": 114,
+    "gas_share": 0.892,
+    "form_share_epc_gas": [
+     0.25,
+     0.333,
+     0.311,
+     0.106
+    ],
+    "form_share_epc_all": [
+     0.25,
+     0.304,
+     0.291,
+     0.155
+    ],
+    "form_share_model": [
+     0.241,
+     0.361,
+     0.296,
+     0.103
+    ],
+    "floor_q_epc": [
+     75.0,
+     87.0,
+     114.0
+    ],
+    "floor_q_model": [
+     67.9,
+     92.0,
+     125.5
+    ],
+    "ks_floor": 0.128,
+    "epc_mean_space_heat_kwh": 8846,
+    "canet_mean_space_heat_kwh": 14241,
+    "htc_raw_q_epc": [
+     130.9,
+     168.5,
+     241.2
+    ],
+    "htc_calibrated_q_epc": [
+     87.7,
+     112.9,
+     161.6
+    ],
+    "htc_q_model": [
+     155.4,
+     187.0,
+     233.4
+    ],
+    "ks_htc_calibrated": 0.531,
+    "tau_median_epc_calibrated_h": 53.4,
+    "bands_epc_gas": {
+     "A": 1,
+     "B": 11,
+     "C": 67,
+     "D": 44,
+     "E": 9,
+     "F": 0,
+     "G": 0
+    }
+   },
+   {
+    "town": "Canterbury",
+    "n_certs": 150,
+    "n_gas": 138,
+    "n_gas_with_space_heat": 114,
+    "gas_share": 0.92,
+    "form_share_epc_gas": [
+     0.196,
+     0.348,
+     0.29,
+     0.167
+    ],
+    "form_share_epc_all": [
+     0.22,
+     0.34,
+     0.267,
+     0.173
+    ],
+    "form_share_model": [
+     0.31,
+     0.345,
+     0.219,
+     0.126
+    ],
+    "floor_q_epc": [
+     65.0,
+     81.0,
+     98.0
+    ],
+    "floor_q_model": [
+     67.0,
+     93.7,
+     128.7
+    ],
+    "ks_floor": 0.219,
+    "epc_mean_space_heat_kwh": 10050,
+    "canet_mean_space_heat_kwh": 14645,
+    "htc_raw_q_epc": [
+     139.1,
+     199.1,
+     272.0
+    ],
+    "htc_calibrated_q_epc": [
+     92.5,
+     132.4,
+     180.9
+    ],
+    "htc_q_model": [
+     168.7,
+     201.9,
+     250.1
+    ],
+    "ks_htc_calibrated": 0.449,
+    "tau_median_epc_calibrated_h": 44.8,
+    "bands_epc_gas": {
+     "A": 1,
+     "B": 13,
+     "C": 49,
+     "D": 65,
+     "E": 9,
+     "F": 1,
+     "G": 0
+    }
+   },
+   {
+    "town": "Dover",
+    "n_certs": 150,
+    "n_gas": 134,
+    "n_gas_with_space_heat": 117,
+    "gas_share": 0.893,
+    "form_share_epc_gas": [
+     0.239,
+     0.291,
+     0.351,
+     0.119
+    ],
+    "form_share_epc_all": [
+     0.247,
+     0.273,
+     0.313,
+     0.167
+    ],
+    "form_share_model": [
+     0.229,
+     0.279,
+     0.337,
+     0.156
+    ],
+    "floor_q_epc": [
+     67.0,
+     84.0,
+     103.0
+    ],
+    "floor_q_model": [
+     64.9,
+     89.1,
+     122.9
+    ],
+    "ks_floor": 0.15,
+    "epc_mean_space_heat_kwh": 10538,
+    "canet_mean_space_heat_kwh": 15217,
+    "htc_raw_q_epc": [
+     177.6,
+     214.4,
+     277.4
+    ],
+    "htc_calibrated_q_epc": [
+     100.2,
+     120.9,
+     156.5
+    ],
+    "htc_q_model": [
+     155.8,
+     188.3,
+     228.2
+    ],
+    "ks_htc_calibrated": 0.503,
+    "tau_median_epc_calibrated_h": 48.2,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 12,
+     "C": 58,
+     "D": 55,
+     "E": 8,
+     "F": 1,
+     "G": 0
+    }
+   },
+   {
+    "town": "Hastings",
+    "n_certs": 150,
+    "n_gas": 130,
+    "n_gas_with_space_heat": 111,
+    "gas_share": 0.867,
+    "form_share_epc_gas": [
+     0.354,
+     0.215,
+     0.277,
+     0.154
+    ],
+    "form_share_epc_all": [
+     0.307,
+     0.193,
+     0.253,
+     0.247
+    ],
+    "form_share_model": [
+     0.305,
+     0.219,
+     0.203,
+     0.272
+    ],
+    "floor_q_epc": [
+     71.0,
+     89.5,
+     112.2
+    ],
+    "floor_q_model": [
+     57.6,
+     85.9,
+     123.7
+    ],
+    "ks_floor": 0.231,
+    "epc_mean_space_heat_kwh": 10862,
+    "canet_mean_space_heat_kwh": 15245,
+    "htc_raw_q_epc": [
+     149.7,
+     203.5,
+     290.5
+    ],
+    "htc_calibrated_q_epc": [
+     90.1,
+     122.5,
+     174.9
+    ],
+    "htc_q_model": [
+     140.8,
+     180.6,
+     240.7
+    ],
+    "ks_htc_calibrated": 0.394,
+    "tau_median_epc_calibrated_h": 48.8,
+    "bands_epc_gas": {
+     "A": 0,
+     "B": 8,
+     "C": 45,
+     "D": 64,
+     "E": 11,
+     "F": 2,
+     "G": 0
+    }
+   },
+   {
+    "town": "Brighton",
+    "n_certs": 150,
+    "n_gas": 131,
+    "n_gas_with_space_heat": 120,
+    "gas_share": 0.873,
+    "form_share_epc_gas": [
+     0.191,
+     0.26,
+     0.282,
+     0.267
+    ],
+    "form_share_epc_all": [
+     0.173,
+     0.227,
+     0.247,
+     0.353
+    ],
+    "form_share_model": [
+     0.139,
+     0.248,
+     0.23,
+     0.383
+    ],
+    "floor_q_epc": [
+     72.0,
+     91.0,
+     130.5
+    ],
+    "floor_q_model": [
+     48.7,
+     75.8,
+     107.0
+    ],
+    "ks_floor": 0.223,
+    "epc_mean_space_heat_kwh": 14107,
+    "canet_mean_space_heat_kwh": 14562,
+    "htc_raw_q_epc": [
+     183.8,
+     261.8,
+     374.9
+    ],
+    "htc_calibrated_q_epc": [
+     112.5,
+     160.2,
+     229.5
+    ],
+    "htc_q_model": [
+     136.3,
+     184.4,
+     236.7
+    ],
+    "ks_htc_calibrated": 0.182,
+    "tau_median_epc_calibrated_h": 40.5,
+    "bands_epc_gas": {
+     "A": 1,
+     "B": 2,
+     "C": 47,
+     "D": 61,
+     "E": 19,
+     "F": 1,
+     "G": 0
+    }
+   }
+  ]
+ },
+ "model_calibration": {
+  "method": "Calibrate the v3 real stock IN THE MODEL'S OWN TERMS (7 Nov 2026, after Craig's check \"is our maths correct? the\nprice cap is only ~1,800 for both fuels\"): the first v3 run used ~13% more gas than DESNZ metered gas, because the\nstock was calibrated with degree-hours at a 15.5 C base while the model computes demand from each home's set point\nand internal gains (an implicit base nearer 17-18 C). See gb_v3_calibrate.py.",
+  "h_heated_homes_per_meter": 0.86,
+  "years": [
+   2014,
+   2015,
+   2016,
+   2017,
+   2018,
+   2019
+  ],
+  "homes_per_town": 600,
+  "multiplier_median": 0.902,
+  "multiplier_range": [
+   0.835,
+   0.993
+  ],
+  "median_htc_cal_w_k": 148.9,
+  "median_tau_cal_h": 40.2,
+  "towns": {
+   "Wick": {
+    "target_gas_kwh": 15480,
+    "model_gas_before_kwh": 18557,
+    "htc_multiplier": 0.854,
+    "median_htc_cal_w_k": 152.7,
+    "median_tau_cal_h": 38.0
+   },
+   "Ullapool": {
+    "target_gas_kwh": 13703,
+    "model_gas_before_kwh": 15134,
+    "htc_multiplier": 0.9174,
+    "median_htc_cal_w_k": 139.7,
+    "median_tau_cal_h": 41.4
+   },
+   "Elgin": {
+    "target_gas_kwh": 13220,
+    "model_gas_before_kwh": 14571,
+    "htc_multiplier": 0.9191,
+    "median_htc_cal_w_k": 141.8,
+    "median_tau_cal_h": 40.9
+   },
+   "Inverness": {
+    "target_gas_kwh": 13571,
+    "model_gas_before_kwh": 14843,
+    "htc_multiplier": 0.9259,
+    "median_htc_cal_w_k": 132.1,
+    "median_tau_cal_h": 44.1
+   },
+   "Aviemore": {
+    "target_gas_kwh": 13292,
+    "model_gas_before_kwh": 13395,
+    "htc_multiplier": 0.9934,
+    "median_htc_cal_w_k": 121.8,
+    "median_tau_cal_h": 47.7
+   },
+   "Aberdeen": {
+    "target_gas_kwh": 13386,
+    "model_gas_before_kwh": 15382,
+    "htc_multiplier": 0.8872,
+    "median_htc_cal_w_k": 137.1,
+    "median_tau_cal_h": 42.3
+   },
+   "Fort William": {
+    "target_gas_kwh": 16421,
+    "model_gas_before_kwh": 19266,
+    "htc_multiplier": 0.8683,
+    "median_htc_cal_w_k": 161.6,
+    "median_tau_cal_h": 36.0
+   },
+   "Oban": {
+    "target_gas_kwh": 16237,
+    "model_gas_before_kwh": 19274,
+    "htc_multiplier": 0.8602,
+    "median_htc_cal_w_k": 163.1,
+    "median_tau_cal_h": 35.8
+   },
+   "Dundee": {
+    "target_gas_kwh": 13092,
+    "model_gas_before_kwh": 14656,
+    "htc_multiplier": 0.9072,
+    "median_htc_cal_w_k": 130.2,
+    "median_tau_cal_h": 44.7
+   },
+   "Perth": {
+    "target_gas_kwh": 13570,
+    "model_gas_before_kwh": 14776,
+    "htc_multiplier": 0.9288,
+    "median_htc_cal_w_k": 135.9,
+    "median_tau_cal_h": 42.7
+   },
+   "Stirling": {
+    "target_gas_kwh": 13934,
+    "model_gas_before_kwh": 15343,
+    "htc_multiplier": 0.9199,
+    "median_htc_cal_w_k": 139.2,
+    "median_tau_cal_h": 41.9
+   },
+   "Edinburgh": {
+    "target_gas_kwh": 12531,
+    "model_gas_before_kwh": 13351,
+    "htc_multiplier": 0.947,
+    "median_htc_cal_w_k": 131.4,
+    "median_tau_cal_h": 44.3
+   },
+   "Glasgow": {
+    "target_gas_kwh": 12480,
+    "model_gas_before_kwh": 13572,
+    "htc_multiplier": 0.93,
+    "median_htc_cal_w_k": 127.7,
+    "median_tau_cal_h": 45.4
+   },
+   "Galashiels": {
+    "target_gas_kwh": 13492,
+    "model_gas_before_kwh": 14363,
+    "htc_multiplier": 0.9474,
+    "median_htc_cal_w_k": 131.6,
+    "median_tau_cal_h": 44.1
+   },
+   "Ayr": {
+    "target_gas_kwh": 14245,
+    "model_gas_before_kwh": 16030,
+    "htc_multiplier": 0.9026,
+    "median_htc_cal_w_k": 158.1,
+    "median_tau_cal_h": 36.6
+   },
+   "Dumfries": {
+    "target_gas_kwh": 13063,
+    "model_gas_before_kwh": 14480,
+    "htc_multiplier": 0.9141,
+    "median_htc_cal_w_k": 135.4,
+    "median_tau_cal_h": 43.0
+   },
+   "Berwick": {
+    "target_gas_kwh": 13101,
+    "model_gas_before_kwh": 14863,
+    "htc_multiplier": 0.8948,
+    "median_htc_cal_w_k": 141.1,
+    "median_tau_cal_h": 39.1
+   },
+   "Newcastle": {
+    "target_gas_kwh": 13347,
+    "model_gas_before_kwh": 15156,
+    "htc_multiplier": 0.8933,
+    "median_htc_cal_w_k": 140.8,
+    "median_tau_cal_h": 40.2
+   },
+   "Durham": {
+    "target_gas_kwh": 13701,
+    "model_gas_before_kwh": 15411,
+    "htc_multiplier": 0.9021,
+    "median_htc_cal_w_k": 152.7,
+    "median_tau_cal_h": 40.6
+   },
+   "Middlesbrough": {
+    "target_gas_kwh": 12852,
+    "model_gas_before_kwh": 14190,
+    "htc_multiplier": 0.9165,
+    "median_htc_cal_w_k": 148.6,
+    "median_tau_cal_h": 40.7
+   },
+   "Carlisle": {
+    "target_gas_kwh": 12806,
+    "model_gas_before_kwh": 13883,
+    "htc_multiplier": 0.9323,
+    "median_htc_cal_w_k": 137.9,
+    "median_tau_cal_h": 44.8
+   },
+   "Kendal": {
+    "target_gas_kwh": 12801,
+    "model_gas_before_kwh": 13686,
+    "htc_multiplier": 0.9435,
+    "median_htc_cal_w_k": 141.4,
+    "median_tau_cal_h": 43.1
+   },
+   "Lancaster": {
+    "target_gas_kwh": 12347,
+    "model_gas_before_kwh": 13616,
+    "htc_multiplier": 0.9189,
+    "median_htc_cal_w_k": 139.9,
+    "median_tau_cal_h": 41.5
+   },
+   "Blackpool": {
+    "target_gas_kwh": 12841,
+    "model_gas_before_kwh": 14377,
+    "htc_multiplier": 0.9056,
+    "median_htc_cal_w_k": 156.2,
+    "median_tau_cal_h": 38.4
+   },
+   "Preston": {
+    "target_gas_kwh": 12743,
+    "model_gas_before_kwh": 13980,
+    "htc_multiplier": 0.9222,
+    "median_htc_cal_w_k": 146.9,
+    "median_tau_cal_h": 41.7
+   },
+   "Manchester": {
+    "target_gas_kwh": 12926,
+    "model_gas_before_kwh": 14218,
+    "htc_multiplier": 0.9192,
+    "median_htc_cal_w_k": 143.3,
+    "median_tau_cal_h": 39.8
+   },
+   "Scarborough": {
+    "target_gas_kwh": 12902,
+    "model_gas_before_kwh": 14962,
+    "htc_multiplier": 0.8772,
+    "median_htc_cal_w_k": 146.2,
+    "median_tau_cal_h": 37.2
+   },
+   "Harrogate": {
+    "target_gas_kwh": 15586,
+    "model_gas_before_kwh": 17590,
+    "htc_multiplier": 0.8975,
+    "median_htc_cal_w_k": 155.2,
+    "median_tau_cal_h": 35.5
+   },
+   "York": {
+    "target_gas_kwh": 13636,
+    "model_gas_before_kwh": 14661,
+    "htc_multiplier": 0.9377,
+    "median_htc_cal_w_k": 159.5,
+    "median_tau_cal_h": 37.3
+   },
+   "Leeds": {
+    "target_gas_kwh": 13465,
+    "model_gas_before_kwh": 15110,
+    "htc_multiplier": 0.9028,
+    "median_htc_cal_w_k": 151.3,
+    "median_tau_cal_h": 38.0
+   },
+   "Hull": {
+    "target_gas_kwh": 12169,
+    "model_gas_before_kwh": 13520,
+    "htc_multiplier": 0.9108,
+    "median_htc_cal_w_k": 144.6,
+    "median_tau_cal_h": 40.0
+   },
+   "Sheffield": {
+    "target_gas_kwh": 13733,
+    "model_gas_before_kwh": 15675,
+    "htc_multiplier": 0.8892,
+    "median_htc_cal_w_k": 152.4,
+    "median_tau_cal_h": 37.4
+   },
+   "Liverpool": {
+    "target_gas_kwh": 12001,
+    "model_gas_before_kwh": 13711,
+    "htc_multiplier": 0.8894,
+    "median_htc_cal_w_k": 142.3,
+    "median_tau_cal_h": 39.8
+   },
+   "Bangor": {
+    "target_gas_kwh": 11770,
+    "model_gas_before_kwh": 13275,
+    "htc_multiplier": 0.9024,
+    "median_htc_cal_w_k": 142.7,
+    "median_tau_cal_h": 45.5
+   },
+   "Chester": {
+    "target_gas_kwh": 12242,
+    "model_gas_before_kwh": 13657,
+    "htc_multiplier": 0.9081,
+    "median_htc_cal_w_k": 145.9,
+    "median_tau_cal_h": 42.2
+   },
+   "Wrexham": {
+    "target_gas_kwh": 11821,
+    "model_gas_before_kwh": 12980,
+    "htc_multiplier": 0.9229,
+    "median_htc_cal_w_k": 136.7,
+    "median_tau_cal_h": 47.3
+   },
+   "Aberystwyth": {
+    "target_gas_kwh": 11650,
+    "model_gas_before_kwh": 12598,
+    "htc_multiplier": 0.9343,
+    "median_htc_cal_w_k": 148.9,
+    "median_tau_cal_h": 38.8
+   },
+   "Brecon": {
+    "target_gas_kwh": 12373,
+    "model_gas_before_kwh": 13183,
+    "htc_multiplier": 0.9461,
+    "median_htc_cal_w_k": 144.7,
+    "median_tau_cal_h": 44.0
+   },
+   "Carmarthen": {
+    "target_gas_kwh": 11894,
+    "model_gas_before_kwh": 13955,
+    "htc_multiplier": 0.871,
+    "median_htc_cal_w_k": 149.0,
+    "median_tau_cal_h": 44.2
+   },
+   "Swansea": {
+    "target_gas_kwh": 12195,
+    "model_gas_before_kwh": 14509,
+    "htc_multiplier": 0.859,
+    "median_htc_cal_w_k": 160.6,
+    "median_tau_cal_h": 39.3
+   },
+   "Cardiff": {
+    "target_gas_kwh": 12249,
+    "model_gas_before_kwh": 14258,
+    "htc_multiplier": 0.8747,
+    "median_htc_cal_w_k": 153.9,
+    "median_tau_cal_h": 38.6
+   },
+   "Stoke": {
+    "target_gas_kwh": 13091,
+    "model_gas_before_kwh": 14678,
+    "htc_multiplier": 0.9046,
+    "median_htc_cal_w_k": 149.3,
+    "median_tau_cal_h": 40.7
+   },
+   "Shrewsbury": {
+    "target_gas_kwh": 11699,
+    "model_gas_before_kwh": 12542,
+    "htc_multiplier": 0.9411,
+    "median_htc_cal_w_k": 134.1,
+    "median_tau_cal_h": 45.8
+   },
+   "Birmingham": {
+    "target_gas_kwh": 14655,
+    "model_gas_before_kwh": 17076,
+    "htc_multiplier": 0.8714,
+    "median_htc_cal_w_k": 166.7,
+    "median_tau_cal_h": 34.4
+   },
+   "Coventry": {
+    "target_gas_kwh": 13123,
+    "model_gas_before_kwh": 14285,
+    "htc_multiplier": 0.9271,
+    "median_htc_cal_w_k": 156.7,
+    "median_tau_cal_h": 36.3
+   },
+   "Hereford": {
+    "target_gas_kwh": 11248,
+    "model_gas_before_kwh": 11955,
+    "htc_multiplier": 0.9476,
+    "median_htc_cal_w_k": 136.1,
+    "median_tau_cal_h": 44.2
+   },
+   "Buxton": {
+    "target_gas_kwh": 15042,
+    "model_gas_before_kwh": 17318,
+    "htc_multiplier": 0.8831,
+    "median_htc_cal_w_k": 146.0,
+    "median_tau_cal_h": 39.6
+   },
+   "Lincoln": {
+    "target_gas_kwh": 12236,
+    "model_gas_before_kwh": 13628,
+    "htc_multiplier": 0.9092,
+    "median_htc_cal_w_k": 150.0,
+    "median_tau_cal_h": 42.8
+   },
+   "Nottingham": {
+    "target_gas_kwh": 13388,
+    "model_gas_before_kwh": 15839,
+    "htc_multiplier": 0.8609,
+    "median_htc_cal_w_k": 150.7,
+    "median_tau_cal_h": 39.7
+   },
+   "Derby": {
+    "target_gas_kwh": 13102,
+    "model_gas_before_kwh": 14500,
+    "htc_multiplier": 0.9147,
+    "median_htc_cal_w_k": 156.3,
+    "median_tau_cal_h": 39.8
+   },
+   "Leicester": {
+    "target_gas_kwh": 14428,
+    "model_gas_before_kwh": 16576,
+    "htc_multiplier": 0.8828,
+    "median_htc_cal_w_k": 174.4,
+    "median_tau_cal_h": 34.5
+   },
+   "Northampton": {
+    "target_gas_kwh": 13150,
+    "model_gas_before_kwh": 14782,
+    "htc_multiplier": 0.9012,
+    "median_htc_cal_w_k": 161.0,
+    "median_tau_cal_h": 38.1
+   },
+   "King's Lynn": {
+    "target_gas_kwh": 12026,
+    "model_gas_before_kwh": 13271,
+    "htc_multiplier": 0.9173,
+    "median_htc_cal_w_k": 151.3,
+    "median_tau_cal_h": 41.4
+   },
+   "Norwich": {
+    "target_gas_kwh": 11724,
+    "model_gas_before_kwh": 13307,
+    "htc_multiplier": 0.8944,
+    "median_htc_cal_w_k": 143.0,
+    "median_tau_cal_h": 42.1
+   },
+   "Peterborough": {
+    "target_gas_kwh": 12271,
+    "model_gas_before_kwh": 13035,
+    "htc_multiplier": 0.9479,
+    "median_htc_cal_w_k": 154.1,
+    "median_tau_cal_h": 40.0
+   },
+   "Cambridge": {
+    "target_gas_kwh": 13550,
+    "model_gas_before_kwh": 15678,
+    "htc_multiplier": 0.8767,
+    "median_htc_cal_w_k": 166.2,
+    "median_tau_cal_h": 35.6
+   },
+   "Ipswich": {
+    "target_gas_kwh": 12122,
+    "model_gas_before_kwh": 13729,
+    "htc_multiplier": 0.8961,
+    "median_htc_cal_w_k": 153.5,
+    "median_tau_cal_h": 40.6
+   },
+   "Chelmsford": {
+    "target_gas_kwh": 13600,
+    "model_gas_before_kwh": 16550,
+    "htc_multiplier": 0.8386,
+    "median_htc_cal_w_k": 165.5,
+    "median_tau_cal_h": 37.4
+   },
+   "Bristol": {
+    "target_gas_kwh": 11570,
+    "model_gas_before_kwh": 13332,
+    "htc_multiplier": 0.8821,
+    "median_htc_cal_w_k": 138.2,
+    "median_tau_cal_h": 41.3
+   },
+   "Taunton": {
+    "target_gas_kwh": 10699,
+    "model_gas_before_kwh": 11908,
+    "htc_multiplier": 0.9108,
+    "median_htc_cal_w_k": 140.6,
+    "median_tau_cal_h": 45.1
+   },
+   "Barnstaple": {
+    "target_gas_kwh": 10538,
+    "model_gas_before_kwh": 12423,
+    "htc_multiplier": 0.8685,
+    "median_htc_cal_w_k": 148.7,
+    "median_tau_cal_h": 44.3
+   },
+   "Exeter": {
+    "target_gas_kwh": 10671,
+    "model_gas_before_kwh": 11534,
+    "htc_multiplier": 0.9342,
+    "median_htc_cal_w_k": 144.5,
+    "median_tau_cal_h": 41.4
+   },
+   "Plymouth": {
+    "target_gas_kwh": 9394,
+    "model_gas_before_kwh": 10062,
+    "htc_multiplier": 0.9423,
+    "median_htc_cal_w_k": 134.2,
+    "median_tau_cal_h": 42.6
+   },
+   "Truro": {
+    "target_gas_kwh": 10762,
+    "model_gas_before_kwh": 13227,
+    "htc_multiplier": 0.8371,
+    "median_htc_cal_w_k": 154.5,
+    "median_tau_cal_h": 41.0
+   },
+   "Penzance": {
+    "target_gas_kwh": 9908,
+    "model_gas_before_kwh": 12240,
+    "htc_multiplier": 0.8352,
+    "median_htc_cal_w_k": 152.8,
+    "median_tau_cal_h": 40.3
+   },
+   "Oxford": {
+    "target_gas_kwh": 14364,
+    "model_gas_before_kwh": 16623,
+    "htc_multiplier": 0.8772,
+    "median_htc_cal_w_k": 168.9,
+    "median_tau_cal_h": 36.0
+   },
+   "Swindon": {
+    "target_gas_kwh": 12207,
+    "model_gas_before_kwh": 13032,
+    "htc_multiplier": 0.944,
+    "median_htc_cal_w_k": 144.7,
+    "median_tau_cal_h": 42.4
+   },
+   "Chippenham": {
+    "target_gas_kwh": 12172,
+    "model_gas_before_kwh": 14054,
+    "htc_multiplier": 0.8815,
+    "median_htc_cal_w_k": 143.3,
+    "median_tau_cal_h": 44.4
+   },
+   "Reading": {
+    "target_gas_kwh": 14455,
+    "model_gas_before_kwh": 17446,
+    "htc_multiplier": 0.8451,
+    "median_htc_cal_w_k": 170.3,
+    "median_tau_cal_h": 37.1
+   },
+   "Salisbury": {
+    "target_gas_kwh": 12114,
+    "model_gas_before_kwh": 13528,
+    "htc_multiplier": 0.9069,
+    "median_htc_cal_w_k": 156.0,
+    "median_tau_cal_h": 40.0
+   },
+   "Southampton": {
+    "target_gas_kwh": 11833,
+    "model_gas_before_kwh": 13379,
+    "htc_multiplier": 0.897,
+    "median_htc_cal_w_k": 160.2,
+    "median_tau_cal_h": 38.5
+   },
+   "Portsmouth": {
+    "target_gas_kwh": 11134,
+    "model_gas_before_kwh": 12540,
+    "htc_multiplier": 0.9,
+    "median_htc_cal_w_k": 154.8,
+    "median_tau_cal_h": 37.5
+   },
+   "Poole": {
+    "target_gas_kwh": 12328,
+    "model_gas_before_kwh": 15017,
+    "htc_multiplier": 0.8385,
+    "median_htc_cal_w_k": 168.1,
+    "median_tau_cal_h": 35.0
+   },
+   "London": {
+    "target_gas_kwh": 12433,
+    "model_gas_before_kwh": 14290,
+    "htc_multiplier": 0.88,
+    "median_htc_cal_w_k": 134.2,
+    "median_tau_cal_h": 28.7
+   },
+   "Maidstone": {
+    "target_gas_kwh": 12771,
+    "model_gas_before_kwh": 15113,
+    "htc_multiplier": 0.8615,
+    "median_htc_cal_w_k": 161.1,
+    "median_tau_cal_h": 38.9
+   },
+   "Canterbury": {
+    "target_gas_kwh": 12999,
+    "model_gas_before_kwh": 15722,
+    "htc_multiplier": 0.8439,
+    "median_htc_cal_w_k": 170.4,
+    "median_tau_cal_h": 37.5
+   },
+   "Dover": {
+    "target_gas_kwh": 11695,
+    "model_gas_before_kwh": 13512,
+    "htc_multiplier": 0.8802,
+    "median_htc_cal_w_k": 165.8,
+    "median_tau_cal_h": 37.3
+   },
+   "Hastings": {
+    "target_gas_kwh": 12369,
+    "model_gas_before_kwh": 14058,
+    "htc_multiplier": 0.8927,
+    "median_htc_cal_w_k": 161.2,
+    "median_tau_cal_h": 35.4
+   },
+   "Brighton": {
+    "target_gas_kwh": 12064,
+    "model_gas_before_kwh": 14216,
+    "htc_multiplier": 0.863,
+    "median_htc_cal_w_k": 159.2,
+    "median_tau_cal_h": 32.0
+   }
+  }
+ }
+}

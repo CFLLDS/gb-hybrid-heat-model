@@ -1,0 +1,98 @@
+{
+ "strand": "leads4",
+ "accessed": "2026-11-07",
+ "method_note": "The four unread leads from the GPT literature list, read by the lead author. Sun et al. read in full (accepted manuscript, Imperial Spiral); page numbers are the manuscript's, so section locators are used. Muratori and Rizzoni: no open full text exists (OpenAlex: closed; no repository copy); abstract only, and cited only for what the abstract states. Downloads in data/model/gb/sources/leads4/.",
+ "sources": [
+  {
+   "key": "Sun2019SmartHHP",
+   "harvard": "Sun, M., Djapic, P., Aunedi, M., Pudjianto, D. and Strbac, G. (2019) 'Benefits of smart control of hybrid heat pumps: An analysis of field trial data', Applied Energy, 247, pp. 525-536. doi:10.1016/j.apenergy.2019.04.068. Accepted manuscript available at: http://hdl.handle.net/10044/1/70229 (accessed 7 November 2026).",
+   "url": "http://hdl.handle.net/10044/1/70229",
+   "doi": "10.1016/j.apenergy.2019.04.068",
+   "type": "peer-reviewed analysis of GB field trial data (Freedom project) with whole-system modelling",
+   "claims": [
+    {
+     "claim": "Freedom trial: 75 households, 1 Oct 2017 to 30 Apr 2018; heat pumps deliberately small (5 and 8 kW thermal) so the boiler would be needed.",
+     "quote": "ran from 1 October 2017 to 30 April 2018, and involved 75 households with hybrid heating systems deployed",
+     "locator": "Section 4.1",
+     "numbers": {
+      "households": 75,
+      "hp_kw_thermal": [
+       5,
+       8
+      ]
+     }
+    },
+    {
+     "claim": "Control minimised each customer's total heating cost (electricity and gas prices, outdoor temperature) while respecting temperature settings: a cost-optimising hybrid controller in the field.",
+     "quote": "advanced control that minimizes the total heating cost for a customer while respecting the customer's temperature settings, considering the cost of electricity and gas, outdoor temperatures",
+     "locator": "Section 4.1"
+    },
+    {
+     "claim": "Under Economy 7 the heat pumps pre-heated overnight; in the day, especially at 20 C set points, the boilers took over.",
+     "quote": "The heat pumps are again predominantly operating during the night, pre-heating homes to take advantage of the low electricity tariff.",
+     "locator": "Section 4.2.1"
+    },
+    {
+     "claim": "Coincidence factor of hybrid heat-pump electricity demand: 0.27 for 34 customers on cold days, fitted asymptote 0.12 for very large groups.",
+     "quote": "The coincidence factor of 0.27 was found for the entire subset of 34 customers.",
+     "locator": "Section 4.3",
+     "numbers": {
+      "cf_34": 0.27,
+      "cf_inf": 0.12,
+      "customers": 34,
+      "days": 11
+     }
+    },
+    {
+     "claim": "Observed daily-average COP 2.6 at 0 C, 3.4 at 5 C, 4.0 at 10 C (linear fit), attributed in part to the control running the heat pump at low output overnight.",
+     "quote": "the average COP values are 2.6 for 0 C, 3.4 for 5 C and 4.0 for 10 C",
+     "locator": "Section 4.4",
+     "numbers": {
+      "cop_0C": 2.6,
+      "cop_5C": 3.4,
+      "cop_10C": 4.0
+     }
+    },
+    {
+     "claim": "Whole-system value of smart hybrid control GBP 2.1-5.3 bn/year, BUT under stated assumptions: 100% hybrid penetration, a 100 gCO2/kWh system, COP improved 10% by the control; 5.3 in a low-flexibility system, 2.1 when other flexibility competes. COP-only benefit 1.8-2.4 bn/year for a 5-10% COP gain.",
+     "quote": "Assuming a 10% increase in COP can deliver whole-system benefits between 2.1 and 5.3 bn/year, depending on the system flexibility",
+     "locator": "Section 4.4 (whole-system assessment) and Section 5",
+     "numbers": {
+      "value_bn_low_flex": 5.3,
+      "value_bn_high_flex": 2.1,
+      "cop_only_bn": [
+       1.8,
+       2.4
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "key": "Muratori2016",
+   "harvard": "Muratori, M. and Rizzoni, G. (2016) 'Residential demand response: Dynamic energy management and time-varying electricity pricing', IEEE Transactions on Power Systems, 31(2), pp. 1108-1117. doi:10.1109/TPWRS.2015.2414880 (abstract accessed 7 November 2026 via OpenAlex; full text not open access).",
+   "url": "https://doi.org/10.1109/TPWRS.2015.2414880",
+   "doi": "10.1109/TPWRS.2015.2414880",
+   "type": "peer-reviewed simulation study (US residential demand); ABSTRACT ONLY",
+   "claims": [
+    {
+     "claim": "Simple time-varying prices plus large-scale automated energy management can create pronounced rebound peaks in aggregate residential demand (synchronisation); they propose Multi-TOU / Multi-CPP structures.",
+     "quote": "simple time-varying electricity price structures, coupled with large-scale adoption of automated energy management systems, might create pronounced rebound peaks in the aggregate residential demand",
+     "locator": "Abstract (full text not read; magnitudes not cited)"
+    }
+   ]
+  }
+ ],
+ "not_verified": [
+  {
+   "key": "Klein2014",
+   "ref": "Klein, K., Huchtemann, K. and Mueller, D. (2014) Energy and Buildings 69, 193-201, doi:10.1016/j.enbuild.2013.10.032",
+   "reason": "closed access; no repository file; ScienceDirect returns 403; no abstract in OpenAlex/Crossref. Needs a library copy."
+  },
+  {
+   "key": "DiPerna2015",
+   "ref": "Di Perna, C., Magri, G., Giuliani, G. and Serenelli, G. (2015) Applied Thermal Engineering 76, 86-97, doi:10.1016/j.applthermaleng.2014.10.007",
+   "reason": "closed access; UNIVPM IRIS record has no file ('Non ci sono file associati'); ScienceDirect 403. Needs a library copy."
+  }
+ ]
+}

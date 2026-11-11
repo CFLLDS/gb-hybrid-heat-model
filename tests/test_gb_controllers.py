@@ -95,3 +95,14 @@ def test_smaller_hybrid_heat_pump_hands_more_to_the_boiler():
     full, half = np.asarray(full[0, :, :, 0]), np.asarray(half[0, :, :, 0])
     assert half[C["hp"]].tolist() == full[C["hp"]].tolist()                             # all-electric unit unchanged
     assert half[C["ccop"], M["boiler_heat_kwh"]] == pytest.approx(0.8 * 48)            # 2.0 - 1.2 per slot to gas
+
+
+def test_hist_tariff_carries_its_own_standing_charge():
+    from gbmodel.controllers import gas_scs
+    old = cfg.TARIFF_SCV
+    cfg.TARIFF_SCV = [cfg.GAS_SC, 41.9]                                   # today's SC, then a historical year's
+    try:
+        assert np.asarray(gas_scs(2)) == pytest.approx([cfg.GAS_SC, 41.9])
+        assert np.asarray(gas_scs(1)) == pytest.approx([cfg.GAS_SC])     # count mismatch -> plain GAS_SC
+    finally:
+        cfg.TARIFF_SCV = old

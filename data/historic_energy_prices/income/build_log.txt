@@ -1,0 +1,10 @@
+ONS CRXS 'Households: Gross disposable income per head: Current price £: Seasonally adjusted' 1955-2025; CRXX 'Households: Real disposable Income, per head: Chained volume measure (reference year = 2024) £: Seasonally adjusted' 1955-2025; base year 2025
+BoE: A57 column 17 spliced GDI 1900-2016; A1 column 24 population 1900-2016
+Splice at 1955: CRXS 245.0 / BoE 258.3 = 0.9487 (+5.4% BoE vs ONS)
+xlsx re-opened: 258 income rows (expected 258), sheets ['income', 'household_size', 'reconciliation', 'sources']
+
+measure                                first  last actual spliced estimate
+gdhi_per_head                           1946  2025     71       9        0
+gdhi_per_household                      1946  2025     57       0       23
+median_equivalised_household_income     1977  2025     48       1        0
+p10_equivalised_household_income        1977  2025     48       1        0

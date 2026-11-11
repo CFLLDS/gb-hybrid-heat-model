@@ -1,0 +1,666 @@
+{
+  "strand": "Externally supplied (ChatGPT, 2026-11-07) literature list for the hybrid heating paper: fuel poverty and cold homes, hybrids outside the UK, measured hybrid performance, price response and synchronisation, GB in-use inputs, gas network stranding, installed costs, controller governance, and historical prices and incomes. Re-verified independently.",
+  "compiled": "2026-11-07",
+  "method_note": "Every source below was fetched on 2026-11-07 into data/model/gb/sources/verify_gpt/ (official PDF or publisher page; Europe PMC full text for Zhou2024; Internet Archive snapshots where the live page returned HTTP 403: Boardman2010_FP08, IFS_LSPI). Text was extracted with pdftotext or an HTML stripper. Each quote was matched verbatim by script after normalising whitespace, curly quotes, ligatures and line-break hyphenation; two-column PDFs were matched in non-layout mode. 'PDF p.' is the page index of the downloaded file; printed page numbers are given where legible. Translations of Dutch and German material are ours. Key numbers were searched for in the source text and are given with their location; figures that could not be found were dropped. Per-source status and corrections: docs/article/lit/gpt_verification_log.md.",
+  "sources": [
+    {
+      "key": "Boardman2010_FP08",
+      "harvard": "Boardman, B. (2010) 'Memorandum submitted by Dr Brenda Boardman, Environmental Change Institute, University of Oxford (FP 08)', written evidence to House of Commons Energy and Climate Change Committee, Fuel Poverty (HC 424, Session 2009-10). February 2010. London: UK Parliament. Available at: https://publications.parliament.uk/pa/cm200910/cmselect/cmenergy/424/424we09.htm (Accessed: 7 November 2026; live page returned HTTP 403, read from an Internet Archive snapshot).",
+      "url": "https://publications.parliament.uk/pa/cm200910/cmselect/cmenergy/424/424we09.htm",
+      "doi": null,
+      "type": "parliamentary evidence",
+      "claims": [
+        {
+          "claim": "Boardman's own statement of the original definition: unable to afford adequate energy services for 10% of income, covering all energy uses in the home, not only heating.",
+          "quote": "This covers all uses of energy in the home, not just heating",
+          "locator": "para. 1 (Definition)",
+          "numbers": {
+            "income_threshold_pct": 10
+          }
+        }
+      ]
+    },
+    {
+      "key": "Hills2012",
+      "harvard": "Hills, J. (2012) Getting the measure of fuel poverty: Final Report of the Fuel Poverty Review. CASE report 72. London: Centre for Analysis of Social Exclusion, LSE, for the Department of Energy and Climate Change. March 2012. Available at: https://assets.publishing.service.gov.uk/media/5a796f55e5274a2acd18ccde/4662-getting-measure-fuel-pov-final-hills-rpt.pdf (Accessed: 7 November 2026).",
+      "url": "https://www.gov.uk/government/publications/final-report-of-the-fuel-poverty-review",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "Recommendation 2 of the Hills Review defines the Low Income High Costs indicator: required fuel costs above the median and residual income below the official poverty line.",
+          "quote": "They have required fuel costs that are above the median level",
+          "locator": "Summary, Recommendation 2, PDF p. 12 (printed p. 9); repeated PDF p. 52 (printed p. 49)",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "DESNZ2026_FuelPoverty",
+      "harvard": "Department for Energy Security and Net Zero (2026) Annual Fuel Poverty Statistics in England, 2026 (2024 and 2025 data). Accredited Official Statistics. Published 26 March 2026; report republished 7 August 2026 to correct a calculation error. London: DESNZ. Available at: https://www.gov.uk/government/statistics/annual-fuel-poverty-statistics-report-2026 (Accessed: 7 November 2026).",
+      "url": "https://assets.publishing.service.gov.uk/media/6a733816201b38b4dc3c2854/2026-fuel-poverty-statistics-report.pdf",
+      "doi": null,
+      "type": "official statistics",
+      "claims": [
+        {
+          "claim": "In 2025 an estimated 9.4% of English households (2.36 million) were fuel poor under LILEE; DESNZ advises reading the fuel poverty gap with the proportion as the measure of depth.",
+          "quote": "We recommend using the gap, in conjunction with the proportion, as an indication of the depth of fuel poverty",
+          "locator": "Section 2.1, PDF p. 10",
+          "numbers": {
+            "LILEE_2025_households_m": 2.36,
+            "LILEE_2025_pct": 9.4,
+            "LILEE_2024_final_pct": 9.9
+          }
+        },
+        {
+          "claim": "Annex D affordability measure: households needing more than 10% of after-housing-cost income for energy were 30.4% (7.63 million) in 2025, down from 34.4% (8.55 million) in 2024.",
+          "quote": "In 2025, an estimated 30.4% of households (7.63 million) exceeded this threshold, down from 34.4% in 2024 (8.55 million).",
+          "locator": "Headline statistics, PDF p. 1; series table in Annex D, PDF p. 83",
+          "numbers": {
+            "over10pct_AHC_2025_pct": 30.4,
+            "over10pct_AHC_2025_households_m": 7.63,
+            "over10pct_AHC_2024_pct": 34.4,
+            "series": "2010-2025 (+2026 projection)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "NEA_EAS2024_Monitor",
+      "harvard": "National Energy Action and Energy Action Scotland (2024) UK Fuel Poverty Monitor 2022-23. Energy crisis: two years in - urgent action on fuel poverty policy. Newcastle upon Tyne: NEA. Available at: https://www.nea.org.uk/wp-content/uploads/2024/01/NEA-Fuel-Poverty-Monitor-FULL-REPORT-FINAL.pdf (Accessed: 7 November 2026).",
+      "url": "https://www.nea.org.uk/publications/uk-fuel-poverty-monitor-national-energy-action-2022-23/",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "The Monitor draws on a Call for Evidence with 136 respondents across the UK and on direct household experience; it is a qualitative and policy source, not a prevalence series.",
+          "quote": "Crucially, we draw on the direct experience of people who are living through the crisis",
+          "locator": "Executive summary, 'Our approach', PDF p. 4",
+          "numbers": {
+            "call_for_evidence_respondents": 136
+          }
+        }
+      ]
+    },
+    {
+      "key": "ONS2012_EWM",
+      "harvard": "Office for National Statistics (2012) Excess winter mortality in England and Wales, 2011/12 (provisional) and 2010/11 (final). Statistical bulletin, 29 November 2012. Newport: ONS. Available at: https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/bulletins/excesswintermortalityinenglandandwales/2012-11-29 (Accessed: 7 November 2026).",
+      "url": "https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/bulletins/excesswintermortalityinenglandandwales/2012-11-29",
+      "doi": null,
+      "type": "official statistics",
+      "claims": [
+        {
+          "claim": "England and Wales recorded 26,080 excess winter deaths in winter 2010/11 (final); the bulletin's historical series runs from 1950/51 to 2011/12, so it spans the 1962/63 winter. Seasonal excess deaths, not deaths attributable to fuel poverty.",
+          "quote": "Historical trends from 1950/51 onwards are also presented for comparison",
+          "locator": "Summary / Figure 1 (historical series 1950/51-2011/12)",
+          "numbers": {
+            "EWD_2010_11_final": 26080,
+            "EWM_index_2010_11_pct": 16.9,
+            "series_start": "1950/51"
+          }
+        }
+      ]
+    },
+    {
+      "key": "NICE2015_NG6",
+      "harvard": "National Institute for Health and Care Excellence (2015) Excess winter deaths and illness and the health risks associated with cold homes. NICE guideline NG6, 'Considerations' chapter. London: NICE. Available at: https://www.nice.org.uk/guidance/NG6/chapter/considerations (Accessed: 7 November 2026).",
+      "url": "https://www.nice.org.uk/guidance/NG6/chapter/considerations",
+      "doi": null,
+      "type": "guideline",
+      "claims": [
+        {
+          "claim": "Cardiovascular and respiratory conditions are the main causes of ill health associated with cold weather and cold homes; studies show a time-lag of up to 2-3 weeks between cold exposure and death or disease.",
+          "quote": "cardiovascular and respiratory conditions are the key causes associated with cold weather and a cold home",
+          "locator": "Considerations, para. 1.23 (lag: para. 1.1)",
+          "numbers": {
+            "lag_weeks": "up to 2 or 3"
+          }
+        }
+      ]
+    },
+    {
+      "key": "Rivers2026",
+      "harvard": "Rivers, W. (2026) How to ensure a successful transition to heat pumps for households at risk of fuel poverty. Report RAF026/2526 for the Committee on Fuel Poverty. May 2026. London: Department for Energy Security and Net Zero (research by the Carbon Trust with Ipsos UK). Available at: https://assets.publishing.service.gov.uk/media/6a4519a2d200ca05e289e2ac/cfp-report-heat-pump-transition.pdf (Accessed: 7 November 2026).",
+      "url": "https://assets.publishing.service.gov.uk/media/6a4519a2d200ca05e289e2ac/cfp-report-heat-pump-transition.pdf",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "Time-of-use tariffs help heat-pump households only when heating patterns fit the tariff windows; otherwise they can raise bills.",
+          "quote": "However, where heating patterns are not well aligned to the tariff, time-of-use tariffs can increase fuel bills.",
+          "locator": "Executive summary, PDF p. 7 (printed p. 4)",
+          "numbers": {}
+        },
+        {
+          "claim": "Method: in-depth interviews with 29 households at risk of fuel poverty (technical audits in 20 of the homes), secondary analysis of over 1,100 monitored UK heat pump installations, and cost modelling.",
+          "quote": "The methodology combined in-depth qualitative interviews with 29 households (including concurrent technical audits in 20 homes), secondary analysis of monitored heat pump performance data from over 1,100 UK heat pump installations",
+          "locator": "Executive summary, PDF p. 5 (printed p. 2)",
+          "numbers": {
+            "interviews": 29,
+            "technical_audits": 20,
+            "monitored_installations": ">1,100"
+          }
+        }
+      ]
+    },
+    {
+      "key": "Zhou2024",
+      "harvard": "Zhou, Y., Essayeh, C., Darby, S. and Morstyn, T. (2024) 'Evaluating the social benefits and network costs of heat pumps as an energy crisis intervention', iScience, 27(2), 108854. doi:10.1016/j.isci.2024.108854. Open access (CC BY), full text read via Europe PMC PMC10837618 (Accessed: 7 November 2026).",
+      "url": "https://doi.org/10.1016/j.isci.2024.108854",
+      "doi": "10.1016/j.isci.2024.108854",
+      "type": "journal article",
+      "claims": [
+        {
+          "claim": "Zhou et al. define a household as fuel-poor when necessary fuel cost exceeds 10% of adjusted net income, and model replacing all off-gas heating with heat pumps. At 2022 (crisis) prices the modelled rate falls from 67.26% to 65.16% in Scotland and 47.68% to 46.85% in England. These are scenario estimates, not official statistics.",
+          "quote": "Here a household is considered fuel-poor if its necessary fuel cost is more than 10% of the household adjusted net income.",
+          "locator": "Results, 'Fuel poverty estimation'; Table 1",
+          "numbers": {
+            "crisis_2022_Scotland_before_pct": 67.26,
+            "crisis_2022_Scotland_after_pct": 65.16,
+            "crisis_2022_England_before_pct": 47.68,
+            "crisis_2022_England_after_pct": 46.85,
+            "precrisis_England_before_after_pct": [
+              17.38,
+              16.67
+            ],
+            "price_years": "2019 pre-crisis, 2022 crisis"
+          }
+        }
+      ]
+    },
+    {
+      "key": "Xu2025",
+      "harvard": "Xu, J., Mosbach, S., Akroyd, J. and Kraft, M. (2025) 'Impact of heat pumps and future energy prices on regional inequalities', Advances in Applied Energy, 17, 100201. doi:10.1016/j.adapen.2024.100201. Accepted manuscript/published PDF via Apollo, University of Cambridge repository (Accessed: 7 November 2026).",
+      "url": "https://doi.org/10.1016/j.adapen.2024.100201",
+      "doi": "10.1016/j.adapen.2024.100201",
+      "type": "journal article",
+      "claims": [
+        {
+          "claim": "The regional-inequality effect of heat pumps depends on the electricity-to-gas price ratio, and regions with high fuel poverty are the most exposed.",
+          "quote": "The effect is sensitive to the electricity-to-gas price ratio, with regions experiencing high fuel poverty being most vulnerable",
+          "locator": "Abstract, p. 1",
+          "numbers": {}
+        },
+        {
+          "claim": "Over price ratios 3.25 to 5, the largest national rise in the inequality index comes between ratios of 3.5 and 4. The paper also contrasts 2019 prices (most households would pay more with a heat pump) with post-2022 prices.",
+          "quote": "From a national perspective, the most notable increase in inequality occurs between the price ratios of 3.5 and 4",
+          "locator": "Section on future price scenarios / Fig. 4(b), PDF p. 5",
+          "numbers": {
+            "price_ratio_range": "3.25-5",
+            "steepest_inequality_rise_between_ratios": [
+              3.5,
+              4
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "key": "Rijksoverheid2024_hybrid",
+      "harvard": "Rijksoverheid (2024) Rapporten onderzoeken voor vervallen normering verwarmingsinstallaties in 2026. Rapport, 31 October 2024. The Hague: Ministerie van Binnenlandse Zaken en Koninkrijksrelaties. Available at: https://www.rijksoverheid.nl/documenten/2024/10/31/rapporten-onderzoeken-voor-vervallen-normering-verwarmingsinstallaties-in-2026 (Accessed: 7 November 2026).",
+      "url": "https://www.rijksoverheid.nl/documenten/2024/10/31/rapporten-onderzoeken-voor-vervallen-normering-verwarmingsinstallaties-in-2026",
+      "doi": null,
+      "type": "government statement",
+      "claims": [
+        {
+          "claim": "The Dutch cabinet dropped the planned 2026 heating-installation standard (the de facto hybrid heat pump requirement). The two supporting studies were published without follow-up. (Our translation: 'The current cabinet is abandoning the planned standard for heating installations from 2026.')",
+          "quote": "Het huidige kabinet ziet af van de voorgenomen normering van verwarmingsinstallaties per 2026.",
+          "locator": "Opening paragraph",
+          "numbers": {
+            "date": "2024-10-31"
+          }
+        }
+      ]
+    },
+    {
+      "key": "dena2026_hybrid",
+      "harvard": "Deutsche Energie-Agentur (dena) / Gebäudeforum klimaneutral (2026) Wärmeerzeugung im Gebäudebestand mit erneuerbaren Energien: Elektrische Wärmepumpen-Hybridheizung mit Gas-Brennwertkessel. Factsheet, Stand 08/2026. Berlin: dena. Available at: https://www.gebaeudeforum.de/fileadmin/gebaeudeforum/Downloads/Factsheet/Factsheet_Waermeerzeugung-GModG_06_Waermepumpe-Hybridsystem.pdf (Accessed: 7 November 2026). Supersedes the September 2025 GEG-era edition, whose URL now returns 404.",
+      "url": "https://www.gebaeudeforum.de/fileadmin/gebaeudeforum/Downloads/Factsheet/Factsheet_Waermeerzeugung-GModG_06_Waermepumpe-Hybridsystem.pdf",
+      "doi": null,
+      "type": "factsheet",
+      "claims": [
+        {
+          "claim": "Under the German Building Modernisation Act (GModG, §§42-46, in force 29.07.2026), a heat pump plus condensing gas boiler hybrid complies only if it has a shared, remotely addressable controller and the heat pump covers at least 30% of heat load (bivalent parallel or part-parallel) or 40% (bivalent alternative).",
+          "quote": "die Wärmepumpen-Hybridheizung über eine gemeinsame, fernansprechbare Steuerung verfügt",
+          "locator": "'Effizienz und Erfüllung der Vorgabe zum Betrieb erneuerbarer Energie', p. 3",
+          "numbers": {
+            "min_hp_share_of_heat_load_parallel_pct": 30,
+            "min_hp_share_of_heat_load_alternative_pct": 40,
+            "hp_coverage_share_at_30_40pct_sizing": ">65%",
+            "typical_SPF": "2.8-3.2"
+          }
+        },
+        {
+          "claim": "The factsheet's illustrative costs are about EUR 28,000 for an air-to-water heat pump with condensing gas boiler, plus EUR 6,000 for emitter replacement. These are whole-system examples, not quotes.",
+          "quote": "Luft-Wasser-Wärmepumpe mit Gas-Brennwertkessel 28.000 € Heizflächenaustausch 6.000 €",
+          "locator": "Cost table, p. 4 (table cells as extracted, not a sentence)",
+          "numbers": {
+            "system_cost_EUR": 28000,
+            "emitter_replacement_EUR": 6000,
+            "energy_use_kWh_per_yr": "7,300-13,700",
+            "energy_cost_EUR_per_yr_HP_tariff": "1,700-3,200",
+            "maintenance_EUR_per_yr": 300,
+            "life_years": 18
+          }
+        }
+      ]
+    },
+    {
+      "key": "DiMatteo2026",
+      "harvard": "Di Matteo, M., Vespasiano, D., Lo Basso, G., Fiorini, C.V. and Vallati, A. (2026) 'Performance evaluation of the hybrid heat pump to decarbonize the buildings sector: energetic, environmental and economic characterization', Energy Engineering, 123(2), article 1. doi:10.32604/ee.2025.064353 (Accessed: 7 November 2026).",
+      "url": "https://doi.org/10.32604/ee.2025.064353",
+      "doi": "10.32604/ee.2025.064353",
+      "type": "journal article",
+      "claims": [
+        {
+          "claim": "In the measured case the heat pump is the lead generator and runs continuously, with the boiler cutting in only when needed.",
+          "quote": "Since the heat pump is the main generator, it is always on, while the boiler only comes into operation when necessary.",
+          "locator": "Section 3.2 Model Validation, p. 32",
+          "numbers": {}
+        },
+        {
+          "claim": "The modelled retrofit gives close to 30% primary-energy saving, a 35.3% emissions cut and a 25.8% cut in fuel spending, for an estimated EUR 15,175 investment. This is a laboratory-calibrated simulation, not an occupied-home trial.",
+          "quote": "With an estimated initial investment of 15,175 euro, a decarbonisation cost (DC) of 7.13 euro/CO2,av and a reduction in fuel-related expenditure of an estimated 25.8% is achieved.",
+          "locator": "Section 3.3, Table 10, p. 33",
+          "numbers": {
+            "primary_energy_saving_pct": "close to 30",
+            "emission_reduction_pct": 35.3,
+            "fuel_cost_reduction_pct": 25.8,
+            "investment_EUR": 15175
+          }
+        }
+      ]
+    },
+    {
+      "key": "SSEF2024_hybrid_demo",
+      "harvard": "Stichting Smart Energy Foundation (2024) Eindrapportage Demonstratieproject Hybride Warmtepompen. Ref. 2021-53403, August 2024. Project of Rijksoverheid, Techniek Nederland and Vereniging voor Duurzame Warmte. Available at: https://media.greenchoice.nl/media/g2xg0uem/eindrapportage-demonstratieproject-hybride-warmtepompen-aug2024.pdf (Accessed: 7 November 2026).",
+      "url": "https://media.greenchoice.nl/media/g2xg0uem/eindrapportage-demonstratieproject-hybride-warmtepompen-aug2024.pdf",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "174 Dutch homes had a working hybrid and metering set. In thirty of them the heat pump met more than 97.5% of space-heating demand.",
+          "quote": "De warmtevraag verwarming wordt bij dertig woningen voor meer dan 97,5% ingevuld door de hybride warmtepomp.",
+          "locator": "Section 1 Inleiding en samenvatting, p. 11 of 113",
+          "numbers": {
+            "participants_with_working_meter_set": 174,
+            "homes_hp_over_97_5pct_of_space_heat": 30
+          }
+        },
+        {
+          "claim": "Measured annual COP was about 3.8. The average participant saved 75% of gas (mean over 168 participants, range 31-97%) and about EUR 1,000 a year at the June 2024 average tariff of EUR 1.33/m3 gas.",
+          "quote": "de hybride warmtepomp een gas- en daarmee CO2 besparing geeft van 75% en dat de jaarlijkse energielast rond de 1000 euro daalt",
+          "locator": "Section 1, p. 11; gas-saving distribution p. 31",
+          "numbers": {
+            "SCOP": 3.8,
+            "mean_gas_saving_pct": 75,
+            "gas_saving_range_pct": "31-97",
+            "annual_bill_saving_EUR": 1000,
+            "gas_price_EUR_per_m3_June2024": 1.33
+          }
+        }
+      ]
+    },
+    {
+      "key": "Davila2023_HHP",
+      "harvard": "Dávila [Davila Valdebenito], C. and Lemort, V. (2023) 'In-situ monitoring of two air-to-water hybrid heat pumps for residential buildings', Heat Powered Cycles Conference 2023, University of Edinburgh, 3-6 September 2023. Author version on ORBi (University of Liège). Available at: https://orbi.uliege.be/handle/2268/306399 (Accessed: 7 November 2026).",
+      "url": "https://orbi.uliege.be/bitstream/2268/306399/1/HPC2023_HHP_CD_VL.pdf",
+      "doi": null,
+      "type": "conference paper",
+      "claims": [
+        {
+          "claim": "Two occupied Belgian homes with hybrids were monitored through 2021 and 2022. Tariff settings in the controller decided whether the unit ran as a hybrid at all (Leest until mid-December 2021) or leaned to gas.",
+          "quote": "The correct parameter setting has a great impact on the system performance and mode of operation",
+          "locator": "Conclusions, p. 13",
+          "numbers": {
+            "homes": 2,
+            "monitoring_years": "2021-2022"
+          }
+        }
+      ]
+    },
+    {
+      "key": "Zadoks2026",
+      "harvard": "Zadoks, D., Oneto, A., Tajoli, C., Guo, Y., Heer, P., Sansavini, G. and Hug, G. (2026) Prosumer synchronisation risk: impacts of time-varying tariffs on distribution network expansion. arXiv:2609.02174 [preprint, submitted 2 September 2026; peer review not established]. Available at: https://arxiv.org/abs/2609.02174 (Accessed: 7 November 2026).",
+      "url": "https://arxiv.org/abs/2609.02174",
+      "doi": null,
+      "type": "preprint",
+      "claims": [
+        {
+          "claim": "When prosumers follow price signals together, they can avoid existing peaks but create new ones.",
+          "quote": "As prosumers follow price signals, their behaviour may synchronise, avoiding existing load peaks while creating undesirable peaks at other times.",
+          "locator": "Abstract",
+          "numbers": {}
+        },
+        {
+          "claim": "Across 471 Swiss low-voltage networks (2050 deployment), time-varying tariffs can cut reinforcement cost by over 50%. Once adoption passes the optimum (50% for ToU, 40% for RTP), a further 20% of adoption raises reinforcement needs by 39% (ToU) and 134% (RTP).",
+          "quote": "once prosumer adoption exceeds the optimal thresholds of 50% for Time-of-Use and 40% for Real-Time Pricing, reinforcement needs increase by 39% and 134%, respectively, for an additional 20% of tariff adoption",
+          "locator": "Abstract",
+          "numbers": {
+            "networks": 471,
+            "optimal_adoption_ToU_pct": 50,
+            "optimal_adoption_RTP_pct": 40,
+            "reinforcement_increase_ToU_pct": 39,
+            "reinforcement_increase_RTP_pct": 134,
+            "extra_adoption_pct": 20
+          }
+        }
+      ]
+    },
+    {
+      "key": "Bernard2024",
+      "harvard": "Bernard, L., Hackett, A., Metcalfe, R.D. and Schein, A. (2024) Decarbonizing heat: the impact of heat pumps and a time-of-use heat pump tariff on energy demand. NBER Working Paper 33036, October 2024. Cambridge, MA: National Bureau of Economic Research. doi:10.3386/w33036 (Accessed: 7 November 2026). Authors from Centre for Net Zero (part of Octopus Energy Group).",
+      "url": "https://www.nber.org/papers/w33036",
+      "doi": "10.3386/w33036",
+      "type": "working paper",
+      "claims": [
+        {
+          "claim": "Octopus customers on a heat-pump time-of-use tariff roughly halved their evening-peak electricity use. This is a cut inside a designated peak window, not evidence about maximum demand at other times.",
+          "quote": "halving electricity consumption during the evening peak to help balance the grid",
+          "locator": "Abstract, PDF p. 2",
+          "numbers": {}
+        },
+        {
+          "claim": "In the peak period prices rise 60% and demand falls 50%, an implied own-price elasticity of -0.8.",
+          "quote": "Similarly, in the peak period, prices increase by 60% and electricity demand decreases by 50%, implying an own-price elasticity of -0.8.",
+          "locator": "Results, PDF p. 34 (also introduction, PDF p. 7)",
+          "numbers": {
+            "peak_price_increase_pct": 60,
+            "peak_demand_decrease_pct": 50,
+            "own_price_elasticity": -0.8
+          }
+        }
+      ]
+    },
+    {
+      "key": "EFUS2011_Report4",
+      "harvard": "Hulme, J., Beaumont, A. and Summers, C. (2013) Energy Follow-Up Survey 2011. Report 4: Main heating systems. BRE report 286733a. Prepared by BRE for the Department of Energy and Climate Change, December 2013. Available at: https://assets.publishing.service.gov.uk/media/5a7ca92aed915d6969f46736/4_Main_heating_systems.pdf (Accessed: 7 November 2026).",
+      "url": "https://www.gov.uk/government/statistics/energy-follow-up-survey-efus-2011",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "English households with central heating reported an average thermostat setting of 20 C; half reported between 18 C and 21 C. These are self-reported settings; loggers give separate achieved-temperature estimates.",
+          "quote": "the average thermostat setting in centrally heated households was reported to be 20°C",
+          "locator": "Section 4.3 Achieved temperatures, PDF p. 62 (printed p. 53); interquartile range also PDF p. 44",
+          "numbers": {
+            "mean_reported_setpoint_C": 20,
+            "IQR_reported_setpoint_C": "18-21"
+          }
+        }
+      ]
+    },
+    {
+      "key": "EST2008_DHW",
+      "harvard": "Energy Monitoring Company for the Energy Saving Trust (2008) Measurement of domestic hot water consumption in dwellings. Funded by Defra (Sustainable Energy Policy Division). London: Energy Saving Trust. Available at: https://www.gov.uk/government/publications/measurement-of-domestic-hot-water-consumption-in-dwellings (Accessed: 7 November 2026).",
+      "url": "https://assets.publishing.service.gov.uk/media/5a75a29ced915d6faf2b4829/3147-measure-domestic-hot-water-consump.pdf",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "Measured mean hot-water use was 122 litres/day (95% CI +/-18), with energy content 16.8 +/- 2.2 MJ/day and delivery temperature 51.9 +/- 1.3 C, well below the assumed 60 C. The sample was 124 dwellings recruited, 119 with usable data, and 7 more dropped in analysis.",
+          "quote": "The mean household consumption has been found to be 122 litres/day, with a 95% confidence interval of ±18 litres/day.",
+          "locator": "Executive summary, PDF p. 2; sample Table 3.1, PDF p. 7",
+          "numbers": {
+            "mean_DHW_L_per_day": 122,
+            "CI95_L": 18,
+            "energy_MJ_per_day": 16.8,
+            "energy_CI95_MJ": 2.2,
+            "delivery_temp_C": 51.9,
+            "temp_CI95_C": 1.3,
+            "dwellings_recruited": 124,
+            "dwellings_usable": 119
+          }
+        }
+      ]
+    },
+    {
+      "key": "Orr2009_boilers",
+      "harvard": "Orr, G., Lelyveld, T. and Burton, S. (2009) Final report: In-situ monitoring of efficiencies of condensing boilers and use of secondary heating. Contract GaC3563. GASTEC at CRE Ltd, AECOM and EA Technology for the Energy Saving Trust. June 2009. Available at: https://assets.publishing.service.gov.uk/media/5a75149be5274a3cb28697f7/In-situ_monitoring_of_condensing_boilers_final_report.pdf (Accessed: 7 November 2026).",
+      "url": "https://www.gov.uk/government/publications/in-situ-monitoring-of-efficiencies-of-condensing-boilers-and-use-of-secondary-heating-trial-final-report-2009",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "Of 60 condensing boilers monitored, 43 gave full annual datasets (31 combis, 10 regular, 2 CPSU). Mean in-situ efficiency was 82.5% for combis (SD 4.0%) and 85.3% for regular boilers (SD 2.5%), below SEDBUK ratings.",
+          "quote": "The mean efficiency of the sample set of combination boilers was 82.5% with a standard deviation of 4.0%.",
+          "locator": "Section 7.1.2 Combination boilers efficiency, PDF p. 39 (printed p. 25); summary PDF pp. 4-5",
+          "numbers": {
+            "boilers_monitored": 60,
+            "full_annual_datasets": 43,
+            "combis": 31,
+            "combi_mean_eff_pct": 82.5,
+            "combi_sd_pct": 4.0,
+            "regular_mean_eff_pct": 85.3,
+            "regular_sd_pct": 2.5
+          }
+        }
+      ]
+    },
+    {
+      "key": "DESNZ2023_HEM_FHS",
+      "harvard": "Department for Energy Security and Net Zero (2023) The Home Energy Model: Future Homes Standard assessment. Consultation document, December 2023 (closing date 27 March 2024). London: DESNZ. Available at: https://assets.publishing.service.gov.uk/media/65f86671ce4c150011a1508b/home-energy-model-future-homes-standard-assessment-consultation.pdf (Accessed: 7 November 2026).",
+      "url": "https://assets.publishing.service.gov.uk/media/65f86671ce4c150011a1508b/home-energy-model-future-homes-standard-assessment-consultation.pdf",
+      "doi": null,
+      "type": "consultation",
+      "claims": [
+        {
+          "claim": "SAP 10.2 assumes 60 W of metabolic gain per occupant on average. The HEM consultation proposed 104 W daytime/evening and 74 W overnight, applied with a time-at-home factor. These are modelling assumptions, not measurements.",
+          "quote": "In SAP 10.2, each occupant is assumed to provide 60W on average",
+          "locator": "Section 3.1.2 Metabolic gains, p. 15",
+          "numbers": {
+            "SAP10_2_W_per_person": 60,
+            "HEM_day_evening_W": 104,
+            "HEM_overnight_W": 74
+          }
+        }
+      ]
+    },
+    {
+      "key": "Ofgem2025_RIIO3_FD",
+      "harvard": "Ofgem (2025) RIIO-3 Final Determinations: Overview Document. Decision, 4 December 2025. London: Ofgem. Available at: https://www.ofgem.gov.uk/sites/default/files/2025-12/RIIO-3-Final-Determinations-overview.pdf (Accessed: 7 November 2026).",
+      "url": "https://www.ofgem.gov.uk/sites/default/files/2025-12/RIIO-3-Final-Determinations-overview.pdf",
+      "doi": null,
+      "type": "regulatory decision",
+      "claims": [
+        {
+          "claim": "Ofgem's final RIIO-3 decision names the risk that a shrinking base of gas customers carries largely fixed network costs. It depreciates new gas-distribution investment by the net-zero date (currently 2050), leaves existing-asset policy unchanged and keeps gas transmission's 45-year sum-of-digits profile.",
+          "quote": "This introduces the risk where a shrinking base of gas consumers may be left to bear the largely fixed costs of past and ongoing network investments.",
+          "locator": "Chapter 7 Gas depreciation, para. 7.2, PDF p. 89 (2050 and GT 45-year: PDF pp. 90-91)",
+          "numbers": {
+            "new_GD_assets_depreciated_by": 2050,
+            "GT_depreciation_years": 45
+          }
+        }
+      ]
+    },
+    {
+      "key": "DESNZ2025_Midstream",
+      "harvard": "Department for Energy Security and Net Zero (2025) Midstream gas system: update to the market. Policy paper, 30 June 2025. London: DESNZ. Available at: https://www.gov.uk/government/publications/midstream-gas-system-update-to-the-market/midstream-gas-system-update-to-the-market (Accessed: 7 November 2026).",
+      "url": "https://www.gov.uk/government/publications/midstream-gas-system-update-to-the-market/midstream-gas-system-update-to-the-market",
+      "doi": null,
+      "type": "policy paper",
+      "claims": [
+        {
+          "claim": "Government recognises that gas network costs do not fall in step with the number of users, so a declining user base raises asset-stranding and affordability risk. It gives no per-household decommissioning cost.",
+          "quote": "the cost of maintaining and operating the network does not fall in proportion to the number of users",
+          "locator": "'Balancing infrastructure investment and affordability'",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "DeltaEE2018_costs",
+      "harvard": "Delta Energy & Environment (2018) Cost of installing heating measures in domestic properties. Final report, July 2018, for the Department for Business, Energy and Industrial Strategy. BEIS Research Paper 2020/028. Available at: https://www.gov.uk/government/publications/cost-of-installing-heating-measures-in-domestic-properties (Accessed: 7 November 2026).",
+      "url": "https://www.gov.uk/government/publications/cost-of-installing-heating-measures-in-domestic-properties",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "The 2018 installed costs, excluding VAT and the heat distribution system, were GBP 8,750 for an 8 kW ASHP and GBP 11,500 for a 12.5 kW ASHP (both including fittings, buffer tank, cylinder and controls).",
+          "quote": "installed cost (excluding VAT) of a range of domestic heating measures, including heating controls",
+          "locator": "1. Introduction, 'Context & scope of work', p. 2 (costs table p. 9)",
+          "numbers": {
+            "ASHP_8kW_GBP_exVAT": 8750,
+            "ASHP_12_5kW_GBP_exVAT": 11500,
+            "price_year": 2018
+          }
+        }
+      ]
+    },
+    {
+      "key": "HHGB2025",
+      "harvard": "Hybrid Heating Great Britain (2025) Hybrid heating systems: accelerating decarbonisation of Britain's homes. HHGB consortium (electricity and gas networks, manufacturers and others), November 2025. Available at: https://sgn.co.uk/sites/default/files/media-entities/documents/2025-11/Hybrid%20Heating%20Systems_Accelerating%20Decarbonisation%20of%20Britain%27s%20Homes.pdf (Accessed: 7 November 2026).",
+      "url": "https://sgn.co.uk/sites/default/files/media-entities/documents/2025-11/Hybrid%20Heating%20Systems_Accelerating%20Decarbonisation%20of%20Britain%27s%20Homes.pdf",
+      "doi": null,
+      "type": "industry report",
+      "claims": [
+        {
+          "claim": "HHGB gives a hybrid installation range of GBP 4,000-7,000, sourced to 'Heat Pump Installers, Engagement, 2025' (footnote 14). The range depends on whether a new boiler is needed. Industry consortium source.",
+          "quote": "dependent on need for a new boiler vs. a retrofit",
+          "locator": "'Options for decarbonising heat' table, p. 10 (footnote 14)",
+          "numbers": {
+            "hybrid_install_GBP": "4,000-7,000",
+            "ASHP_install_GBP": "7,000-13,000",
+            "source": "installer engagement 2025"
+          }
+        }
+      ]
+    },
+    {
+      "key": "Fell2015",
+      "harvard": "Fell, M.J., Shipworth, D., Huebner, G.M. and Elwell, C.A. (2015) 'Public acceptability of domestic demand-side response in Great Britain: the role of automation and direct load control', Energy Research & Social Science, 9, pp. 72-84. doi:10.1016/j.erss.2015.08.023 (Accessed: 7 November 2026).",
+      "url": "https://doi.org/10.1016/j.erss.2015.08.023",
+      "doi": "10.1016/j.erss.2015.08.023",
+      "type": "journal article",
+      "claims": [
+        {
+          "claim": "A representative GB survey of bill payers (N = 2002) tested five tariff/control offers. It found direct load control acceptable in principle, within tight bounds and with an override.",
+          "quote": "DLC is acceptable in principle (within tight bounds and with override ability)",
+          "locator": "Abstract, p. 72",
+          "numbers": {
+            "N": 2002,
+            "offers_tested": 5
+          }
+        }
+      ]
+    },
+    {
+      "key": "EU2019_944",
+      "harvard": "European Parliament and Council (2019) Directive (EU) 2019/944 on common rules for the internal market for electricity (recast). OJ L 158, 14.6.2019, p. 125. Consolidated text 16 July 2024. Available at: https://eur-lex.europa.eu/eli/dir/2019/944/2024-07-16/eng/pdf (Accessed: 7 November 2026).",
+      "url": "https://eur-lex.europa.eu/eli/dir/2019/944/2024-07-16/eng/pdf",
+      "doi": null,
+      "type": "legislation",
+      "claims": [
+        {
+          "claim": "EU law requires a supplier to get each customer's consent before switching them to a dynamic price contract. This is a comparative framework, not GB law.",
+          "quote": "Suppliers shall obtain each final customer's consent before that customer is switched to a dynamic electricity price contract.",
+          "locator": "Article 11(3), consolidated PDF p. 19",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "Chard2021_InvoLVe",
+      "harvard": "Chard, R., Lipson, M. and Fleck, R. (2021) How can innovation deliver a smart energy system that works for low income and vulnerable consumers? Project InvoLVe. Energy Systems Catapult for the Department for Business, Energy & Industrial Strategy, June 2021. Available at: https://www.gov.uk/government/publications/participation-of-low-income-and-vulnerable-consumers-in-a-smart-energy-system (Accessed: 7 November 2026).",
+      "url": "https://www.gov.uk/government/publications/participation-of-low-income-and-vulnerable-consumers-in-a-smart-energy-system",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "Low-income and vulnerable consumers carry more risk when a smart product or service fails, for example people whose health depends on keeping energy on.",
+          "quote": "Consumers in vulnerable circumstances face greater risk if the product or service fails to work as expected",
+          "locator": "Section 5 Risks and mitigations, 'Risk', p. 43",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "Hansard1950_gas",
+      "harvard": "Noel-Baker, P. (1950) 'Domestic gas (cost)', written answer, HC Deb 14 July 1950, vol 477, cols 137-8W. Available at: https://api.parliament.uk/historic-hansard/written-answers/1950/jul/14/domestic-gas-cost (Accessed: 7 November 2026).",
+      "url": "https://api.parliament.uk/historic-hansard/written-answers/1950/jul/14/domestic-gas-cost",
+      "doi": null,
+      "type": "parliamentary record",
+      "claims": [
+        {
+          "claim": "The Minister of Fuel and Power gave approximate average domestic gas prices per therm for 1945-1950 (1946: 1s 1d), stating that full and reliable figures did not exist.",
+          "quote": "Full and reliable information on the average price of gas for domestic consumption is not available.",
+          "locator": "col. 138W",
+          "numbers": {
+            "1945": "1s 0.75d/therm",
+            "1946": "1s 1d/therm",
+            "1947": "1s 1.25d",
+            "1948": "1s 2.25d",
+            "1949": "1s 2.75d",
+            "1950_to_date": "1s 3.25d"
+          }
+        }
+      ]
+    },
+    {
+      "key": "Hansard1977_fuel",
+      "harvard": "Mabon, J.D. (1977) 'Fuel costs', written answer, HC Deb 26 January 1977, vol 924, cols 636-7W. Available at: https://api.parliament.uk/historic-hansard/written-answers/1977/jan/26/fuel-costs (Accessed: 7 November 2026; the hansard.parliament.uk page returned HTTP 403, and the same text was confirmed through the Hansard API).",
+      "url": "https://api.parliament.uk/historic-hansard/written-answers/1977/jan/26/fuel-costs",
+      "doi": null,
+      "type": "parliamentary record",
+      "claims": [
+        {
+          "claim": "The domestic fuel price table for 1966-1976 is in pence per therm (1966: gas 10.6, electricity 23.3, coal 3.7-5.0). Gas is average selling value for years ending 31 March; coal is a December range that varies by location.",
+          "quote": "Range of prices prevailing in December of each year, variation in prices according to geographical location.",
+          "locator": "col. 637W, 'Domestic fuel prices' table, coal footnote",
+          "numbers": {
+            "1966_gas_p_per_therm": 10.6,
+            "1966_elec_p_per_therm": 23.3,
+            "1966_coal_p_per_therm": "3.7-5.0",
+            "1976_gas": 15.4,
+            "1976_elec": 60.1
+          }
+        }
+      ]
+    },
+    {
+      "key": "IFS_LSPI",
+      "harvard": "Institute for Fiscal Studies (n.d.) Living standards, poverty and inequality in the UK. Web page and spreadsheet. London: IFS. Available at: https://ifs.org.uk/living-standards-poverty-and-inequality-uk (Accessed: 7 November 2026; live page returned HTTP 403, read from Internet Archive snapshot of 29 December 2025).",
+      "url": "https://ifs.org.uk/living-standards-poverty-and-inequality-uk",
+      "doi": null,
+      "type": "dataset",
+      "claims": [
+        {
+          "claim": "The IFS spreadsheet joins DWP HBAI (from 1994-95) to IFS estimates and gives household incomes, inequality and poverty measures back to 1961.",
+          "quote": "Figures since 1961 are given for: household incomes, income inequality, poverty, child poverty, pensioner poverty, poverty for working-age parents and poverty for working-age non-parents.",
+          "locator": "'Download more data' section",
+          "numbers": {
+            "series_start": 1961,
+            "HBAI_from": "1994-95"
+          }
+        }
+      ]
+    }
+  ],
+  "not_verified": [
+    {
+      "item": "Sun, M., Djapic, P., Aunedi, M., Pudjianto, D. and Strbac, G. (2019) 'Benefits of smart control of hybrid heat pumps: an analysis of field trial data', Applied Energy, 247, pp. 525-536. doi:10.1016/j.apenergy.2019.04.068.",
+      "tried": "Crossref metadata confirmed (authors, volume, pages). Full text not fetched, so no quote is registered."
+    },
+    {
+      "item": "Muratori, M. and Rizzoni, G. (2016) 'Residential demand response: dynamic energy management and time-varying electricity pricing', IEEE Transactions on Power Systems, 31(2), pp. 1108-1117. doi:10.1109/TPWRS.2015.2414880.",
+      "tried": "Crossref metadata confirmed. Full text not fetched, so no rebound figures are registered."
+    },
+    {
+      "item": "Klein, K., Huchtemann, K. and Müller, D. (2014) 'Numerical study on hybrid heat pump systems in existing buildings', Energy and Buildings, 69, pp. 193-201. doi:10.1016/j.enbuild.2013.10.032.",
+      "tried": "Crossref metadata confirmed. Full text not fetched."
+    },
+    {
+      "item": "Di Perna, C., Magri, G., Giuliani, G. and Serenelli, G. (2015) 'Experimental assessment and dynamic analysis of a hybrid generator...', Applied Thermal Engineering, 76, pp. 86-97. doi:10.1016/j.applthermaleng.2014.10.007.",
+      "tried": "Crossref metadata confirmed. Full text not fetched."
+    },
+    {
+      "item": "Boardman, B. (1991) Fuel Poverty: from cold homes to affordable warmth. London: Belhaven.",
+      "tried": "Cited in Boardman (2010) FP 08 as 'Boardman 1991, p 227'. The book itself was not inspected."
+    },
+    {
+      "item": "dena factsheet, September 2025 GEG edition (Factsheet_65ProzentEE_10_Waermepumpe-Hybridsystem.pdf)",
+      "tried": "Given URL returns HTTP 404 and there is no Wayback copy. Replaced by the Stand 08/2026 GModG edition (dena2026_hybrid), whose quote matches."
+    }
+  ]
+}

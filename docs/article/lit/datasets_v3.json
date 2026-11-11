@@ -1,0 +1,78 @@
+{
+ "strand": "datasets_v3",
+ "accessed": "2026-11-07",
+ "method_note": "Datasets the v3 model and the burden analysis read directly. Each was downloaded and used; titles, licences and URLs are as recorded at download (data/model/gb/stock_v3_meta.json; data/historic_energy_prices/raw/SOURCES.md; data/historic_energy_prices/income/raw/SOURCES.md). Quotes are the publisher's own titles.",
+ "sources": [
+  {
+   "key": "Canet2021_LSOA",
+   "harvard": "Canet, A. (2021) Spatio-temporal heat demand for LSOAs in England and Wales [dataset], version 2, 14 October 2021. UK Energy Research Centre Energy Data Centre. doi:10.5286/ukerc.edc.000944. Licence CC-BY 4.0 (accessed 7 November 2026).",
+   "url": "https://doi.org/10.5286/ukerc.edc.000944",
+   "doi": "10.5286/ukerc.edc.000944",
+   "type": "dataset",
+   "claims": [
+    {
+     "claim": "Per 2011 LSOA in England and Wales: gas-boiler dwellings and mean EPC space-heating demand by dwelling form; used for the v3 housing stock.",
+     "quote": "Spatio-temporal heat demand for LSOAs in England and Wales",
+     "locator": "dataset title; file Annual_heat_demand_LSOA.csv"
+    }
+   ]
+  },
+  {
+   "key": "DESNZ2026_NEED_Anon",
+   "harvard": "Department for Energy Security and Net Zero (2026) Anonymised NEED data 2026: 50,000 row sample [dataset and metadata]. London: DESNZ. Available at: https://assets.publishing.service.gov.uk/media/6a282ad83b15d05a7ce31fb1/anon2026_50k.csv (accessed 7 November 2026). Open Government Licence v3.",
+   "url": "https://assets.publishing.service.gov.uk/media/6a282ad83b15d05a7ce31fb1/anon2026_50k.csv",
+   "doi": null,
+   "type": "dataset",
+   "claims": [
+    {
+     "claim": "Floor-area band mix and within-band metered gas ratios for gas-heated homes by dwelling form and region; Scottish towns use the North East pattern.",
+     "quote": "Anonymised NEED data 2026: 50,000 row sample",
+     "locator": "dataset title"
+    }
+   ]
+  },
+  {
+   "key": "ONS2026_CRXS",
+   "harvard": "Office for National Statistics (2026) CRXS: Households: Gross disposable income per head: Current price: Seasonally adjusted [time series, dataset UKEA, release 30 September 2026]. Available at: https://www.ons.gov.uk/economy/grossdomesticproductgdp/timeseries/crxs/ukea (accessed 7 November 2026).",
+   "url": "https://www.ons.gov.uk/economy/grossdomesticproductgdp/timeseries/crxs/ukea",
+   "doi": null,
+   "type": "dataset",
+   "claims": [
+    {
+     "claim": "Household gross disposable income per head 1955-2025, the long income series for the burden analysis (spliced to the Bank of England Millennium dataset before 1955).",
+     "quote": "Households: Gross disposable income per head",
+     "locator": "series title"
+    }
+   ]
+  },
+  {
+   "key": "ONS2026_HDII",
+   "harvard": "Office for National Statistics (2026) Household disposable income and inequality / The effects of taxes and benefits on household income, financial year ending 2025 [dataset], Tables 1, 3 and 31. Available at: https://www.ons.gov.uk/peoplepopulationandcommunity/personalandhouseholdfinances/incomeandwealth (accessed 7 November 2026).",
+   "url": "https://www.ons.gov.uk/peoplepopulationandcommunity/personalandhouseholdfinances/incomeandwealth",
+   "doi": null,
+   "type": "dataset",
+   "claims": [
+    {
+     "claim": "Median and 10th-percentile equivalised household disposable income from 1977, for the burden analysis.",
+     "quote": "Household disposable income and inequality",
+     "locator": "dataset title; Tables 1 (median), 3 (decile points)"
+    }
+   ]
+  },
+  {
+   "key": "LDS2026_EnergyPrices",
+   "harvard": "LDS Consulting Limited (2026) UK domestic gas and electricity prices, 1946 to 2025, and household income, 1946 to 2025 [dataset, with method and source register]. Released with the model repository.",
+   "url": null,
+   "doi": null,
+   "type": "dataset (this project)",
+   "claims": [
+    {
+     "claim": "All-in domestic electricity and gas prices per kWh 1946-2025 in 2025 money (CPI), built from DESNZ price statistics, the Ofgem cap model, DESNZ historical electricity data, Hansard answers and the Bank of England Millennium dataset; graded by confidence.",
+     "quote": "UK domestic gas and electricity prices, 1946 to 2025",
+     "locator": "METHOD.md"
+    }
+   ]
+  }
+ ],
+ "not_verified": []
+}

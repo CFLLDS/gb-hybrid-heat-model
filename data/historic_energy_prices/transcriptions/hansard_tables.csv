@@ -1,0 +1,129 @@
+source_id,fuel,period,period_type,value,unit,basis,row_label,transcription_note
+HANSARD_1978_05_17,electricity,1948,calendar,2.952,p_per_kwh,real_1977_money,1948,
+HANSARD_1978_05_17,electricity,1949,calendar,3.063,p_per_kwh,real_1977_money,1949,
+HANSARD_1978_05_17,electricity,1950,calendar,2.872,p_per_kwh,real_1977_money,1950,
+HANSARD_1978_05_17,electricity,1951,calendar,2.606,p_per_kwh,real_1977_money,1951,
+HANSARD_1978_05_17,electricity,1952,calendar,2.650,p_per_kwh,real_1977_money,1952,
+HANSARD_1978_05_17,electricity,1953,calendar,2.743,p_per_kwh,real_1977_money,1953,
+HANSARD_1978_05_17,electricity,1954,calendar,2.731,p_per_kwh,real_1977_money,1954,
+HANSARD_1978_05_17,electricity,1955,calendar,2.595,p_per_kwh,real_1977_money,1955,
+HANSARD_1978_05_17,electricity,1956,calendar,2.597,p_per_kwh,real_1977_money,1956,
+HANSARD_1978_05_17,electricity,1957,calendar,2.594,p_per_kwh,real_1977_money,1957,
+HANSARD_1978_05_17,electricity,1958,calendar,2.642,p_per_kwh,real_1977_money,1958,
+HANSARD_1978_05_17,electricity,1959,calendar,2.596,p_per_kwh,real_1977_money,1959,
+HANSARD_1978_05_17,electricity,1960,calendar,2.484,p_per_kwh,real_1977_money,1960,
+HANSARD_1978_05_17,electricity,1961,calendar,2.429,p_per_kwh,real_1977_money,1961,
+HANSARD_1978_05_17,electricity,1962,calendar,2.385,p_per_kwh,real_1977_money,1962,
+HANSARD_1978_05_17,electricity,1963,calendar,2.391,p_per_kwh,real_1977_money,1963,
+HANSARD_1978_05_17,electricity,1964,calendar,2.420,p_per_kwh,real_1977_money,1964,
+HANSARD_1978_05_17,electricity,1965,calendar,2.405,p_per_kwh,real_1977_money,1965,
+HANSARD_1978_05_17,electricity,1966,calendar,2.380,p_per_kwh,real_1977_money,1966,
+HANSARD_1978_05_17,electricity,1967,calendar,2.304,p_per_kwh,real_1977_money,1967,
+HANSARD_1978_05_17,electricity,1968,calendar,2.478,p_per_kwh,real_1977_money,1968,
+HANSARD_1978_05_17,electricity,1969,calendar,2.273,p_per_kwh,real_1977_money,1969,
+HANSARD_1978_05_17,electricity,1970,calendar,2.085,p_per_kwh,real_1977_money,1970,
+HANSARD_1978_05_17,electricity,1971,calendar,2.048,p_per_kwh,real_1977_money,1971,
+HANSARD_1978_05_17,electricity,1972,calendar,2.030,p_per_kwh,real_1977_money,1972,
+HANSARD_1978_05_17,electricity,1973,calendar,1.883,p_per_kwh,real_1977_money,1973,
+HANSARD_1978_05_17,electricity,1974,calendar,1.940,p_per_kwh,real_1977_money,1974,
+HANSARD_1978_05_17,electricity,1975,calendar,2.259,p_per_kwh,real_1977_money,1975,
+HANSARD_1978_05_17,electricity,1976,calendar,2.489,p_per_kwh,real_1977_money,1976,
+HANSARD_1978_05_17,electricity,1977,calendar,2.483,p_per_kwh,real_1977_money,1977,
+HANSARD_1977_07_06,electricity,1948,calendar,2.554,p_per_kwh,real_1976_money,1948,
+HANSARD_1977_07_06,electricity,1949,calendar,2.646,p_per_kwh,real_1976_money,1949,
+HANSARD_1977_07_06,electricity,1950,calendar,2.480,p_per_kwh,real_1976_money,1950,
+HANSARD_1977_07_06,electricity,1951,calendar,2.247,p_per_kwh,real_1976_money,1951,
+HANSARD_1977_07_06,electricity,1952,calendar,2.286,p_per_kwh,real_1976_money,1952,
+HANSARD_1977_07_06,electricity,1953,calendar,2.363,p_per_kwh,real_1976_money,1953,
+HANSARD_1977_07_06,electricity,1954,calendar,2.358,p_per_kwh,real_1976_money,1954,
+HANSARD_1977_07_06,electricity,1955,calendar,2.235,p_per_kwh,real_1976_money,1955,
+HANSARD_1977_07_06,electricity,1956,calendar,2.242,p_per_kwh,real_1976_money,1956,
+HANSARD_1977_07_06,electricity,1957,calendar,2.242,p_per_kwh,real_1976_money,1957,
+HANSARD_1977_07_06,electricity,1958,calendar,2.277,p_per_kwh,real_1976_money,1958,
+HANSARD_1977_07_06,electricity,1959,calendar,2.240,p_per_kwh,real_1976_money,1959,
+HANSARD_1977_07_06,electricity,1960,calendar,2.146,p_per_kwh,real_1976_money,1960,
+HANSARD_1977_07_06,electricity,1961,calendar,2.092,p_per_kwh,real_1976_money,1961,
+HANSARD_1977_07_06,electricity,1962,calendar,2.059,p_per_kwh,real_1976_money,1962,
+HANSARD_1977_07_06,electricity,1963,calendar,2.064,p_per_kwh,real_1976_money,1963,
+HANSARD_1977_07_06,electricity,1964,calendar,2.093,p_per_kwh,real_1976_money,1964,
+HANSARD_1977_07_06,electricity,1965,calendar,2.075,p_per_kwh,real_1976_money,1965,
+HANSARD_1977_07_06,electricity,1966,calendar,2.060,p_per_kwh,real_1976_money,1966,
+HANSARD_1977_07_06,electricity,1967,calendar,1.985,p_per_kwh,real_1976_money,1967,
+HANSARD_1977_07_06,electricity,1968,calendar,2.137,p_per_kwh,real_1976_money,1968,
+HANSARD_1977_07_06,electricity,1969,calendar,1.961,p_per_kwh,real_1976_money,1969,
+HANSARD_1977_07_06,electricity,1970,calendar,1.802,p_per_kwh,real_1976_money,1970,
+HANSARD_1977_07_06,electricity,1971,calendar,1.770,p_per_kwh,real_1976_money,1971,
+HANSARD_1977_07_06,electricity,1972,calendar,1.751,p_per_kwh,real_1976_money,1972,
+HANSARD_1977_07_06,electricity,1973,calendar,1.681,p_per_kwh,real_1976_money,1973,
+HANSARD_1977_07_06,electricity,1974,calendar,1.673,p_per_kwh,real_1976_money,1974,
+HANSARD_1977_07_06,electricity,1975,calendar,1.951,p_per_kwh,real_1976_money,1975,
+HANSARD_1977_07_06,electricity,1976,calendar,2.148,p_per_kwh,real_1976_money,1976,
+HANSARD_1979_02_21,electricity,1950,calendar,0.563,p_per_kwh,nominal,1950,
+HANSARD_1979_02_21,electricity,1960,calendar,0.678,p_per_kwh,nominal,1960,
+HANSARD_1979_02_21,electricity,1970,calendar,0.838,p_per_kwh,nominal,1970,
+HANSARD_1979_02_21,electricity,1971,calendar,0.901,p_per_kwh,nominal,1971,
+HANSARD_1979_02_21,electricity,1972,calendar,0.956,p_per_kwh,nominal,1972,
+HANSARD_1979_02_21,electricity,1973,calendar,0.968,p_per_kwh,nominal,1973,
+HANSARD_1979_02_21,electricity,1974,calendar,1.156,p_per_kwh,nominal,1974,
+HANSARD_1979_02_21,electricity,1975,calendar,1.674,p_per_kwh,nominal,1975,
+HANSARD_1979_02_21,electricity,1976,calendar,2.148,p_per_kwh,nominal,1976,
+HANSARD_1979_02_21,electricity,1977,calendar,2.483,p_per_kwh,nominal,1977,
+HANSARD_1979_02_21,gas,1950-51,financial_year,6.17,p_per_therm,nominal,1950-51,
+HANSARD_1979_02_21,gas,1959-60,financial_year,10.38,p_per_therm,nominal,1959-60,
+HANSARD_1979_02_21,gas,1960-61,financial_year,10.75,p_per_therm,nominal,1960-61,
+HANSARD_1979_02_21,gas,1969-70,financial_year,10.70,p_per_therm,nominal,1969-70,
+HANSARD_1979_02_21,gas,1970-71,financial_year,10.58,p_per_therm,nominal,1970-71,
+HANSARD_1979_02_21,gas,1971-72,financial_year,11.08,p_per_therm,nominal,1971-72,printed as '11–08' in the source; read as 11.08 (constant-price column 4.53 is consistent)
+HANSARD_1979_02_21,gas,1972-73,financial_year,11.15,p_per_therm,nominal,1972-73,
+HANSARD_1979_02_21,gas,1973-74,financial_year,10.96,p_per_therm,nominal,1973-74,
+HANSARD_1979_02_21,gas,1974-75,financial_year,11.63,p_per_therm,nominal,1974-75,
+HANSARD_1979_02_21,gas,1975-76,financial_year,14.35,p_per_therm,nominal,1975-76,
+HANSARD_1979_02_21,gas,1976-77,financial_year,16.65,p_per_therm,nominal,1976-77,
+HANSARD_1979_02_21,gas,1977-78,financial_year,18.50,p_per_therm,nominal,1977-78,
+HANSARD_1990_02_16,electricity,1974-75,financial_year,1.288,p_per_kwh,nominal,1974-75,
+HANSARD_1990_02_16,electricity,1975-76,financial_year,1.909,p_per_kwh,nominal,1975-76,
+HANSARD_1990_02_16,electricity,1976-77,financial_year,2.318,p_per_kwh,nominal,1976-77,
+HANSARD_1990_02_16,electricity,1977-78,financial_year,2.635,p_per_kwh,nominal,1977-78,
+HANSARD_1990_02_16,electricity,1978-79,financial_year,2.860,p_per_kwh,nominal,1978-79,
+HANSARD_1990_02_16,electricity,1979-80,financial_year,3.227,p_per_kwh,nominal,1979-80,
+HANSARD_1990_02_16,electricity,1980-81,financial_year,4.221,p_per_kwh,nominal,1980-81,
+HANSARD_1990_02_16,electricity,1981-82,financial_year,4.774,p_per_kwh,nominal,1981-82,
+HANSARD_1990_02_16,electricity,1982-83,financial_year,5.378,p_per_kwh,nominal,1982-83,
+HANSARD_1990_02_16,electricity,1983-84,financial_year,5.379,p_per_kwh,nominal,1983-84,
+HANSARD_1990_02_16,electricity,1984-85,financial_year,5.451,p_per_kwh,nominal,1984-85,
+HANSARD_1990_02_16,electricity,1985-86,financial_year,5.607,p_per_kwh,nominal,1985-86,
+HANSARD_1990_02_16,electricity,1986-87,financial_year,5.622,p_per_kwh,nominal,1986-87,
+HANSARD_1990_02_16,electricity,1987-88,financial_year,5.583,p_per_kwh,nominal,1987-88,
+HANSARD_1990_02_16,electricity,1988-89,financial_year,5.988,p_per_kwh,nominal,1988-89,printed as '11988–89'; leading 1 is a footnote marker (Electricity Council Annual Report and Accounts 1988-89)
+HANSARD_1992_11_09,electricity,1982,calendar,8.31,p_per_kwh,real_1991_gdp_deflator,1982,
+HANSARD_1992_11_09,electricity,1983,calendar,8.24,p_per_kwh,real_1991_gdp_deflator,1983,
+HANSARD_1992_11_09,electricity,1984,calendar,7.96,p_per_kwh,real_1991_gdp_deflator,1984,
+HANSARD_1992_11_09,electricity,1985,calendar,7.71,p_per_kwh,real_1991_gdp_deflator,1985,
+HANSARD_1992_11_09,electricity,1986,calendar,7.55,p_per_kwh,real_1991_gdp_deflator,1986,
+HANSARD_1992_11_09,electricity,1987,calendar,7.13,p_per_kwh,real_1991_gdp_deflator,1987,
+HANSARD_1992_11_09,electricity,1988,calendar,7.01,p_per_kwh,real_1991_gdp_deflator,1988,
+HANSARD_1992_11_09,electricity,1989,calendar,7.12,p_per_kwh,real_1991_gdp_deflator,1989,
+HANSARD_1992_11_09,electricity,1990,calendar,7.11,p_per_kwh,real_1991_gdp_deflator,1990,
+HANSARD_1992_11_09,electricity,1991,calendar,7.28,p_per_kwh,real_1991_gdp_deflator,1991,
+HANSARD_1966_04_26,gas,1964-65,financial_year,26.36,old_pence_per_therm,nominal,(prose),"national average revenue per therm from domestic sales, stated in the answer text"
+HANSARD_1967_01_19,gas,1965-66,financial_year,25.56,old_pence_per_therm,nominal,Average,row 'Average' of the table of average income from domestic sales by gas board (12 GB boards)
+HANSARD_1989_11_08,gas,1979,calendar,3.7,pct_change_on_previous_year,nominal,1979,"domestic column; source given as Fuel price indices, Energy Trends"
+HANSARD_1989_11_08,gas,1980,calendar,16.6,pct_change_on_previous_year,nominal,1980,"domestic column; source given as Fuel price indices, Energy Trends"
+HANSARD_1989_11_08,gas,1981,calendar,26.0,pct_change_on_previous_year,nominal,1981,"domestic column; source given as Fuel price indices, Energy Trends"
+HANSARD_1989_11_08,gas,1982,calendar,24.7,pct_change_on_previous_year,nominal,1982,"domestic column; source given as Fuel price indices, Energy Trends"
+HANSARD_1989_11_08,gas,1983,calendar,12.0,pct_change_on_previous_year,nominal,1983,"domestic column; source given as Fuel price indices, Energy Trends"
+HANSARD_1989_11_08,gas,1984,calendar,3.7,pct_change_on_previous_year,nominal,1984,"domestic column; source given as Fuel price indices, Energy Trends"
+HANSARD_1989_11_08,gas,1985,calendar,4.1,pct_change_on_previous_year,nominal,1985,"domestic column; source given as Fuel price indices, Energy Trends"
+HANSARD_1989_11_08,gas,1986,calendar,1.8,pct_change_on_previous_year,nominal,1986,"domestic column; source given as Fuel price indices, Energy Trends"
+HANSARD_1989_11_08,gas,1987,calendar,-1.0,pct_change_on_previous_year,nominal,1987,"domestic column; source given as Fuel price indices, Energy Trends"
+HANSARD_1989_11_08,gas,1988,calendar,0.8,pct_change_on_previous_year,nominal,1988,"domestic column; source given as Fuel price indices, Energy Trends"
+HANSARD_1966_08_01,gas,1957-58,financial_year,20.35,old_pence_per_therm_all_gas_sold,nominal,1957-58,"Gas column: average revenue from ALL gas sold, Great Britain"
+HANSARD_1966_08_01,gas,1958-59,financial_year,20.97,old_pence_per_therm_all_gas_sold,nominal,1958-59,"Gas column: average revenue from ALL gas sold, Great Britain"
+HANSARD_1966_08_01,gas,1959-60,financial_year,21.00,old_pence_per_therm_all_gas_sold,nominal,1959-60,"Gas column: average revenue from ALL gas sold, Great Britain; printed as '21 00', read as 21.00"
+HANSARD_1966_08_01,gas,1960-61,financial_year,21.51,old_pence_per_therm_all_gas_sold,nominal,1960-61,"Gas column: average revenue from ALL gas sold, Great Britain"
+HANSARD_1966_08_01,gas,1961-62,financial_year,22.26,old_pence_per_therm_all_gas_sold,nominal,1961-62,"Gas column: average revenue from ALL gas sold, Great Britain"
+HANSARD_1966_08_01,gas,1962-63,financial_year,22.67,old_pence_per_therm_all_gas_sold,nominal,1962-63,"Gas column: average revenue from ALL gas sold, Great Britain"
+HANSARD_1966_08_01,gas,1963-64,financial_year,22.79,old_pence_per_therm_all_gas_sold,nominal,1963-64,"Gas column: average revenue from ALL gas sold, Great Britain"
+HANSARD_1966_08_01,gas,1964-65,financial_year,22.61,old_pence_per_therm_all_gas_sold,nominal,1964-65,"Gas column: average revenue from ALL gas sold, Great Britain"
+HANSARD_1968_07_17,gas,1965-66,financial_year,22.37,old_pence_per_therm_all_gas_sold,nominal,Gas--Average revenue per therm,printed as '22.37d.'; ALL gas sold; geography not stated
+HANSARD_1968_07_17,gas,1966-67,financial_year,22.65,old_pence_per_therm_all_gas_sold,nominal,Gas--Average revenue per therm,printed as '22.65d.' (second column); ALL gas sold; geography not stated

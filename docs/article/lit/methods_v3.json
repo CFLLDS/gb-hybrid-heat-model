@@ -1,0 +1,842 @@
+{
+ "strand": "Methods v3: how comparable studies handled five weaknesses of the 86-winter model: (1) thermal mass and pre-heating, (2) price response and herding, (3) realistic housing stock, (4) capital and gas-network costs, (5) multiple price years; plus the most comparable published national heat-electrification models",
+ "compiled": "2026-11-07",
+ "method_note": "Every source below was found by web search and then downloaded on 2026-11-07 (curl) and read via pdftotext or HTML text extraction; quotes were machine-checked against the downloaded text (token order, ligatures and two-column interleaving tolerated). 'PDF p.' is the page index of the downloaded file. Where a repository copy (arXiv, accepted manuscript, working paper) was read instead of the publisher version, the Harvard entry says so and numbers are those of the copy read. Figures marked 'derived' are this reviewer's arithmetic, not the source's. Two data probes were also run on 2026-11-07 and are reported, not quoted: the NESO N2EX day-ahead CSV holds hourly prices from 2021-09-20 to 2026-11-08 (45,001 rows); the Elexon Insights API returned market-index (APX/N2EX MID) half-hourly prices from a date between 2016-09-10 and 2016-11-10 onward, and system prices for 2016-01-07 but not 2015-01-07. Sources already in hybrid_peak.json or controls_flex.json (Watson 2019/2021, Love 2017, Freedom, Pean 2019, Strbac 2018, Carbon Trust 2016) are not re-quoted except where a different claim is used.",
+ "sources": [
+  {
+   "key": "DESNZ2025_HEM_TP07",
+   "harvard": "Department for Energy Security and Net Zero (2025) Calculating thermal mass within the Home Energy Model: a technical explanation of the methodology. HEM-TP-07, v2.0, October 2025 (HEM 1.0). London: DESNZ. Available at: https://assets.publishing.service.gov.uk/media/690235b2918e1f940b3cf829/hem-tp-07-thermal-mass.pdf (Accessed: 7 November 2026).",
+   "url": "https://assets.publishing.service.gov.uk/media/690235b2918e1f940b3cf829/hem-tp-07-thermal-mass.pdf",
+   "doi": null,
+   "type": "government technical documentation",
+   "claims": [
+    {
+     "claim": "HEM (SAP's replacement) treats fabric thermal mass dynamically under BS EN ISO 52016-1, with each opaque element split into five nodes and an areal heat capacity plus one of five mass-distribution classes.",
+     "quote": "Each opaque building element is modelled as five heat balance nodes (see HEM-TP-04 Space heating and cooling demand) and the areal heat capacity is distributed among these nodes",
+     "locator": "Section 1, PDF p. 6",
+     "numbers": {
+      "nodes_per_opaque_element": 5,
+      "mass_distribution_classes": 5
+     }
+    },
+    {
+     "claim": "Air and furniture are given a fixed default capacity per floor area.",
+     "quote": "The thermal mass of the air in the zone is assumed to be 10,000 J/K per m2 of zone floor area, as per the suggested default in BS EN ISO 52016-1:2017 Table B.17",
+     "locator": "Section 2, PDF p. 9",
+     "numbers": {
+      "air_furniture_J_per_K_m2": 10000
+     }
+    },
+    {
+     "claim": "The HEM core engine is published as open Python reference code.",
+     "quote": "The full Python source code for the Home Energy Model core engine has been published as a Git repository.",
+     "locator": "Background, PDF p. 4",
+     "numbers": {}
+    }
+   ]
+  },
+  {
+   "key": "Crawley2022",
+   "harvard": "Crawley, J., Manouseli, D., Mallaburn, P. and Elwell, C. (2022) 'An empirical energy demand flexibility metric for residential properties', Energies, 15(14), 5304. doi:10.3390/en15145304. Available at: https://discovery.ucl.ac.uk/10153333/1/energies-15-05304-v2.pdf (Accessed: 7 November 2026).",
+   "url": "https://discovery.ucl.ac.uk/10153333/1/energies-15-05304-v2.pdf",
+   "doi": "10.3390/en15145304",
+   "type": "journal article (open access)",
+   "claims": [
+    {
+     "claim": "Measured cool-down in 193 Scottish homes (IDEAL dataset): mean 1.5 K fall in 3 h at a 15 K inside-outside difference. Derived: a first-order fit gives tau = -3/ln(1-1.5/15) = about 28.5 h.",
+     "quote": "A result was derived for 96% of 193 homes within a test dataset, mean temperature drop of 1.5 °C in 3 h at 15 °C inside-outside temperature differential.",
+     "locator": "Abstract, PDF p. 1",
+     "numbers": {
+      "homes": 193,
+      "mean_drop_K_3h": 1.54,
+      "median_drop_K_3h": 1.44,
+      "range_K": "0.53-3.52",
+      "dT_K": 15,
+      "tau_h_derived": 28.5
+     }
+    },
+    {
+     "claim": "Flats cool more slowly than houses (party walls).",
+     "quote": "The mean temperature drop of houses was 1.7, whereas that for flats was 1.43, with a difference between means of 0.27 and p = 0.0002.",
+     "locator": "Section 4.3, Figure 5, PDF p. 11",
+     "numbers": {
+      "houses_drop_K": 1.7,
+      "flats_drop_K": 1.43
+     }
+    }
+   ]
+  },
+  {
+   "key": "Halloran2024",
+   "harvard": "Halloran, C., Lizana, J. and McCulloch, M. (2024) 'Quantifying national space heating flexibility potential at high spatial resolution with heating consumption data', arXiv preprint, arXiv:2405.10450v1. Available at: https://arxiv.org/pdf/2405.10450 (Accessed: 7 November 2026).",
+   "url": "https://arxiv.org/pdf/2405.10450",
+   "doi": null,
+   "type": "preprint (University of Oxford); code GeoHeatFlex, MIT licence",
+   "claims": [
+    {
+     "claim": "Regional 1R1C time constants for GB from DESNZ LSOA gas data and heating degree days: median 30.6 h; the EPC-based method gives 22.8 h; Electrification of Heat (742 homes) indoor-temperature fits give 44.4 h.",
+     "quote": "The median time constant value is 30.6 hours.",
+     "locator": "Section 3.2, PDF p. 5",
+     "numbers": {
+      "tau_median_h_gas_data": 30.6,
+      "tau_median_h_EPC": 22.8,
+      "tau_median_h_EoH": 44.4
+     }
+    },
+    {
+     "claim": "Electrification of Heat homes have longer constants because the sample is weighted to larger houses.",
+     "quote": "The median time constant for these homes is 44.4 hours, which is almost double the median heating consumption-based regional time constant value of 30.6 hours.",
+     "locator": "Section 3.2, PDF p. 6",
+     "numbers": {}
+    },
+    {
+     "claim": "Heat-free duration falls sharply on extreme cold days.",
+     "quote": "gas-heated homes have a median of 5.9 heat-free hours for 20th percentile regional daily winter temperatures from 2010 to 2022. However, extreme cold days nearly halve flexibility duration to a median of 3.6 heat-free hours.",
+     "locator": "Abstract, PDF p. 1",
+     "numbers": {
+      "heat_free_h_p20_day": 5.9,
+      "heat_free_h_extreme": 3.6,
+      "flex_window_K": 3,
+      "GB_store_GWh_th": 500
+     }
+    },
+    {
+     "claim": "Regional heat-loss and heat-capacity medians (gas-heated homes).",
+     "quote": "Median heat losses per region are 0.21 kW/ºC, but there is significant regional variation from 0.12 kW/ºC at the 1st percentile to 0.41 kW/ºC at the 99th percentile.",
+     "locator": "Section 3.1, PDF p. 5 (two-column line-break hyphen; checked by eye)",
+     "numbers": {
+      "HTC_median_kW_per_K": 0.21,
+      "HTC_p1": 0.12,
+      "HTC_p99": 0.41,
+      "C_median_kWh_per_K": 6.5
+     }
+    }
+   ]
+  },
+  {
+   "key": "Canet2023",
+   "harvard": "Canet, A. and Qadrdan, M. (2023) 'Quantification of flexibility from the thermal mass of residential buildings in England and Wales', Applied Energy, 349, 121616. doi:10.1016/j.apenergy.2023.121616. Preprint read: arXiv:2304.07881. Available at: https://arxiv.org/pdf/2304.07881 (Accessed: 7 November 2026).",
+   "url": "https://arxiv.org/pdf/2304.07881",
+   "doi": "10.1016/j.apenergy.2023.121616",
+   "type": "journal article (preprint read)",
+   "claims": [
+    {
+     "claim": "EPC-derived heat demand per LSOA x 16 dwelling categories gives heat loss (annual demand / heating degree hours); capacity = floor area x SAP 2012 'medium' 250 kJ/m2K.",
+     "quote": "The thermal capacity level called “medium” with a specific thermal capacity of 250 kJ/m2/K published in SAP 2012 [19] was used in this study.",
+     "locator": "Section 2.1.2, PDF p. 5",
+     "numbers": {
+      "specific_capacity_kJ_per_m2K": 250,
+      "LSOAs": 34753,
+      "dwelling_categories": 16
+     }
+    },
+    {
+     "claim": "Aggregate heat-pump turn-down available from fabric thermal mass in England and Wales (preprint numbers; the published highlights say 87 GW at -5 C).",
+     "quote": "Total electricity demand reductions of approximately 25 GW to 85 GW were shown to be achievable for the outdoor temperature of 10oC and -5oC, respectively.",
+     "locator": "Abstract, PDF p. 1",
+     "numbers": {
+      "GW_at_10C": 25,
+      "GW_at_minus5C": 85
+     }
+    }
+   ]
+  },
+  {
+   "key": "Canet2022",
+   "harvard": "Canet, A., Qadrdan, M., Jenkins, N. and Wu, J. (2022) 'Spatial and temporal data to study residential heat decarbonisation pathways in England and Wales', Scientific Data, 9, 246. doi:10.1038/s41597-022-01356-9. Available at: https://www.nature.com/articles/s41597-022-01356-9.pdf (Accessed: 7 November 2026).",
+   "url": "https://www.nature.com/articles/s41597-022-01356-9.pdf",
+   "doi": "10.1038/s41597-022-01356-9",
+   "type": "data descriptor (open data, open code)",
+   "claims": [
+    {
+     "claim": "Stock basis: the full EPC register, cleaned and grouped into 16 dwelling categories per LSOA, sets annual heat demand before and after efficiency measures.",
+     "quote": "Energy Performance Certificates (EPCs) were used to estimate the annual heat demand of the 16 dwelling categories within a local area for a typical year.",
+     "locator": "Methods, PDF p. 3",
+     "numbers": {}
+    },
+    {
+     "claim": "Code and data are public (GitHub; UKERC Energy Data Centre).",
+     "quote": "The Python code that we used to produce the datasets presented in this paper is published at https://github.com/AlexandreLab/UKERC-data.",
+     "locator": "Code availability, PDF p. 15",
+     "numbers": {}
+    }
+   ]
+  },
+  {
+   "key": "CornwallInsight2024",
+   "harvard": "Cornwall Insight (2024) Domestic heat pump flexibility modelling. Report for Nesta, November 2024. Available at: https://media.nesta.org.uk/documents/Cornwall_Insight_Domestic_heat_pump_flexibility_modelling_November_2024.pdf (Accessed: 7 November 2026).",
+   "url": "https://media.nesta.org.uk/documents/Cornwall_Insight_Domestic_heat_pump_flexibility_modelling_November_2024.pdf",
+   "doi": null,
+   "type": "consultancy report",
+   "claims": [
+    {
+     "claim": "Pre-heating savings are modelled with a single fabric loss assumption. Derived: 3 K in 5 h at a 20 K difference implies tau of about 31 h, in line with Halloran et al.",
+     "quote": "We assume an average energy efficiency, equivalent to a drop in internal temperature of 3 degrees over five hours, with an indoor temperature of 20 degrees and outdoor temperature of 0 degrees.",
+     "locator": "Assumptions, PDF p. 8",
+     "numbers": {
+      "drop_K": 3,
+      "hours": 5,
+      "dT_K": 20,
+      "tau_h_derived": 30.8,
+      "space_heat_shift_h": 2
+     }
+    },
+    {
+     "claim": "Headline saving from flexing a heat pump on time-of-use tariffs.",
+     "quote": "Our modelling found average savings of £640-£750/year by operating a heat pump flexibly on a time of use",
+     "locator": "Summary, PDF p. 3",
+     "numbers": {
+      "saving_GBP_per_yr": "640-750"
+     }
+    }
+   ]
+  },
+  {
+   "key": "Yan2026",
+   "harvard": "Yan, H., Pawlak, J., Sivakumar, A., Agyeman, S., Wang, H., Bastida, H., Qadrdan, M. et al. (2026) Unlocking heat pump flexibility to deliver low-carbon heating and support the electricity grid. Policy brief, August 2026. London: Grantham Institute, Imperial College London / Energy Demand Research Centre. Available at: https://strathprints.strath.ac.uk/97039/1/Yan-etal-EDRC-2026-Unlocking-heat-pump-flexibility-to-deliver-low-carbon.pdf (Accessed: 7 November 2026).",
+   "url": "https://strathprints.strath.ac.uk/97039/1/Yan-etal-EDRC-2026-Unlocking-heat-pump-flexibility-to-deliver-low-carbon.pdf",
+   "doi": null,
+   "type": "policy brief (Imperial, Cardiff, Strathclyde, Birmingham)",
+   "claims": [
+    {
+     "claim": "The current Imperial/EDRC position: tariffs plus controls should pre-heat ahead of the evening peak; rolling-horizon optimisation beats rule-based control (Hong et al. 2025, cited).",
+     "quote": "Time-of-use tariffs and smart heating controls can incentivise consumers to pre-heat buildings before the evening electricity demand peak, reducing costs while maintaining consumer comfort.",
+     "locator": "Key findings, PDF p. 4",
+     "numbers": {}
+    }
+   ]
+  },
+  {
+   "key": "ESC2026_LivingLab",
+   "harvard": "Energy Systems Catapult (2026) Unlocking energy flexibility: how heat pumps can help balance the grid. Insight, 30 April 2026. Available at: https://es.catapult.org.uk/insight/unlocking-energy-flexibility-how-heat-pumps-can-help-balance-the-grid/ (Accessed: 7 November 2026).",
+   "url": "https://es.catapult.org.uk/insight/unlocking-energy-flexibility-how-heat-pumps-can-help-balance-the-grid/",
+   "doi": null,
+   "type": "web article",
+   "claims": [
+    {
+     "claim": "Living Lab evidence is reported only qualitatively in public; no time constants or RC parameters were found.",
+     "quote": "Analysis from Energy Systems Catapult’s Living Lab shows that households with heat pumps are already taking advantage of cheaper off-peak electricity tariffs",
+     "locator": "Body text (HTML)",
+     "numbers": {}
+    }
+   ]
+  },
+  {
+   "key": "Kelly2014",
+   "harvard": "Kelly, N.J., Tuohy, P.G. and Hawkes, A.D. (2014) 'Performance assessment of tariff-based air source heat pump load shifting in a UK detached dwelling featuring phase change-enhanced buffering', Applied Thermal Engineering, 71(2), pp. 809-820. Accepted manuscript read. Available at: https://strathprints.strath.ac.uk/46715/ (Accessed: 7 November 2026).",
+   "url": "https://strathprints.strath.ac.uk/46715/",
+   "doi": "10.1016/j.applthermaleng.2013.12.019",
+   "type": "journal article (accepted manuscript)",
+   "claims": [
+    {
+     "claim": "GB herding result: 50 ESP-r dwellings with buffered heat pumps all shifted to Economy 10 off-peak raised the network peak by over 50%.",
+     "quote": "the load-shifting of populations of buffered heat pumps wholly to off-peak periods using crude instruments such as tariffs increased the peak electrical loading by over 50% on the electrical network rather than reducing it",
+     "locator": "Abstract, PDF p. 1",
+     "numbers": {
+      "dwellings": 50,
+      "peak_increase_pct": ">50",
+      "buffer_L": 1000,
+      "pcm_buffer_L": 500,
+      "electricity_increase_pct": ">60"
+     }
+    },
+    {
+     "claim": "Diversity in the unconstrained case came from randomised heating times and set-points (Shipworth et al.).",
+     "quote": "the heating system start/stop time settings and the heating system set point were randomly varied according to statistical distributions provided by Shipworth et al [44].",
+     "locator": "Section 'Implementing Diversity', PDF p. 9",
+     "numbers": {
+      "mean_heating_h_per_day_detached": 8.7
+     }
+    }
+   ]
+  },
+  {
+   "key": "Georges2016",
+   "harvard": "Georges, E., Garsoux, P., Masy, G., De Maere d'Aertrycke, G. and Lemort, V. (2016) 'Analysis of the flexibility of Belgian residential buildings equipped with heat pumps and thermal energy storages', in Proceedings of CLIMA 2016, 12th REHVA World Congress, Aalborg. Available at: https://orbi.uliege.be/bitstream/2268/200346/1/CLIMA2016_FlexHP_with_storage_EG160130_VF.pdf (Accessed: 7 November 2026).",
+   "url": "https://orbi.uliege.be/bitstream/2268/200346/1/CLIMA2016_FlexHP_with_storage_EG160130_VF.pdf",
+   "doi": null,
+   "type": "conference paper",
+   "claims": [
+    {
+     "claim": "Stock-wide RC model (modified ISO 13790) of Belgian housing with price-responsive heat pumps: uncoordinated response raised peak by 31%; staggering the price signal by up to 1.5 h cut that to 19% with unchanged savings.",
+     "quote": "the absence of coordination between consumers causes a simultaneous activation of the heat pumps in response to low cost signals.",
+     "locator": "Results (peak demand and ramping), PDF p. 9",
+     "numbers": {
+      "hp_penetration_pct": 58,
+      "peak_increase_uncoordinated_pct": 31,
+      "peak_increase_coordinated_pct": 19,
+      "stagger_h": 1.5,
+      "cost_saving_pct": 5.8
+     }
+    },
+    {
+     "claim": "The coordination is a time-shifted copy of one price signal per consumer.",
+     "quote": "This can be achieved by sending different cost signals to all of them, based on a time-shift of the initial cost signal.",
+     "locator": "Results (peak demand and ramping), PDF p. 9",
+     "numbers": {}
+    }
+   ]
+  },
+  {
+   "key": "Semmelmann2025",
+   "harvard": "Semmelmann, L., Kaiser, K., Heider, A., Kircher, K.J., Hug, G. and Weinhardt, C. (2025) 'Analyzing the impact of dynamic tariff adoption and regulatory options on distribution grids with an open-source framework', in Proceedings of the 16th ACM International Conference on Future and Sustainable Energy Systems (E-ENERGY '25), Rotterdam, 17-20 June. New York: ACM. doi:10.1145/3679240.3734590. Available at: https://publikationen.bibliothek.kit.edu/1000194191/185142233 (Accessed: 7 November 2026).",
+   "url": "https://publikationen.bibliothek.kit.edu/1000194191/185142233",
+   "doi": "10.1145/3679240.3734590",
+   "type": "conference paper (open code: github.com/leloq/dynamic-tariffs-in-distribution-grids)",
+   "claims": [
+    {
+     "claim": "Names the herding problem ('avalanche effect') and tests rotating or segmented grid charges as remedies.",
+     "quote": "a high share of households subscribing to dynamic tariffs can lead to so-called “avalanche effects” on the distribution grid level, wherein load profiles align across households.",
+     "locator": "Abstract, PDF p. 1 (two-column line-break hyphen; checked by eye)",
+     "numbers": {}
+    }
+   ]
+  },
+  {
+   "key": "ElementEnergy2014_HEUS",
+   "harvard": "Element Energy (2014) Further analysis of data from the Household Electricity Usage Study: electricity price signals and demand response. Final report for the Department of Energy and Climate Change and the Department for Environment, Food and Rural Affairs, 4 April 2014. Available at: https://assets.publishing.service.gov.uk/media/5a7cf9e7e5274a33be6482e1/HEUS_Electricity_Price_Signals_and_Demand_Response_Final_Report_04_04_14....pdf (Accessed: 7 November 2026).",
+   "url": "https://assets.publishing.service.gov.uk/media/5a7cf9e7e5274a33be6482e1/HEUS_Electricity_Price_Signals_and_Demand_Response_Final_Report_04_04_14....pdf",
+   "doi": null,
+   "type": "government-commissioned report",
+   "claims": [
+    {
+     "claim": "Measured GB rebound: the CLNR time-of-use trial showed a new peak at the start of the cheap band, which automation of heat pumps and EVs would accentuate.",
+     "quote": "a distinct demand peak at the beginning of the night-time tariff rate following the evening high-tariff period.",
+     "locator": "Summary of findings, PDF p. 7",
+     "numbers": {}
+    },
+    {
+     "claim": "Recommended remedy: stagger tariff bands.",
+     "quote": "staggering time-of-use tariff periods at the local and national level or implementing a range of demand side response mechanisms.",
+     "locator": "Summary of findings, PDF p. 7",
+     "numbers": {}
+    }
+   ]
+  },
+  {
+   "key": "Pimm2018",
+   "harvard": "Pimm, A.J., Cockerill, T.T. and Taylor, P.G. (2018) 'Time-of-use and time-of-export tariffs for home batteries: effects on low voltage distribution networks', Journal of Energy Storage, 18, pp. 447-458. doi:10.1016/j.est.2018.06.008. Available at: https://eprints.whiterose.ac.uk/132396/1/1-s2.0-S2352152X18302020-main.pdf (Accessed: 7 November 2026).",
+   "url": "https://eprints.whiterose.ac.uk/132396/1/1-s2.0-S2352152X18302020-main.pdf",
+   "doi": "10.1016/j.est.2018.06.008",
+   "type": "journal article (open access)",
+   "claims": [
+    {
+     "claim": "Same herding mechanism for batteries on a GB three-tier ToU tariff, using CREST-generated household demand.",
+     "quote": "batteries could even cause increases in peak demand at low voltage substations, if many batteries in the area commence charging at the start of the overnight off-peak price band.",
+     "locator": "Abstract, PDF p. 1",
+     "numbers": {}
+    }
+   ]
+  },
+  {
+   "key": "DePaola2018",
+   "harvard": "De Paola, A., Angeli, D. and Strbac, G. (2018) 'On distributed scheduling of flexible demand and Nash equilibria in the electricity market', Dynamic Games and Applications, 8, pp. 761-798. doi:10.1007/s13235-017-0237-3. Available at: https://rd.springer.com/content/pdf/10.1007/s13235-017-0237-3.pdf (Accessed: 7 November 2026).",
+   "url": "https://rd.springer.com/content/pdf/10.1007/s13235-017-0237-3.pdf",
+   "doi": "10.1007/s13235-017-0237-3",
+   "type": "journal article (open access)",
+   "claims": [
+    {
+     "claim": "Imperial mean-field formulation: price is an increasing function of aggregate demand and the population equilibrium is a fixed point, which avoids rebound peaks; tested on future UK scenarios.",
+     "quote": "The conflicting interactions of the appliances, competing for power consumption at the cheapest hours of the day, are modelled through a differential game with a continuum of players",
+     "locator": "Abstract, PDF p. 1",
+     "numbers": {}
+    },
+    {
+     "claim": "Market abstraction used.",
+     "quote": "The electricity market has been abstracted by the monotonically increasing function",
+     "locator": "Section 2.2, PDF p. 6",
+     "numbers": {}
+    }
+   ]
+  },
+  {
+   "key": "Bernard2024",
+   "harvard": "Bernard, L., Hackett, A., Metcalfe, R.D. and Schein, A. (2024) Decarbonizing heat: the impact of heat pumps and a time-of-use heat pump tariff on energy demand. NBER Working Paper 33036. Cambridge, MA: National Bureau of Economic Research. Available at: https://www.nber.org/system/files/working_papers/w33036/w33036.pdf (Accessed: 7 November 2026).",
+   "url": "https://www.nber.org/system/files/working_papers/w33036/w33036.pdf",
+   "doi": "10.3386/w33036",
+   "type": "working paper (authors include Centre for Net Zero, part of Octopus Energy Group)",
+   "claims": [
+    {
+     "claim": "Measured GB price response of heat-pump homes on Cosy Octopus.",
+     "quote": "a time-of-use tariff designed for heat pumps can provide large demand flexibility benefits, halving electricity consumption during the evening peak to help balance the grid",
+     "locator": "Abstract, PDF p. 2",
+     "numbers": {
+      "peak_reduction_pct": 50
+     }
+    },
+    {
+     "claim": "Implied own-price elasticities, usable to calibrate a price-response layer.",
+     "quote": "in the off-peak periods, prices drop by 40% and electricity demand increases by ≈100%, implying an own-price elasticity of -2.5.",
+     "locator": "Section on elasticities, PDF p. 34",
+     "numbers": {
+      "elasticity_offpeak": -2.5,
+      "elasticity_peak": -0.8
+     }
+    }
+   ]
+  },
+  {
+   "key": "Few2023",
+   "harvard": "Few, J., Manouseli, D., McKenna, E., Pullinger, M., Zapata-Webborn, E., Elam, S., Shipworth, D. and Oreszczyn, T. (2023) 'The over-prediction of energy use by EPCs in Great Britain: a comparison of EPC-modelled and metered primary energy use intensity', Energy and Buildings, 288, 113024. doi:10.1016/j.enbuild.2023.113024. Available at: https://discovery.ucl.ac.uk/id/eprint/10167970/1/1-s2.0-S0378778823002542-main.pdf (Accessed: 7 November 2026).",
+   "url": "https://discovery.ucl.ac.uk/id/eprint/10167970/1/1-s2.0-S0378778823002542-main.pdf",
+   "doi": "10.1016/j.enbuild.2023.113024",
+   "type": "journal article (open access)",
+   "claims": [
+    {
+     "claim": "EPC over-prediction grows as the band worsens (1,374 SERL gas-heated homes).",
+     "quote": "The PEUI gap widens from 26 kWh/yr/m2 (8%) for band C to 276 kWh/y/m2 (48%) for bands F and G.",
+     "locator": "Abstract, PDF p. 1",
+     "numbers": {
+      "homes": 1374,
+      "gap_band_C_pct": 8,
+      "gap_band_FG_pct": 48
+     }
+    }
+   ]
+  },
+  {
+   "key": "BEIS2022_SMETER",
+   "harvard": "Department for Business, Energy and Industrial Strategy (2022) SMETER Innovation Competition report: executive summary. January 2022. London: BEIS. Available at: https://assets.publishing.service.gov.uk/media/61f2cc5bd3bf7f78e80cb8bf/smeter-innovation-competition-report-executive-summary.pdf (Accessed: 7 November 2026).",
+   "url": "https://assets.publishing.service.gov.uk/media/61f2cc5bd3bf7f78e80cb8bf/smeter-innovation-competition-report-executive-summary.pdf",
+   "doi": null,
+   "type": "government report",
+   "claims": [
+    {
+     "claim": "Against co-heating tests in 30 occupied homes (HTC 127-269 W/K), expert RdSAP HTC was nearly unbiased; the best smart-meter methods were somewhat more precise. So EPC inputs can map to HTC, but bias depends on assessor and band.",
+     "quote": "For all 30 homes, the difference between the HTC predicted from the expert RdSAP was compared with the measured HTCs, yielding an NMBE of -2.8% and CVRMSE of 18.2%.",
+     "locator": "Results, PDF p. 8",
+     "numbers": {
+      "homes": 30,
+      "HTC_range_W_per_K": "127-269",
+      "RdSAP_NMBE_pct": -2.8,
+      "RdSAP_CVRMSE_pct": 18.2,
+      "best_SMETER_CVRMSE_pct": 13.4
+     }
+    }
+   ]
+  },
+  {
+   "key": "Webborn2021_SERL",
+   "harvard": "Webborn, E., Few, J., McKenna, E., Elam, S., Pullinger, M., Anderson, B., Shipworth, D. and Oreszczyn, T. (2021) 'The SERL Observatory dataset: longitudinal smart meter electricity and gas data, survey, EPC and climate data for over 13,000 households in Great Britain', Energies, 14(21), 6934. doi:10.3390/en14216934. Available at: https://discovery.ucl.ac.uk/id/eprint/10137253/1/energies-14-06934-v2.pdf (Accessed: 7 November 2026).",
+   "url": "https://discovery.ucl.ac.uk/id/eprint/10137253/1/energies-14-06934-v2.pdf",
+   "doi": "10.3390/en14216934",
+   "type": "data descriptor",
+   "claims": [
+    {
+     "claim": "SERL links half-hourly gas and electricity to EPC inputs and ERA5 weather per home; access needs accreditation.",
+     "quote": "comprises half-hourly and daily electricity and gas data, SERL survey data, Energy Performance Certificate (EPC) input data and 24 local hourly climate reanalysis variables",
+     "locator": "Abstract, PDF p. 1",
+     "numbers": {
+      "households": ">13000"
+     }
+    },
+    {
+     "claim": "Access route.",
+     "quote": "The SERL Observatory dataset is freely available to accredited researchers",
+     "locator": "Section 1, PDF p. 2",
+     "numbers": {}
+    }
+   ]
+  },
+  {
+   "key": "Nesta2026_BUS",
+   "harvard": "Shepheard, M. (2026) Four years of the Boiler Upgrade Scheme in four charts. Nesta blog, 30 April 2026. Available at: https://www.nesta.org.uk/blog/four-years-boiler-upgrade-scheme-four-charts/ (Accessed: 7 November 2026).",
+   "url": "https://www.nesta.org.uk/blog/four-years-boiler-upgrade-scheme-four-charts/",
+   "doi": null,
+   "type": "blog (analysis of DESNZ BUS statistics)",
+   "claims": [
+    {
+     "claim": "Current median installed ASHP cost under BUS, real terms.",
+     "quote": "rose slightly this year, from £12,973 to £13,041 (an increase of 0.4%). Overall the median cost has fallen by 11% since the scheme launched in 2022.",
+     "locator": "Chart 2 commentary (HTML)",
+     "numbers": {
+      "median_ASHP_GBP": 13041,
+      "fall_since_2022_pct": 11
+     }
+    }
+   ]
+  },
+  {
+   "key": "Kavan2024_Nesta",
+   "harvard": "Kavan, M. (2024) How to make heat pumps more affordable: assumptions and methods. Nesta, 13 June 2024. Available at: https://www.nesta.org.uk/report/how-to-make-heat-pumps-more-affordable/assumptions-and-methods/ (Accessed: 7 November 2026).",
+   "url": "https://www.nesta.org.uk/report/how-to-make-heat-pumps-more-affordable/assumptions-and-methods/",
+   "doi": null,
+   "type": "report (web)",
+   "claims": [
+    {
+     "claim": "Cost by archetype from MCS installs matched to EPCs, 2021 to mid-2023, inflated to 2023.",
+     "quote": "Median costs for some of the archetypes are approximately: £9,700 for flats, £12,000 for semi-detached and terraced houses, and £14,000 for detached houses.",
+     "locator": "Installation costs (HTML)",
+     "numbers": {
+      "flat_GBP": 9700,
+      "semi_terrace_GBP": 12000,
+      "detached_GBP": 14000
+     }
+    },
+    {
+     "claim": "Method: MCS install database matched to EPCs.",
+     "quote": "We used data from MCS-certified air-source heat pump installations into properties in England, Scotland, and Wales (between January 2021 to mid-2023) where we could match an Energy Performance Certificate (EPC)",
+     "locator": "Installation costs (HTML)",
+     "numbers": {}
+    }
+   ]
+  },
+  {
+   "key": "DeltaEE2018",
+   "harvard": "Delta-ee (2018) The cost of installing heating measures in domestic properties. Report for the Department for Business, Energy and Industrial Strategy, July 2018 (published by BEIS 2020). Available at: https://assets.publishing.service.gov.uk/media/5f4e14328fa8f57fba704517/cost-of-installing-heating-measures-in-domestic-properties.pdf (Accessed: 7 November 2026).",
+   "url": "https://assets.publishing.service.gov.uk/media/5f4e14328fa8f57fba704517/cost-of-installing-heating-measures-in-domestic-properties.pdf",
+   "doi": null,
+   "type": "government-commissioned report",
+   "claims": [
+    {
+     "claim": "Installers price a hybrid as boiler plus (smaller) heat pump sharing one cylinder and emitter system.",
+     "quote": "the installers interviewed for this study all consider the cost of a hybrid heat pump to be the sum of the cost of a gas boiler and a heat pump",
+     "locator": "Annex A, Hybrid heat pumps, PDF p. 11",
+     "numbers": {}
+    },
+    {
+     "claim": "Component costs (2018, ex VAT): 8 kW ASHP £8,750 excluding emitters; 24 kW combi swap by a regional installer £2,700.",
+     "quote": "8kW air source heat pump (ASHP) fully installed including fittings, buffer tank, £ 8,750",
+     "locator": "ASHP cost table, PDF p. 9",
+     "numbers": {
+      "ASHP_8kW_GBP_exVAT": 8750,
+      "ASHP_12_5kW_GBP": 11500,
+      "combi_swap_regional_GBP": 2700,
+      "price_year": 2018
+     }
+    }
+   ]
+  },
+  {
+   "key": "CarbonTrust2016_cost",
+   "harvard": "Carbon Trust (2016) Evidence gathering: low carbon heating technologies. Domestic hybrid heat pumps. London: Department for Business, Energy and Industrial Strategy. Available at: https://assets.publishing.service.gov.uk/media/5a7f4a6aed915d74e62298fd/Domestic_Hybrid_Heat_Pumps_-_FINAL.pdf (Accessed: 7 November 2026). [Same document as CarbonTrust2016 in hybrid_peak.json; cost claim only.]",
+   "url": "https://assets.publishing.service.gov.uk/media/5a7f4a6aed915d74e62298fd/Domestic_Hybrid_Heat_Pumps_-_FINAL.pdf",
+   "doi": null,
+   "type": "government-commissioned report",
+   "claims": [
+    {
+     "claim": "Hybrid ASHP product price range (2016).",
+     "quote": "The price of hybrid air source heat pumps ranges from under £2,000 for a 5kw stand-alone heat pump and controller to over £7,000 for a 16kW",
+     "locator": "Summary of findings, PDF p. 58",
+     "numbers": {
+      "hybrid_product_GBP_low": 2000,
+      "hybrid_product_GBP_high": 7000,
+      "ASHP_installed_GBP": "4000-11300"
+     }
+    }
+   ]
+  },
+  {
+   "key": "Ofgem2023_SSMC_Finance",
+   "harvard": "Ofgem (2023) RIIO-3 Sector Specific Methodology Consultation: Finance Annex. 13 December 2023. London: Office of Gas and Electricity Markets. Available at: https://www.ofgem.gov.uk/sites/default/files/2023-12/RIIO-3%20SSMC%20Finance%20Annex.pdf (Accessed: 7 November 2026).",
+   "url": "https://www.ofgem.gov.uk/sites/default/files/2023-12/RIIO-3%20SSMC%20Finance%20Annex.pdf",
+   "doi": null,
+   "type": "regulator consultation",
+   "claims": [
+    {
+     "claim": "Size of the stranding problem.",
+     "quote": "Gas-related RAV is expected to be approximately £26.1bn (in real 18/19 CPIH prices) at the start of the RIIO-3 control period.",
+     "locator": "Para 8.11, PDF p. 67",
+     "numbers": {
+      "gas_RAV_GBP_bn_1819": 26.1,
+      "asset_life_yr": 45
+     }
+    },
+    {
+     "claim": "Ofgem's own spiral modelling: depreciation plus return divided by FES gas demand.",
+     "quote": "In most scenarios, the average forecast gas charge starts to increase significantly in the mid-2030s.",
+     "locator": "Para 8.19 and Figure 4, PDF p. 70",
+     "numbers": {}
+    },
+    {
+     "claim": "Method of the estimate (footnote 73).",
+     "quote": "annual network company depreciation and return revenue has been divided by the gas demand for each demand scenario each year.",
+     "locator": "Footnote 73, PDF p. 70",
+     "numbers": {}
+    }
+   ]
+  },
+  {
+   "key": "Hodgson2024_Regen",
+   "harvard": "Hodgson, F. (2024) Who will pay for gas network decline and decommissioning? Regen insight, 17 January 2024. Available at: https://www.regen.co.uk/who-will-pay-for-gas-network-decline-and-decommissioning/ (Accessed: 7 November 2026).",
+   "url": "https://www.regen.co.uk/who-will-pay-for-gas-network-decline-and-decommissioning/",
+   "doi": null,
+   "type": "think-tank briefing (secondary for the Ofgem chart values)",
+   "claims": [
+    {
+     "claim": "Values read from Ofgem's Figure 4 (secondary).",
+     "quote": "Ofgem has estimated that network charges could reach 10p/kWh by 2040 and 40p/kWh by 2050.",
+     "locator": "Section 'Gas distribution charges per unit of energy are set to skyrocket' (HTML)",
+     "numbers": {
+      "network_p_per_kWh_2040": 10,
+      "network_p_per_kWh_2050": 40
+     }
+    }
+   ]
+  },
+  {
+   "key": "SalmonWatson2025",
+   "harvard": "Salmon, K. and Watson, J. (2025) Preparing to decommission the GB gas distribution system. Policy briefing. London: UCL Institute for Sustainable Resources. Available at: https://discovery.ucl.ac.uk/10210931/1/Gas%20Decommissioning%20Policy%20Briefing.pdf (Accessed: 7 November 2026).",
+   "url": "https://discovery.ucl.ac.uk/10210931/1/Gas%20Decommissioning%20Policy%20Briefing.pdf",
+   "doi": null,
+   "type": "policy briefing",
+   "claims": [
+    {
+     "claim": "Decommissioning cost scale (citing Arup).",
+     "quote": "An Arup report suggested decommissioning could cost between £46-74 billion, even if significant portions of the network are retained for hydrogen transmission.",
+     "locator": "Introduction, PDF p. 3",
+     "numbers": {
+      "decom_GBP_bn": "46-74"
+     }
+    }
+   ]
+  },
+  {
+   "key": "DavisHausman2021",
+   "harvard": "Davis, L.W. and Hausman, C. (2021) Who will pay for legacy utility costs? NBER Working Paper 28955 (rev.). Cambridge, MA: National Bureau of Economic Research. Published as: Journal of the Association of Environmental and Resource Economists, 9(6), pp. 1047-1085 (2022). Available at: https://www.nber.org/system/files/working_papers/w28955/revisions/w28955.rev0.pdf (Accessed: 7 November 2026).",
+   "url": "https://www.nber.org/system/files/working_papers/w28955/revisions/w28955.rev0.pdf",
+   "doi": "10.1086/719793",
+   "type": "working paper (journal version not read)",
+   "claims": [
+    {
+     "claim": "Empirical legacy-cost spiral for US gas utilities; non-linear bill impact on remaining customers.",
+     "quote": "For a 15 percent reduction in residential gas customers, we calculate bill increases of around $30 per year for remaining customers – but for a 90 percent reduction in customers, we calculate bill increases of over $1,500 per year.",
+     "locator": "Introduction, PDF p. 5",
+     "numbers": {
+      "loss_15pct_USD_yr": 30,
+      "loss_90pct_USD_yr": 1500
+     }
+    }
+   ]
+  },
+  {
+   "key": "Octopus2019_Agile",
+   "harvard": "Steele, P. (2019) Agile pricing explained. Octopus Energy blog, 13 February 2019. Available at: https://octopus.energy/blog/agile-pricing-explained/ (Accessed: 7 November 2026).",
+   "url": "https://octopus.energy/blog/agile-pricing-explained/",
+   "doi": null,
+   "type": "supplier documentation",
+   "claims": [
+    {
+     "claim": "Agile formula used to rebuild retail prices from day-ahead wholesale: regional multiplier D, peak adder P 16:00-19:00, cap 95p ex VAT. Regional D 2.0-2.4, P 11-14 (2019 table).",
+     "quote": "an example Agile price algorithm is: min(D x W + P, 95)",
+     "locator": "'Agile' pricing section (HTML)",
+     "numbers": {
+      "D_range": "2.00-2.40",
+      "P_range_p": "11-14",
+      "cap_p_exVAT": 95
+     }
+    },
+    {
+     "claim": "Peak adder window.",
+     "quote": "P is the peak-time premium , which ranges from roughly 12 - 24 based on where you are, and is only applied between 4pm and 7pm.",
+     "locator": "'Agile' pricing section (HTML)",
+     "numbers": {}
+    }
+   ]
+  },
+  {
+   "key": "Lyden2024",
+   "harvard": "Lyden, A., Alene, S., Connor, P., Renaldi, R. and Watson, S. (2024) 'Impact of locational pricing on the roll out of heat pumps in the UK', Energy Policy, 187, 114043. doi:10.1016/j.enpol.2024.114043. Abstract read at: https://ideas.repec.org/a/eee/enepol/v187y2024ics0301421524000636.html (Accessed: 7 November 2026).",
+   "url": "https://ideas.repec.org/a/eee/enepol/v187y2024ics0301421524000636.html",
+   "doi": "10.1016/j.enpol.2024.114043",
+   "type": "journal article (ABSTRACT ONLY read)",
+   "claims": [
+    {
+     "claim": "Precedent for turning modelled wholesale prices into heat-pump retail prices with the Agile formula.",
+     "quote": "PyPSA-GB, a future power system model, was employed to simulate unified and locational wholesale prices and the Octopus Agile tariff was used to calculate indicative retail tariffs applicable to domestic heat pumps.",
+     "locator": "Abstract (HTML)",
+     "numbers": {
+      "years": "2020, 2035"
+     }
+    }
+   ]
+  },
+  {
+   "key": "Stute2024",
+   "harvard": "Stute, J., Pelka, S., Kühnbach, M. and Klobasa, M. (2024) 'Dodging the electricity price hike: can demand-side flexibility compensate for spot price increases for households in Germany?', arXiv preprint, arXiv:2402.06711. Available at: https://arxiv.org/pdf/2402.06711 (Accessed: 7 November 2026).",
+   "url": "https://arxiv.org/pdf/2402.06711",
+   "doi": null,
+   "type": "preprint (Fraunhofer IEG/ISI/ISE)",
+   "claims": [
+    {
+     "claim": "Price-year method: keep one historical year's shape and rescale its mean and standard deviation to scenario values, outliers excluded.",
+     "quote": "and manipulate the price time series while preserving its underlying structure.",
+     "locator": "Section 2.1.1.1, PDF p. 10",
+     "numbers": {
+      "base_year": 2019
+     }
+    },
+    {
+     "claim": "Price level and spread change who benefits from dynamic tariffs.",
+     "quote": "significantly boosts the share of households opting for the dynamic tariff – from an initial 3.9% to 62.5%.",
+     "locator": "Conclusions, PDF p. 31",
+     "numbers": {
+      "share_low": 3.9,
+      "share_high": 62.5
+     }
+    }
+   ]
+  },
+  {
+   "key": "NESO_N2EX",
+   "harvard": "National Energy System Operator (2026) Day-ahead power exchange prices (Nord Pool): N2EX GB day-ahead price [dataset]. NESO Data Portal, NESO Open Data Licence. Available at: https://www.neso.energy/data-portal/day-ahead-power-exchange-prices-nordpool (Accessed: 7 November 2026).",
+   "url": "https://www.neso.energy/data-portal/day-ahead-power-exchange-prices-nordpool",
+   "doi": null,
+   "type": "dataset",
+   "claims": [
+    {
+     "claim": "Open hourly GB day-ahead prices; our probe found coverage only from 2021-09-20, so earlier price years need Elexon market-index data or another archive.",
+     "quote": "N2EX GB Day-Ahead Price CSV",
+     "locator": "Data files (HTML); coverage from our download of the CSV",
+     "numbers": {
+      "first_date": "2021-09-20",
+      "resolution": "hourly"
+     }
+    }
+   ]
+  },
+  {
+   "key": "Charitopoulos2023",
+   "harvard": "Charitopoulos, V.M., Fajardy, M., Chyong, C.K. and Reiner, D.M. (2023) 'The impact of 100% electrification of domestic heat in Great Britain', iScience, 26(11), 108239. doi:10.1016/j.isci.2023.108239. Available at: https://discovery.ucl.ac.uk/10181020/1/1-s2.0-S2589004223023167-main.pdf (Accessed: 7 November 2026).",
+   "url": "https://discovery.ucl.ac.uk/10181020/1/1-s2.0-S2589004223023167-main.pdf",
+   "doi": "10.1016/j.isci.2023.108239",
+   "type": "journal article (open access)",
+   "claims": [
+    {
+     "claim": "Hourly LDZ gas data 2015-2018 halves the peak versus widely cited values; input data on Zenodo, code on request.",
+     "quote": "Using hourly historical gas demand data, we conclude that the domestic peak heat demand is almost 50% lower than widely cited values.",
+     "locator": "Summary, PDF p. 2",
+     "numbers": {
+      "data_years": "2015-2018",
+      "LDZs": 13
+     }
+    },
+    {
+     "claim": "Openness.",
+     "quote": "The code of OPHELIA is available from the corresponding authors upon reasonable request.",
+     "locator": "Resource availability, PDF p. 12",
+     "numbers": {}
+    }
+   ]
+  },
+  {
+   "key": "Deakin2021",
+   "harvard": "Deakin, M., Bloomfield, H., Greenwood, D., Sheehy, S., Walker, S. and Taylor, P.C. (2021) 'Impacts of heat decarbonization on system adequacy considering increased meteorological sensitivity', Applied Energy, 298, 117261. Preprint read: arXiv:2102.10391v1. Available at: https://arxiv.org/pdf/2102.10391 (Accessed: 7 November 2026).",
+   "url": "https://arxiv.org/pdf/2102.10391",
+   "doi": "10.1016/j.apenergy.2021.117261",
+   "type": "journal article (preprint read)",
+   "claims": [
+    {
+     "claim": "Closest GB precedent for many weather years: 30 winters of reanalysis.",
+     "quote": "The demand model is considered alongside 30 years of historic climate reanalysis data to create a demand hindcast covering winters from 1990 to 2020.",
+     "locator": "Section 1 contributions, PDF p. 4",
+     "numbers": {
+      "winters": 30,
+      "reanalysis": "MERRA-2"
+     }
+    },
+    {
+     "claim": "Peak per heat pump.",
+     "quote": "A central estimate of 1.75 kW additional",
+     "locator": "Abstract, PDF p. 1",
+     "numbers": {
+      "kW_per_HP_peak": 1.75
+     }
+    }
+   ]
+  },
+  {
+   "key": "Zeyen2021",
+   "harvard": "Zeyen, E., Hagenmeyer, V. and Brown, T. (2021) 'Mitigating heat demand peaks in buildings in a highly renewable European energy system', Energy, 231, 120784. Preprint read: arXiv:2012.01831v3. Available at: https://arxiv.org/pdf/2012.01831v3.pdf (Accessed: 7 November 2026).",
+   "url": "https://arxiv.org/pdf/2012.01831v3.pdf",
+   "doi": "10.1016/j.energy.2021.120784",
+   "type": "journal article (preprint read); PyPSA-Eur-Sec, open",
+   "claims": [
+    {
+     "claim": "Hourly, Europe-wide co-optimisation in which hybrid heat pumps compete with retrofit and storage.",
+     "quote": "competition between technologies to address these heating peaks, namely building retrofitting, thermal energy storage and individual hybrid heat pumps with backup gas boilers is examined.",
+     "locator": "Abstract, PDF p. 1",
+     "numbers": {
+      "cost_reduction_all_three_pct": 17
+     }
+    },
+    {
+     "claim": "Weather-year treatment is a sensitivity only.",
+     "quote": "See the Supplementary Information for a sensitivity analysis concerning different weather years",
+     "locator": "Section 4, PDF p. 12",
+     "numbers": {}
+    }
+   ]
+  },
+  {
+   "key": "Ruhnau2019",
+   "harvard": "Ruhnau, O., Hirth, L. and Praktiknjo, A. (2019) 'Time series of heat demand and heat pump efficiency for energy system modeling', Scientific Data, 6, 189. doi:10.1038/s41597-019-0199-y. Available at: https://www.nature.com/articles/s41597-019-0199-y.pdf (Accessed: 7 November 2026).",
+   "url": "https://www.nature.com/articles/s41597-019-0199-y.pdf",
+   "doi": "10.1038/s41597-019-0199-y",
+   "type": "data descriptor (When2Heat, open data and code)",
+   "claims": [
+    {
+     "claim": "Open hourly heat and COP series built for weather-year sensitivity (later releases extend the years).",
+     "quote": "Furthermore, eleven years (2008–2018) are included to enable weather year sensitivity analyses.",
+     "locator": "Background & Summary, PDF p. 1",
+     "numbers": {
+      "years": "2008-2018",
+      "countries": 16
+     }
+    },
+    {
+     "claim": "Openness.",
+     "quote": "The dataset, as well as the scripts and input parameters, are publicly available under an open source license on the Open Power System Data platform.",
+     "locator": "Abstract, PDF p. 1",
+     "numbers": {}
+    }
+   ]
+  }
+ ],
+ "not_verified": [
+  {
+   "item": "McKenna, E. and Thomson, M. (2016) 'High-resolution stochastic integrated thermal-electrical domestic demand model', Applied Energy, 165, pp. 445-461 (CREST demand model thermal parameters).",
+   "tried": "dspace.lboro.ac.uk/2134/20103 returned HTTP 202 with an empty body; the figshare file 17195201 (article 9562883) and repository.lboro.ac.uk ndownloader both returned an HTML challenge page. The CREST 2R/low-order parameter table therefore was not read; only the search snippet that a downstream tool (demod) takes its 4R3C parameters from CREST was seen, and that is not cited."
+  },
+  {
+   "item": "Lizana, J. et al. (2023) 'A national data-based energy modelling to identify optimal heat storage capacity to support heating electrification', Energy, 262, 125298.",
+   "tried": "ORA (ora.ox.ac.uk) and Cranfield DSpace returned JavaScript challenge pages; no open PDF found. The 12-24 h optimal storage figures are known only from search abstracts and are not used. The Oxford group's later arXiv paper (Halloran et al. 2024) was read instead."
+  },
+  {
+   "item": "De Paola, A., Trovato, V., Angeli, D. and Strbac, G. (2019) mean-field-game TCL coordination (IEEE Trans. Smart Grid); Gong, De Paola, Angeli and Strbac (2019) Energy (price-based coordination of storage/EVs).",
+   "tried": "flore.unifi.it and spiral.imperial.ac.uk bitstreams returned challenge/HTML pages; core.ac.uk/download/77011264.pdf returned HTML. De Paola, Angeli and Strbac (2018) in Dynamic Games and Applications was read instead."
+  },
+  {
+   "item": "Canet and Qadrdan (2023), published Applied Energy version (orca.cardiff.ac.uk/161335).",
+   "tried": "Cardiff ORCA is behind a Cloudflare 'Verification Required' page. The arXiv preprint 2304.07881 was read; its 25-85 GW figures differ slightly from the published highlight (87 GW at -5 C), seen only in a search snippet."
+  },
+  {
+   "item": "Lyden et al. (2024) Energy Policy full text; Exeter ORE record 10871/135433.",
+   "tried": "ORE returned an empty body; ScienceDirect not attempted (paywall). Only the IDEAS/RePEc abstract was read, so method details (Agile coefficients, years) are unverified."
+  },
+  {
+   "item": "Schöniger, F. et al. (2024) 'Coupling building operation with the Balmorel energy system model' (Energy Efficiency, doi:10.1007/s12053-024-10206-z), on exogenous versus endogenous prices for flexible heat pumps.",
+   "tried": "Springer PDF link returned a small HTML page; only the search snippet was seen, so the claim that heat-pump flexibility benefits are 'relatively limited' under endogenous prices is not used."
+  },
+  {
+   "item": "Franken et al. PyPSA-FES preprint 'Power system benefits of simultaneous domestic transport and heating flexibility in Great Britain's energy transition' (Zenodo 10781213).",
+   "tried": "Zenodo file URL returned a short HTML page."
+  },
+  {
+   "item": "Energy Systems Catapult Living Lab quantitative results (time constants, pre-heating trials) and ESC GridFlex outputs.",
+   "tried": "Searches found only the April 2026 insight article and older 'Delight of better control' material; no report with RC parameters or measured pre-heat depth was found."
+  },
+  {
+   "item": "Imperial IWES/Strbac work quantifying pre-heating against ToU for GB (beyond Strbac et al. 2018 in hybrid_peak.json) and Sansom's thesis.",
+   "tried": "No new open document found in this pass; Sansom's thesis was already recorded as unfetchable in hybrid_peak.json."
+  },
+  {
+   "item": "Ofgem RIIO-3 SSMC Finance Annex Figure 4 numeric values (gas network p/kWh by year).",
+   "tried": "The figure is an image in the PDF; its 10p (2040) and 40p (2050) values are taken from Regen's reading of it (Hodgson 2024), not verified from Ofgem's underlying data."
+  },
+  {
+   "item": "A published study that runs GB heat-pump or hybrid economics across many historical retail price years using reconstructed half-hourly retail prices.",
+   "tried": "Three searches (Agile reconstruction from day-ahead; GB historical wholesale 2010-2023 retail reconstruction; multi-year heat-pump price sensitivity) found none. The nearest precedents read are Lyden et al. 2024 (Agile formula on modelled prices, abstract only) and Stute et al. 2024 (rescaled single-year shape, Germany)."
+  }
+ ]
+}

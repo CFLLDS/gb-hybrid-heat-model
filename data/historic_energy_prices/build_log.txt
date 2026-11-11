@@ -1,0 +1,19 @@
+BoE A1: CPI column 40, GDP deflator column 34; CPI 1900-2016, GDP deflator 1900-2016
+Deflator: BoE CPI to 2016, ONS D7BT after 2016 (ratio at 2016 = 0.999600); BoE 2016 100.660, D7BT 2016 100.700
+Latest full year with DESNZ prices and CPI: 2025
+Indices: RPI: fuel & light: electricity (Jan 1987=100) 1987-2025; RPI: fuel & light: gas (Jan 1987=100) 1987-2025; QEP CPI 1990-2025; RPI fuel and light 1956-2025
+Hansard transcriptions: 128 values, 128 found in the saved page text
+Energy Trends domestic gas price index (from HC Deb 8 Nov 1989 % changes), 1978=100: 1978-1988
+Gas Council all-gas average revenue index (calendarised): 1958-1966
+xlsx re-opened: 160 data rows (expected 160), sheets ['data', 'sources', 'reconciliation', 'chart']
+
+fuel         first  last actual spliced estimate  real min (year)    real max (year)
+electricity   1946  2025     78       0        2    11.11 (1973)       37.85 (2023)
+gas           1946  2025     62      14        4     2.96 (2000)       10.36 (2023)
+
+Reconciliation rows over 10%:
+  chain closure: gas 1969: kept HANSARD_1979_02_21 0.3651, other HANSARD_1967_01_19 1965 chained forward with Gas Council average revenue on all gas sold, RPI fuel and light group 0.4204 (+15.1%)
+  Ofgem price cap cross-check: electricity 2022: kept DESNZ_224 direct debit 28.1549, other OFGEM_CAP, direct debit, GB average, calendar-year mean incl. 5% VAT 32.3435 (+14.9%)
+  Ofgem price cap cross-check: electricity 2023: kept DESNZ_224 direct debit 30.2781, other OFGEM_CAP, direct debit, GB average, calendar-year mean incl. 5% VAT 43.8848 (+44.9%)
+  Ofgem price cap cross-check: gas 2022: kept DESNZ_234 direct debit 7.2518, other OFGEM_CAP, direct debit, GB average, calendar-year mean incl. 5% VAT 8.3891 (+15.7%)
+  Ofgem price cap cross-check: gas 2023: kept DESNZ_234 direct debit 8.5711, other OFGEM_CAP, direct debit, GB average, calendar-year mean incl. 5% VAT 11.0206 (+28.6%)

@@ -1,0 +1,487 @@
+{
+  "strand": "Model input assumptions: DESNZ gas weather correction (calibration target), in-use condensing boiler efficiency, domestic hot water, indoor temperature / set point, internal gains",
+  "compiled": "2026-11-07",
+  "method_note": "Every source was downloaded on 2026-11-07 (PDFs read via pdftotext; DESNZ workbooks read cell by cell). Quotes are verbatim from the extracted text; whitespace in table rows is collapsed. 'Derived' figures are the reviewer's arithmetic on the source's numbers, not the source's own claim. SAP 10.2 gains and hot-water figures for given floor areas were computed from the published equations (Table 5, Appendix J, Appendix L).",
+  "sources": [
+    {
+      "key": "DESNZ2026METH",
+      "harvard": "Department for Energy Security and Net Zero (2026) Subnational consumption statistics: methodology and guidance booklet. July 2026. London: DESNZ. Available at: https://assets.publishing.service.gov.uk/media/6a68b45b83f71b8684d02105/Subnational-methodology-and-guidance-booklet.pdf (Accessed: 7 November 2026).",
+      "url": "https://assets.publishing.service.gov.uk/media/6a68b45b83f71b8684d02105/Subnational-methodology-and-guidance-booklet.pdf",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "DESNZ sub-national gas statistics (including the domestic MSOA/LSOA series) are weather corrected; electricity is not.",
+          "quote": "Gas consumption figures have been weather corrected.",
+          "locator": "Table 1 'Key information for subnational consumption datasets', Gas row, printed p. 6",
+          "numbers": {
+            "weather_corrected": true
+          }
+        },
+        {
+          "claim": "The correction is Xoserve's, applied to each meter's Annual Quantity (AQ), and uses regional temperature AND wind speed with trends, i.e. the gas-industry composite weather variable, not degree-days on a Met Office climate normal.",
+          "quote": "Xoserve adjust the AQ using a weather correction factor which accounts for regional temperature and wind speed and incorporates trends",
+          "locator": "Section 2.2 Methodology, 'Annualised and weather corrected MPRN-level gas consumption data', printed p. 14 (PDF p. 15)",
+          "numbers": {}
+        },
+        {
+          "claim": "An AQ is built from two meter reads 6-18 months apart, so it is a meter-level annualised, weather-normalised estimate, not a billed year.",
+          "quote": "An AQ is an estimate of annualised consumption using consumption recorded between two meter readings at least six months apart (with a maximum span of 18 months).",
+          "locator": "Section 2.1.2, 'Annual Quantity (AQ) data limitations', printed p. 13",
+          "numbers": {
+            "read_span_months": "6-18"
+          }
+        },
+        {
+          "claim": "Stale AQs are carried forward when no new read arrives.",
+          "quote": "in 2019/20 there were 2 million MPRNs that had the same AQ as 2018/19.",
+          "locator": "Section 2.1.2, printed p. 13",
+          "numbers": {
+            "stale_AQs_2019_20": 2000000
+          }
+        },
+        {
+          "claim": "'Domestic' is defined by consumption (AQ below 73,200 kWh), not by dwelling, so some small businesses are included.",
+          "quote": "DESNZ uses the gas industry standard “Annual Quantity” (AQ) cut-off point of 73,200 kWh and classifies all consumers using under that annual consumption as domestic consumers.",
+          "locator": "Section 2.1.2 'Sector allocation', printed p. 13",
+          "numbers": {
+            "domestic_cutoff_kWh": 73200
+          }
+        },
+        {
+          "claim": "The gas 'year' is mid-May to mid-May from 2019; the latest release (December 2025) covers mid-May 2024 to mid-May 2025 (labelled '2024' in the workbooks).",
+          "quote": "for 2019 onwards the gas year has remained mid-May to mid-May.",
+          "locator": "Section 2.2 'Dates for gas period', Table 2, printed p. 15; Table 1 p. 6 gives 'mid-May 2024 to mid-May 2025' for the 2024/25 data",
+          "numbers": {
+            "period_of_2024_data": "mid-May 2024 to mid-May 2025"
+          }
+        }
+      ]
+    },
+    {
+      "key": "DECC2014WC",
+      "harvard": "Department of Energy and Climate Change (2014) Overview of weather correction of gas industry consumption data. Last updated 3 November 2014. London: DECC. Available at: https://assets.publishing.service.gov.uk/media/5a7d598040f0b60a7f1a9fad/Overview_of_Weather_Correction_of_Gas_Industry_Data.pdf (Accessed: 7 November 2026).",
+      "url": "https://assets.publishing.service.gov.uk/media/5a7d598040f0b60a7f1a9fad/Overview_of_Weather_Correction_of_Gas_Industry_Data.pdf",
+      "doi": null,
+      "type": "guidance note",
+      "claims": [
+        {
+          "claim": "The AQ is defined as consumption for a 365-day year under SEASONAL NORMAL weather (the gas industry's own normal), per End User Category and LDZ.",
+          "quote": "It represents an estimate of the consumption at a meter point (a single point of gas supply) for a 365-day year, under seasonal normal weather conditions.",
+          "locator": "para. 1, p. 1",
+          "numbers": {}
+        },
+        {
+          "claim": "The adjustment uses daily weather factors per EUC (33 EUCs x 13 LDZs) derived from a sample of over 12,000 daily-read meters; it is described as weather-desensitisation.",
+          "quote": "The adjustment applied to arrive at an AQ is effectively a “weather-desensitisation” rather than a correction",
+          "locator": "para. 4, p. 1",
+          "numbers": {
+            "EUCs": 429,
+            "sample_meters": ">12,000"
+          }
+        },
+        {
+          "claim": "The seasonal normal basis is revised about every five years (a review was due effective October 2015).",
+          "quote": "The daily values of seasonal normal weather are reviewed every five years or so, with the next review due to be effective for October 2015.",
+          "locator": "penultimate para., p. 1",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "NG2020GDFM",
+      "harvard": "National Grid Gas (2020) Gas Demand Forecasting Methodology. July 2020. Warwick: National Grid. Available at: https://www.nationalgas.com/sites/default/files/documents/Gas%20Demand%20Forecasting%20Methodology%202020_v1.pdf (Accessed: 7 November 2026).",
+      "url": "https://www.nationalgas.com/sites/default/files/documents/Gas%20Demand%20Forecasting%20Methodology%202020_v1.pdf",
+      "doi": null,
+      "type": "methodology statement",
+      "claims": [
+        {
+          "claim": "The seasonal normal composite weather (SNCW) is a climate-change-adjusted normal, not a raw historical average.",
+          "quote": "The CCM seasonal normal composite weather (SNCW) is based on historical weather adjusted for forecast warming of the UK climate.",
+          "locator": "Appendix A1.4 'CCM seasonal normal weather', PDF p. 29",
+          "numbers": {}
+        },
+        {
+          "claim": "The basis in force in 2020 represented the expected average climate of 2015-2020, built from weather history since October 1960 uplifted with Met Office climate increments to that period.",
+          "quote": "calculate predicted hourly data that represents the average climate conditions expected in 2015-2020",
+          "locator": "Appendix A1.4, PDF p. 29; history back to 1 October 1960 per A1.2, p. 28",
+          "numbers": {
+            "climate_target": "2015-2020",
+            "history_from": "1960-10-01"
+          }
+        },
+        {
+          "claim": "Correcting to seasonal normal is done so that years can be compared on the same weather.",
+          "quote": "We do this by correcting records of actual weather to seasonal normal weather basis which is the same for all years.",
+          "locator": "Section 2.2 'Seasonal Normal Weather and Weather Correction', PDF p. 13",
+          "numbers": {}
+        }
+      ]
+    },
+    {
+      "key": "DESNZ2025NWC",
+      "harvard": "Department for Energy Security and Net Zero (2025) Subnational non-weather-corrected gas consumption, Great Britain, 2015-2024 [Excel workbook]; and Subnational gas consumption, Great Britain, 2005-2024 [Excel workbook, weather corrected, revised 5 May 2026]. London: DESNZ. Available at: https://www.gov.uk/government/statistics/regional-and-local-authority-gas-consumption-statistics (Accessed: 7 November 2026).",
+      "url": "https://www.gov.uk/government/statistics/regional-and-local-authority-gas-consumption-statistics",
+      "doi": null,
+      "type": "dataset",
+      "claims": [
+        {
+          "claim": "DESNZ also publishes NON-weather-corrected LA/regional gas for 2015-2024 (not at MSOA level).",
+          "quote": "These estimates are non-weather-corrected. This means that the effect of differences in weather conditions between years has not been removed from the statistics.",
+          "locator": "Non-weather-corrected workbook, 'Cover sheet'",
+          "numbers": {}
+        },
+        {
+          "claim": "GB mean domestic gas per meter, 2024 (mid-May 2024 to mid-May 2025): 11,359 kWh weather corrected vs 10,745 kWh actual, so the weather-corrected figure is 5.7% higher (that year was milder than seasonal normal). The ratio ranged 0.963-1.062 over 2015-2024 (derived).",
+          "quote": "Xoserve provide the AQs on a weather corrected basis by a process which accounts for regional temperatures and wind speed and incorporates trends.",
+          "locator": "Weather-corrected workbook 'Cover sheet'; numbers read from the Great Britain row of sheet '2024' in both workbooks (derived ratio)",
+          "numbers": {
+            "GB_mean_dom_kWh_2024_WC": 11359,
+            "GB_mean_dom_kWh_2024_NWC": 10745,
+            "ratio_WC_over_NWC_2024": 1.057,
+            "ratio_range_2015_2024": "0.963-1.062 (derived)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "EST2009BOIL",
+      "harvard": "Orr, G., Lelyveld, T. and Burton, S. (2009) Final report: In-situ monitoring of efficiencies of condensing boilers and use of secondary heating. Contract GaC3563, June 2009. GASTEC at CRE, AECOM and EA Technology for the Energy Saving Trust. Available at: https://assets.publishing.service.gov.uk/media/5a75149be5274a3cb28697f7/In-situ_monitoring_of_condensing_boilers_final_report.pdf (Accessed: 7 November 2026).",
+      "url": "https://assets.publishing.service.gov.uk/media/5a75149be5274a3cb28697f7/In-situ_monitoring_of_condensing_boilers_final_report.pdf",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "Field trial of 60 condensing boilers; conclusions rest on 43 with a full year (31 combi, 10 regular, 2 CPSU).",
+          "quote": "The main conclusions are based on the results from 43 boilers for which a full 12 month data set has been obtained.",
+          "locator": "Executive summary, PDF p. iv",
+          "numbers": {
+            "boilers_full_year": 43,
+            "combi": 31,
+            "regular": 10,
+            "CPSU": 2
+          }
+        },
+        {
+          "claim": "Measured annual efficiency of combi boilers (space heating + hot water, gas in): mean 82.5%, SD 4.0%; range 68.6-89.7%; SEDBUK mean 90.3%.",
+          "quote": "The mean efficiency2 of the trial set of combination boilers was 82.5% with a standard deviation of 4.0%.",
+          "locator": "Executive summary, PDF p. iv; range in field-trial combination-boiler results, PDF p. 39",
+          "numbers": {
+            "combi_mean": 0.825,
+            "combi_sd": 0.04,
+            "combi_range": "0.686-0.897",
+            "combi_SEDBUK_mean": 0.903
+          }
+        },
+        {
+          "claim": "Regular boilers: mean 85.3% (SD 2.5%) at the boiler vs SEDBUK 90.4%; with about 900 kWh/yr cylinder and primary losses the system figure is about 80.3%.",
+          "quote": "The mean efficiency3 of the trial set of regular boilers was 85.3% with a standard deviation of 2.5%. This is significantly less than that suggested by the mean SEDBUK seasonal efficiency of 90.4%",
+          "locator": "Executive summary, PDF p. v",
+          "numbers": {
+            "regular_mean": 0.853,
+            "regular_sd": 0.025,
+            "regular_system_incl_cylinder": 0.803
+          }
+        },
+        {
+          "claim": "Efficiencies are on a GROSS (higher) calorific value basis, the same basis as metered gas kWh.",
+          "quote": "The simple “efficiency” of the boilers is calculated from heat out divided by the energy of the gas used (based on the higher calorific value) as a percentage.",
+          "locator": "Section 6.3, PDF p. 36",
+          "numbers": {
+            "basis": "gross CV"
+          }
+        },
+        {
+          "claim": "The trial recommended an in-use correction of about 0.95 on rated seasonal efficiency.",
+          "quote": "SAP incorporates a ‘System correction factor’ for condensing boilers of ~0.95",
+          "locator": "Executive summary 'Recommendation', PDF p. v",
+          "numbers": {
+            "in_use_factor": 0.95
+          }
+        }
+      ]
+    },
+    {
+      "key": "BRE2023SAP102",
+      "harvard": "BRE (2023) The Government's Standard Assessment Procedure for Energy Rating of Dwellings: SAP version 10.2 (11-04-2023). Watford: BRE on behalf of DESNZ. Available at: https://files.bregroup.com/SAP/SAP%2010.2%20-%2011-04-2023.pdf (Accessed: 7 November 2026).",
+      "url": "https://files.bregroup.com/SAP/SAP%2010.2%20-%2011-04-2023.pdf",
+      "doi": null,
+      "type": "standard/specification",
+      "claims": [
+        {
+          "claim": "Default seasonal (winter) efficiency for a post-1998 condensing gas boiler not in the PCDB is 84% (combi or regular); summer 74-75%.",
+          "quote": "Condensing combi with automatic ignition                                84       75",
+          "locator": "Table 4b 'Seasonal efficiency for gas and liquid fuel boilers', PDF p. 169 (table row; whitespace as printed)",
+          "numbers": {
+            "regular_condensing_winter": 0.84,
+            "combi_condensing_winter": 0.84,
+            "combi_summer": 0.75
+          }
+        },
+        {
+          "claim": "SAP boiler efficiencies are gross CV: net test results are converted with factor 0.901 for natural gas.",
+          "quote": "Efficiency test results are normally calculated using the net calorific value of fuel. Before a declaration can be made, conversion to gross must be carried out",
+          "locator": "Appendix E, text above Table E4, PDF p. 63 (net-to-gross 0.901 for natural gas)",
+          "numbers": {
+            "net_to_gross_natural_gas": 0.901
+          }
+        },
+        {
+          "claim": "Demand temperature: 21 C in the living area; elsewhere Th2 = 21 - 0.5 HLP (control type 1) or 21 - HLP + HLP^2/12 (types 2-3), with heating 07:00-09:00 and 16:00-23:00 on weekdays. So 'elsewhere' is not a flat 18 C; it falls with the heat-loss parameter HLP.",
+          "quote": "heating 0700-0900 and 1600-2300",
+          "locator": "Table 9 'Heating periods and heating temperatures', footnote a, PDF p. 109 (Th1 = 21; Th2 formulas in table body)",
+          "numbers": {
+            "Th1_C": 21,
+            "Th2_type1": "21 - 0.5*HLP",
+            "Th2_type2_3": "21 - HLP + HLP^2/12",
+            "weekday_on_hours": "07-09, 16-23"
+          }
+        },
+        {
+          "claim": "Internal gains (typical, Table 5 column A): metabolic 60N W; cooking 35+7N W; losses -40N W; appliances from EA = 207.8(TFA x N)^0.4714 kWh/yr; lighting from Appendix L; water-heating gains from worksheet (65). N = 1 + 1.76[1 - exp(-0.000349(TFA-13.9)^2)] + 0.0013(TFA-13.9).",
+          "quote": "Internal gains from lights, appliances, cooking and from the occupants of the dwelling (metabolic gains) are estimated from floor area (Table 5).",
+          "locator": "Section 5, p. 176; Table 5 p. 177; Appendix L eq. (L13); worksheet (42) for N",
+          "numbers": {
+            "derived_total_W_TFA50": "~360-370",
+            "derived_total_W_TFA70": "~460-475",
+            "derived_total_W_TFA90": "~535-555",
+            "derived_total_W_TFA120": "~610-635",
+            "derivation": "annual mean, combi (no cylinder), lighting at fixed efficacy 80 or 21.3 lm/W, Cdaylight 0.96; reviewer's arithmetic"
+          }
+        },
+        {
+          "claim": "Hot water: volume built bottom-up from showers, baths and other use (e.g. other = 9.8N + 14 L/day), energy = 4.18 x V x (52 - Tcold) / 3600, plus distribution loss of 0.15 x energy content.",
+          "quote": "The energy content of hot water (kWh/month) used for worksheet (45)m is",
+          "locator": "Appendix J step 6, eq. (J14) p. 82; step 3 eq. (J11); step 7 distribution loss",
+          "numbers": {
+            "derived_kWh_day_at_use_TFA70_N2.25": 6.4,
+            "derived_kWh_day_at_use_TFA90_N2.63": 7.1,
+            "derived_litres_day_TFA90": 155,
+            "derivation": "11 L/min combi shower default, bath present; reviewer's arithmetic"
+          }
+        }
+      ]
+    },
+    {
+      "key": "BRE2013SAP2012",
+      "harvard": "BRE (2013) The Government's Standard Assessment Procedure for Energy Rating of Dwellings: SAP 2012 version 9.92 (October 2013). Watford: BRE for DECC. Available at: https://files.bregroup.com/SAP/SAP-2012_9-92.pdf (Accessed: 7 November 2026).",
+      "url": "https://files.bregroup.com/SAP/SAP-2012_9-92.pdf",
+      "doi": null,
+      "type": "standard/specification",
+      "claims": [
+        {
+          "claim": "SAP 2012 hot water volume is Vd = 25N + 36 L/day with an annual mean temperature rise of 37.0 K (Table 1d) and a 15% distribution loss. For N = 2.4 this gives about 4.1 kWh/day at the tap, about 4.7 with distribution loss (derived).",
+          "quote": "Annual average hot water usage in litres per day Vd,average = (25 ´ N) + 36",
+          "locator": "Appendix J (a), p. 194; Table 1d annual 37.0 K; (e) distribution loss 0.15",
+          "numbers": {
+            "Vd_eq": "25N+36",
+            "dT_annual_K": 37.0,
+            "dist_loss": 0.15,
+            "derived_kWh_day_N2.4": "4.1 at tap, 4.7 incl. distribution"
+          }
+        }
+      ]
+    },
+    {
+      "key": "EST2008DHW",
+      "harvard": "Energy Monitoring Company for the Energy Saving Trust (2008) Measurement of domestic hot water consumption in dwellings. London: Energy Saving Trust / Defra. Available at: https://assets.publishing.service.gov.uk/media/5a75a29ced915d6faf2b4829/3147-measure-domestic-hot-water-consump.pdf (Accessed: 7 November 2026).",
+      "url": "https://assets.publishing.service.gov.uk/media/5a75a29ced915d6faf2b4829/3147-measure-domestic-hot-water-consump.pdf",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "Monitored about 120 homes (112 analysed): mean hot water 122 L/day, and occupancy was the only significant driver.",
+          "quote": "The mean household consumption has been found to be 122 litres/day, with a 95% confidence interval of ±18 litres/day.",
+          "locator": "Executive summary, p. i",
+          "numbers": {
+            "homes_analysed": 112,
+            "litres_day_mean": 122,
+            "ci95": 18
+          }
+        },
+        {
+          "claim": "The energy content of the water delivered was 16.8 +/- 2.2 MJ/day, which is 4.67 kWh/day at the tap (derived).",
+          "quote": "The mean energy content has been found to be 16.8 ± 2.2 MJ/day.",
+          "locator": "Executive summary, p. i",
+          "numbers": {
+            "MJ_day": 16.8,
+            "kWh_day_derived": 4.67
+          }
+        },
+        {
+          "claim": "Fitted volume model: 46 + 26N L/day (all data), close to BREDEM 38 + 25N.",
+          "quote": "Consumption model                                                      46 + 26 N",
+          "locator": "Table 6.2, Section 6.1, PDF p. 13",
+          "numbers": {
+            "intercept_L": 46,
+            "slope_L_per_person": 26
+          }
+        },
+        {
+          "claim": "Combi homes use more: 142 +/- 28 L/day vs 116 +/- 24 L/day with a regular boiler.",
+          "quote": "The mean consumption in dwellings with a regular boiler is 116 ± 24 litres per day. In dwellings with a combi it is 142 ± 28 litres/day.",
+          "locator": "Section 6.1, PDF p. 12",
+          "numbers": {
+            "regular_L": 116,
+            "combi_L": 142
+          }
+        },
+        {
+          "claim": "Mean delivery 51.9 C; the mean temperature rise was about 36.7-36.8 K, far below BREDEM's 50 K.",
+          "quote": "analysis of the average temperature rise of water as it passes through the heating system (derived from the initial cold feed temperature and the hot water delivery temperature) shows a value of 36.7°C",
+          "locator": "Executive summary, p. ii (36.8 K in Section 6.5.2)",
+          "numbers": {
+            "delivery_C": 51.9,
+            "dT_K": 36.7
+          }
+        },
+        {
+          "claim": "Regular-boiler homes heat water for about 2.6 h/day, typically 08:00-10:00 and 18:00-23:00.",
+          "quote": "The heating time has a mean of 2.60 hours/day, estimated with a 95% confidence interval of ± 0.35 hours/day.",
+          "locator": "Executive summary, p. ii",
+          "numbers": {
+            "heating_h_day": 2.6
+          }
+        }
+      ]
+    },
+    {
+      "key": "BEIS2021EFUSHP",
+      "harvard": "BRE (2021) Energy Follow Up Survey: Heating patterns and occupancy. Final report. London: Department for Business, Energy & Industrial Strategy. Available at: https://assets.publishing.service.gov.uk/media/61449c5e8fa8f503bc6658dd/efus-heating-patterns-occupancy.pdf (Accessed: 7 November 2026).",
+      "url": "https://assets.publishing.service.gov.uk/media/61449c5e8fa8f503bc6658dd/efus-heating-patterns-occupancy.pdf",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "Reported thermostat set points in EFUS 2017: mean 20.4 C, median 20, IQR 19-21 (EFUS 2011 IQR 18-21). Thermostat location was not recorded.",
+          "quote": "The interquartile range shows that 50% of households reported setting their thermostats to a temperature between 19 and 21°C.",
+          "locator": "Section 3.2.3 'Thermostat settings' and Figure 3.3, PDF p. 16",
+          "numbers": {
+            "mean_C": 20.4,
+            "median_C": 20.0,
+            "p25_C": 19.0,
+            "p75_C": 21.0,
+            "EFUS2011_IQR": "18-21"
+          }
+        },
+        {
+          "claim": "Most homes heat on a regular twice-daily pattern; the mean heating season was 5.7 months.",
+          "quote": "The mean length for the 2017/18 heating season was 5.7 months; this has not changed significantly since EFUS 2011.",
+          "locator": "Executive summary, 'Main heating season', PDF p. 5",
+          "numbers": {
+            "season_months": 5.7
+          }
+        }
+      ]
+    },
+    {
+      "key": "BEIS2021EFUSTH",
+      "harvard": "BRE (2021) Energy Follow Up Survey: thermal comfort, damp and ventilation. Final report. London: Department for Business, Energy & Industrial Strategy. Available at: https://assets.publishing.service.gov.uk/media/61449c52d3bf7f05b4562b66/efus-thermal.pdf (Accessed: 7 November 2026).",
+      "url": "https://assets.publishing.service.gov.uk/media/61449c52d3bf7f05b4562b66/efus-thermal.pdf",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "Measured mean living-room temperature, winter 2017/18 (all hours): about 18.6-19.3 C in EPC A-D homes, 17.2 C in F-G homes, 17.7 C in pre-1919 homes and 19.1 C in post-1990 homes.",
+          "quote": "the oldest (pre-1919) dwellings were significantly colder (mean living room 17.7°C) than newer dwellings (post-1990 dwellings mean living room 19.1°C)",
+          "locator": "Executive summary 'Winter thermal comfort', p. 6",
+          "numbers": {
+            "LR_pre1919": 17.7,
+            "LR_post1990": 19.1,
+            "LR_EPC_FG": 17.2,
+            "LR_EPC_AD": "18.6-19.3",
+            "BR_EPC_FG": 15.7
+          }
+        },
+        {
+          "claim": "Living rooms are the warmest rooms: 0.4 K above hallways, 0.5 K above main bedrooms and 0.8 K above third bedrooms, so the whole-house mean is below the living-room figure.",
+          "quote": "In winter 2017/18, living rooms were typically the warmest room being, on average, 0.4°C warmer than hallways, 0.5°C warmer than main bedrooms (Figure 3.2) and 0.8°C warmer than",
+          "locator": "Section 3.2, p. 17",
+          "numbers": {
+            "hall_minus_LR": -0.4,
+            "mainbed_minus_LR": -0.5,
+            "bed3_minus_LR": -0.8
+          }
+        },
+        {
+          "claim": "Coldest week (Jan/Feb 2019, 0.9 C outside): median living room 18.3 C, 0.8 K below the winter 2018/19 average, which implies a winter-average median of about 19.1 C (derived).",
+          "quote": "50% of households had a temperature greater than 18.3°C in the living room and 17.9°C in the main bedroom",
+          "locator": "Section 5.3, printed p. 57 (PDF p. 72)",
+          "numbers": {
+            "coldest_week_median_LR": 18.3,
+            "coldest_week_median_BR": 17.9,
+            "winter_2018_19_median_LR_derived": 19.1,
+            "winter_2018_19_median_BR_derived": 18.8
+          }
+        },
+        {
+          "claim": "The coldest 10% of households averaged below 15.7 C in the living room in winter 2017/18.",
+          "quote": "In winter 2017/18, the coldest 10% of households experienced an average living room temperature below 15.7°C",
+          "locator": "Section 3.2, p. 17",
+          "numbers": {
+            "p10_LR": 15.7
+          }
+        }
+      ]
+    },
+    {
+      "key": "BEIS2021EFUSFP",
+      "harvard": "Kamal, S. (2021) Energy Follow Up Survey: Fuel poverty. Final report. BRE for the Department for Business, Energy & Industrial Strategy. Available at: https://assets.publishing.service.gov.uk/media/61449f23e90e070446ce5206/efus-fuel-poverty.pdf (Accessed: 7 November 2026).",
+      "url": "https://assets.publishing.service.gov.uk/media/61449f23e90e070446ce5206/efus-fuel-poverty.pdf",
+      "doi": null,
+      "type": "report",
+      "claims": [
+        {
+          "claim": "Winter 2018/19 mean living-room temperature: 18.7 C (not fuel poor) and 18.3 C (fuel poor).",
+          "quote": "Fuel poor households had an average internal temperature in the living room of 18.3°C compared with 18.7°C for households not in fuel poverty.",
+          "locator": "Section 5.1 'Measured Internal Temperature', PDF p. 31",
+          "numbers": {
+            "LR_not_fuel_poor": 18.7,
+            "LR_fuel_poor": 18.3
+          }
+        }
+      ]
+    }
+  ],
+  "recommendations": {
+    "calibration_target": "DESNZ domestic gas is weather-corrected to the gas-industry seasonal normal (composite weather variable, temperature and wind, climate-adjusted to about 2015-2020), NOT to a 1991-2020 Met Office normal. Either (a) keep the weather-corrected MSOA target and drive the calibration with a normal-year weather series, or (b) scale the target by the non-weather-corrected/weather-corrected ratio (GB 2024: 10,745/11,359 = 0.946; regional/LA ratios are available) and drive it with actual mid-May 2024 to mid-May 2025 weather. Replace the docstring claim '1991-2020 normal weather'.",
+    "eta": "Normal(mean 0.84, sd 0.035), truncated to [0.72, 0.91], gross CV, applied to space heat plus hot water at the tap. Evidence: EST 2009 combi 82.5 +/- 4.0, regular system about 80-85; SAP default 84. Current U(0.85, 0.92), mean 0.885, sits about 4 points above the evidence.",
+    "dhw_kWh_day": "Heat delivered by the boiler = (hot-water energy at the tap) x 1.15. Tap energy = 4.18 x (46 + 26N) x 36.7/3600 kWh/day, with lognormal household scatter (sigma about 0.4). Gives a mean of about 5.3 kWh/day at N = 2.4 and a 5-95% range of about 2.5-10. Current U(2, 8) has about the right mean but the wrong shape: it misses the upper tail and is not linked to occupancy.",
+    "tset_24h_mean": "If tset is the constant 24-hour whole-house temperature (as in stock_day), use Normal(18.8, 1.0) truncated to [16, 21.5], lower by about 1 K for EPC E-G and pre-1919 homes. Use U(19, 21) or the EFUS IQR 19-21 only for a THERMOSTAT set point with intermittent heating. Current U(19, 21.5), mean 20.25, is about 1.5 K above measured 24-hour means.",
+    "gains_W": "SAP 10.2 typical gains by floor area, about 360 W (50 m2) to 630 W (120 m2), times U(0.75, 1.25). The current U(250, 700), mean 475, is consistent with a 70-90 m2 home but should scale with floor area or occupancy. The daily profile is unsourced."
+  },
+  "not_verified": [
+    {
+      "item": "Which seasonal-normal basis Xoserve applied to the 2024/25 AQs (a post-2020 SNCW revision, e.g. effective October 2020 or 2025, may have replaced the 2015-2020 CCM basis).",
+      "tried": "The DESNZ booklet links only the 2020 (and an older) National Grid methodology. The DESC seasonal-normal review documents (gasgovernance.co.uk/DESC) were not fetched."
+    },
+    {
+      "item": "Whether DESNZ gas kWh are on a gross-CV basis.",
+      "tried": "Neither the booklet nor the 2014 weather note states the CV basis. Gross is the gas-industry convention, but that is unverified here."
+    },
+    {
+      "item": "Newer GB in-use condensing boiler efficiency (a Boiler Plus evaluation, BEIS in-situ studies, Carbon Trust micro-CHP comparator boilers, the EST 2010 TPI extension results).",
+      "tried": "A search found no Boiler Plus in-use efficiency evaluation. The 2010 TPI extension report (GaC3700) was downloaded but its efficiency tables were not read, so nothing from it is used."
+    },
+    {
+      "item": "PCDB distribution of rated seasonal efficiencies for installed condensing boilers.",
+      "tried": "Not fetched. SAP Table 4b defaults and the trial's SEDBUK means (90.3-90.4%) were used instead."
+    },
+    {
+      "item": "EFUS 2011 measured temperatures and thermostat report.",
+      "tried": "Not fetched. The EFUS 2011 set-point figures given here are quoted from the EFUS 2017 heating-patterns report."
+    },
+    {
+      "item": "CIBSE TM59 / Guide A internal gains profiles; BREDEM 2012 gains.",
+      "tried": "Not fetched (CIBSE is paywalled). No sourced daily gains profile is available here, so the model's 0.7/1.1/0.8/1.3/1.0 shape stays an assumption."
+    },
+    {
+      "item": "Electrification of Heat (EoH) and HeatpumpMonitor hot-water energy per home.",
+      "tried": "Not fetched in this strand."
+    },
+    {
+      "item": "SAP 10.2 Appendix L equation labels.",
+      "tried": "Table 5 assigns (L16) to typical gains and (L16a) to reduced gains, but the Appendix L text prints the 0.67 factor under (L16), labelled reduced. The derived totals above use typical gains without the 0.67 factor."
+    }
+  ]
+}

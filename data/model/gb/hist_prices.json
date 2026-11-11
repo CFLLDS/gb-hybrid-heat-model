@@ -1,0 +1,653 @@
+{
+ "basis": "heating year Nov Y-Oct Y+1 = mean of calendar years Y, Y+1; 2025 money. All-in p/kWh (standing charge+VAT) from data/historic_energy_prices split into a unit rate and a gas standing charge: unit = all-in x r, where r is the year's DESNZ unit-rate share from 2010 and the 2010-15 mean before (electricity 0.879, gas 0.813); gas standing charge = the remainder of a 11,200 kWh/yr gas bill. Electricity standing charges are common to every home and left out.",
+ "years": {
+  "1945": {
+   "elec_unit_p": 15.302,
+   "gas_unit_p": 5.486,
+   "gas_sc_p_day": 38.62,
+   "elec_allin_p": 17.417,
+   "gas_allin_p": 6.745,
+   "ratio_source": "2010-15 mean"
+  },
+  "1946": {
+   "elec_unit_p": 15.302,
+   "gas_unit_p": 5.486,
+   "gas_sc_p_day": 38.62,
+   "elec_allin_p": 17.417,
+   "gas_allin_p": 6.745,
+   "ratio_source": "2010-15 mean"
+  },
+  "1947": {
+   "elec_unit_p": 15.302,
+   "gas_unit_p": 5.486,
+   "gas_sc_p_day": 38.62,
+   "elec_allin_p": 17.417,
+   "gas_allin_p": 6.745,
+   "ratio_source": "2010-15 mean"
+  },
+  "1948": {
+   "elec_unit_p": 15.589,
+   "gas_unit_p": 5.486,
+   "gas_sc_p_day": 38.62,
+   "elec_allin_p": 17.744,
+   "gas_allin_p": 6.745,
+   "ratio_source": "2010-15 mean"
+  },
+  "1949": {
+   "elec_unit_p": 15.382,
+   "gas_unit_p": 5.486,
+   "gas_sc_p_day": 38.62,
+   "elec_allin_p": 17.508,
+   "gas_allin_p": 6.745,
+   "ratio_source": "2010-15 mean"
+  },
+  "1950": {
+   "elec_unit_p": 14.198,
+   "gas_unit_p": 5.486,
+   "gas_sc_p_day": 38.62,
+   "elec_allin_p": 16.16,
+   "gas_allin_p": 6.745,
+   "ratio_source": "2010-15 mean"
+  },
+  "1951": {
+   "elec_unit_p": 13.622,
+   "gas_unit_p": 5.486,
+   "gas_sc_p_day": 38.62,
+   "elec_allin_p": 15.505,
+   "gas_allin_p": 6.745,
+   "ratio_source": "2010-15 mean"
+  },
+  "1952": {
+   "elec_unit_p": 13.977,
+   "gas_unit_p": 5.486,
+   "gas_sc_p_day": 38.62,
+   "elec_allin_p": 15.909,
+   "gas_allin_p": 6.745,
+   "ratio_source": "2010-15 mean"
+  },
+  "1953": {
+   "elec_unit_p": 14.187,
+   "gas_unit_p": 5.486,
+   "gas_sc_p_day": 38.62,
+   "elec_allin_p": 16.148,
+   "gas_allin_p": 6.745,
+   "ratio_source": "2010-15 mean"
+  },
+  "1954": {
+   "elec_unit_p": 13.804,
+   "gas_unit_p": 5.639,
+   "gas_sc_p_day": 39.7,
+   "elec_allin_p": 15.712,
+   "gas_allin_p": 6.933,
+   "ratio_source": "2010-15 mean"
+  },
+  "1955": {
+   "elec_unit_p": 13.456,
+   "gas_unit_p": 5.792,
+   "gas_sc_p_day": 40.77,
+   "elec_allin_p": 15.316,
+   "gas_allin_p": 7.121,
+   "ratio_source": "2010-15 mean"
+  },
+  "1956": {
+   "elec_unit_p": 13.454,
+   "gas_unit_p": 5.865,
+   "gas_sc_p_day": 41.29,
+   "elec_allin_p": 15.313,
+   "gas_allin_p": 7.211,
+   "ratio_source": "2010-15 mean"
+  },
+  "1957": {
+   "elec_unit_p": 13.57,
+   "gas_unit_p": 6.0,
+   "gas_sc_p_day": 42.24,
+   "elec_allin_p": 15.446,
+   "gas_allin_p": 7.376,
+   "ratio_source": "2010-15 mean"
+  },
+  "1958": {
+   "elec_unit_p": 13.576,
+   "gas_unit_p": 6.069,
+   "gas_sc_p_day": 42.72,
+   "elec_allin_p": 15.452,
+   "gas_allin_p": 7.461,
+   "ratio_source": "2010-15 mean"
+  },
+  "1959": {
+   "elec_unit_p": 13.166,
+   "gas_unit_p": 6.133,
+   "gas_sc_p_day": 43.17,
+   "elec_allin_p": 14.986,
+   "gas_allin_p": 7.54,
+   "ratio_source": "2010-15 mean"
+  },
+  "1960": {
+   "elec_unit_p": 12.733,
+   "gas_unit_p": 6.189,
+   "gas_sc_p_day": 43.57,
+   "elec_allin_p": 14.493,
+   "gas_allin_p": 7.609,
+   "ratio_source": "2010-15 mean"
+  },
+  "1961": {
+   "elec_unit_p": 12.477,
+   "gas_unit_p": 6.13,
+   "gas_sc_p_day": 43.15,
+   "elec_allin_p": 14.201,
+   "gas_allin_p": 7.537,
+   "ratio_source": "2010-15 mean"
+  },
+  "1962": {
+   "elec_unit_p": 12.378,
+   "gas_unit_p": 5.953,
+   "gas_sc_p_day": 41.91,
+   "elec_allin_p": 14.089,
+   "gas_allin_p": 7.319,
+   "ratio_source": "2010-15 mean"
+  },
+  "1963": {
+   "elec_unit_p": 12.469,
+   "gas_unit_p": 5.73,
+   "gas_sc_p_day": 40.33,
+   "elec_allin_p": 14.192,
+   "gas_allin_p": 7.044,
+   "ratio_source": "2010-15 mean"
+  },
+  "1964": {
+   "elec_unit_p": 12.505,
+   "gas_unit_p": 5.449,
+   "gas_sc_p_day": 38.36,
+   "elec_allin_p": 14.234,
+   "gas_allin_p": 6.699,
+   "ratio_source": "2010-15 mean"
+  },
+  "1965": {
+   "elec_unit_p": 12.402,
+   "gas_unit_p": 5.188,
+   "gas_sc_p_day": 36.52,
+   "elec_allin_p": 14.116,
+   "gas_allin_p": 6.379,
+   "ratio_source": "2010-15 mean"
+  },
+  "1966": {
+   "elec_unit_p": 12.14,
+   "gas_unit_p": 5.118,
+   "gas_sc_p_day": 36.03,
+   "elec_allin_p": 13.818,
+   "gas_allin_p": 6.292,
+   "ratio_source": "2010-15 mean"
+  },
+  "1967": {
+   "elec_unit_p": 12.394,
+   "gas_unit_p": 4.874,
+   "gas_sc_p_day": 34.31,
+   "elec_allin_p": 14.107,
+   "gas_allin_p": 5.992,
+   "ratio_source": "2010-15 mean"
+  },
+  "1968": {
+   "elec_unit_p": 12.313,
+   "gas_unit_p": 4.567,
+   "gas_sc_p_day": 32.15,
+   "elec_allin_p": 14.015,
+   "gas_allin_p": 5.614,
+   "ratio_source": "2010-15 mean"
+  },
+  "1969": {
+   "elec_unit_p": 11.295,
+   "gas_unit_p": 4.362,
+   "gas_sc_p_day": 30.71,
+   "elec_allin_p": 12.856,
+   "gas_allin_p": 5.363,
+   "ratio_source": "2010-15 mean"
+  },
+  "1970": {
+   "elec_unit_p": 10.712,
+   "gas_unit_p": 4.088,
+   "gas_sc_p_day": 28.78,
+   "elec_allin_p": 12.192,
+   "gas_allin_p": 5.025,
+   "ratio_source": "2010-15 mean"
+  },
+  "1971": {
+   "elec_unit_p": 10.569,
+   "gas_unit_p": 3.866,
+   "gas_sc_p_day": 27.22,
+   "elec_allin_p": 12.03,
+   "gas_allin_p": 4.753,
+   "ratio_source": "2010-15 mean"
+  },
+  "1972": {
+   "elec_unit_p": 10.142,
+   "gas_unit_p": 3.583,
+   "gas_sc_p_day": 25.22,
+   "elec_allin_p": 11.543,
+   "gas_allin_p": 4.405,
+   "ratio_source": "2010-15 mean"
+  },
+  "1973": {
+   "elec_unit_p": 9.908,
+   "gas_unit_p": 3.232,
+   "gas_sc_p_day": 22.75,
+   "elec_allin_p": 11.278,
+   "gas_allin_p": 3.974,
+   "ratio_source": "2010-15 mean"
+  },
+  "1974": {
+   "elec_unit_p": 10.883,
+   "gas_unit_p": 3.019,
+   "gas_sc_p_day": 21.25,
+   "elec_allin_p": 12.387,
+   "gas_allin_p": 3.711,
+   "ratio_source": "2010-15 mean"
+  },
+  "1975": {
+   "elec_unit_p": 12.306,
+   "gas_unit_p": 3.001,
+   "gas_sc_p_day": 21.12,
+   "elec_allin_p": 14.007,
+   "gas_allin_p": 3.689,
+   "ratio_source": "2010-15 mean"
+  },
+  "1976": {
+   "elec_unit_p": 12.886,
+   "gas_unit_p": 2.99,
+   "gas_sc_p_day": 21.05,
+   "elec_allin_p": 14.667,
+   "gas_allin_p": 3.675,
+   "ratio_source": "2010-15 mean"
+  },
+  "1977": {
+   "elec_unit_p": 13.197,
+   "gas_unit_p": 2.87,
+   "gas_sc_p_day": 20.21,
+   "elec_allin_p": 15.021,
+   "gas_allin_p": 3.529,
+   "ratio_source": "2010-15 mean"
+  },
+  "1978": {
+   "elec_unit_p": 13.55,
+   "gas_unit_p": 2.665,
+   "gas_sc_p_day": 18.76,
+   "elec_allin_p": 15.423,
+   "gas_allin_p": 3.277,
+   "ratio_source": "2010-15 mean"
+  },
+  "1979": {
+   "elec_unit_p": 14.259,
+   "gas_unit_p": 2.556,
+   "gas_sc_p_day": 17.99,
+   "elec_allin_p": 16.229,
+   "gas_allin_p": 3.142,
+   "ratio_source": "2010-15 mean"
+  },
+  "1980": {
+   "elec_unit_p": 15.266,
+   "gas_unit_p": 2.736,
+   "gas_sc_p_day": 19.26,
+   "elec_allin_p": 17.376,
+   "gas_allin_p": 3.364,
+   "ratio_source": "2010-15 mean"
+  },
+  "1981": {
+   "elec_unit_p": 15.927,
+   "gas_unit_p": 3.132,
+   "gas_sc_p_day": 22.05,
+   "elec_allin_p": 18.129,
+   "gas_allin_p": 3.85,
+   "ratio_source": "2010-15 mean"
+  },
+  "1982": {
+   "elec_unit_p": 16.105,
+   "gas_unit_p": 3.484,
+   "gas_sc_p_day": 24.53,
+   "elec_allin_p": 18.331,
+   "gas_allin_p": 4.283,
+   "ratio_source": "2010-15 mean"
+  },
+  "1983": {
+   "elec_unit_p": 15.699,
+   "gas_unit_p": 3.591,
+   "gas_sc_p_day": 25.28,
+   "elec_allin_p": 17.868,
+   "gas_allin_p": 4.415,
+   "ratio_source": "2010-15 mean"
+  },
+  "1984": {
+   "elec_unit_p": 15.271,
+   "gas_unit_p": 3.53,
+   "gas_sc_p_day": 24.85,
+   "elec_allin_p": 17.381,
+   "gas_allin_p": 4.34,
+   "ratio_source": "2010-15 mean"
+  },
+  "1985": {
+   "elec_unit_p": 14.914,
+   "gas_unit_p": 3.459,
+   "gas_sc_p_day": 24.35,
+   "elec_allin_p": 16.976,
+   "gas_allin_p": 4.252,
+   "ratio_source": "2010-15 mean"
+  },
+  "1986": {
+   "elec_unit_p": 14.476,
+   "gas_unit_p": 3.366,
+   "gas_sc_p_day": 23.7,
+   "elec_allin_p": 16.477,
+   "gas_allin_p": 4.138,
+   "ratio_source": "2010-15 mean"
+  },
+  "1987": {
+   "elec_unit_p": 14.317,
+   "gas_unit_p": 3.249,
+   "gas_sc_p_day": 22.87,
+   "elec_allin_p": 16.296,
+   "gas_allin_p": 3.994,
+   "ratio_source": "2010-15 mean"
+  },
+  "1988": {
+   "elec_unit_p": 14.415,
+   "gas_unit_p": 3.195,
+   "gas_sc_p_day": 22.49,
+   "elec_allin_p": 16.408,
+   "gas_allin_p": 3.927,
+   "ratio_source": "2010-15 mean"
+  },
+  "1989": {
+   "elec_unit_p": 14.469,
+   "gas_unit_p": 3.306,
+   "gas_sc_p_day": 23.27,
+   "elec_allin_p": 16.468,
+   "gas_allin_p": 4.064,
+   "ratio_source": "2010-15 mean"
+  },
+  "1990": {
+   "elec_unit_p": 14.629,
+   "gas_unit_p": 3.407,
+   "gas_sc_p_day": 23.98,
+   "elec_allin_p": 16.651,
+   "gas_allin_p": 4.189,
+   "ratio_source": "2010-15 mean"
+  },
+  "1991": {
+   "elec_unit_p": 14.992,
+   "gas_unit_p": 3.319,
+   "gas_sc_p_day": 23.36,
+   "elec_allin_p": 17.064,
+   "gas_allin_p": 4.081,
+   "ratio_source": "2010-15 mean"
+  },
+  "1992": {
+   "elec_unit_p": 15.123,
+   "gas_unit_p": 3.162,
+   "gas_sc_p_day": 22.26,
+   "elec_allin_p": 17.213,
+   "gas_allin_p": 3.888,
+   "ratio_source": "2010-15 mean"
+  },
+  "1993": {
+   "elec_unit_p": 15.047,
+   "gas_unit_p": 3.185,
+   "gas_sc_p_day": 22.42,
+   "elec_allin_p": 17.126,
+   "gas_allin_p": 3.916,
+   "ratio_source": "2010-15 mean"
+  },
+  "1994": {
+   "elec_unit_p": 15.024,
+   "gas_unit_p": 3.262,
+   "gas_sc_p_day": 22.96,
+   "elec_allin_p": 17.1,
+   "gas_allin_p": 4.01,
+   "ratio_source": "2010-15 mean"
+  },
+  "1995": {
+   "elec_unit_p": 14.689,
+   "gas_unit_p": 3.102,
+   "gas_sc_p_day": 21.84,
+   "elec_allin_p": 16.719,
+   "gas_allin_p": 3.814,
+   "ratio_source": "2010-15 mean"
+  },
+  "1996": {
+   "elec_unit_p": 14.147,
+   "gas_unit_p": 2.976,
+   "gas_sc_p_day": 20.95,
+   "elec_allin_p": 16.103,
+   "gas_allin_p": 3.659,
+   "ratio_source": "2010-15 mean"
+  },
+  "1997": {
+   "elec_unit_p": 13.146,
+   "gas_unit_p": 2.893,
+   "gas_sc_p_day": 20.36,
+   "elec_allin_p": 14.963,
+   "gas_allin_p": 3.556,
+   "ratio_source": "2010-15 mean"
+  },
+  "1998": {
+   "elec_unit_p": 12.3,
+   "gas_unit_p": 2.682,
+   "gas_sc_p_day": 18.88,
+   "elec_allin_p": 14.0,
+   "gas_allin_p": 3.297,
+   "ratio_source": "2010-15 mean"
+  },
+  "1999": {
+   "elec_unit_p": 11.944,
+   "gas_unit_p": 2.485,
+   "gas_sc_p_day": 17.49,
+   "elec_allin_p": 13.595,
+   "gas_allin_p": 3.054,
+   "ratio_source": "2010-15 mean"
+  },
+  "2000": {
+   "elec_unit_p": 11.517,
+   "gas_unit_p": 2.415,
+   "gas_sc_p_day": 17.0,
+   "elec_allin_p": 13.109,
+   "gas_allin_p": 2.969,
+   "ratio_source": "2010-15 mean"
+  },
+  "2001": {
+   "elec_unit_p": 11.01,
+   "gas_unit_p": 2.492,
+   "gas_sc_p_day": 17.54,
+   "elec_allin_p": 12.531,
+   "gas_allin_p": 3.064,
+   "ratio_source": "2010-15 mean"
+  },
+  "2002": {
+   "elec_unit_p": 10.603,
+   "gas_unit_p": 2.546,
+   "gas_sc_p_day": 17.92,
+   "elec_allin_p": 12.069,
+   "gas_allin_p": 3.13,
+   "ratio_source": "2010-15 mean"
+  },
+  "2003": {
+   "elec_unit_p": 11.365,
+   "gas_unit_p": 2.875,
+   "gas_sc_p_day": 20.24,
+   "elec_allin_p": 12.935,
+   "gas_allin_p": 3.535,
+   "ratio_source": "2010-15 mean"
+  },
+  "2004": {
+   "elec_unit_p": 12.382,
+   "gas_unit_p": 3.235,
+   "gas_sc_p_day": 22.77,
+   "elec_allin_p": 14.093,
+   "gas_allin_p": 3.977,
+   "ratio_source": "2010-15 mean"
+  },
+  "2005": {
+   "elec_unit_p": 13.517,
+   "gas_unit_p": 3.655,
+   "gas_sc_p_day": 25.73,
+   "elec_allin_p": 15.386,
+   "gas_allin_p": 4.494,
+   "ratio_source": "2010-15 mean"
+  },
+  "2006": {
+   "elec_unit_p": 15.183,
+   "gas_unit_p": 4.064,
+   "gas_sc_p_day": 28.61,
+   "elec_allin_p": 17.282,
+   "gas_allin_p": 4.997,
+   "ratio_source": "2010-15 mean"
+  },
+  "2007": {
+   "elec_unit_p": 16.875,
+   "gas_unit_p": 4.37,
+   "gas_sc_p_day": 30.76,
+   "elec_allin_p": 19.208,
+   "gas_allin_p": 5.372,
+   "ratio_source": "2010-15 mean"
+  },
+  "2008": {
+   "elec_unit_p": 17.962,
+   "gas_unit_p": 4.919,
+   "gas_sc_p_day": 34.63,
+   "elec_allin_p": 20.445,
+   "gas_allin_p": 6.048,
+   "ratio_source": "2010-15 mean"
+  },
+  "2009": {
+   "elec_unit_p": 17.771,
+   "gas_unit_p": 5.007,
+   "gas_sc_p_day": 38.16,
+   "elec_allin_p": 20.026,
+   "gas_allin_p": 6.25,
+   "ratio_source": "2010-15 mean"
+  },
+  "2010": {
+   "elec_unit_p": 17.645,
+   "gas_unit_p": 4.946,
+   "gas_sc_p_day": 41.56,
+   "elec_allin_p": 19.882,
+   "gas_allin_p": 6.3,
+   "ratio_source": "actual"
+  },
+  "2011": {
+   "elec_unit_p": 18.015,
+   "gas_unit_p": 5.27,
+   "gas_sc_p_day": 43.92,
+   "elec_allin_p": 20.528,
+   "gas_allin_p": 6.701,
+   "ratio_source": "actual"
+  },
+  "2012": {
+   "elec_unit_p": 18.588,
+   "gas_unit_p": 5.713,
+   "gas_sc_p_day": 40.67,
+   "elec_allin_p": 21.213,
+   "gas_allin_p": 7.038,
+   "ratio_source": "actual"
+  },
+  "2013": {
+   "elec_unit_p": 19.189,
+   "gas_unit_p": 6.014,
+   "gas_sc_p_day": 35.65,
+   "elec_allin_p": 21.953,
+   "gas_allin_p": 7.176,
+   "ratio_source": "actual"
+  },
+  "2014": {
+   "elec_unit_p": 19.287,
+   "gas_unit_p": 5.939,
+   "gas_sc_p_day": 33.82,
+   "elec_allin_p": 22.119,
+   "gas_allin_p": 7.041,
+   "ratio_source": "actual"
+  },
+  "2015": {
+   "elec_unit_p": 18.908,
+   "gas_unit_p": 5.468,
+   "gas_sc_p_day": 32.87,
+   "elec_allin_p": 21.711,
+   "gas_allin_p": 6.54,
+   "ratio_source": "actual"
+  },
+  "2016": {
+   "elec_unit_p": 18.977,
+   "gas_unit_p": 5.016,
+   "gas_sc_p_day": 32.11,
+   "elec_allin_p": 21.847,
+   "gas_allin_p": 6.062,
+   "ratio_source": "actual"
+  },
+  "2017": {
+   "elec_unit_p": 19.737,
+   "gas_unit_p": 4.863,
+   "gas_sc_p_day": 31.52,
+   "elec_allin_p": 22.832,
+   "gas_allin_p": 5.89,
+   "ratio_source": "actual"
+  },
+  "2018": {
+   "elec_unit_p": 20.987,
+   "gas_unit_p": 4.855,
+   "gas_sc_p_day": 32.59,
+   "elec_allin_p": 24.261,
+   "gas_allin_p": 5.917,
+   "ratio_source": "actual"
+  },
+  "2019": {
+   "elec_unit_p": 21.821,
+   "gas_unit_p": 4.685,
+   "gas_sc_p_day": 34.13,
+   "elec_allin_p": 25.1,
+   "gas_allin_p": 5.797,
+   "ratio_source": "actual"
+  },
+  "2020": {
+   "elec_unit_p": 22.644,
+   "gas_unit_p": 4.379,
+   "gas_sc_p_day": 34.03,
+   "elec_allin_p": 25.892,
+   "gas_allin_p": 5.488,
+   "ratio_source": "actual"
+  },
+  "2021": {
+   "elec_unit_p": 27.82,
+   "gas_unit_p": 6.317,
+   "gas_sc_p_day": 36.37,
+   "elec_allin_p": 31.785,
+   "gas_allin_p": 7.502,
+   "ratio_source": "actual"
+  },
+  "2022": {
+   "elec_unit_p": 32.196,
+   "gas_unit_p": 8.967,
+   "gas_sc_p_day": 32.19,
+   "elec_allin_p": 37.375,
+   "gas_allin_p": 10.017,
+   "ratio_source": "actual"
+  },
+  "2023": {
+   "elec_unit_p": 29.405,
+   "gas_unit_p": 8.028,
+   "gas_sc_p_day": 32.4,
+   "elec_allin_p": 35.389,
+   "gas_allin_p": 9.084,
+   "ratio_source": "actual"
+  },
+  "2024": {
+   "elec_unit_p": 26.223,
+   "gas_unit_p": 6.589,
+   "gas_sc_p_day": 31.87,
+   "elec_allin_p": 32.191,
+   "gas_allin_p": 7.628,
+   "ratio_source": "actual"
+  },
+  "2025": {
+   "elec_unit_p": 25.746,
+   "gas_unit_p": 6.417,
+   "gas_sc_p_day": 31.73,
+   "elec_allin_p": 31.451,
+   "gas_allin_p": 7.451,
+   "ratio_source": "actual"
+  }
+ }
+}

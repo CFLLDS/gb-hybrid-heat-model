@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hiding the Wiring Again</title>
+<meta name="description" content="LDS Public Class No. 1. Software-defined power, hybrid heating, and the cost, carbon and flexibility of keeping the boiler: evidence from 86 British winters. Craig Lewis, LDS Consultancy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* LDS Public Class: an academic long-read in the LDS palette (forest, gold, leaf, sage, slate). One reading column,
+   serif body for long reading, sans for structure, mono for figures. Print stylesheet drives the PDF. */
+:root {
+  --bg: #fbfaf6; --panel: #ffffff; --ink: #1c211e; --ink-2: #3f4742; --ink-3: #6b746e; --rule: #dfe3dc;
+  --forest: #1F4D3C; --forest-2: #123328; --gold: #C4993A; --leaf: #97BC62; --sage: #C8D4CE; --slate: #55605A;
+  --hp: #2a78d6; --hyb: #eb6834; --gas: #1baf7a; --c4: #8a5cc7; --link: #1F4D3C; --mark: #fff1c7;
+  --f-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121614; --panel: #1a1f1c; --ink: #edf0eb; --ink-2: #c5cbc4; --ink-3: #8e978f; --rule: #2e3530;
+  --forest: #8fc4a9; --link: #a9d6bd; --mark: #4a3d12; --hp: #3987e5; --hyb: #d95926; --gas: #199e70; --c4: #a07ad9; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #121614; --panel: #1a1f1c; --ink: #edf0eb; --ink-2: #c5cbc4; --ink-3: #8e978f; --rule: #2e3530;
+  --forest: #8fc4a9; --link: #a9d6bd; --mark: #4a3d12; --hp: #3987e5; --hyb: #d95926; --gas: #199e70; --c4: #a07ad9; color-scheme: dark }
+* { box-sizing: border-box }
+html { -webkit-text-size-adjust: 100% }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f-serif); font-size: 18px; line-height: 1.65;
+  padding: 0 16px 80px }
+.wrap { max-width: 720px; margin: 0 auto }
+a { color: var(--link) } a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px }
+.series { font-family: var(--f-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold);
+  margin: 48px 0 14px; display: flex; gap: 12px; flex-wrap: wrap }
+h1 { font-family: var(--f-sans); font-weight: 700; font-size: clamp(32px, 6vw, 50px); line-height: 1.05; letter-spacing: -.015em;
+  color: var(--forest); margin: 0 0 14px; text-wrap: balance }
+.sub { font-family: var(--f-sans); font-size: clamp(17px, 2.4vw, 21px); line-height: 1.35; color: var(--ink-2); margin: 0 0 22px; text-wrap: balance }
+.byline { font-family: var(--f-sans); font-size: 14px; color: var(--ink-3); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+  padding: 10px 0; display: flex; flex-wrap: wrap; gap: 6px 18px }
+.byline b { color: var(--ink) }
+h2 { font-family: var(--f-sans); font-weight: 700; font-size: 26px; line-height: 1.2; color: var(--forest); margin: 56px 0 12px; text-wrap: balance }
+h3 { font-family: var(--f-sans); font-weight: 600; font-size: 19px; margin: 32px 0 8px }
+h4 { font-family: var(--f-sans); font-weight: 600; font-size: 16px; margin: 22px 0 4px; color: var(--ink-2) }
+p { margin: 0 0 16px } li { margin: 4px 0 }
+blockquote { margin: 22px 0; padding: 4px 0 4px 18px; border-left: 3px solid var(--gold); color: var(--ink-2); font-style: italic }
+.abstract { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 22px; margin: 28px 0; font-size: 16.5px }
+.abstract h2 { margin: 0 0 8px; font-size: 15px; letter-spacing: .1em; text-transform: uppercase; color: var(--gold) }
+.keywords { font-family: var(--f-sans); font-size: 13px; color: var(--ink-3) }
+table { border-collapse: collapse; width: 100%; font-family: var(--f-sans); font-size: 14px; margin: 18px 0 8px; font-variant-numeric: tabular-nums }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--rule); vertical-align: top }
+th { color: var(--ink-3); font-weight: 600; font-size: 12.5px }
+.tablebox { overflow-x: auto }
+.tcap { font-family: var(--f-sans); font-size: 14px; color: var(--ink-2); margin: 22px 0 6px } .tcap b { color: var(--ink) }
+figure { margin: 30px 0; } figure svg { width: 100%; height: auto; display: block }
+figcaption { font-family: var(--f-sans); font-size: 14px; color: var(--ink-2); margin-top: 8px }
+figcaption b { color: var(--ink) }
+figure.pending { border: 1px dashed var(--rule); border-radius: 8px; padding: 30px; text-align: center }
+mark.slot { background: var(--mark); color: inherit; font-family: var(--f-mono); font-size: .85em }
+code { font-family: var(--f-mono); font-size: .88em }
+.eq { font-family: var(--f-mono); font-size: 15px; background: var(--panel); border: 1px solid var(--rule); border-radius: 8px;
+  padding: 10px 14px; overflow-x: auto; margin: 16px 0 }
+.toc { font-family: var(--f-sans); font-size: 15px; margin: 26px 0 }
+.toc ol { padding-left: 20px } .toc a { text-decoration: none }
+.refs { font-size: 15px; padding-left: 0; list-style: none } .refs li { margin: 0 0 10px; padding-left: 24px; text-indent: -24px; word-break: break-word }
+.box { background: var(--panel); border-left: 4px solid var(--forest); padding: 14px 18px; margin: 24px 0; font-size: 16.5px }
+.box h4 { margin-top: 0 }
+/* figures: roles validated with dataviz validate_palette.js (light + dark PASS) */
+.fig svg { font-family: var(--f-sans) } .fig .grid { stroke: var(--rule); stroke-width: 1 } .fig .axis { stroke: var(--ink-3); stroke-width: 1 }
+.fig .tick { fill: var(--ink-3); font-size: 12px } .fig .lab { fill: var(--ink-2); font-size: 13px } .fig .dl { fill: var(--ink-2); font-size: 12.5px }
+.fig .ln { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round }
+.fig .dot { stroke: var(--bg); stroke-width: 2 } .fig .band { stroke: none; opacity: .16 }
+.fig .hp { stroke: var(--hp) } .fig .dot.hp, .fig .band.hp, .fig .bar.hp { fill: var(--hp) }
+.fig .hyb { stroke: var(--hyb) } .fig .dot.hyb, .fig .band.hyb, .fig .bar.hyb { fill: var(--hyb) }
+.fig .gas { stroke: var(--gas) } .fig .dot.gas, .fig .band.gas, .fig .bar.gas { fill: var(--gas) }
+.fig .c4 { stroke: var(--c4) } .fig .dot.c4, .fig .band.c4, .fig .bar.c4 { fill: var(--c4) }
+.fig circle:hover, .fig path.ln:hover { stroke-width: 3.5 }
+.tview { font-family: var(--f-sans); font-size: 13px; margin-top: 6px } .tview summary { cursor: pointer; color: var(--ink-3) }
+.pipe { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; font-family: var(--f-sans) }
+.pipe .step { background: var(--panel); border: 1px solid var(--rule); border-top: 3px solid var(--forest); border-radius: 8px; padding: 10px 12px; font-size: 13.5px; color: var(--ink-2) }
+.pipe .step b { display: block; color: var(--ink); font-size: 14.5px } .pipe .n { font-family: var(--f-mono); font-size: 11px; color: var(--gold) }
+@media (max-width: 560px) { .pipe { grid-template-columns: 1fr 1fr } }
+.foot { font-family: var(--f-sans); font-size: 13px; color: var(--ink-3); border-top: 1px solid var(--rule); margin-top: 60px; padding-top: 14px }
+.pdf { font-family: var(--f-sans); font-size: 14px; display: inline-block; margin-top: 12px; padding: 6px 12px; border: 1px solid var(--forest); border-radius: 6px; text-decoration: none }
+@media print {
+  @page { size: A4; margin: 22mm 20mm 22mm 20mm; @bottom-center { content: counter(page); font-family: "IBM Plex Sans"; font-size: 9pt; color: #6b746e } }
+  :root { --bg: #fff } body { font-size: 10.5pt; line-height: 1.5; padding: 0 } .wrap { max-width: none }
+  h2 { break-before: page; font-size: 17pt } h2.nobreak { break-before: auto } figure, table, .box { break-inside: avoid }
+  a { color: inherit; text-decoration: none } .pdf, .noprint { display: none } .series { margin-top: 0 }
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+<div class="series"><span>LDS Public Class</span><span>No. 1</span><span>Working paper v1.0 · 11 November 2026</span></div>
+<h1>Hiding the wiring again</h1>
+<p class="sub">Software-defined power, hybrid heating, and the cost, carbon and flexibility of keeping the boiler: evidence from 86 British winters</p>
+<div class="byline"><span><b>Craig Lewis</b>, LDS Consultancy</span><span>November 2026</span><span>Model: LDS GB hybrid-heating model v4, NVIDIA DGX Spark</span></div>
+<!--BODY-->
+<h2 id="references">References</h2>
+<ol class="refs">
+<!--REFERENCES-->
+</ol>
+<div class="foot">© 2026 LDS Consulting Limited. Levant™ is a UK registered trade mark of LDS Consulting Limited, No. UK00004413246. Every number in this paper is generated from the model outputs; every reference was read at source, in full except the three marked as read from the abstract only. The interactive map is at <a href="/gb-map/">/gb-map/</a>.</div>
+</main>
+</body>
+</html>

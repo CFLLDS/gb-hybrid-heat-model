@@ -1,0 +1,81 @@
+year,persons_per_household,source_id,value_type,confidence,notes
+1946,3.0,ONS_CENSUS2011_BULLETIN,estimate,low,held at the 1961 census value; no fetched source gives earlier UK household size
+1947,3.0,ONS_CENSUS2011_BULLETIN,estimate,low,held at the 1961 census value; no fetched source gives earlier UK household size
+1948,3.0,ONS_CENSUS2011_BULLETIN,estimate,low,held at the 1961 census value; no fetched source gives earlier UK household size
+1949,3.0,ONS_CENSUS2011_BULLETIN,estimate,low,held at the 1961 census value; no fetched source gives earlier UK household size
+1950,3.0,ONS_CENSUS2011_BULLETIN,estimate,low,held at the 1961 census value; no fetched source gives earlier UK household size
+1951,3.0,ONS_CENSUS2011_BULLETIN,estimate,low,held at the 1961 census value; no fetched source gives earlier UK household size
+1952,3.0,ONS_CENSUS2011_BULLETIN,estimate,low,held at the 1961 census value; no fetched source gives earlier UK household size
+1953,3.0,ONS_CENSUS2011_BULLETIN,estimate,low,held at the 1961 census value; no fetched source gives earlier UK household size
+1954,3.0,ONS_CENSUS2011_BULLETIN,estimate,low,held at the 1961 census value; no fetched source gives earlier UK household size
+1955,3.0,ONS_CENSUS2011_BULLETIN,estimate,low,held at the 1961 census value; no fetched source gives earlier UK household size
+1956,3.0,ONS_CENSUS2011_BULLETIN,estimate,low,held at the 1961 census value; no fetched source gives earlier UK household size
+1957,3.0,ONS_CENSUS2011_BULLETIN,estimate,low,held at the 1961 census value; no fetched source gives earlier UK household size
+1958,3.0,ONS_CENSUS2011_BULLETIN,estimate,low,held at the 1961 census value; no fetched source gives earlier UK household size
+1959,3.0,ONS_CENSUS2011_BULLETIN,estimate,low,held at the 1961 census value; no fetched source gives earlier UK household size
+1960,3.0,ONS_CENSUS2011_BULLETIN,estimate,low,held at the 1961 census value; no fetched source gives earlier UK household size
+1961,3.0,ONS_CENSUS2011_BULLETIN,actual,medium,"UK census 1961, stated to one decimal place in the ONS 2011 Census bulletin"
+1962,2.996,ONS_CENSUS2011_BULLETIN+HEFF_2013,estimate,low,interpolated (constant growth rate) between 1961 and 1970
+1963,2.991,ONS_CENSUS2011_BULLETIN+HEFF_2013,estimate,low,interpolated (constant growth rate) between 1961 and 1970
+1964,2.987,ONS_CENSUS2011_BULLETIN+HEFF_2013,estimate,low,interpolated (constant growth rate) between 1961 and 1970
+1965,2.982,ONS_CENSUS2011_BULLETIN+HEFF_2013,estimate,low,interpolated (constant growth rate) between 1961 and 1970
+1966,2.978,ONS_CENSUS2011_BULLETIN+HEFF_2013,estimate,low,interpolated (constant growth rate) between 1961 and 1970
+1967,2.974,ONS_CENSUS2011_BULLETIN+HEFF_2013,estimate,low,interpolated (constant growth rate) between 1961 and 1970
+1968,2.969,ONS_CENSUS2011_BULLETIN+HEFF_2013,estimate,low,interpolated (constant growth rate) between 1961 and 1970
+1969,2.965,ONS_CENSUS2011_BULLETIN+HEFF_2013,estimate,low,interpolated (constant growth rate) between 1961 and 1970
+1970,2.961,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1971,2.939,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1972,2.922,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1973,2.903,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1974,2.878,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1975,2.853,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1976,2.828,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1977,2.803,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1978,2.779,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1979,2.759,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1980,2.74,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1981,2.719,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1982,2.688,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1983,2.662,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1984,2.64,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1985,2.621,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1986,2.601,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1987,2.581,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1988,2.561,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1989,2.544,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1990,2.527,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1991,2.512,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1992,2.5,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1993,2.487,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1994,2.476,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1995,2.465,HEFF_2013,actual,medium,fact file Table 4a: population / households (millions); the table notes 1972-1980 households are interpolated
+1996,2.42,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+1997,2.41,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+1998,2.4,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+1999,2.39,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2000,2.38,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2001,2.38,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2002,2.36,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2003,2.36,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2004,2.37,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2005,2.36,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2006,2.36,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2007,2.36,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2008,2.36,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2009,2.36,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2010,2.36,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2011,2.36,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2012,2.36,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2013,2.37,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2014,2.38,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2015,2.37,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2016,2.39,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2017,2.39,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2018,2.38,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2019,2.37,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2020,2.37,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2021,2.36,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2022,2.36,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2023,2.36,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2024,2.35,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"
+2025,2.36,ONS_FAMILIES_HOUSEHOLDS,actual,high,"ONS Families and households, Table 5 (Labour Force Survey)"

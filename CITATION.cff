@@ -1,11 +1,12 @@
 cff-version: 1.2.0
 message: "If you use this model or its results, please cite it as below."
-title: "Hiding the wiring again: software-defined power, hybrid heating, and the cost, carbon and flexibility of keeping the boiler. Evidence from 86 British winters (model and data)"
+title: "Hiding the wiring again: software-defined power, hybrid heating, and the cost, carbon and flexibility of keeping the boiler. Evidence from 86 British winters (model, data and article)"
 authors:
   - family-names: Lewis
     given-names: Craig
     affiliation: LDS Consultancy
-version: "0.1.0"
-date-released: "2026-11-07"
+version: "1.0.0"
+date-released: "2026-11-11"
 license: MIT
 repository-code: "https://github.com/CFLLDS/gb-hybrid-heat-model"
+url: "https://energy.ldsconsultancy.net/class/"

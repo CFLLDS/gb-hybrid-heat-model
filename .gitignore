@@ -1,6 +1,17 @@
 out/
+release/
 __pycache__/
 *.pyc
-data/history.npz
-data/history_parts/
-data/*_year.json
+docs/article/sd_power_hybrid/build/
+# release assets (inputs.tar.gz, model_outputs_v4.tar.gz) unpack to these paths
+data/model/gb/history.npz
+data/model/gb/history_parts/
+data/model/gb/stock_v3*.npz
+data/model/gb/weather*.json
+data/model/gb/prices_*.json
+data/model/gb/carbon_*.json
+data/model/gb/wind.json
+data/model/gb/years/
+data/model/gb/sources/
+data/model/v4*/
+data/historic_energy_prices/raw/

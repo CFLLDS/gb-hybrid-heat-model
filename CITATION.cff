@@ -7,6 +7,11 @@ authors:
     affiliation: LDS Consultancy
 version: "1.0.0"
 date-released: "2026-11-11"
+doi: "10.5281/zenodo.24133414"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.24133414"
+    description: "The paper, version 1.0, on Zenodo"
 license: MIT
 repository-code: "https://github.com/CFLLDS/gb-hybrid-heat-model"
 url: "https://energy.ldsconsultancy.net/class/"

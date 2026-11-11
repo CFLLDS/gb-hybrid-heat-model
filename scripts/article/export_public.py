@@ -21,6 +21,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 DEST = Path(sys.argv[sys.argv.index("--dest") + 1]) if "--dest" in sys.argv else ROOT.parent / "gb-hybrid-heat-model"
 VERSION, DATE = "1.0.0", "2026-11-11"
+DOI = "10.5281/zenodo.24133414"                                     # Zenodo record of the paper, version 1.0
 SPARK_PY = ["gb_v2.py", "gb_sdp_phi.py", "gb_trace.py", "gb_feedback.py", "gb_coincidence.py", "gb_stagger.py",
             "gb_spf_cal.py", "gb_wind.py", "gb_wmatch.py", "gb_v3_stock.py", "gb_v3_calibrate.py", "gb_v3_prices.py",
             "gb_v3_epc_check.py", "gb_div_digest.py", "gb_h_digest.py", "gb_v4_digest.py", "review_spark.py",
@@ -119,8 +120,8 @@ README = """# GB hybrid heat model
 
 The model, data preparation, analysis and article build behind **LDS Public Class No. 1: "Hiding the wiring again:
 software-defined power, hybrid heating, and the cost, carbon and flexibility of keeping the boiler. Evidence from 86
-British winters"** by Craig Lewis, LDS Consultancy. Version 1.0 of the paper (11 November 2026) is at
-https://energy.ldsconsultancy.net/class/ and, as a PDF, among this release's assets.
+British winters"** by Craig Lewis, LDS Consultancy. Version 1.0 of the paper (11 November 2026, DOI
+https://doi.org/%(doi)s) is at https://energy.ldsconsultancy.net/class/ and, as a PDF, among this release's assets.
 
 It simulates one monitored house and 32,000 sampled homes in each of 79 towns across Great Britain, every half-hour of
 every heating year from 1940-41 to 2025-26 (ERA5 weather), priced on the actual 2025-26 regional tariffs and grid
@@ -196,6 +197,7 @@ rerun `scripts/spark/ukds/` on their own copies.
 
 See `CITATION.cff`. Lewis, C. (2026) Hiding the wiring again: software-defined power, hybrid heating, and the cost,
 carbon and flexibility of keeping the boiler. Evidence from 86 British winters. LDS Public Class No. 1, version 1.0.
+https://doi.org/%(doi)s
 """
 
 MIT = """MIT License
@@ -232,6 +234,11 @@ authors:
     affiliation: LDS Consultancy
 version: "{VERSION}"
 date-released: "{DATE}"
+doi: "{DOI}"
+identifiers:
+  - type: doi
+    value: "{DOI}"
+    description: "The paper, version 1.0, on Zenodo"
 license: MIT
 repository-code: "https://github.com/CFLLDS/gb-hybrid-heat-model"
 url: "https://energy.ldsconsultancy.net/class/"
@@ -259,7 +266,7 @@ data/historic_energy_prices/raw/
 
 if __name__ == "__main__":
     copy()
-    (DEST / "README.md").write_text(README % {"ukds": ukds_lines()})
+    (DEST / "README.md").write_text(README % {"ukds": ukds_lines(), "doi": DOI})
     (DEST / "LICENSE").write_text(MIT)
     (DEST / "LICENSE-TEXT").write_text(CCBY)
     (DEST / "CITATION.cff").write_text(CFF)

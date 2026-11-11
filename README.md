@@ -2,8 +2,8 @@
 
 The model, data preparation, analysis and article build behind **LDS Public Class No. 1: "Hiding the wiring again:
 software-defined power, hybrid heating, and the cost, carbon and flexibility of keeping the boiler. Evidence from 86
-British winters"** by Craig Lewis, LDS Consultancy. Version 1.0 of the paper (11 November 2026) is at
-https://energy.ldsconsultancy.net/class/ and, as a PDF, among this release's assets.
+British winters"** by Craig Lewis, LDS Consultancy. Version 1.0 of the paper (11 November 2026, DOI
+https://doi.org/10.5281/zenodo.24133414) is at https://energy.ldsconsultancy.net/class/ and, as a PDF, among this release's assets.
 
 It simulates one monitored house and 32,000 sampled homes in each of 79 towns across Great Britain, every half-hour of
 every heating year from 1940-41 to 2025-26 (ERA5 weather), priced on the actual 2025-26 regional tariffs and grid
@@ -82,3 +82,4 @@ rerun `scripts/spark/ukds/` on their own copies.
 
 See `CITATION.cff`. Lewis, C. (2026) Hiding the wiring again: software-defined power, hybrid heating, and the cost,
 carbon and flexibility of keeping the boiler. Evidence from 86 British winters. LDS Public Class No. 1, version 1.0.
+https://doi.org/10.5281/zenodo.24133414

@@ -65,7 +65,8 @@ PRINT_CSS = """<link rel="stylesheet" href="fonts/fonts.css">
 .draft-cover, .ptoc { display: none }
 @media print { .ptoc { display: block } }
 </style>"""
-COVER = ('<div class="draft-cover">LDS Public Class No. 1, version 1.0 (11 November 2026), built %(when)s from model v4. '
+COVER = ('<div class="draft-cover">LDS Public Class No. 1, version 1.0 (11 November 2026), DOI 10.5281/zenodo.24133414, '
+         'built %(when)s from model v4. '
          'Web version: energy.ldsconsultancy.net/class/. Model, data and results: '
          'github.com/CFLLDS/gb-hybrid-heat-model, release v1.0.0.</div>')
 

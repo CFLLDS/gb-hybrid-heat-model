@@ -1,6 +1,6 @@
 ## 3. Research questions
 
-The questions and hypotheses below were written down on 7 November 2026. They are not a pre-registration: no registry holds them, and they were written after two earlier versions of the national model had produced public hybrid maps (Section 4.10), so the authors had seen national results for an earlier stock and controller set. They were written before any result of the model used here existed (version 3, whose stock, inputs and physics version 4 keeps; Section 4.10), and are reported as written, whether or not the results support them. The amendment below, made the same day, records the one change prompted by those earlier national results.
+The questions and hypotheses below were written down on 7 November 2026. They are not a pre-registration: no registry holds them, and they were written after two earlier versions of the national model had produced public hybrid maps (Section 4.10), so I had seen national results for an earlier stock and controller set. They were written before any result of the model used here existed (version 3, whose stock, inputs and physics version 4 keeps; Section 4.10), and are reported as written, whether or not the results support them. The amendment below, made the same day, records the one change prompted by those earlier national results.
 
 **RQ1: Cost and weather.** Across __N_YEARS__ real heating years, __TOWNS__ towns and a sampled housing stock, when does an orchestrated hybrid cost a household less over a year than an all-electric heat pump?
 
